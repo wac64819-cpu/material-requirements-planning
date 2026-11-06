@@ -1,0 +1,29 @@
+# Only the comprehensive experiment is part of this repository.
+/*
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/material-planning/
+!/specs/
+!/大作业/
+!/物料需求与采购计划系统-任务计划-2026-09-24.md
+
+# Local runtime state and credentials
+__pycache__/
+*.py[cod]
+node_modules/
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.sqlite3
+*.sqlite3-*
+*.db
+*.db-*
+/material-planning/data/
+~$*
+.DS_Store
+Thumbs.db

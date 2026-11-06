@@ -1,0 +1,2 @@
+﻿batch_id,bucket_id,material_id,needed_date,gross_shortage,surplus_used,remaining_gap,purchase_qty,order_date,surplus_after,adjustment_reason,shortage_ids
+4c25c33172a8470e97d2d50c9221eaa7,"[""purchase_bucket"",""R"",""2026-11-18""]",R,2026-11-18,20,0,20,20,2026-11-15,0,EXACT_SHORTAGE,"[""[\""shortage\"",\""T1\"",\""R\"",\""2026-11-18\""]""]"

@@ -1,0 +1,449 @@
+{
+  "executed_at": "2026-10-15T23:00:37.689963+08:00",
+  "passed": 54,
+  "total": 54,
+  "checks": [
+    {
+      "name": "Confirmed group size",
+      "actual": 2,
+      "expected": 2,
+      "passed": true
+    },
+    {
+      "name": "Six subsystems satisfy literal 2N requirement",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Fourteen unique selected modules",
+      "actual": 14,
+      "expected": 14,
+      "passed": true
+    },
+    {
+      "name": "Selected modules span all six subsystems",
+      "actual": [
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5",
+        "S6"
+      ],
+      "expected": [
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5",
+        "S6"
+      ],
+      "passed": true
+    },
+    {
+      "name": "One pseudocode block per selected module",
+      "actual": 14,
+      "expected": 14,
+      "passed": true
+    },
+    {
+      "name": "Both required design-model types",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Two business decision tables",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Actual member and meeting records remain pending",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Whole-table import differs from E2 patch design",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Logical modules distinguished from real functions",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "M11 current function anchors",
+      "actual": "csv_io.py:38-76 parse_table; csv_io.py:79-111 preview_import",
+      "expected": "csv_io.py:38-76 parse_table; csv_io.py:79-111 preview_import",
+      "passed": true
+    },
+    {
+      "name": "M14 current function anchors",
+      "actual": "storage.py:60-90 save_workspace",
+      "expected": "storage.py:60-90 save_workspace",
+      "passed": true
+    },
+    {
+      "name": "M23 current function anchors",
+      "actual": "planner.py:27-198 validate_and_prepare",
+      "expected": "planner.py:27-198 validate_and_prepare",
+      "passed": true
+    },
+    {
+      "name": "M30 current function anchors",
+      "actual": "planner.py:208-256 net_requirements",
+      "expected": "planner.py:208-256 net_requirements",
+      "passed": true
+    },
+    {
+      "name": "M33 current function anchors",
+      "actual": "core.py:24-85 allocate_stock",
+      "expected": "core.py:24-85 allocate_stock",
+      "passed": true
+    },
+    {
+      "name": "M40 current function anchors",
+      "actual": "planner.py:259-300 plan_purchases",
+      "expected": "planner.py:259-300 plan_purchases",
+      "passed": true
+    },
+    {
+      "name": "M42 current function anchors",
+      "actual": "planner.py:259-300 plan_purchases",
+      "expected": "planner.py:259-300 plan_purchases",
+      "passed": true
+    },
+    {
+      "name": "M43 current function anchors",
+      "actual": "core.py:88-97 round_purchase_qty",
+      "expected": "core.py:88-97 round_purchase_qty",
+      "passed": true
+    },
+    {
+      "name": "M50 current function anchors",
+      "actual": "planner.py:303-326 calculate_plan",
+      "expected": "planner.py:303-326 calculate_plan",
+      "passed": true
+    },
+    {
+      "name": "M52 current function anchors",
+      "actual": "core.py:100-117 subtract_calendar_days",
+      "expected": "core.py:100-117 subtract_calendar_days",
+      "passed": true
+    },
+    {
+      "name": "M53 current function anchors",
+      "actual": "core.py:120-137 flag_early_dates",
+      "expected": "core.py:120-137 flag_early_dates",
+      "passed": true
+    },
+    {
+      "name": "M62 current function anchors",
+      "actual": "storage.py:93-111 calculate_and_save",
+      "expected": "storage.py:93-111 calculate_and_save",
+      "passed": true
+    },
+    {
+      "name": "M63 current function anchors",
+      "actual": "storage.py:114-120 list_batches; storage.py:123-126 get_batch",
+      "expected": "storage.py:114-120 list_batches; storage.py:123-126 get_batch",
+      "passed": true
+    },
+    {
+      "name": "M65 current function anchors",
+      "actual": "csv_io.py:123-151 export_batch; csv_io.py:25-31 encode_csv",
+      "expected": "csv_io.py:123-151 export_batch; csv_io.py:25-31 encode_csv",
+      "passed": true
+    },
+    {
+      "name": "core.py unchanged source hash",
+      "actual": "01f67b289617224e6b10e39b189482f32806580538c7c6208c1496f0cd658ca8",
+      "expected": "01f67b289617224e6b10e39b189482f32806580538c7c6208c1496f0cd658ca8",
+      "passed": true
+    },
+    {
+      "name": "planner.py unchanged source hash",
+      "actual": "b6879011d10f9b2218ebdaf4c498edb4bf357234604eaa2612642541adfd8caf",
+      "expected": "b6879011d10f9b2218ebdaf4c498edb4bf357234604eaa2612642541adfd8caf",
+      "passed": true
+    },
+    {
+      "name": "storage.py unchanged source hash",
+      "actual": "56d2e978975d4e94420dadb60f25360eaed510c0788d2c54b2f113b01434cea3",
+      "expected": "56d2e978975d4e94420dadb60f25360eaed510c0788d2c54b2f113b01434cea3",
+      "passed": true
+    },
+    {
+      "name": "csv_io.py unchanged source hash",
+      "actual": "d6150f390f4aaa33f7ccba40867ba5474a1c7126de1b88a6e974c881814260c3",
+      "expected": "d6150f390f4aaa33f7ccba40867ba5474a1c7126de1b88a6e974c881814260c3",
+      "passed": true
+    },
+    {
+      "name": "web_server.py unchanged source hash",
+      "actual": "b67e8e80ffa38b5c8d75288633cb9963cabb7cb22b974c6b6f1008aad25fc661",
+      "expected": "b67e8e80ffa38b5c8d75288633cb9963cabb7cb22b974c6b6f1008aad25fc661",
+      "passed": true
+    },
+    {
+      "name": "m23-flow.png nonempty PNG",
+      "actual": "89504e470d0a1a0a",
+      "expected": "89504e470d0a1a0a",
+      "passed": true
+    },
+    {
+      "name": "m62-flow.png nonempty PNG",
+      "actual": "89504e470d0a1a0a",
+      "expected": "89504e470d0a1a0a",
+      "passed": true
+    },
+    {
+      "name": "m33-ns.png nonempty PNG",
+      "actual": "89504e470d0a1a0a",
+      "expected": "89504e470d0a1a0a",
+      "passed": true
+    },
+    {
+      "name": "m43-ns.png nonempty PNG",
+      "actual": "89504e470d0a1a0a",
+      "expected": "89504e470d0a1a0a",
+      "passed": true
+    },
+    {
+      "name": "Four embedded diagram instances",
+      "actual": 4,
+      "expected": 4,
+      "passed": true
+    },
+    {
+      "name": "Seven native tables",
+      "actual": 7,
+      "expected": 7,
+      "passed": true
+    },
+    {
+      "name": "Native Word Title style",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "name": "No inherited paragraph borders",
+      "actual": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "No direct paragraph borders",
+      "actual": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "Independent stock attribution",
+      "actual": [
+        [
+          7,
+          0
+        ],
+        [
+          1,
+          4
+        ]
+      ],
+      "expected": [
+        [
+          7,
+          0
+        ],
+        [
+          1,
+          4
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "name": "Independent stock net and balance",
+      "actual": [
+        4,
+        0
+      ],
+      "expected": [
+        4,
+        0
+      ],
+      "passed": true
+    },
+    {
+      "name": "Leaf inputs unchanged",
+      "actual": [
+        {
+          "demand_id": "D",
+          "task_id": "T",
+          "material_id": "X",
+          "needed_date": "2026-10-10",
+          "gross_qty": 12,
+          "origins": [
+            {
+              "origin_id": "o1",
+              "bom_path": [
+                "A",
+                "X"
+              ],
+              "contribution_qty": 7
+            },
+            {
+              "origin_id": "o2",
+              "bom_path": [
+                "B",
+                "X"
+              ],
+              "contribution_qty": 5
+            }
+          ]
+        },
+        {
+          "material_id": "X",
+          "available_qty": 8
+        }
+      ],
+      "expected": [
+        {
+          "demand_id": "D",
+          "task_id": "T",
+          "material_id": "X",
+          "needed_date": "2026-10-10",
+          "gross_qty": 12,
+          "origins": [
+            {
+              "origin_id": "o1",
+              "bom_path": [
+                "A",
+                "X"
+              ],
+              "contribution_qty": 7
+            },
+            {
+              "origin_id": "o2",
+              "bom_path": [
+                "B",
+                "X"
+              ],
+              "contribution_qty": 5
+            }
+          ]
+        },
+        {
+          "material_id": "X",
+          "available_qty": 8
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Purchase decision (620, 100, 100)",
+      "actual": 700,
+      "expected": 700,
+      "passed": true
+    },
+    {
+      "name": "Purchase decision (0, 100, 10)",
+      "actual": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "Purchase decision (4, 12, 6)",
+      "actual": 12,
+      "expected": 12,
+      "passed": true
+    },
+    {
+      "name": "Purchase decision (4, 10, 6)",
+      "actual": 12,
+      "expected": 12,
+      "passed": true
+    },
+    {
+      "name": "Purchase decision (12, 4, 6)",
+      "actual": 12,
+      "expected": 12,
+      "passed": true
+    },
+    {
+      "name": "Purchase decision (13, 4, 6)",
+      "actual": 18,
+      "expected": 18,
+      "passed": true
+    },
+    {
+      "name": "Leap day arithmetic",
+      "actual": "2024-02-29",
+      "expected": "2024-02-29",
+      "passed": true
+    },
+    {
+      "name": "Calendar date example",
+      "actual": "2026-10-08",
+      "expected": "2026-10-08",
+      "passed": true
+    },
+    {
+      "name": "Date range failure",
+      "actual": "DATE_RANGE",
+      "expected": "DATE_RANGE",
+      "passed": true
+    },
+    {
+      "name": "Strict baseline comparison",
+      "actual": [
+        [
+          "early",
+          1
+        ]
+      ],
+      "expected": [
+        [
+          "early",
+          1
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "name": "Multilevel example VALID",
+      "actual": "VALID",
+      "expected": "VALID",
+      "passed": true
+    },
+    {
+      "name": "Independent B manufacture",
+      "actual": [
+        180
+      ],
+      "expected": [
+        180
+      ],
+      "passed": true
+    },
+    {
+      "name": "Independent D purchase",
+      "actual": [
+        620
+      ],
+      "expected": [
+        620
+      ],
+      "passed": true
+    }
+  ],
+  "document_sha256": "3b0a06159f08ebc83aa93d7a35206782f8539f079683b77fe88bf8ea1841b05b",
+  "scope": "Document structure and current small contract walkthroughs; not complete E4/E5 coverage; no database writes."
+}

@@ -1,0 +1,1 @@
+{"request_id": null, "status": "INVALID", "result": null, "errors": [{"code": "SCHEMA", "severity": "BLOCKING", "source_location": "input", "message": "Sources and request must be records.", "task_id": null, "material_id": null, "computed_date": null, "days_before_baseline": null}]}

@@ -1,0 +1,1425 @@
+{
+  "1. 多层 BOM 与提前期": {
+    "request_id": "DEMO-001",
+    "status": "VALID",
+    "result": {
+      "net_bundle": {
+        "context": {
+          "request": {
+            "request_id": "DEMO-001",
+            "selected_task_ids": [
+              "T001"
+            ],
+            "baseline_date": "2026-10-01",
+            "rule_version": "prototype-v0.2"
+          },
+          "sources": {
+            "source_revision": "sample-v1",
+            "materials": [
+              {
+                "material_id": "A",
+                "name": "A",
+                "supply_type": "MAKE",
+                "unit": "pcs",
+                "lead_time_days": 2
+              },
+              {
+                "material_id": "B",
+                "name": "B",
+                "supply_type": "MAKE",
+                "unit": "pcs",
+                "lead_time_days": 3
+              },
+              {
+                "material_id": "C",
+                "name": "C",
+                "supply_type": "BUY",
+                "unit": "pcs",
+                "lead_time_days": 4,
+                "min_purchase_qty": 0,
+                "purchase_multiple": 1
+              },
+              {
+                "material_id": "D",
+                "name": "D",
+                "supply_type": "BUY",
+                "unit": "pcs",
+                "lead_time_days": 5,
+                "min_purchase_qty": 0,
+                "purchase_multiple": 1
+              }
+            ],
+            "bom": [
+              {
+                "parent_id": "A",
+                "child_id": "B",
+                "qty_per": 2
+              },
+              {
+                "parent_id": "A",
+                "child_id": "C",
+                "qty_per": 3
+              },
+              {
+                "parent_id": "B",
+                "child_id": "D",
+                "qty_per": 4
+              }
+            ],
+            "tasks": [
+              {
+                "task_id": "T001",
+                "product_id": "A",
+                "required_qty": 100,
+                "due_date": "2026-10-20",
+                "priority": 2
+              }
+            ],
+            "stocks": [
+              {
+                "material_id": "A",
+                "on_hand": 0,
+                "reserved": 0,
+                "snapshot_date": "2026-10-01"
+              },
+              {
+                "material_id": "B",
+                "on_hand": 20,
+                "reserved": 0,
+                "snapshot_date": "2026-10-01"
+              },
+              {
+                "material_id": "C",
+                "on_hand": 50,
+                "reserved": 0,
+                "snapshot_date": "2026-10-01"
+              },
+              {
+                "material_id": "D",
+                "on_hand": 100,
+                "reserved": 0,
+                "snapshot_date": "2026-10-01"
+              }
+            ]
+          },
+          "rules": {
+            "version": "prototype-v0.2",
+            "task_order": [
+              "priority",
+              "due_date",
+              "task_id"
+            ],
+            "quantity": "integer",
+            "date_basis": "calendar_days",
+            "stock": "on_hand_minus_reserved"
+          },
+          "ordered_task_ids": [
+            "T001"
+          ],
+          "initial_balances": {
+            "A": {
+              "material_id": "A",
+              "available_qty": 0
+            },
+            "B": {
+              "material_id": "B",
+              "available_qty": 20
+            },
+            "C": {
+              "material_id": "C",
+              "available_qty": 50
+            },
+            "D": {
+              "material_id": "D",
+              "available_qty": 100
+            }
+          }
+        },
+        "demands": [
+          {
+            "demand": {
+              "demand_id": "[\"demand\",\"T001\",\"A\",\"2026-10-20\"]",
+              "task_id": "T001",
+              "material_id": "A",
+              "needed_date": "2026-10-20",
+              "gross_qty": 100,
+              "origins": [
+                {
+                  "origin_id": "[\"root\",\"T001\"]",
+                  "task_id": "T001",
+                  "parent_demand_id": null,
+                  "bom_path": [
+                    "A"
+                  ],
+                  "contribution_qty": 100
+                }
+              ]
+            },
+            "allocated_qty": 0,
+            "net_qty": 100,
+            "source_allocations": [
+              {
+                "origin_id": "[\"root\",\"T001\"]",
+                "allocated_qty": 0,
+                "residual_qty": 100
+              }
+            ]
+          },
+          {
+            "demand": {
+              "demand_id": "[\"demand\",\"T001\",\"B\",\"2026-10-18\"]",
+              "task_id": "T001",
+              "material_id": "B",
+              "needed_date": "2026-10-18",
+              "gross_qty": 200,
+              "origins": [
+                {
+                  "origin_id": "[\"origin\",\"T001\",[\"A\",\"B\"]]",
+                  "task_id": "T001",
+                  "parent_demand_id": "[\"demand\",\"T001\",\"A\",\"2026-10-20\"]",
+                  "bom_path": [
+                    "A",
+                    "B"
+                  ],
+                  "contribution_qty": 200
+                }
+              ]
+            },
+            "allocated_qty": 20,
+            "net_qty": 180,
+            "source_allocations": [
+              {
+                "origin_id": "[\"origin\",\"T001\",[\"A\",\"B\"]]",
+                "allocated_qty": 20,
+                "residual_qty": 180
+              }
+            ]
+          },
+          {
+            "demand": {
+              "demand_id": "[\"demand\",\"T001\",\"C\",\"2026-10-18\"]",
+              "task_id": "T001",
+              "material_id": "C",
+              "needed_date": "2026-10-18",
+              "gross_qty": 300,
+              "origins": [
+                {
+                  "origin_id": "[\"origin\",\"T001\",[\"A\",\"C\"]]",
+                  "task_id": "T001",
+                  "parent_demand_id": "[\"demand\",\"T001\",\"A\",\"2026-10-20\"]",
+                  "bom_path": [
+                    "A",
+                    "C"
+                  ],
+                  "contribution_qty": 300
+                }
+              ]
+            },
+            "allocated_qty": 50,
+            "net_qty": 250,
+            "source_allocations": [
+              {
+                "origin_id": "[\"origin\",\"T001\",[\"A\",\"C\"]]",
+                "allocated_qty": 50,
+                "residual_qty": 250
+              }
+            ]
+          },
+          {
+            "demand": {
+              "demand_id": "[\"demand\",\"T001\",\"D\",\"2026-10-15\"]",
+              "task_id": "T001",
+              "material_id": "D",
+              "needed_date": "2026-10-15",
+              "gross_qty": 720,
+              "origins": [
+                {
+                  "origin_id": "[\"origin\",\"T001\",[\"A\",\"B\",\"D\"]]",
+                  "task_id": "T001",
+                  "parent_demand_id": "[\"demand\",\"T001\",\"B\",\"2026-10-18\"]",
+                  "bom_path": [
+                    "A",
+                    "B",
+                    "D"
+                  ],
+                  "contribution_qty": 720
+                }
+              ]
+            },
+            "allocated_qty": 100,
+            "net_qty": 620,
+            "source_allocations": [
+              {
+                "origin_id": "[\"origin\",\"T001\",[\"A\",\"B\",\"D\"]]",
+                "allocated_qty": 100,
+                "residual_qty": 620
+              }
+            ]
+          }
+        ],
+        "allocations": [
+          {
+            "allocation_id": "[\"allocation\",\"T001\",\"[\\\"demand\\\",\\\"T001\\\",\\\"A\\\",\\\"2026-10-20\\\"]\"]",
+            "demand_id": "[\"demand\",\"T001\",\"A\",\"2026-10-20\"]",
+            "task_id": "T001",
+            "material_id": "A",
+            "needed_date": "2026-10-20",
+            "before_qty": 0,
+            "allocated_qty": 0,
+            "after_qty": 0,
+            "source_allocations": [
+              {
+                "origin_id": "[\"root\",\"T001\"]",
+                "allocated_qty": 0,
+                "residual_qty": 100
+              }
+            ]
+          },
+          {
+            "allocation_id": "[\"allocation\",\"T001\",\"[\\\"demand\\\",\\\"T001\\\",\\\"B\\\",\\\"2026-10-18\\\"]\"]",
+            "demand_id": "[\"demand\",\"T001\",\"B\",\"2026-10-18\"]",
+            "task_id": "T001",
+            "material_id": "B",
+            "needed_date": "2026-10-18",
+            "before_qty": 20,
+            "allocated_qty": 20,
+            "after_qty": 0,
+            "source_allocations": [
+              {
+                "origin_id": "[\"origin\",\"T001\",[\"A\",\"B\"]]",
+                "allocated_qty": 20,
+                "residual_qty": 180
+              }
+            ]
+          },
+          {
+            "allocation_id": "[\"allocation\",\"T001\",\"[\\\"demand\\\",\\\"T001\\\",\\\"C\\\",\\\"2026-10-18\\\"]\"]",
+            "demand_id": "[\"demand\",\"T001\",\"C\",\"2026-10-18\"]",
+            "task_id": "T001",
+            "material_id": "C",
+            "needed_date": "2026-10-18",
+            "before_qty": 50,
+            "allocated_qty": 50,
+            "after_qty": 0,
+            "source_allocations": [
+              {
+                "origin_id": "[\"origin\",\"T001\",[\"A\",\"C\"]]",
+                "allocated_qty": 50,
+                "residual_qty": 250
+              }
+            ]
+          },
+          {
+            "allocation_id": "[\"allocation\",\"T001\",\"[\\\"demand\\\",\\\"T001\\\",\\\"D\\\",\\\"2026-10-15\\\"]\"]",
+            "demand_id": "[\"demand\",\"T001\",\"D\",\"2026-10-15\"]",
+            "task_id": "T001",
+            "material_id": "D",
+            "needed_date": "2026-10-15",
+            "before_qty": 100,
+            "allocated_qty": 100,
+            "after_qty": 0,
+            "source_allocations": [
+              {
+                "origin_id": "[\"origin\",\"T001\",[\"A\",\"B\",\"D\"]]",
+                "allocated_qty": 100,
+                "residual_qty": 620
+              }
+            ]
+          }
+        ],
+        "make_lines": [
+          {
+            "line_id": "[\"make\",\"T001\",\"A\",\"2026-10-20\"]",
+            "demand_id": "[\"demand\",\"T001\",\"A\",\"2026-10-20\"]",
+            "task_id": "T001",
+            "material_id": "A",
+            "gross_qty": 100,
+            "allocated_qty": 0,
+            "make_qty": 100,
+            "needed_date": "2026-10-20",
+            "start_date": "2026-10-18",
+            "origin_ids": [
+              "[\"root\",\"T001\"]"
+            ]
+          },
+          {
+            "line_id": "[\"make\",\"T001\",\"B\",\"2026-10-18\"]",
+            "demand_id": "[\"demand\",\"T001\",\"B\",\"2026-10-18\"]",
+            "task_id": "T001",
+            "material_id": "B",
+            "gross_qty": 200,
+            "allocated_qty": 20,
+            "make_qty": 180,
+            "needed_date": "2026-10-18",
+            "start_date": "2026-10-15",
+            "origin_ids": [
+              "[\"origin\",\"T001\",[\"A\",\"B\"]]"
+            ]
+          }
+        ],
+        "buy_shortages": [
+          {
+            "shortage_id": "[\"shortage\",\"T001\",\"C\",\"2026-10-18\"]",
+            "demand_id": "[\"demand\",\"T001\",\"C\",\"2026-10-18\"]",
+            "task_id": "T001",
+            "material_id": "C",
+            "needed_date": "2026-10-18",
+            "shortage_qty": 250,
+            "origin_ids": [
+              "[\"origin\",\"T001\",[\"A\",\"C\"]]"
+            ]
+          },
+          {
+            "shortage_id": "[\"shortage\",\"T001\",\"D\",\"2026-10-15\"]",
+            "demand_id": "[\"demand\",\"T001\",\"D\",\"2026-10-15\"]",
+            "task_id": "T001",
+            "material_id": "D",
+            "needed_date": "2026-10-15",
+            "shortage_qty": 620,
+            "origin_ids": [
+              "[\"origin\",\"T001\",[\"A\",\"B\",\"D\"]]"
+            ]
+          }
+        ],
+        "final_balances": {
+          "A": {
+            "material_id": "A",
+            "available_qty": 0
+          },
+          "B": {
+            "material_id": "B",
+            "available_qty": 0
+          },
+          "C": {
+            "material_id": "C",
+            "available_qty": 0
+          },
+          "D": {
+            "material_id": "D",
+            "available_qty": 0
+          }
+        }
+      },
+      "purchase_buckets": [
+        {
+          "bucket_id": "[\"purchase_bucket\",\"C\",\"2026-10-18\"]",
+          "material_id": "C",
+          "needed_date": "2026-10-18",
+          "shortage_ids": [
+            "[\"shortage\",\"T001\",\"C\",\"2026-10-18\"]"
+          ],
+          "gross_shortage": 250,
+          "surplus_used": 0,
+          "remaining_gap": 250,
+          "purchase_qty": 250,
+          "order_date": "2026-10-14",
+          "surplus_after": 0,
+          "adjustment_reason": "EXACT_SHORTAGE"
+        },
+        {
+          "bucket_id": "[\"purchase_bucket\",\"D\",\"2026-10-15\"]",
+          "material_id": "D",
+          "needed_date": "2026-10-15",
+          "shortage_ids": [
+            "[\"shortage\",\"T001\",\"D\",\"2026-10-15\"]"
+          ],
+          "gross_shortage": 620,
+          "surplus_used": 0,
+          "remaining_gap": 620,
+          "purchase_qty": 620,
+          "order_date": "2026-10-10",
+          "surplus_after": 0,
+          "adjustment_reason": "EXACT_SHORTAGE"
+        }
+      ],
+      "surplus_uses": [],
+      "final_surplus_lots": [],
+      "risks": [],
+      "summary": {
+        "task_count": 1,
+        "make_line_count": 2,
+        "purchase_line_count": 2,
+        "risk_count": 0
+      }
+    },
+    "errors": []
+  },
+  "2. 高优先级任务先分配库存": {
+    "request_id": "DEMO-001",
+    "status": "VALID",
+    "result": {
+      "net_bundle": {
+        "context": {
+          "request": {
+            "request_id": "DEMO-001",
+            "selected_task_ids": [
+              "HIGH",
+              "LOW"
+            ],
+            "baseline_date": "2026-10-01",
+            "rule_version": "prototype-v0.2"
+          },
+          "sources": {
+            "source_revision": "sample-v1",
+            "materials": [
+              {
+                "material_id": "A",
+                "name": "A",
+                "supply_type": "MAKE",
+                "unit": "pcs",
+                "lead_time_days": 2
+              },
+              {
+                "material_id": "B",
+                "name": "B",
+                "supply_type": "MAKE",
+                "unit": "pcs",
+                "lead_time_days": 3
+              },
+              {
+                "material_id": "C",
+                "name": "C",
+                "supply_type": "BUY",
+                "unit": "pcs",
+                "lead_time_days": 4,
+                "min_purchase_qty": 0,
+                "purchase_multiple": 1
+              },
+              {
+                "material_id": "D",
+                "name": "D",
+                "supply_type": "BUY",
+                "unit": "pcs",
+                "lead_time_days": 5,
+                "min_purchase_qty": 0,
+                "purchase_multiple": 1
+              }
+            ],
+            "bom": [
+              {
+                "parent_id": "A",
+                "child_id": "B",
+                "qty_per": 2
+              },
+              {
+                "parent_id": "A",
+                "child_id": "C",
+                "qty_per": 3
+              },
+              {
+                "parent_id": "B",
+                "child_id": "D",
+                "qty_per": 4
+              }
+            ],
+            "tasks": [
+              {
+                "task_id": "HIGH",
+                "product_id": "A",
+                "required_qty": 50,
+                "due_date": "2026-10-21",
+                "priority": 1
+              },
+              {
+                "task_id": "LOW",
+                "product_id": "A",
+                "required_qty": 100,
+                "due_date": "2026-10-20",
+                "priority": 2
+              }
+            ],
+            "stocks": [
+              {
+                "material_id": "A",
+                "on_hand": 0,
+                "reserved": 0,
+                "snapshot_date": "2026-10-01"
+              },
+              {
+                "material_id": "B",
+                "on_hand": 20,
+                "reserved": 0,
+                "snapshot_date": "2026-10-01"
+              },
+              {
+                "material_id": "C",
+                "on_hand": 50,
+                "reserved": 0,
+                "snapshot_date": "2026-10-01"
+              },
+              {
+                "material_id": "D",
+                "on_hand": 100,
+                "reserved": 0,
+                "snapshot_date": "2026-10-01"
+              }
+            ]
+          },
+          "rules": {
+            "version": "prototype-v0.2",
+            "task_order": [
+              "priority",
+              "due_date",
+              "task_id"
+            ],
+            "quantity": "integer",
+            "date_basis": "calendar_days",
+            "stock": "on_hand_minus_reserved"
+          },
+          "ordered_task_ids": [
+            "HIGH",
+            "LOW"
+          ],
+          "initial_balances": {
+            "A": {
+              "material_id": "A",
+              "available_qty": 0
+            },
+            "B": {
+              "material_id": "B",
+              "available_qty": 20
+            },
+            "C": {
+              "material_id": "C",
+              "available_qty": 50
+            },
+            "D": {
+              "material_id": "D",
+              "available_qty": 100
+            }
+          }
+        },
+        "demands": [
+          {
+            "demand": {
+              "demand_id": "[\"demand\",\"HIGH\",\"A\",\"2026-10-21\"]",
+              "task_id": "HIGH",
+              "material_id": "A",
+              "needed_date": "2026-10-21",
+              "gross_qty": 50,
+              "origins": [
+                {
+                  "origin_id": "[\"root\",\"HIGH\"]",
+                  "task_id": "HIGH",
+                  "parent_demand_id": null,
+                  "bom_path": [
+                    "A"
+                  ],
+                  "contribution_qty": 50
+                }
+              ]
+            },
+            "allocated_qty": 0,
+            "net_qty": 50,
+            "source_allocations": [
+              {
+                "origin_id": "[\"root\",\"HIGH\"]",
+                "allocated_qty": 0,
+                "residual_qty": 50
+              }
+            ]
+          },
+          {
+            "demand": {
+              "demand_id": "[\"demand\",\"HIGH\",\"B\",\"2026-10-19\"]",
+              "task_id": "HIGH",
+              "material_id": "B",
+              "needed_date": "2026-10-19",
+              "gross_qty": 100,
+              "origins": [
+                {
+                  "origin_id": "[\"origin\",\"HIGH\",[\"A\",\"B\"]]",
+                  "task_id": "HIGH",
+                  "parent_demand_id": "[\"demand\",\"HIGH\",\"A\",\"2026-10-21\"]",
+                  "bom_path": [
+                    "A",
+                    "B"
+                  ],
+                  "contribution_qty": 100
+                }
+              ]
+            },
+            "allocated_qty": 20,
+            "net_qty": 80,
+            "source_allocations": [
+              {
+                "origin_id": "[\"origin\",\"HIGH\",[\"A\",\"B\"]]",
+                "allocated_qty": 20,
+                "residual_qty": 80
+              }
+            ]
+          },
+          {
+            "demand": {
+              "demand_id": "[\"demand\",\"HIGH\",\"C\",\"2026-10-19\"]",
+              "task_id": "HIGH",
+              "material_id": "C",
+              "needed_date": "2026-10-19",
+              "gross_qty": 150,
+              "origins": [
+                {
+                  "origin_id": "[\"origin\",\"HIGH\",[\"A\",\"C\"]]",
+                  "task_id": "HIGH",
+                  "parent_demand_id": "[\"demand\",\"HIGH\",\"A\",\"2026-10-21\"]",
+                  "bom_path": [
+                    "A",
+                    "C"
+                  ],
+                  "contribution_qty": 150
+                }
+              ]
+            },
+            "allocated_qty": 50,
+            "net_qty": 100,
+            "source_allocations": [
+              {
+                "origin_id": "[\"origin\",\"HIGH\",[\"A\",\"C\"]]",
+                "allocated_qty": 50,
+                "residual_qty": 100
+              }
+            ]
+          },
+          {
+            "demand": {
+              "demand_id": "[\"demand\",\"HIGH\",\"D\",\"2026-10-16\"]",
+              "task_id": "HIGH",
+              "material_id": "D",
+              "needed_date": "2026-10-16",
+              "gross_qty": 320,
+              "origins": [
+                {
+                  "origin_id": "[\"origin\",\"HIGH\",[\"A\",\"B\",\"D\"]]",
+                  "task_id": "HIGH",
+                  "parent_demand_id": "[\"demand\",\"HIGH\",\"B\",\"2026-10-19\"]",
+                  "bom_path": [
+                    "A",
+                    "B",
+                    "D"
+                  ],
+                  "contribution_qty": 320
+                }
+              ]
+            },
+            "allocated_qty": 100,
+            "net_qty": 220,
+            "source_allocations": [
+              {
+                "origin_id": "[\"origin\",\"HIGH\",[\"A\",\"B\",\"D\"]]",
+                "allocated_qty": 100,
+                "residual_qty": 220
+              }
+            ]
+          },
+          {
+            "demand": {
+              "demand_id": "[\"demand\",\"LOW\",\"A\",\"2026-10-20\"]",
+              "task_id": "LOW",
+              "material_id": "A",
+              "needed_date": "2026-10-20",
+              "gross_qty": 100,
+              "origins": [
+                {
+                  "origin_id": "[\"root\",\"LOW\"]",
+                  "task_id": "LOW",
+                  "parent_demand_id": null,
+                  "bom_path": [
+                    "A"
+                  ],
+                  "contribution_qty": 100
+                }
+              ]
+            },
+            "allocated_qty": 0,
+            "net_qty": 100,
+            "source_allocations": [
+              {
+                "origin_id": "[\"root\",\"LOW\"]",
+                "allocated_qty": 0,
+                "residual_qty": 100
+              }
+            ]
+          },
+          {
+            "demand": {
+              "demand_id": "[\"demand\",\"LOW\",\"B\",\"2026-10-18\"]",
+              "task_id": "LOW",
+              "material_id": "B",
+              "needed_date": "2026-10-18",
+              "gross_qty": 200,
+              "origins": [
+                {
+                  "origin_id": "[\"origin\",\"LOW\",[\"A\",\"B\"]]",
+                  "task_id": "LOW",
+                  "parent_demand_id": "[\"demand\",\"LOW\",\"A\",\"2026-10-20\"]",
+                  "bom_path": [
+                    "A",
+                    "B"
+                  ],
+                  "contribution_qty": 200
+                }
+              ]
+            },
+            "allocated_qty": 0,
+            "net_qty": 200,
+            "source_allocations": [
+              {
+                "origin_id": "[\"origin\",\"LOW\",[\"A\",\"B\"]]",
+                "allocated_qty": 0,
+                "residual_qty": 200
+              }
+            ]
+          },
+          {
+            "demand": {
+              "demand_id": "[\"demand\",\"LOW\",\"C\",\"2026-10-18\"]",
+              "task_id": "LOW",
+              "material_id": "C",
+              "needed_date": "2026-10-18",
+              "gross_qty": 300,
+              "origins": [
+                {
+                  "origin_id": "[\"origin\",\"LOW\",[\"A\",\"C\"]]",
+                  "task_id": "LOW",
+                  "parent_demand_id": "[\"demand\",\"LOW\",\"A\",\"2026-10-20\"]",
+                  "bom_path": [
+                    "A",
+                    "C"
+                  ],
+                  "contribution_qty": 300
+                }
+              ]
+            },
+            "allocated_qty": 0,
+            "net_qty": 300,
+            "source_allocations": [
+              {
+                "origin_id": "[\"origin\",\"LOW\",[\"A\",\"C\"]]",
+                "allocated_qty": 0,
+                "residual_qty": 300
+              }
+            ]
+          },
+          {
+            "demand": {
+              "demand_id": "[\"demand\",\"LOW\",\"D\",\"2026-10-15\"]",
+              "task_id": "LOW",
+              "material_id": "D",
+              "needed_date": "2026-10-15",
+              "gross_qty": 800,
+              "origins": [
+                {
+                  "origin_id": "[\"origin\",\"LOW\",[\"A\",\"B\",\"D\"]]",
+                  "task_id": "LOW",
+                  "parent_demand_id": "[\"demand\",\"LOW\",\"B\",\"2026-10-18\"]",
+                  "bom_path": [
+                    "A",
+                    "B",
+                    "D"
+                  ],
+                  "contribution_qty": 800
+                }
+              ]
+            },
+            "allocated_qty": 0,
+            "net_qty": 800,
+            "source_allocations": [
+              {
+                "origin_id": "[\"origin\",\"LOW\",[\"A\",\"B\",\"D\"]]",
+                "allocated_qty": 0,
+                "residual_qty": 800
+              }
+            ]
+          }
+        ],
+        "allocations": [
+          {
+            "allocation_id": "[\"allocation\",\"HIGH\",\"[\\\"demand\\\",\\\"HIGH\\\",\\\"A\\\",\\\"2026-10-21\\\"]\"]",
+            "demand_id": "[\"demand\",\"HIGH\",\"A\",\"2026-10-21\"]",
+            "task_id": "HIGH",
+            "material_id": "A",
+            "needed_date": "2026-10-21",
+            "before_qty": 0,
+            "allocated_qty": 0,
+            "after_qty": 0,
+            "source_allocations": [
+              {
+                "origin_id": "[\"root\",\"HIGH\"]",
+                "allocated_qty": 0,
+                "residual_qty": 50
+              }
+            ]
+          },
+          {
+            "allocation_id": "[\"allocation\",\"HIGH\",\"[\\\"demand\\\",\\\"HIGH\\\",\\\"B\\\",\\\"2026-10-19\\\"]\"]",
+            "demand_id": "[\"demand\",\"HIGH\",\"B\",\"2026-10-19\"]",
+            "task_id": "HIGH",
+            "material_id": "B",
+            "needed_date": "2026-10-19",
+            "before_qty": 20,
+            "allocated_qty": 20,
+            "after_qty": 0,
+            "source_allocations": [
+              {
+                "origin_id": "[\"origin\",\"HIGH\",[\"A\",\"B\"]]",
+                "allocated_qty": 20,
+                "residual_qty": 80
+              }
+            ]
+          },
+          {
+            "allocation_id": "[\"allocation\",\"HIGH\",\"[\\\"demand\\\",\\\"HIGH\\\",\\\"C\\\",\\\"2026-10-19\\\"]\"]",
+            "demand_id": "[\"demand\",\"HIGH\",\"C\",\"2026-10-19\"]",
+            "task_id": "HIGH",
+            "material_id": "C",
+            "needed_date": "2026-10-19",
+            "before_qty": 50,
+            "allocated_qty": 50,
+            "after_qty": 0,
+            "source_allocations": [
+              {
+                "origin_id": "[\"origin\",\"HIGH\",[\"A\",\"C\"]]",
+                "allocated_qty": 50,
+                "residual_qty": 100
+              }
+            ]
+          },
+          {
+            "allocation_id": "[\"allocation\",\"HIGH\",\"[\\\"demand\\\",\\\"HIGH\\\",\\\"D\\\",\\\"2026-10-16\\\"]\"]",
+            "demand_id": "[\"demand\",\"HIGH\",\"D\",\"2026-10-16\"]",
+            "task_id": "HIGH",
+            "material_id": "D",
+            "needed_date": "2026-10-16",
+            "before_qty": 100,
+            "allocated_qty": 100,
+            "after_qty": 0,
+            "source_allocations": [
+              {
+                "origin_id": "[\"origin\",\"HIGH\",[\"A\",\"B\",\"D\"]]",
+                "allocated_qty": 100,
+                "residual_qty": 220
+              }
+            ]
+          },
+          {
+            "allocation_id": "[\"allocation\",\"LOW\",\"[\\\"demand\\\",\\\"LOW\\\",\\\"A\\\",\\\"2026-10-20\\\"]\"]",
+            "demand_id": "[\"demand\",\"LOW\",\"A\",\"2026-10-20\"]",
+            "task_id": "LOW",
+            "material_id": "A",
+            "needed_date": "2026-10-20",
+            "before_qty": 0,
+            "allocated_qty": 0,
+            "after_qty": 0,
+            "source_allocations": [
+              {
+                "origin_id": "[\"root\",\"LOW\"]",
+                "allocated_qty": 0,
+                "residual_qty": 100
+              }
+            ]
+          },
+          {
+            "allocation_id": "[\"allocation\",\"LOW\",\"[\\\"demand\\\",\\\"LOW\\\",\\\"B\\\",\\\"2026-10-18\\\"]\"]",
+            "demand_id": "[\"demand\",\"LOW\",\"B\",\"2026-10-18\"]",
+            "task_id": "LOW",
+            "material_id": "B",
+            "needed_date": "2026-10-18",
+            "before_qty": 0,
+            "allocated_qty": 0,
+            "after_qty": 0,
+            "source_allocations": [
+              {
+                "origin_id": "[\"origin\",\"LOW\",[\"A\",\"B\"]]",
+                "allocated_qty": 0,
+                "residual_qty": 200
+              }
+            ]
+          },
+          {
+            "allocation_id": "[\"allocation\",\"LOW\",\"[\\\"demand\\\",\\\"LOW\\\",\\\"C\\\",\\\"2026-10-18\\\"]\"]",
+            "demand_id": "[\"demand\",\"LOW\",\"C\",\"2026-10-18\"]",
+            "task_id": "LOW",
+            "material_id": "C",
+            "needed_date": "2026-10-18",
+            "before_qty": 0,
+            "allocated_qty": 0,
+            "after_qty": 0,
+            "source_allocations": [
+              {
+                "origin_id": "[\"origin\",\"LOW\",[\"A\",\"C\"]]",
+                "allocated_qty": 0,
+                "residual_qty": 300
+              }
+            ]
+          },
+          {
+            "allocation_id": "[\"allocation\",\"LOW\",\"[\\\"demand\\\",\\\"LOW\\\",\\\"D\\\",\\\"2026-10-15\\\"]\"]",
+            "demand_id": "[\"demand\",\"LOW\",\"D\",\"2026-10-15\"]",
+            "task_id": "LOW",
+            "material_id": "D",
+            "needed_date": "2026-10-15",
+            "before_qty": 0,
+            "allocated_qty": 0,
+            "after_qty": 0,
+            "source_allocations": [
+              {
+                "origin_id": "[\"origin\",\"LOW\",[\"A\",\"B\",\"D\"]]",
+                "allocated_qty": 0,
+                "residual_qty": 800
+              }
+            ]
+          }
+        ],
+        "make_lines": [
+          {
+            "line_id": "[\"make\",\"HIGH\",\"A\",\"2026-10-21\"]",
+            "demand_id": "[\"demand\",\"HIGH\",\"A\",\"2026-10-21\"]",
+            "task_id": "HIGH",
+            "material_id": "A",
+            "gross_qty": 50,
+            "allocated_qty": 0,
+            "make_qty": 50,
+            "needed_date": "2026-10-21",
+            "start_date": "2026-10-19",
+            "origin_ids": [
+              "[\"root\",\"HIGH\"]"
+            ]
+          },
+          {
+            "line_id": "[\"make\",\"HIGH\",\"B\",\"2026-10-19\"]",
+            "demand_id": "[\"demand\",\"HIGH\",\"B\",\"2026-10-19\"]",
+            "task_id": "HIGH",
+            "material_id": "B",
+            "gross_qty": 100,
+            "allocated_qty": 20,
+            "make_qty": 80,
+            "needed_date": "2026-10-19",
+            "start_date": "2026-10-16",
+            "origin_ids": [
+              "[\"origin\",\"HIGH\",[\"A\",\"B\"]]"
+            ]
+          },
+          {
+            "line_id": "[\"make\",\"LOW\",\"A\",\"2026-10-20\"]",
+            "demand_id": "[\"demand\",\"LOW\",\"A\",\"2026-10-20\"]",
+            "task_id": "LOW",
+            "material_id": "A",
+            "gross_qty": 100,
+            "allocated_qty": 0,
+            "make_qty": 100,
+            "needed_date": "2026-10-20",
+            "start_date": "2026-10-18",
+            "origin_ids": [
+              "[\"root\",\"LOW\"]"
+            ]
+          },
+          {
+            "line_id": "[\"make\",\"LOW\",\"B\",\"2026-10-18\"]",
+            "demand_id": "[\"demand\",\"LOW\",\"B\",\"2026-10-18\"]",
+            "task_id": "LOW",
+            "material_id": "B",
+            "gross_qty": 200,
+            "allocated_qty": 0,
+            "make_qty": 200,
+            "needed_date": "2026-10-18",
+            "start_date": "2026-10-15",
+            "origin_ids": [
+              "[\"origin\",\"LOW\",[\"A\",\"B\"]]"
+            ]
+          }
+        ],
+        "buy_shortages": [
+          {
+            "shortage_id": "[\"shortage\",\"HIGH\",\"C\",\"2026-10-19\"]",
+            "demand_id": "[\"demand\",\"HIGH\",\"C\",\"2026-10-19\"]",
+            "task_id": "HIGH",
+            "material_id": "C",
+            "needed_date": "2026-10-19",
+            "shortage_qty": 100,
+            "origin_ids": [
+              "[\"origin\",\"HIGH\",[\"A\",\"C\"]]"
+            ]
+          },
+          {
+            "shortage_id": "[\"shortage\",\"HIGH\",\"D\",\"2026-10-16\"]",
+            "demand_id": "[\"demand\",\"HIGH\",\"D\",\"2026-10-16\"]",
+            "task_id": "HIGH",
+            "material_id": "D",
+            "needed_date": "2026-10-16",
+            "shortage_qty": 220,
+            "origin_ids": [
+              "[\"origin\",\"HIGH\",[\"A\",\"B\",\"D\"]]"
+            ]
+          },
+          {
+            "shortage_id": "[\"shortage\",\"LOW\",\"C\",\"2026-10-18\"]",
+            "demand_id": "[\"demand\",\"LOW\",\"C\",\"2026-10-18\"]",
+            "task_id": "LOW",
+            "material_id": "C",
+            "needed_date": "2026-10-18",
+            "shortage_qty": 300,
+            "origin_ids": [
+              "[\"origin\",\"LOW\",[\"A\",\"C\"]]"
+            ]
+          },
+          {
+            "shortage_id": "[\"shortage\",\"LOW\",\"D\",\"2026-10-15\"]",
+            "demand_id": "[\"demand\",\"LOW\",\"D\",\"2026-10-15\"]",
+            "task_id": "LOW",
+            "material_id": "D",
+            "needed_date": "2026-10-15",
+            "shortage_qty": 800,
+            "origin_ids": [
+              "[\"origin\",\"LOW\",[\"A\",\"B\",\"D\"]]"
+            ]
+          }
+        ],
+        "final_balances": {
+          "A": {
+            "material_id": "A",
+            "available_qty": 0
+          },
+          "B": {
+            "material_id": "B",
+            "available_qty": 0
+          },
+          "C": {
+            "material_id": "C",
+            "available_qty": 0
+          },
+          "D": {
+            "material_id": "D",
+            "available_qty": 0
+          }
+        }
+      },
+      "purchase_buckets": [
+        {
+          "bucket_id": "[\"purchase_bucket\",\"C\",\"2026-10-18\"]",
+          "material_id": "C",
+          "needed_date": "2026-10-18",
+          "shortage_ids": [
+            "[\"shortage\",\"LOW\",\"C\",\"2026-10-18\"]"
+          ],
+          "gross_shortage": 300,
+          "surplus_used": 0,
+          "remaining_gap": 300,
+          "purchase_qty": 300,
+          "order_date": "2026-10-14",
+          "surplus_after": 0,
+          "adjustment_reason": "EXACT_SHORTAGE"
+        },
+        {
+          "bucket_id": "[\"purchase_bucket\",\"C\",\"2026-10-19\"]",
+          "material_id": "C",
+          "needed_date": "2026-10-19",
+          "shortage_ids": [
+            "[\"shortage\",\"HIGH\",\"C\",\"2026-10-19\"]"
+          ],
+          "gross_shortage": 100,
+          "surplus_used": 0,
+          "remaining_gap": 100,
+          "purchase_qty": 100,
+          "order_date": "2026-10-15",
+          "surplus_after": 0,
+          "adjustment_reason": "EXACT_SHORTAGE"
+        },
+        {
+          "bucket_id": "[\"purchase_bucket\",\"D\",\"2026-10-15\"]",
+          "material_id": "D",
+          "needed_date": "2026-10-15",
+          "shortage_ids": [
+            "[\"shortage\",\"LOW\",\"D\",\"2026-10-15\"]"
+          ],
+          "gross_shortage": 800,
+          "surplus_used": 0,
+          "remaining_gap": 800,
+          "purchase_qty": 800,
+          "order_date": "2026-10-10",
+          "surplus_after": 0,
+          "adjustment_reason": "EXACT_SHORTAGE"
+        },
+        {
+          "bucket_id": "[\"purchase_bucket\",\"D\",\"2026-10-16\"]",
+          "material_id": "D",
+          "needed_date": "2026-10-16",
+          "shortage_ids": [
+            "[\"shortage\",\"HIGH\",\"D\",\"2026-10-16\"]"
+          ],
+          "gross_shortage": 220,
+          "surplus_used": 0,
+          "remaining_gap": 220,
+          "purchase_qty": 220,
+          "order_date": "2026-10-11",
+          "surplus_after": 0,
+          "adjustment_reason": "EXACT_SHORTAGE"
+        }
+      ],
+      "surplus_uses": [],
+      "final_surplus_lots": [],
+      "risks": [],
+      "summary": {
+        "task_count": 2,
+        "make_line_count": 4,
+        "purchase_line_count": 4,
+        "risk_count": 0
+      }
+    },
+    "errors": []
+  },
+  "3. 采购凑整余量供后续日期使用": {
+    "request_id": "DEMO-001",
+    "status": "VALID",
+    "result": {
+      "net_bundle": {
+        "context": {
+          "request": {
+            "request_id": "DEMO-001",
+            "selected_task_ids": [
+              "T1",
+              "T2"
+            ],
+            "baseline_date": "2026-10-01",
+            "rule_version": "prototype-v0.2"
+          },
+          "sources": {
+            "source_revision": "sample-v1",
+            "materials": [
+              {
+                "material_id": "X",
+                "name": "X",
+                "supply_type": "BUY",
+                "unit": "pcs",
+                "lead_time_days": 2,
+                "min_purchase_qty": 10,
+                "purchase_multiple": 10
+              }
+            ],
+            "bom": [],
+            "tasks": [
+              {
+                "task_id": "T1",
+                "product_id": "X",
+                "required_qty": 23,
+                "due_date": "2026-10-10",
+                "priority": 2
+              },
+              {
+                "task_id": "T2",
+                "product_id": "X",
+                "required_qty": 7,
+                "due_date": "2026-10-11",
+                "priority": 2
+              }
+            ],
+            "stocks": [
+              {
+                "material_id": "X",
+                "on_hand": 0,
+                "reserved": 0,
+                "snapshot_date": "2026-10-01"
+              }
+            ]
+          },
+          "rules": {
+            "version": "prototype-v0.2",
+            "task_order": [
+              "priority",
+              "due_date",
+              "task_id"
+            ],
+            "quantity": "integer",
+            "date_basis": "calendar_days",
+            "stock": "on_hand_minus_reserved"
+          },
+          "ordered_task_ids": [
+            "T1",
+            "T2"
+          ],
+          "initial_balances": {
+            "X": {
+              "material_id": "X",
+              "available_qty": 0
+            }
+          }
+        },
+        "demands": [
+          {
+            "demand": {
+              "demand_id": "[\"demand\",\"T1\",\"X\",\"2026-10-10\"]",
+              "task_id": "T1",
+              "material_id": "X",
+              "needed_date": "2026-10-10",
+              "gross_qty": 23,
+              "origins": [
+                {
+                  "origin_id": "[\"root\",\"T1\"]",
+                  "task_id": "T1",
+                  "parent_demand_id": null,
+                  "bom_path": [
+                    "X"
+                  ],
+                  "contribution_qty": 23
+                }
+              ]
+            },
+            "allocated_qty": 0,
+            "net_qty": 23,
+            "source_allocations": [
+              {
+                "origin_id": "[\"root\",\"T1\"]",
+                "allocated_qty": 0,
+                "residual_qty": 23
+              }
+            ]
+          },
+          {
+            "demand": {
+              "demand_id": "[\"demand\",\"T2\",\"X\",\"2026-10-11\"]",
+              "task_id": "T2",
+              "material_id": "X",
+              "needed_date": "2026-10-11",
+              "gross_qty": 7,
+              "origins": [
+                {
+                  "origin_id": "[\"root\",\"T2\"]",
+                  "task_id": "T2",
+                  "parent_demand_id": null,
+                  "bom_path": [
+                    "X"
+                  ],
+                  "contribution_qty": 7
+                }
+              ]
+            },
+            "allocated_qty": 0,
+            "net_qty": 7,
+            "source_allocations": [
+              {
+                "origin_id": "[\"root\",\"T2\"]",
+                "allocated_qty": 0,
+                "residual_qty": 7
+              }
+            ]
+          }
+        ],
+        "allocations": [
+          {
+            "allocation_id": "[\"allocation\",\"T1\",\"[\\\"demand\\\",\\\"T1\\\",\\\"X\\\",\\\"2026-10-10\\\"]\"]",
+            "demand_id": "[\"demand\",\"T1\",\"X\",\"2026-10-10\"]",
+            "task_id": "T1",
+            "material_id": "X",
+            "needed_date": "2026-10-10",
+            "before_qty": 0,
+            "allocated_qty": 0,
+            "after_qty": 0,
+            "source_allocations": [
+              {
+                "origin_id": "[\"root\",\"T1\"]",
+                "allocated_qty": 0,
+                "residual_qty": 23
+              }
+            ]
+          },
+          {
+            "allocation_id": "[\"allocation\",\"T2\",\"[\\\"demand\\\",\\\"T2\\\",\\\"X\\\",\\\"2026-10-11\\\"]\"]",
+            "demand_id": "[\"demand\",\"T2\",\"X\",\"2026-10-11\"]",
+            "task_id": "T2",
+            "material_id": "X",
+            "needed_date": "2026-10-11",
+            "before_qty": 0,
+            "allocated_qty": 0,
+            "after_qty": 0,
+            "source_allocations": [
+              {
+                "origin_id": "[\"root\",\"T2\"]",
+                "allocated_qty": 0,
+                "residual_qty": 7
+              }
+            ]
+          }
+        ],
+        "make_lines": [],
+        "buy_shortages": [
+          {
+            "shortage_id": "[\"shortage\",\"T1\",\"X\",\"2026-10-10\"]",
+            "demand_id": "[\"demand\",\"T1\",\"X\",\"2026-10-10\"]",
+            "task_id": "T1",
+            "material_id": "X",
+            "needed_date": "2026-10-10",
+            "shortage_qty": 23,
+            "origin_ids": [
+              "[\"root\",\"T1\"]"
+            ]
+          },
+          {
+            "shortage_id": "[\"shortage\",\"T2\",\"X\",\"2026-10-11\"]",
+            "demand_id": "[\"demand\",\"T2\",\"X\",\"2026-10-11\"]",
+            "task_id": "T2",
+            "material_id": "X",
+            "needed_date": "2026-10-11",
+            "shortage_qty": 7,
+            "origin_ids": [
+              "[\"root\",\"T2\"]"
+            ]
+          }
+        ],
+        "final_balances": {
+          "X": {
+            "material_id": "X",
+            "available_qty": 0
+          }
+        }
+      },
+      "purchase_buckets": [
+        {
+          "bucket_id": "[\"purchase_bucket\",\"X\",\"2026-10-10\"]",
+          "material_id": "X",
+          "needed_date": "2026-10-10",
+          "shortage_ids": [
+            "[\"shortage\",\"T1\",\"X\",\"2026-10-10\"]"
+          ],
+          "gross_shortage": 23,
+          "surplus_used": 0,
+          "remaining_gap": 23,
+          "purchase_qty": 30,
+          "order_date": "2026-10-08",
+          "surplus_after": 7,
+          "adjustment_reason": "PURCHASE_MULTIPLE"
+        },
+        {
+          "bucket_id": "[\"purchase_bucket\",\"X\",\"2026-10-11\"]",
+          "material_id": "X",
+          "needed_date": "2026-10-11",
+          "shortage_ids": [
+            "[\"shortage\",\"T2\",\"X\",\"2026-10-11\"]"
+          ],
+          "gross_shortage": 7,
+          "surplus_used": 7,
+          "remaining_gap": 0,
+          "purchase_qty": 0,
+          "order_date": null,
+          "surplus_after": 0,
+          "adjustment_reason": "EARLIER_PLANNED_SURPLUS"
+        }
+      ],
+      "surplus_uses": [
+        {
+          "supply_bucket_id": "[\"purchase_bucket\",\"X\",\"2026-10-10\"]",
+          "demand_bucket_id": "[\"purchase_bucket\",\"X\",\"2026-10-11\"]",
+          "qty": 7,
+          "source_arrival_date": "2026-10-10",
+          "use_date": "2026-10-11"
+        }
+      ],
+      "final_surplus_lots": [],
+      "risks": [],
+      "summary": {
+        "task_count": 2,
+        "make_line_count": 0,
+        "purchase_line_count": 1,
+        "risk_count": 0
+      }
+    },
+    "errors": []
+  }
+}

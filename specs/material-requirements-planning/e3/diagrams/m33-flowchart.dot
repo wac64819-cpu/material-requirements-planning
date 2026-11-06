@@ -1,0 +1,17 @@
+digraph G {
+graph [rankdir=TB,bgcolor="white",pad="0.3",nodesep="0.45",ranksep="0.5",label="M33  Allocate shared stock",labelloc=t,fontname="Arial",fontsize=22];
+node [shape=box,fontname="Arial",fontsize=15,color="#334155",margin="0.16,0.1"];
+edge [fontname="Arial",fontsize=13,color="#475569"];
+start [shape=ellipse,label="Validated demand and balance"];
+decision [shape=diamond,label="available >= gross?"];
+yes [label="allocated = gross"];
+no [label="allocated = available"];
+net [label="net = gross - allocated\nnew balance = available - allocated"];
+origins [label="Attribute allocated quantity to ordered origins\nRetain each origin residual"];
+result [label="Build netted demand and allocation ledger"];
+end [shape=ellipse,label="Return AllocationResult"];
+start -> decision;
+decision -> yes [label="Yes"];
+decision -> no [label="No"];
+yes -> net; no -> net; net -> origins; origins -> result; result -> end;
+}

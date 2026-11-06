@@ -1,0 +1,1 @@
+{"request_id": "E5", "status": "INVALID", "result": null, "errors": [{"code": "REQUIRED_TEXT", "severity": "BLOCKING", "source_location": "materials[0].material_id", "message": "Nonempty text required.", "task_id": null, "material_id": null, "computed_date": null, "days_before_baseline": null}]}

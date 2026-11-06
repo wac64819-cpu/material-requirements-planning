@@ -1,0 +1,26 @@
+digraph G {
+graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.45", ranksep="0.85", splines=polyline, label="S6   Refined history trace and export", labelloc=t, fontsize=24, fontname="Arial"];
+node [shape=box, fontname="Arial", fontsize=16, margin="0.16,0.12", color="#334155", penwidth=1.4];
+edge [fontname="Arial", fontsize=12, color="#475569", arrowsize=0.75];
+"P2" [label="P2 Calculation outcome", shape=box, style="filled", fillcolor="#f1f5f9"];
+"EP" [label="Production planner", shape=box, style="filled", fillcolor="#f1f5f9"];
+"D2" [label="D2\nSaved plan batches", shape=record, style="filled", fillcolor="#fff8e8"];
+"F1" [label="F1\nClassify outcome", shape=box, style="rounded,filled", fillcolor="#edf5ff"];
+"F2" [label="F2\nSave complete batch", shape=box, style="rounded,filled", fillcolor="#edf5ff"];
+"F3" [label="F3\nRead selected history", shape=box, style="rounded,filled", fillcolor="#edf5ff"];
+"F4a" [label="F4a\nBuild saved trace view", shape=box, style="rounded,filled", fillcolor="#edf5ff"];
+"F4b" [label="F4b\nEncode requested CSV", shape=box, style="rounded,filled", fillcolor="#edf5ff"];
+"F5" [label="F5\nBuild plan response", shape=box, style="rounded,filled", fillcolor="#edf5ff"];
+"P2" -> "F1" [label="F09"];
+"EP" -> "F3" [label="F04"];
+"F1" -> "F2" [label="G61"];
+"F1" -> "F5" [label="G62"];
+"F2" -> "D2" [label="F10"];
+"D2" -> "F3" [label="F11"];
+"F2" -> "F4a" [label="G64"];
+"F3" -> "F4a" [label="G63"];
+"F4b" -> "F5" [label="G65.csv"];
+"F5" -> "EP" [label="F05"];
+"F4a" -> "F4b" [label="G66"];
+"F4a" -> "F5" [label="G65.view"];
+}

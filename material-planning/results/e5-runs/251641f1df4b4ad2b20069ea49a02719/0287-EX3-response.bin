@@ -1,0 +1,3 @@
+﻿batch_id,demand_id,task_id,material_id,needed_date,origin_id,parent_demand_id,bom_path,contribution_qty,allocated_qty,residual_qty
+1c7376326c4741109f30b4aa43165124,"[""demand"",""T1"",""P"",""2026-11-20""]",T1,P,2026-11-20,"[""root"",""T1""]",,"[""P""]",10,0,10
+1c7376326c4741109f30b4aa43165124,"[""demand"",""T1"",""R"",""2026-11-18""]",T1,R,2026-11-18,"[""origin"",""T1"",[""P"",""R""]]","[""demand"",""T1"",""P"",""2026-11-20""]","[""P"", ""R""]",20,0,20

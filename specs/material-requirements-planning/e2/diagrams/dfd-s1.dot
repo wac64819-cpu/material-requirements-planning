@@ -1,0 +1,22 @@
+digraph G {
+graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.45", ranksep="0.85", splines=polyline, label="S1   Refined source maintenance", labelloc=t, fontsize=24, fontname="Arial"];
+node [shape=box, fontname="Arial", fontsize=16, margin="0.16,0.12", color="#334155", penwidth=1.4];
+edge [fontname="Arial", fontsize=12, color="#475569", arrowsize=0.75];
+"EC" [label="Material data clerk", shape=box, style="filled", fillcolor="#f1f5f9"];
+"D1" [label="D1\nSource data", shape=record, style="filled", fillcolor="#fff8e8"];
+"A1" [label="A1\nParse submission", shape=box, style="rounded,filled", fillcolor="#edf5ff"];
+"A2a" [label="A2a\nMerge source patch", shape=box, style="rounded,filled", fillcolor="#edf5ff"];
+"A2b" [label="A2b\nValidate source edit", shape=box, style="rounded,filled", fillcolor="#edf5ff"];
+"A3" [label="A3\nCommit revision", shape=box, style="rounded,filled", fillcolor="#edf5ff"];
+"A4" [label="A4\nBuild maintenance response", shape=box, style="rounded,filled", fillcolor="#edf5ff"];
+"EC" -> "A1" [label="F01"];
+"D1" -> "A2a" [label="F07"];
+"A1" -> "A2a" [label="G01"];
+"A1" -> "A4" [label="G03"];
+"A2b" -> "A3" [label="G02"];
+"A2b" -> "A4" [label="G03"];
+"A3" -> "D1" [label="F06"];
+"A3" -> "A4" [label="G04"];
+"A4" -> "EC" [label="F02"];
+"A2a" -> "A2b" [label="G05"];
+}

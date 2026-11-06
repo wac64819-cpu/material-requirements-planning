@@ -1,0 +1,107 @@
+{
+  "sources": {
+    "source_revision": "sample-v1",
+    "materials": [
+      {
+        "material_id": "A",
+        "name": "A",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 2
+      },
+      {
+        "material_id": "B",
+        "name": "B",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 3
+      },
+      {
+        "material_id": "C",
+        "name": "C",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 4,
+        "min_purchase_qty": 0,
+        "purchase_multiple": 1
+      },
+      {
+        "material_id": "D",
+        "name": "D",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 5,
+        "min_purchase_qty": 0,
+        "purchase_multiple": 1
+      }
+    ],
+    "bom": [
+      {
+        "parent_id": "A",
+        "child_id": "B",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "A",
+        "child_id": "C",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "B",
+        "child_id": "D",
+        "qty_per": 4
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "LOW",
+        "product_id": "A",
+        "required_qty": 100,
+        "due_date": "2026-10-20",
+        "priority": 2
+      },
+      {
+        "task_id": "HIGH",
+        "product_id": "A",
+        "required_qty": 50,
+        "due_date": "2026-10-21",
+        "priority": 1
+      }
+    ],
+    "stocks": [
+      {
+        "material_id": "A",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "B",
+        "on_hand": 20,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "C",
+        "on_hand": 50,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "D",
+        "on_hand": 100,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      }
+    ]
+  },
+  "request": {
+    "request_id": "DEMO-001",
+    "selected_task_ids": [
+      "LOW",
+      "HIGH"
+    ],
+    "baseline_date": "2026-10-01",
+    "rule_version": "prototype-v0.2"
+  }
+}

@@ -1,0 +1,1450 @@
+{
+  "executed_at": "2026-10-22T12:12:14.713815+08:00",
+  "python_version": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "passed": 114,
+  "total": 114,
+  "source_sha256": {
+    "core.py": "01f67b289617224e6b10e39b189482f32806580538c7c6208c1496f0cd658ca8",
+    "planner.py": "b6879011d10f9b2218ebdaf4c498edb4bf357234604eaa2612642541adfd8caf",
+    "sample_data.py": "1e54c80b5fda8a1bb620398f7827cb5b3edb34101d7dd19fccaab1b46d4de99b",
+    "verify_planner.py": "079d3d4c1341140e1eda96567bcf1cf6e7741d401acd485b731c7aefbe8011b3"
+  },
+  "checks": [
+    {
+      "name": "CASE01: valid",
+      "expected": "VALID",
+      "actual": "VALID",
+      "passed": true
+    },
+    {
+      "name": "CASE01: input immutable",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "CASE01 MAKE quantities",
+      "expected": [
+        [
+          "A",
+          100
+        ],
+        [
+          "B",
+          180
+        ]
+      ],
+      "actual": [
+        [
+          "A",
+          100
+        ],
+        [
+          "B",
+          180
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE02 BUY quantities/dates",
+      "expected": [
+        [
+          "C",
+          "2026-10-18",
+          250,
+          "2026-10-14"
+        ],
+        [
+          "D",
+          "2026-10-15",
+          620,
+          "2026-10-10"
+        ]
+      ],
+      "actual": [
+        [
+          "C",
+          "2026-10-18",
+          250,
+          "2026-10-14"
+        ],
+        [
+          "D",
+          "2026-10-15",
+          620,
+          "2026-10-10"
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE02 MAKE dates",
+      "expected": [
+        [
+          "A",
+          "2026-10-20",
+          "2026-10-18"
+        ],
+        [
+          "B",
+          "2026-10-18",
+          "2026-10-15"
+        ]
+      ],
+      "actual": [
+        [
+          "A",
+          "2026-10-20",
+          "2026-10-18"
+        ],
+        [
+          "B",
+          "2026-10-18",
+          "2026-10-15"
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE03: valid",
+      "expected": "VALID",
+      "actual": "VALID",
+      "passed": true
+    },
+    {
+      "name": "CASE03: input immutable",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "CASE03 D rounding",
+      "expected": [
+        "D",
+        "2026-10-15",
+        700,
+        "2026-10-10"
+      ],
+      "actual": [
+        "D",
+        "2026-10-15",
+        700,
+        "2026-10-10"
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE03 final excess",
+      "expected": [
+        80
+      ],
+      "actual": [
+        80
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE04: valid",
+      "expected": "VALID",
+      "actual": "VALID",
+      "passed": true
+    },
+    {
+      "name": "CASE04: input immutable",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "CASE04 priority before due date",
+      "expected": [
+        "HIGH",
+        "LOW"
+      ],
+      "actual": [
+        "HIGH",
+        "LOW"
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE04 stock attribution",
+      "expected": [
+        [
+          "HIGH",
+          "B",
+          20
+        ],
+        [
+          "HIGH",
+          "C",
+          50
+        ],
+        [
+          "HIGH",
+          "D",
+          100
+        ]
+      ],
+      "actual": [
+        [
+          "HIGH",
+          "B",
+          20
+        ],
+        [
+          "HIGH",
+          "C",
+          50
+        ],
+        [
+          "HIGH",
+          "D",
+          100
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE04 B manufacture",
+      "expected": [
+        [
+          "HIGH",
+          80
+        ],
+        [
+          "LOW",
+          200
+        ]
+      ],
+      "actual": [
+        [
+          "HIGH",
+          80
+        ],
+        [
+          "LOW",
+          200
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE04 dated purchasing",
+      "expected": [
+        [
+          "C",
+          "2026-10-18",
+          300,
+          "2026-10-14"
+        ],
+        [
+          "C",
+          "2026-10-19",
+          100,
+          "2026-10-15"
+        ],
+        [
+          "D",
+          "2026-10-15",
+          800,
+          "2026-10-10"
+        ],
+        [
+          "D",
+          "2026-10-16",
+          220,
+          "2026-10-11"
+        ]
+      ],
+      "actual": [
+        [
+          "C",
+          "2026-10-18",
+          300,
+          "2026-10-14"
+        ],
+        [
+          "C",
+          "2026-10-19",
+          100,
+          "2026-10-15"
+        ],
+        [
+          "D",
+          "2026-10-15",
+          800,
+          "2026-10-10"
+        ],
+        [
+          "D",
+          "2026-10-16",
+          220,
+          "2026-10-11"
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE10 row permutation 1",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "CASE10 row permutation 2",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "CASE10 row permutation 3",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "CASE10 row permutation 4",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "CASE10 row permutation 5",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "CASE10 row permutation 6",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "CASE10 row permutation 7",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "CASE10 row permutation 8",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "CASE10 new run resets balances",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "unselected task: valid",
+      "expected": "VALID",
+      "actual": "VALID",
+      "passed": true
+    },
+    {
+      "name": "unselected task: input immutable",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "unselected HIGH consumes no stock",
+      "expected": [
+        "LOW",
+        "LOW",
+        "LOW"
+      ],
+      "actual": [
+        "LOW",
+        "LOW",
+        "LOW"
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE05: valid",
+      "expected": "VALID",
+      "actual": "VALID",
+      "passed": true
+    },
+    {
+      "name": "CASE05: input immutable",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "CASE05 dated excess",
+      "expected": [
+        [
+          "X",
+          "2026-10-10",
+          30,
+          "2026-10-08"
+        ],
+        [
+          "X",
+          "2026-10-11",
+          0,
+          null
+        ]
+      ],
+      "actual": [
+        [
+          "X",
+          "2026-10-10",
+          30,
+          "2026-10-08"
+        ],
+        [
+          "X",
+          "2026-10-11",
+          0,
+          null
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE05 trace and final excess",
+      "expected": [
+        [
+          7,
+          "2026-10-10",
+          "2026-10-11"
+        ]
+      ],
+      "actual": [
+        [
+          7,
+          "2026-10-10",
+          "2026-10-11"
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE05 no excess remains",
+      "expected": [],
+      "actual": [],
+      "passed": true
+    },
+    {
+      "name": "same day merge: valid",
+      "expected": "VALID",
+      "actual": "VALID",
+      "passed": true
+    },
+    {
+      "name": "same day merge: input immutable",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "same day rounds once",
+      "expected": [
+        [
+          "X",
+          "2026-10-10",
+          30,
+          "2026-10-08"
+        ]
+      ],
+      "actual": [
+        [
+          "X",
+          "2026-10-10",
+          30,
+          "2026-10-08"
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "name": "no backward excess: valid",
+      "expected": "VALID",
+      "actual": "VALID",
+      "passed": true
+    },
+    {
+      "name": "no backward excess: input immutable",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "early bucket buys before later supply",
+      "expected": [
+        [
+          "X",
+          "2026-10-09",
+          10,
+          "2026-10-07"
+        ],
+        [
+          "X",
+          "2026-10-10",
+          20,
+          "2026-10-08"
+        ]
+      ],
+      "actual": [
+        [
+          "X",
+          "2026-10-09",
+          10,
+          "2026-10-07"
+        ],
+        [
+          "X",
+          "2026-10-10",
+          20,
+          "2026-10-08"
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "name": "excess flow direction",
+      "expected": [
+        [
+          3,
+          "2026-10-09",
+          "2026-10-10"
+        ]
+      ],
+      "actual": [
+        [
+          3,
+          "2026-10-09",
+          "2026-10-10"
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE06 stock 0",
+      "expected": 10,
+      "actual": 10,
+      "passed": true
+    },
+    {
+      "name": "CASE06 stock 9",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "name": "CASE06 stock 10",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "CASE06 stock 11",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "CASE06 reserved unavailable",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "name": "CASE07 finished stock: valid",
+      "expected": "VALID",
+      "actual": "VALID",
+      "passed": true
+    },
+    {
+      "name": "CASE07 finished stock: input immutable",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "finished stock only net explodes",
+      "expected": [
+        [
+          "A",
+          90
+        ],
+        [
+          "B",
+          160
+        ]
+      ],
+      "actual": [
+        [
+          "A",
+          90
+        ],
+        [
+          "B",
+          160
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "name": "finished stock reduces purchases",
+      "expected": [
+        220,
+        540
+      ],
+      "actual": [
+        220,
+        540
+      ],
+      "passed": true
+    },
+    {
+      "name": "fully covered root: valid",
+      "expected": "VALID",
+      "actual": "VALID",
+      "passed": true
+    },
+    {
+      "name": "fully covered root: input immutable",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "zero net no lower demands",
+      "expected": [
+        1,
+        [],
+        []
+      ],
+      "actual": [
+        1,
+        [],
+        []
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE07 shared paths: valid",
+      "expected": "VALID",
+      "actual": "VALID",
+      "passed": true
+    },
+    {
+      "name": "CASE07 shared paths: input immutable",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "shared paths merge with trace",
+      "expected": [
+        50,
+        [
+          20,
+          30
+        ]
+      ],
+      "actual": [
+        50,
+        [
+          20,
+          30
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "name": "shared MAKE source residual: valid",
+      "expected": "VALID",
+      "actual": "VALID",
+      "passed": true
+    },
+    {
+      "name": "shared MAKE source residual: input immutable",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "only residual origin explodes",
+      "expected": [
+        50,
+        [
+          [
+            "A",
+            "E",
+            "F",
+            "X"
+          ]
+        ]
+      ],
+      "actual": [
+        50,
+        [
+          [
+            "A",
+            "E",
+            "F",
+            "X"
+          ]
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE11 shared child earlier date: valid",
+      "expected": "VALID",
+      "actual": "VALID",
+      "passed": true
+    },
+    {
+      "name": "CASE11 shared child earlier date: input immutable",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "all parents before child allocation",
+      "expected": [
+        [
+          "2026-10-15",
+          10
+        ],
+        [
+          "2026-10-20",
+          0
+        ]
+      ],
+      "actual": [
+        [
+          "2026-10-15",
+          10
+        ],
+        [
+          "2026-10-20",
+          0
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "name": "later demand keeps shortage",
+      "expected": [
+        [
+          "X",
+          "2026-10-20",
+          10,
+          "2026-10-20"
+        ]
+      ],
+      "actual": [
+        [
+          "X",
+          "2026-10-20",
+          10,
+          "2026-10-20"
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE11 ties: valid",
+      "expected": "VALID",
+      "actual": "VALID",
+      "passed": true
+    },
+    {
+      "name": "CASE11 ties: input immutable",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "tie dates then ordinal IDs",
+      "expected": [
+        "B",
+        "A",
+        "Z"
+      ],
+      "actual": [
+        "B",
+        "A",
+        "Z"
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE08 risk: valid",
+      "expected": "VALID",
+      "actual": "VALID",
+      "passed": true
+    },
+    {
+      "name": "CASE08 risk: input immutable",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "risk retains actual early date",
+      "expected": [
+        [
+          "2026-09-30",
+          1
+        ]
+      ],
+      "actual": [
+        [
+          "2026-09-30",
+          1
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "name": "baseline equality allowed",
+      "expected": [],
+      "actual": [],
+      "passed": true
+    },
+    {
+      "name": "covered overdue task still risk",
+      "expected": [
+        1
+      ],
+      "actual": [
+        1
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE09 self cycle",
+      "expected": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "actual": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE09 long cycle",
+      "expected": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "actual": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE09 unknown material",
+      "expected": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "actual": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE09 duplicate edge",
+      "expected": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "actual": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE09 zero usage",
+      "expected": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "actual": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE09 negative usage",
+      "expected": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "actual": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE09 decimal quantity",
+      "expected": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "actual": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE09 bool quantity",
+      "expected": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "actual": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE09 MAKE without BOM",
+      "expected": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "actual": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE09 BUY children",
+      "expected": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "actual": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE09 zero multiple",
+      "expected": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "actual": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE09 negative lead",
+      "expected": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "actual": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE09 invalid priority",
+      "expected": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "actual": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE09 duplicate task",
+      "expected": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "actual": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE09 missing stock",
+      "expected": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "actual": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE09 over reserved",
+      "expected": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "actual": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE09 snapshot mismatch",
+      "expected": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "actual": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE09 invalid date",
+      "expected": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "actual": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE09 noncanonical date",
+      "expected": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "actual": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE09 unknown task",
+      "expected": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "actual": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE09 no tasks",
+      "expected": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "actual": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE09 duplicate selection",
+      "expected": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "actual": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE09 bad rules",
+      "expected": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "actual": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE09 missing field",
+      "expected": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "actual": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "name": "CASE09 bad row shape",
+      "expected": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "actual": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "name": "stock does not bypass BOM validation",
+      "expected": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "actual": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "name": "MAKE date overflow",
+      "expected": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "actual": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "name": "BUY date overflow",
+      "expected": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "actual": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "name": "bad input container",
+      "expected": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "actual": [
+        "INVALID",
+        null,
+        true,
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "name": "trim IDs before reference resolution",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "priority demand conservation",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "priority stock conservation",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "priority parent trace closure",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "priority purchase trace closure",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "priority purchase conservation by material",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "surplus demand conservation",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "surplus stock conservation",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "surplus parent trace closure",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "surplus purchase trace closure",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "surplus purchase conservation by material",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "shared demand conservation",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "shared stock conservation",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "shared parent trace closure",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "shared purchase trace closure",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "shared purchase conservation by material",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    }
+  ],
+  "scope": "Calculation integration/regression only; not full E4/E5, persistence, UI or performance acceptance."
+}

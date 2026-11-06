@@ -1,0 +1,72 @@
+{
+  "collected_at": "2026-10-26T07:26:37.082073+00:00",
+  "passed": 105,
+  "total": 105,
+  "reports": [
+    {
+      "file": "workbench-verification.json",
+      "passed": 30,
+      "total": 30,
+      "executed_at": "2026-10-26T07:23:31.354Z"
+    },
+    {
+      "file": "persistence-ui-verification.json",
+      "passed": 14,
+      "total": 14,
+      "executed_at": "2026-10-26T07:23:38.437Z"
+    },
+    {
+      "file": "csv-ui-verification.json",
+      "passed": 37,
+      "total": 37,
+      "executed_at": "2026-10-26T07:23:29.569Z"
+    },
+    {
+      "file": "navigation-ui-verification.json",
+      "passed": 24,
+      "total": 24,
+      "executed_at": "2026-10-26T07:25:24.642Z"
+    }
+  ],
+  "source_sha256": {
+    "web/index.html": "99e0edaadd521badc532a9eaf5d74b2678c5b8dbbf825fa554b233dd6fd0de95",
+    "web/style.css": "31918fade2945011dad380c1bce8fb0654c88d385dce676ece4b6310671bea88",
+    "web/app.js": "b24cd288b295ca13a7835b497688dfc168f80ed6e114d2284ac1228cb726f57a",
+    "planner.py": "b6879011d10f9b2218ebdaf4c498edb4bf357234604eaa2612642541adfd8caf",
+    "core.py": "01f67b289617224e6b10e39b189482f32806580538c7c6208c1496f0cd658ca8",
+    "web_server.py": "b67e8e80ffa38b5c8d75288633cb9963cabb7cb22b974c6b6f1008aad25fc661",
+    "storage.py": "56d2e978975d4e94420dadb60f25360eaed510c0788d2c54b2f113b01434cea3",
+    "csv_io.py": "4cf5f8c0899bb0cc40e2111c8006a5fba7f926727ed3b212e1ac82e71d51e23e",
+    "verify_workbench.cjs": "c8a24801e301eaee35e66368ba73d9e2a35b7f6f4c886f1fd1eb2a24b5c505f1",
+    "verify_persistence_ui.cjs": "c8824476f8e57482db31d117b821a00f34708f6304c364c4b0c622e74065007d",
+    "verify_csv_ui.cjs": "1e5b7234e548ceddfc6d0df93a9c3764297fa7406c949cc7222975becf5c3901",
+    "verify_navigation_ui.cjs": "c8156f216db0d98faf07388244cb09465e6493a639bbd4e2adad7cfc94c9cc2a"
+  },
+  "artifact_sha256": {
+    "csv-mobile.png": "61d07e0a821fa9a956b8716f7bf8440d48d3a291c5681bce920fdca8fa9803c2",
+    "csv-ui-verification.json": "dd460f52b0080d2685cd7e7af301d5fa9b7d52f8274d33ed509a8d3f8a7c98d8",
+    "csv-workbench.png": "9297aa7bb2a68b209f6c3bbcb0ef5e5ca3d39f3080198aebe03495d677833389",
+    "download-ALLOCATION.csv": "73a293e56cf342cf305c08726cbd0a92b9d4fbf1a7d99e436e49fb73b6fea25a",
+    "download-MAKE.csv": "9da5b4eb97a9c82f8d4a2dfa14ed92e778d5ffaef453d78d0b568e6d15cf7962",
+    "download-PURCHASE.csv": "9fbc4373ccfa4b237e5cab76a5e33660ae92077f19f8ccba385e932bac061f05",
+    "download-RISK-with-rows.csv": "9d4122a4807d704f61aa5a815924cf6632aadc69c970e78cf2699d7b315a5ce7",
+    "download-RISK.csv": "f99ab4c3ca7174b8fd39fcde8fcf336cacd8e4c6984ef1b8a777de91b36d4920",
+    "download-TRACE.csv": "272e050106d5f0c9e3df544ba4e0f732edfb523b2fe6ddea879e5df9c146c161",
+    "navigation-before-fix.json": "846a98d0ac2af6b341d6328adc3ff624eafec093ffcb484c8d3800e3769408c1",
+    "navigation-mobile-data.png": "5aff758376674d9f6ae6af81ae668831dab410f93b085086581fc6b32610a827",
+    "navigation-mobile-history.png": "f98a7058572b0011675ed9ab044fd8e8e11d5d111085a13769795f1d78e62f59",
+    "navigation-mobile-planning.png": "b148864d1128c48ba0ebef2445f5029b9aa6fc3207027ab567482bd258618ea0",
+    "navigation-mobile-result.png": "7fe9573fd58681d29e84e60f2c4569a8ae24cac92975bbcb0daa950e844b7c58",
+    "navigation-ui-verification.json": "43320e85d132f1d76467ac860cd5519cb17bb74099987b05beb6fdee64464085",
+    "persistence-history.png": "bc412bbbc489990325d40fd3515c72a4eb1a6a45423de9fd75258a7295602f0c",
+    "persistence-mobile.png": "619e57879d23158d9dc12ad7217fb5a42730d44d2954aa60d58f5502b3d5b5db",
+    "persistence-ui-verification.json": "f28f6601a7cd38fe9db63a860bcfa5ed4af36e5affe72c2a82171c77bae99946",
+    "README.md": "307dd626d8c9329a50c4720c1aa46de1a94f948c260a6a75248a65b82bc427b5",
+    "workbench-desktop.png": "ca5994031e34a26d99a2e3cd0347c461a42c2e424bbf1d803dcf7f1ca4d9db63",
+    "workbench-error.png": "bae629ad7525800a4fd36100fa92ef2c32aa1a4cacc996b38d7f8a4536bf1849",
+    "workbench-mobile.png": "a3b2786c3e937668c1f0794fbad552c2f4e67135df4cc59dbd6745b69daa4e1c",
+    "workbench-results.png": "d2987dad0a7f4a14c992d126ac048beba324228601579bac854031ffe47a87c4",
+    "workbench-verification.json": "536c0d6f8d744ac2b5186a8c312d66f0e6983923a0b6d424c3eb739143c4be8e"
+  },
+  "scope": "Isolated browser regression; no full E4/E5 rerun."
+}

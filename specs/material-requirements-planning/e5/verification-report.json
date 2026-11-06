@@ -1,0 +1,208 @@
+{
+  "executed_at": "2026-10-22T21:24:46.769879+08:00",
+  "passed": 49,
+  "total": 49,
+  "pages": 20,
+  "checks": [
+    {
+      "name": "Final run completed",
+      "passed": true
+    },
+    {
+      "name": "125 out of 125",
+      "passed": true
+    },
+    {
+      "name": "Every case passed",
+      "passed": true
+    },
+    {
+      "name": "Case IDs unique",
+      "passed": true
+    },
+    {
+      "name": "All executed cases appear once in report",
+      "passed": true
+    },
+    {
+      "name": "Planning includes EP",
+      "passed": true
+    },
+    {
+      "name": "Planning includes BVA",
+      "passed": true
+    },
+    {
+      "name": "Source includes EP",
+      "passed": true
+    },
+    {
+      "name": "Source includes BVA",
+      "passed": true
+    },
+    {
+      "name": "History includes EP",
+      "passed": true
+    },
+    {
+      "name": "History includes BVA",
+      "passed": true
+    },
+    {
+      "name": "FR01 mapped to executed cases",
+      "passed": true
+    },
+    {
+      "name": "FR02 mapped to executed cases",
+      "passed": true
+    },
+    {
+      "name": "FR03 mapped to executed cases",
+      "passed": true
+    },
+    {
+      "name": "FR04 mapped to executed cases",
+      "passed": true
+    },
+    {
+      "name": "FR05 mapped to executed cases",
+      "passed": true
+    },
+    {
+      "name": "FR06 mapped to executed cases",
+      "passed": true
+    },
+    {
+      "name": "FR07 mapped to executed cases",
+      "passed": true
+    },
+    {
+      "name": "FR08 mapped to executed cases",
+      "passed": true
+    },
+    {
+      "name": "Current source core.py",
+      "passed": true
+    },
+    {
+      "name": "Current source planner.py",
+      "passed": true
+    },
+    {
+      "name": "Current source storage.py",
+      "passed": true
+    },
+    {
+      "name": "Current source csv_io.py",
+      "passed": true
+    },
+    {
+      "name": "Current source web_server.py",
+      "passed": true
+    },
+    {
+      "name": "Current source web/app.js",
+      "passed": true
+    },
+    {
+      "name": "Current source web/index.html",
+      "passed": true
+    },
+    {
+      "name": "Current source web/style.css",
+      "passed": true
+    },
+    {
+      "name": "Runner hash matches",
+      "passed": true
+    },
+    {
+      "name": "No application imports",
+      "passed": true
+    },
+    {
+      "name": "All 371 exchanges preserved",
+      "passed": true
+    },
+    {
+      "name": "Raw exchange files exist",
+      "passed": true
+    },
+    {
+      "name": "Test database isolated",
+      "passed": true
+    },
+    {
+      "name": "ROW lower exact upper witnesses",
+      "passed": true
+    },
+    {
+      "name": "BYTE lower exact upper witnesses",
+      "passed": true
+    },
+    {
+      "name": "NUM lower exact upper witnesses",
+      "passed": true
+    },
+    {
+      "name": "Initial CSV defect evidence retained",
+      "passed": true
+    },
+    {
+      "name": "workbench-verification.json passing evidence",
+      "passed": true
+    },
+    {
+      "name": "persistence-ui-verification.json passing evidence",
+      "passed": true
+    },
+    {
+      "name": "csv-ui-verification.json passing evidence",
+      "passed": true
+    },
+    {
+      "name": "csv-verification.json passing evidence",
+      "passed": true
+    },
+    {
+      "name": "Contracts documented",
+      "passed": true
+    },
+    {
+      "name": "Residual issue explicit",
+      "passed": true
+    },
+    {
+      "name": "Real group records pending",
+      "passed": true
+    },
+    {
+      "name": "Title style present",
+      "passed": true
+    },
+    {
+      "name": "Evidence hashes printed",
+      "passed": true
+    },
+    {
+      "name": "No empty PDF pages",
+      "passed": true
+    },
+    {
+      "name": "PDF uses final execution timestamp",
+      "passed": true
+    },
+    {
+      "name": "PDF includes all case IDs",
+      "passed": true
+    },
+    {
+      "name": "PDF is newer than DOCX",
+      "passed": true
+    }
+  ],
+  "docx_sha256": "50876201bcda7f2f6581c14847d73475d1fb6214e0d3308e832af10314330a2b",
+  "pdf_sha256": "ccb5e02e60b29123e3e0760b4f4b560f020d2e29e83d8c1d7e5fa9cf6db491e7",
+  "evidence_sha256": "58d0853f5f4816383e1a4b67f362c013a6f0ace657017045bb9f7f695b85772a",
+  "rendering": "Packaged renderer unavailable because LibreOffice is absent; Word read-only PDF export and pypdfium2 rendering used. Visual review recorded separately."
+}

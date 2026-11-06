@@ -1,0 +1,2163 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>E2 Module Design</title><style>body{font:16px/1.7 Arial,sans-serif;background:#f4f6f8;color:#17212e;margin:0}main{max-width:1240px;margin:28px auto;padding:48px;background:white}h1,h2,h3{color:black;line-height:1.3}h1{font-size:30px}h2{font-size:24px;margin-top:40px}h3{font-size:19px;margin-top:26px}table{width:100%;border-collapse:collapse;font-size:14px;line-height:1.5;margin:16px 0 28px}td,th{border:1px solid #d9d9d9;padding:10px;text-align:left;vertical-align:top;overflow-wrap:anywhere}th{background:#e8eef5}tr:nth-child(even){background:#fafbfd}figure{margin:24px 0;overflow:auto;border:1px solid #e2e7ed;padding:10px}svg{width:100%;height:auto;min-width:1050px}nav{background:#edf4fb;padding:14px}nav a{margin-right:18px;color:#214b7d}.table-wrap{overflow:auto}@media(max-width:700px){main{padding:20px;margin:0}}@media print{body{background:white;font-size:10pt}main{margin:0;padding:0}nav{display:none}table{font-size:8pt}figure, tr{break-inside:avoid}h2,h3{break-after:avoid}svg{min-width:0;width:100%;max-height:170mm}figure,.table-wrap{overflow:visible}@page{size:A4 landscape;margin:15mm}}</style></head><body><main><nav><a href="#sec2">1 Scope and course requirements</a><a href="#sec3">2 Preserved requirements and decisions</a><a href="#sec4">3 Subsystems and module structure</a><a href="#sec13">4 Refined logical models</a><a href="#sec23">5 Procedure contracts</a><a href="#sec34">6 Data ownership and storage</a><a href="#sec39">7 End to end design walkthrough</a><a href="#sec40">8 Traceability to later detailed design and testing</a><a href="#sec41">9 Member task allocation</a><a href="#sec42">10 Actual review meeting record</a><a href="#sec43">11 Individual contribution record</a><a href="#sec44">12 Verification and remaining work</a></nav><h1>Module Design of the Material Requirements and Purchasing Plan System</h1>
+<h2 id="sec1">E2 Developing Module Structure Diagrams</h2>
+<p>Version 0.1, 26 September 2026. Group number, member names and student IDs: [TO COMPLETE]. This draft continues E1 version 0.2 using structured analysis and procedural decomposition.</p>
+<p>The design divides the project into six business subsystems. It supplies a refined DFD and a corresponding module structure chart for every subsystem, plus an overall call chart and a P2.3 decomposition bridge. Each final DFD process has a named procedure and an explicit data contract. The system has not yet been implemented.</p>
+<h2 id="sec2">1 Scope and course requirements</h2>
+<p>The supplied E2 document asks for refined DFDs, module structure diagrams, member tasks, actual all-member review records and individual contributions, all in English. Subsystem and subsystem-chart counts must each be at least group size N. Six subsystems and six corresponding charts satisfy those two counts only if N is at most 6. N is still unknown; no unconditional compliance claim is made. If N is larger, split genuine responsibilities and regenerate both DFDs and module charts, rather than counting the overview as another subsystem.</p>
+<p>The E2 sheet states 15 October 2026 and repeats an experiment-1 filename. Confirm the teacher&#x27;s naming and schedule before final submission. This draft is not an FTP submission and does not contain invented group meetings.</p>
+<h2 id="sec3">2 Preserved requirements and decisions</h2>
+<p>Task priority remains first: priority, due date, then ordinal task ID. All tasks share one batch stock balance. Only net MAKE demand creates child requirements. Procurement runs after stock allocation and groups shortages by material/date, consumes earlier planned surplus and applies minimum/multiple rules. Dates use calendar days; history and calculation do not modify actual inventory.</p>
+<p>Integer quantities, interpreting task quantity as delivery demand, ordinal origin attribution and all-or-nothing source imports remain the E1 draft assumptions. The language, database product and UI are still provisional. Plain records and function adapters are sufficient; no classes, inheritance or object-oriented modeling are introduced.</p>
+<h2 id="sec4">3 Subsystems and module structure</h2>
+<p>The system has six business subsystems and one application coordinator. Seven structure charts are supplied: one overview and six subsystem charts. Each rectangular module denotes a callable procedure. Solid downward arrows mean calls; dashed arrows call a shared procedure owned elsewhere. REPEAT marks calls repeated over tasks/materials/dates; CONDITIONAL marks error or selected-mode branches. These are hierarchical module charts, not data-flow diagrams.</p>
+<p>I/Mxx and O/Mxx beside a call identify its data couples: the Inputs and Returns fields of module Mxx in interfaces.md. The returned Result tag, query mode and supply type are control information described in the coupling tables below. The interface table provides the full data names so abbreviated edge labels are unambiguous. The dotted ownership link to M52 is explicitly not a call.</p>
+<figure><svg width="1221pt" height="289pt"
+ viewBox="0.00 0.00 1221.00 289.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(25.2 264.16)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-25.2,25.2 -25.2,-264.16 1196.08,-264.16 1196.08,25.2 -25.2,25.2"/>
+<text xml:space="preserve" text-anchor="middle" x="585.44" y="-213.36" font-family="Arial" font-size="24.00">System module structure</text>
+<!-- M00 -->
+<g id="node1" class="node">
+<title>M00</title>
+<polygon fill="#edf5ff" stroke="#334155" stroke-width="1.4" points="642.11,-202.16 523.88,-202.16 523.88,-146.48 642.11,-146.48 642.11,-202.16"/>
+<text xml:space="preserve" text-anchor="middle" x="582.99" y="-179.12" font-family="Arial" font-size="16.00">M00</text>
+<text xml:space="preserve" text-anchor="middle" x="582.99" y="-159.92" font-family="Arial" font-size="16.00">handle action</text>
+</g>
+<!-- M10 -->
+<g id="node2" class="node">
+<title>M10</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="143.99,-55.68 0,-55.68 0,0 143.99,0 143.99,-55.68"/>
+<text xml:space="preserve" text-anchor="middle" x="71.99" y="-32.64" font-family="Arial" font-size="16.00">M10</text>
+<text xml:space="preserve" text-anchor="middle" x="71.99" y="-13.44" font-family="Arial" font-size="16.00">maintain sources</text>
+</g>
+<!-- M00&#45;&gt;M10 -->
+<g id="edge1" class="edge">
+<title>M00&#45;&gt;M10</title>
+<path fill="none" stroke="#475569" d="M523.39,-162.78C429.07,-146.1 255.97,-115.48 255.97,-115.48 255.97,-115.48 191.15,-84.96 138.46,-60.14"/>
+<polygon fill="#475569" stroke="#475569" points="139.73,-57.84 131.83,-57.02 137.49,-62.59 139.73,-57.84"/>
+<text xml:space="preserve" text-anchor="middle" x="293.98" y="-104.68" font-family="Arial" font-size="12.00">I/M10 &#160;&#160;O/M10</text>
+<text xml:space="preserve" text-anchor="middle" x="293.98" y="-90.28" font-family="Arial" font-size="12.00">SELECTION</text>
+</g>
+<!-- M20 -->
+<g id="node3" class="node">
+<title>M20</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="310.1,-55.68 175.88,-55.68 175.88,0 310.1,0 310.1,-55.68"/>
+<text xml:space="preserve" text-anchor="middle" x="242.99" y="-32.64" font-family="Arial" font-size="16.00">M20</text>
+<text xml:space="preserve" text-anchor="middle" x="242.99" y="-13.44" font-family="Arial" font-size="16.00">prepare context</text>
+</g>
+<!-- M00&#45;&gt;M20 -->
+<g id="edge2" class="edge">
+<title>M00&#45;&gt;M20</title>
+<path fill="none" stroke="#475569" d="M523.38,-155.73C465.71,-138.71 386.97,-115.48 386.97,-115.48 386.97,-115.48 337.12,-85.49 296.09,-60.79"/>
+<polygon fill="#475569" stroke="#475569" points="297.62,-58.65 289.84,-57.03 294.92,-63.15 297.62,-58.65"/>
+<text xml:space="preserve" text-anchor="middle" x="424.98" y="-97.48" font-family="Arial" font-size="12.00">I/M20 &#160;&#160;O/M20</text>
+</g>
+<!-- M30 -->
+<g id="node4" class="node">
+<title>M30</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="485.54,-55.68 342.44,-55.68 342.44,0 485.54,0 485.54,-55.68"/>
+<text xml:space="preserve" text-anchor="middle" x="413.99" y="-32.64" font-family="Arial" font-size="16.00">M30</text>
+<text xml:space="preserve" text-anchor="middle" x="413.99" y="-13.44" font-family="Arial" font-size="16.00">net requirements</text>
+</g>
+<!-- M00&#45;&gt;M30 -->
+<g id="edge3" class="edge">
+<title>M00&#45;&gt;M30</title>
+<path fill="none" stroke="#475569" d="M543.44,-146.09C521.65,-131.09 498.97,-115.48 498.97,-115.48 498.97,-115.48 471,-86.96 447.15,-62.65"/>
+<polygon fill="#475569" stroke="#475569" points="449.06,-60.85 441.94,-57.33 445.32,-64.53 449.06,-60.85"/>
+<text xml:space="preserve" text-anchor="middle" x="536.98" y="-97.48" font-family="Arial" font-size="12.00">I/M30 &#160;&#160;O/M30</text>
+</g>
+<!-- M40 -->
+<g id="node5" class="node">
+<title>M40</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="648.77,-55.68 517.21,-55.68 517.21,0 648.77,0 648.77,-55.68"/>
+<text xml:space="preserve" text-anchor="middle" x="582.99" y="-32.64" font-family="Arial" font-size="16.00">M40</text>
+<text xml:space="preserve" text-anchor="middle" x="582.99" y="-13.44" font-family="Arial" font-size="16.00">plan purchases</text>
+</g>
+<!-- M00&#45;&gt;M40 -->
+<g id="edge4" class="edge">
+<title>M00&#45;&gt;M40</title>
+<path fill="none" stroke="#475569" d="M582.99,-145.8C582.99,-122.91 582.99,-90.13 582.99,-65.09"/>
+<polygon fill="#475569" stroke="#475569" points="585.62,-65.27 582.99,-57.77 580.37,-65.27 585.62,-65.27"/>
+<text xml:space="preserve" text-anchor="middle" x="621.01" y="-97.48" font-family="Arial" font-size="12.00">I/M40 &#160;&#160;O/M40</text>
+</g>
+<!-- M50 -->
+<g id="node6" class="node">
+<title>M50</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="803.32,-55.68 680.66,-55.68 680.66,0 803.32,0 803.32,-55.68"/>
+<text xml:space="preserve" text-anchor="middle" x="741.99" y="-32.64" font-family="Arial" font-size="16.00">M50</text>
+<text xml:space="preserve" text-anchor="middle" x="741.99" y="-13.44" font-family="Arial" font-size="16.00">complete plan</text>
+</g>
+<!-- M00&#45;&gt;M50 -->
+<g id="edge5" class="edge">
+<title>M00&#45;&gt;M50</title>
+<path fill="none" stroke="#475569" d="M622.53,-146.09C644.32,-131.09 666.99,-115.48 666.99,-115.48 666.99,-115.48 691.47,-87.2 712.46,-62.96"/>
+<polygon fill="#475569" stroke="#475569" points="714.35,-64.79 717.27,-57.4 710.38,-61.35 714.35,-64.79"/>
+<text xml:space="preserve" text-anchor="middle" x="729.26" y="-97.48" font-family="Arial" font-size="12.00">I/M50 &#160;&#160;O/M50</text>
+</g>
+<!-- M60 -->
+<g id="node7" class="node">
+<title>M60</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="960.65,-55.68 835.34,-55.68 835.34,0 960.65,0 960.65,-55.68"/>
+<text xml:space="preserve" text-anchor="middle" x="897.99" y="-32.64" font-family="Arial" font-size="16.00">M60</text>
+<text xml:space="preserve" text-anchor="middle" x="897.99" y="-13.44" font-family="Arial" font-size="16.00">publish results</text>
+</g>
+<!-- M00&#45;&gt;M60 -->
+<g id="edge6" class="edge">
+<title>M00&#45;&gt;M60</title>
+<path fill="none" stroke="#475569" d="M642.69,-155.34C699.05,-138.36 774.99,-115.48 774.99,-115.48 774.99,-115.48 816.87,-85.98 851.75,-61.41"/>
+<polygon fill="#475569" stroke="#475569" points="853.22,-63.59 857.84,-57.13 850.19,-59.3 853.22,-63.59"/>
+<text xml:space="preserve" text-anchor="middle" x="852.79" y="-104.68" font-family="Arial" font-size="12.00">I/M60 &#160;&#160;O/M60</text>
+<text xml:space="preserve" text-anchor="middle" x="852.79" y="-90.28" font-family="Arial" font-size="12.00">SELECTION</text>
+</g>
+<!-- M26 -->
+<g id="node8" class="node">
+<title>M26</title>
+<polygon fill="#f1f5f9" stroke="#334155" stroke-width="1.4" points="1170.88,-55.68 993.1,-55.68 993.1,0 1170.88,0 1170.88,-55.68"/>
+<text xml:space="preserve" text-anchor="middle" x="1081.99" y="-32.64" font-family="Arial" font-size="16.00">M26</text>
+<text xml:space="preserve" text-anchor="middle" x="1081.99" y="-13.44" font-family="Arial" font-size="16.00">make invalid outcome</text>
+</g>
+<!-- M00&#45;&gt;M26 -->
+<g id="edge7" class="edge">
+<title>M00&#45;&gt;M26</title>
+<path fill="none" stroke="#475569" stroke-dasharray="5,2" d="M642.8,-162.37C734.41,-145.6 898.99,-115.48 898.99,-115.48 898.99,-115.48 963.46,-84.96 1015.87,-60.14"/>
+<polygon fill="#475569" stroke="#475569" points="1016.82,-62.6 1022.47,-57.02 1014.57,-57.86 1016.82,-62.6"/>
+<text xml:space="preserve" text-anchor="middle" x="1016.21" y="-97.48" font-family="Arial" font-size="12.00">shared &#160;&#160;I/M26 O/M26</text>
+</g>
+</g>
+</svg>
+</figure>
+<div class="table-wrap"><table><thead><tr><th>Subsystem</th><th>Responsibility</th><th>Entry procedure</th><th>Requirements</th><th>E1 process</th></tr></thead><tbody>
+<tr><td>S1</td><td>Source maintenance</td><td>maintain_sources</td><td>FR01</td><td>P1</td></tr>
+<tr><td>S2</td><td>Snapshot and BOM validation</td><td>prepare_context</td><td>FR02, FR03</td><td>P2.1</td></tr>
+<tr><td>S3</td><td>Demand and shared inventory</td><td>net_requirements</td><td>FR04, FR05</td><td>P2.2</td></tr>
+<tr><td>S4</td><td>Purchasing and planned surplus</td><td>plan_purchases</td><td>FR06</td><td>Purchasing part of P2.3</td></tr>
+<tr><td>S5</td><td>Calendar and timing risk</td><td>complete_plan</td><td>FR07</td><td>Risk part of P2.3; shared calendar helper</td></tr>
+<tr><td>S6</td><td>History trace and export</td><td>publish_results</td><td>FR08</td><td>P3</td></tr>
+</tbody></table></div>
+<h2 id="sec5">S1 Source maintenance</h2>
+<figure><svg width="1206pt" height="309pt"
+ viewBox="0.00 0.00 1206.00 309.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(25.2 283.36)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-25.2,25.2 -25.2,-283.36 1180.43,-283.36 1180.43,25.2 -25.2,25.2"/>
+<text xml:space="preserve" text-anchor="middle" x="577.61" y="-232.56" font-family="Arial" font-size="24.00">S1 &#160;&#160;Source maintenance</text>
+<!-- M10 -->
+<g id="node1" class="node">
+<title>M10</title>
+<polygon fill="#edf5ff" stroke="#334155" stroke-width="1.4" points="631.76,-221.36 487.78,-221.36 487.78,-165.68 631.76,-165.68 631.76,-221.36"/>
+<text xml:space="preserve" text-anchor="middle" x="559.77" y="-198.32" font-family="Arial" font-size="16.00">M10</text>
+<text xml:space="preserve" text-anchor="middle" x="559.77" y="-179.12" font-family="Arial" font-size="16.00">maintain sources</text>
+</g>
+<!-- M11 -->
+<g id="node2" class="node">
+<title>M11</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="147.54,-65.28 0,-65.28 0,-9.6 147.54,-9.6 147.54,-65.28"/>
+<text xml:space="preserve" text-anchor="middle" x="73.77" y="-42.24" font-family="Arial" font-size="16.00">M11</text>
+<text xml:space="preserve" text-anchor="middle" x="73.77" y="-23.04" font-family="Arial" font-size="16.00">parse submission</text>
+</g>
+<!-- M10&#45;&gt;M11 -->
+<g id="edge1" class="edge">
+<title>M10&#45;&gt;M11</title>
+<path fill="none" stroke="#475569" d="M487.23,-177.1C406.65,-159.96 287.74,-134.68 287.74,-134.68 287.74,-134.68 205.25,-97.58 142.71,-69.45"/>
+<polygon fill="#475569" stroke="#475569" points="144.1,-67.19 136.18,-66.51 141.94,-71.98 144.1,-67.19"/>
+<text xml:space="preserve" text-anchor="middle" x="325.76" y="-116.68" font-family="Arial" font-size="12.00">I/M11 &#160;&#160;O/M11</text>
+</g>
+<!-- M12 -->
+<g id="node3" class="node">
+<title>M12</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="343.99,-65.28 179.55,-65.28 179.55,-9.6 343.99,-9.6 343.99,-65.28"/>
+<text xml:space="preserve" text-anchor="middle" x="261.77" y="-42.24" font-family="Arial" font-size="16.00">M12</text>
+<text xml:space="preserve" text-anchor="middle" x="261.77" y="-23.04" font-family="Arial" font-size="16.00">merge source patch</text>
+</g>
+<!-- M10&#45;&gt;M12 -->
+<g id="edge2" class="edge">
+<title>M10&#45;&gt;M12</title>
+<path fill="none" stroke="#475569" d="M492.5,-165.12C455.79,-150.17 417.74,-134.68 417.74,-134.68 417.74,-134.68 358.9,-98.37 313.49,-70.35"/>
+<polygon fill="#475569" stroke="#475569" points="315.1,-68.26 307.34,-66.56 312.34,-72.73 315.1,-68.26"/>
+<text xml:space="preserve" text-anchor="middle" x="455.76" y="-116.68" font-family="Arial" font-size="12.00">I/M12 &#160;&#160;O/M12</text>
+</g>
+<!-- M13 -->
+<g id="node4" class="node">
+<title>M13</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="537.22,-65.28 376.32,-65.28 376.32,-9.6 537.22,-9.6 537.22,-65.28"/>
+<text xml:space="preserve" text-anchor="middle" x="456.77" y="-42.24" font-family="Arial" font-size="16.00">M13</text>
+<text xml:space="preserve" text-anchor="middle" x="456.77" y="-23.04" font-family="Arial" font-size="16.00">validate source edit</text>
+</g>
+<!-- M10&#45;&gt;M13 -->
+<g id="edge3" class="edge">
+<title>M10&#45;&gt;M13</title>
+<path fill="none" stroke="#475569" d="M541.59,-165.33C524.42,-139.63 498.57,-100.97 479.93,-73.08"/>
+<polygon fill="#475569" stroke="#475569" points="482.3,-71.91 475.95,-67.14 477.94,-74.83 482.3,-71.91"/>
+<text xml:space="preserve" text-anchor="middle" x="558.54" y="-116.68" font-family="Arial" font-size="12.00">I/M13 &#160;&#160;O/M13</text>
+</g>
+<!-- M14 -->
+<g id="node5" class="node">
+<title>M14</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="756.09,-65.28 569.45,-65.28 569.45,-9.6 756.09,-9.6 756.09,-65.28"/>
+<text xml:space="preserve" text-anchor="middle" x="662.77" y="-42.24" font-family="Arial" font-size="16.00">M14</text>
+<text xml:space="preserve" text-anchor="middle" x="662.77" y="-23.04" font-family="Arial" font-size="16.00">commit source revision</text>
+</g>
+<!-- M10&#45;&gt;M14 -->
+<g id="edge4" class="edge">
+<title>M10&#45;&gt;M14</title>
+<path fill="none" stroke="#475569" d="M580.95,-165.29C592.62,-150.29 604.77,-134.68 604.77,-134.68 604.77,-134.68 625.15,-100.87 641.74,-73.33"/>
+<polygon fill="#475569" stroke="#475569" points="643.9,-74.84 645.52,-67.06 639.4,-72.13 643.9,-74.84"/>
+<text xml:space="preserve" text-anchor="middle" x="662.91" y="-123.88" font-family="Arial" font-size="12.00">I/M14 &#160;&#160;O/M14</text>
+<text xml:space="preserve" text-anchor="middle" x="662.91" y="-109.48" font-family="Arial" font-size="12.00">CONDITIONAL</text>
+</g>
+<!-- M15 -->
+<g id="node6" class="node">
+<title>M15</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="945.88,-74.88 787.66,-74.88 787.66,0 945.88,0 945.88,-74.88"/>
+<text xml:space="preserve" text-anchor="middle" x="866.77" y="-51.84" font-family="Arial" font-size="16.00">M15</text>
+<text xml:space="preserve" text-anchor="middle" x="866.77" y="-32.64" font-family="Arial" font-size="16.00">make maintenance</text>
+<text xml:space="preserve" text-anchor="middle" x="866.77" y="-13.44" font-family="Arial" font-size="16.00">response</text>
+</g>
+<!-- M10&#45;&gt;M15 -->
+<g id="edge5" class="edge">
+<title>M10&#45;&gt;M15</title>
+<path fill="none" stroke="#475569" d="M631.76,-165.12C671.05,-150.17 711.77,-134.68 711.77,-134.68 711.77,-134.68 757.87,-106.05 799.79,-80.03"/>
+<polygon fill="#475569" stroke="#475569" points="801.01,-82.36 806,-76.17 798.24,-77.9 801.01,-82.36"/>
+<text xml:space="preserve" text-anchor="middle" x="795.58" y="-116.68" font-family="Arial" font-size="12.00">I/M15 &#160;&#160;O/M15</text>
+</g>
+<!-- M21 -->
+<g id="node7" class="node">
+<title>M21</title>
+<polygon fill="#f1f5f9" stroke="#334155" stroke-width="1.4" points="1155.23,-65.28 978.31,-65.28 978.31,-9.6 1155.23,-9.6 1155.23,-65.28"/>
+<text xml:space="preserve" text-anchor="middle" x="1066.77" y="-42.24" font-family="Arial" font-size="16.00">M21</text>
+<text xml:space="preserve" text-anchor="middle" x="1066.77" y="-23.04" font-family="Arial" font-size="16.00">read source snapshot</text>
+</g>
+<!-- M10&#45;&gt;M21 -->
+<g id="edge6" class="edge">
+<title>M10&#45;&gt;M21</title>
+<path fill="none" stroke="#475569" stroke-dasharray="5,2" d="M632.39,-177.62C715.95,-160.49 841.77,-134.68 841.77,-134.68 841.77,-134.68 928.87,-97.43 994.68,-69.27"/>
+<polygon fill="#475569" stroke="#475569" points="995.34,-71.85 1001.2,-66.48 993.28,-67.02 995.34,-71.85"/>
+<text xml:space="preserve" text-anchor="middle" x="966.28" y="-116.68" font-family="Arial" font-size="12.00">shared &#160;&#160;I/M21 O/M21</text>
+</g>
+</g>
+</svg>
+</figure>
+<div class="table-wrap"><table><thead><tr><th>Call</th><th>Control condition</th><th>Input data couple</th><th>Return data couple</th></tr></thead><tbody>
+<tr><td>M10 -&gt; M11</td><td>call</td><td>MaintenanceSubmission</td><td>Result[TypedImport]</td></tr>
+<tr><td>M10 -&gt; M12</td><td>call</td><td>SourceSet, TypedImport</td><td>SourceSet</td></tr>
+<tr><td>M10 -&gt; M13</td><td>call</td><td>SourceSet candidate, TypedImport</td><td>List[Issue]</td></tr>
+<tr><td>M10 -&gt; M14</td><td>conditional</td><td>repository, expected_revision, SourceSet candidate</td><td>Result[revision_id]</td></tr>
+<tr><td>M10 -&gt; M15</td><td>call</td><td>request_id, accepted_count, List[Issue], commit_result</td><td>MaintenanceOutcome</td></tr>
+<tr><td>M10 -&gt; M21</td><td>shared</td><td>repository, baseline_date or null</td><td>Result[SourceSet]</td></tr>
+</tbody></table></div>
+<h2 id="sec6">S2 Snapshot and BOM validation</h2>
+<figure><svg width="1157pt" height="289pt"
+ viewBox="0.00 0.00 1157.00 289.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(25.2 264.16)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-25.2,25.2 -25.2,-264.16 1131.55,-264.16 1131.55,25.2 -25.2,25.2"/>
+<text xml:space="preserve" text-anchor="middle" x="553.17" y="-213.36" font-family="Arial" font-size="24.00">S2 &#160;&#160;Snapshot and BOM validation</text>
+<!-- M20 -->
+<g id="node1" class="node">
+<title>M20</title>
+<polygon fill="#edf5ff" stroke="#334155" stroke-width="1.4" points="667.57,-202.16 533.35,-202.16 533.35,-146.48 667.57,-146.48 667.57,-202.16"/>
+<text xml:space="preserve" text-anchor="middle" x="600.46" y="-179.12" font-family="Arial" font-size="16.00">M20</text>
+<text xml:space="preserve" text-anchor="middle" x="600.46" y="-159.92" font-family="Arial" font-size="16.00">prepare context</text>
+</g>
+<!-- M21 -->
+<g id="node2" class="node">
+<title>M21</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="176.91,-55.68 0,-55.68 0,0 176.91,0 176.91,-55.68"/>
+<text xml:space="preserve" text-anchor="middle" x="88.46" y="-32.64" font-family="Arial" font-size="16.00">M21</text>
+<text xml:space="preserve" text-anchor="middle" x="88.46" y="-13.44" font-family="Arial" font-size="16.00">read source snapshot</text>
+</g>
+<!-- M20&#45;&gt;M21 -->
+<g id="edge1" class="edge">
+<title>M20&#45;&gt;M21</title>
+<path fill="none" stroke="#475569" d="M532.72,-159.02C451.57,-141.89 326.43,-115.48 326.43,-115.48 326.43,-115.48 240.86,-84.33 172.35,-59.38"/>
+<polygon fill="#475569" stroke="#475569" points="173.45,-56.99 165.5,-56.89 171.65,-61.92 173.45,-56.99"/>
+<text xml:space="preserve" text-anchor="middle" x="364.44" y="-97.48" font-family="Arial" font-size="12.00">I/M21 &#160;&#160;O/M21</text>
+</g>
+<!-- M22 -->
+<g id="node3" class="node">
+<title>M22</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="386.36,-55.68 208.55,-55.68 208.55,0 386.36,0 386.36,-55.68"/>
+<text xml:space="preserve" text-anchor="middle" x="297.46" y="-32.64" font-family="Arial" font-size="16.00">M22</text>
+<text xml:space="preserve" text-anchor="middle" x="297.46" y="-13.44" font-family="Arial" font-size="16.00">validate selected data</text>
+</g>
+<!-- M20&#45;&gt;M22 -->
+<g id="edge2" class="edge">
+<title>M20&#45;&gt;M22</title>
+<path fill="none" stroke="#475569" d="M536.03,-145.92C500.87,-130.97 464.43,-115.48 464.43,-115.48 464.43,-115.48 405.91,-85.11 358.15,-60.33"/>
+<polygon fill="#475569" stroke="#475569" points="359.5,-58.07 351.63,-56.95 357.08,-62.73 359.5,-58.07"/>
+<text xml:space="preserve" text-anchor="middle" x="502.44" y="-97.48" font-family="Arial" font-size="12.00">I/M22 &#160;&#160;O/M22</text>
+</g>
+<!-- M23 -->
+<g id="node4" class="node">
+<title>M23</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="606.25,-55.68 418.66,-55.68 418.66,0 606.25,0 606.25,-55.68"/>
+<text xml:space="preserve" text-anchor="middle" x="512.46" y="-32.64" font-family="Arial" font-size="16.00">M23</text>
+<text xml:space="preserve" text-anchor="middle" x="512.46" y="-13.44" font-family="Arial" font-size="16.00">validate and index bom</text>
+</g>
+<!-- M20&#45;&gt;M23 -->
+<g id="edge3" class="edge">
+<title>M20&#45;&gt;M23</title>
+<path fill="none" stroke="#475569" d="M583.7,-145.8C569.51,-122.51 549.08,-88.98 533.74,-63.78"/>
+<polygon fill="#475569" stroke="#475569" points="536.09,-62.59 529.94,-57.55 531.6,-65.32 536.09,-62.59"/>
+<text xml:space="preserve" text-anchor="middle" x="602.35" y="-97.48" font-family="Arial" font-size="12.00">I/M23 &#160;&#160;O/M23</text>
+</g>
+<!-- M24 -->
+<g id="node5" class="node">
+<title>M24</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="740.55,-55.68 638.37,-55.68 638.37,0 740.55,0 740.55,-55.68"/>
+<text xml:space="preserve" text-anchor="middle" x="689.46" y="-32.64" font-family="Arial" font-size="16.00">M24</text>
+<text xml:space="preserve" text-anchor="middle" x="689.46" y="-13.44" font-family="Arial" font-size="16.00">order tasks</text>
+</g>
+<!-- M20&#45;&gt;M24 -->
+<g id="edge4" class="edge">
+<title>M20&#45;&gt;M24</title>
+<path fill="none" stroke="#475569" d="M623.05,-146.09C635.5,-131.09 648.46,-115.48 648.46,-115.48 648.46,-115.48 661.39,-88.16 672.72,-64.2"/>
+<polygon fill="#475569" stroke="#475569" points="675,-65.52 675.84,-57.62 670.26,-63.28 675,-65.52"/>
+<text xml:space="preserve" text-anchor="middle" x="699.73" y="-97.48" font-family="Arial" font-size="12.00">I/M24 &#160;&#160;O/M24</text>
+</g>
+<!-- M25 -->
+<g id="node6" class="node">
+<title>M25</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="896.23,-55.68 772.69,-55.68 772.69,0 896.23,0 896.23,-55.68"/>
+<text xml:space="preserve" text-anchor="middle" x="834.46" y="-32.64" font-family="Arial" font-size="16.00">M25</text>
+<text xml:space="preserve" text-anchor="middle" x="834.46" y="-13.44" font-family="Arial" font-size="16.00">freeze context</text>
+</g>
+<!-- M20&#45;&gt;M25 -->
+<g id="edge5" class="edge">
+<title>M20&#45;&gt;M25</title>
+<path fill="none" stroke="#475569" d="M667.86,-146.43C705.73,-131.33 745.46,-115.48 745.46,-115.48 745.46,-115.48 775,-86.72 800.05,-62.34"/>
+<polygon fill="#475569" stroke="#475569" points="801.67,-64.42 805.21,-57.31 798.01,-60.66 801.67,-64.42"/>
+<text xml:space="preserve" text-anchor="middle" x="812.26" y="-97.48" font-family="Arial" font-size="12.00">I/M25 &#160;&#160;O/M25</text>
+</g>
+<!-- M26 -->
+<g id="node7" class="node">
+<title>M26</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="1106.35,-55.68 928.57,-55.68 928.57,0 1106.35,0 1106.35,-55.68"/>
+<text xml:space="preserve" text-anchor="middle" x="1017.46" y="-32.64" font-family="Arial" font-size="16.00">M26</text>
+<text xml:space="preserve" text-anchor="middle" x="1017.46" y="-13.44" font-family="Arial" font-size="16.00">make invalid outcome</text>
+</g>
+<!-- M20&#45;&gt;M26 -->
+<g id="edge6" class="edge">
+<title>M20&#45;&gt;M26</title>
+<path fill="none" stroke="#475569" d="M668.24,-158.12C744.68,-140.99 858.46,-115.48 858.46,-115.48 858.46,-115.48 913.96,-85.24 959.38,-60.49"/>
+<polygon fill="#475569" stroke="#475569" points="960.49,-62.87 965.82,-56.98 957.98,-58.26 960.49,-62.87"/>
+<text xml:space="preserve" text-anchor="middle" x="950.89" y="-104.68" font-family="Arial" font-size="12.00">I/M26 &#160;&#160;O/M26</text>
+<text xml:space="preserve" text-anchor="middle" x="950.89" y="-90.28" font-family="Arial" font-size="12.00">CONDITIONAL</text>
+</g>
+</g>
+</svg>
+</figure>
+<div class="table-wrap"><table><thead><tr><th>Call</th><th>Control condition</th><th>Input data couple</th><th>Return data couple</th></tr></thead><tbody>
+<tr><td>M20 -&gt; M21</td><td>call</td><td>repository, baseline_date or null</td><td>Result[SourceSet]</td></tr>
+<tr><td>M20 -&gt; M22</td><td>call</td><td>PlanningRequest, SourceSet, RuleSnapshot</td><td>List[Issue]</td></tr>
+<tr><td>M20 -&gt; M23</td><td>call</td><td>SourceSet, selected_task_ids</td><td>Result[GraphIndex]</td></tr>
+<tr><td>M20 -&gt; M24</td><td>call</td><td>List[Task], selected_task_ids</td><td>List[Task]</td></tr>
+<tr><td>M20 -&gt; M25</td><td>call</td><td>request, sources, rules, ordered_tasks, GraphIndex</td><td>PreparedContext</td></tr>
+<tr><td>M20 -&gt; M26</td><td>conditional</td><td>request_id, nonempty List[Issue]</td><td>CalculationOutcome</td></tr>
+</tbody></table></div>
+<h2 id="sec7">S3 Demand and shared inventory</h2>
+<figure><svg width="1196pt" height="421pt"
+ viewBox="0.00 0.00 1196.00 421.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(25.2 396.24)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-25.2,25.2 -25.2,-396.24 1170.77,-396.24 1170.77,25.2 -25.2,25.2"/>
+<text xml:space="preserve" text-anchor="middle" x="572.79" y="-345.44" font-family="Arial" font-size="24.00">S3 &#160;&#160;Demand and shared inventory</text>
+<!-- M30 -->
+<g id="node1" class="node">
+<title>M30</title>
+<polygon fill="#edf5ff" stroke="#334155" stroke-width="1.4" points="634.77,-334.24 491.67,-334.24 491.67,-278.56 634.77,-278.56 634.77,-334.24"/>
+<text xml:space="preserve" text-anchor="middle" x="563.22" y="-311.2" font-family="Arial" font-size="16.00">M30</text>
+<text xml:space="preserve" text-anchor="middle" x="563.22" y="-292" font-family="Arial" font-size="16.00">net requirements</text>
+</g>
+<!-- M31 -->
+<g id="node2" class="node">
+<title>M31</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="148.45,-187.76 0,-187.76 0,-132.08 148.45,-132.08 148.45,-187.76"/>
+<text xml:space="preserve" text-anchor="middle" x="74.22" y="-164.72" font-family="Arial" font-size="16.00">M31</text>
+<text xml:space="preserve" text-anchor="middle" x="74.22" y="-145.52" font-family="Arial" font-size="16.00">initialize balances</text>
+</g>
+<!-- M30&#45;&gt;M31 -->
+<g id="edge1" class="edge">
+<title>M30&#45;&gt;M31</title>
+<path fill="none" stroke="#475569" d="M491,-290.43C408.33,-273.29 284.2,-247.56 284.2,-247.56 284.2,-247.56 209.31,-216.66 148.98,-191.77"/>
+<polygon fill="#475569" stroke="#475569" points="150.28,-189.46 142.35,-189.03 148.28,-194.32 150.28,-189.46"/>
+<text xml:space="preserve" text-anchor="middle" x="322.21" y="-229.56" font-family="Arial" font-size="12.00">I/M31 &#160;&#160;O/M31</text>
+</g>
+<!-- M32 -->
+<g id="node3" class="node">
+<title>M32</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="380.23,-187.76 180.22,-187.76 180.22,-132.08 380.23,-132.08 380.23,-187.76"/>
+<text xml:space="preserve" text-anchor="middle" x="280.22" y="-164.72" font-family="Arial" font-size="16.00">M32</text>
+<text xml:space="preserve" text-anchor="middle" x="280.22" y="-145.52" font-family="Arial" font-size="16.00">collect material demands</text>
+</g>
+<!-- M30&#45;&gt;M32 -->
+<g id="edge2" class="edge">
+<title>M30&#45;&gt;M32</title>
+<path fill="none" stroke="#475569" d="M491.19,-278.17C451.5,-263.17 410.2,-247.56 410.2,-247.56 410.2,-247.56 365.57,-217.81 328.62,-193.18"/>
+<polygon fill="#475569" stroke="#475569" points="330.3,-191.15 322.61,-189.17 327.39,-195.52 330.3,-191.15"/>
+<text xml:space="preserve" text-anchor="middle" x="448.21" y="-236.76" font-family="Arial" font-size="12.00">I/M32 &#160;&#160;O/M32</text>
+<text xml:space="preserve" text-anchor="middle" x="448.21" y="-222.36" font-family="Arial" font-size="12.00">REPEAT</text>
+</g>
+<!-- M33 -->
+<g id="node4" class="node">
+<title>M33</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="532.21,-187.76 412.23,-187.76 412.23,-132.08 532.21,-132.08 532.21,-187.76"/>
+<text xml:space="preserve" text-anchor="middle" x="472.22" y="-164.72" font-family="Arial" font-size="16.00">M33</text>
+<text xml:space="preserve" text-anchor="middle" x="472.22" y="-145.52" font-family="Arial" font-size="16.00">allocate stock</text>
+</g>
+<!-- M30&#45;&gt;M33 -->
+<g id="edge3" class="edge">
+<title>M30&#45;&gt;M33</title>
+<path fill="none" stroke="#475569" d="M535.44,-278.17C520.13,-263.17 504.2,-247.56 504.2,-247.56 504.2,-247.56 494.2,-220.48 485.39,-196.6"/>
+<polygon fill="#475569" stroke="#475569" points="487.92,-195.88 482.86,-189.75 483,-197.7 487.92,-195.88"/>
+<text xml:space="preserve" text-anchor="middle" x="542.21" y="-236.76" font-family="Arial" font-size="12.00">I/M33 &#160;&#160;O/M33</text>
+<text xml:space="preserve" text-anchor="middle" x="542.21" y="-222.36" font-family="Arial" font-size="12.00">REPEAT</text>
+</g>
+<!-- M34 -->
+<g id="node5" class="node">
+<title>M34</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="745.91,-187.76 564.54,-187.76 564.54,-132.08 745.91,-132.08 745.91,-187.76"/>
+<text xml:space="preserve" text-anchor="middle" x="655.22" y="-164.72" font-family="Arial" font-size="16.00">M34</text>
+<text xml:space="preserve" text-anchor="middle" x="655.22" y="-145.52" font-family="Arial" font-size="16.00">expand make demand</text>
+</g>
+<!-- M30&#45;&gt;M34 -->
+<g id="edge4" class="edge">
+<title>M30&#45;&gt;M34</title>
+<path fill="none" stroke="#475569" d="M580.74,-277.88C595.58,-254.59 616.93,-221.06 632.97,-195.86"/>
+<polygon fill="#475569" stroke="#475569" points="635.14,-197.35 636.95,-189.61 630.71,-194.53 635.14,-197.35"/>
+<text xml:space="preserve" text-anchor="middle" x="655.48" y="-236.76" font-family="Arial" font-size="12.00">I/M34 &#160;&#160;O/M34</text>
+<text xml:space="preserve" text-anchor="middle" x="655.48" y="-222.36" font-family="Arial" font-size="12.00">REPEAT</text>
+</g>
+<!-- M35 -->
+<g id="node6" class="node">
+<title>M35</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="942.9,-187.76 777.55,-187.76 777.55,-132.08 942.9,-132.08 942.9,-187.76"/>
+<text xml:space="preserve" text-anchor="middle" x="860.22" y="-164.72" font-family="Arial" font-size="16.00">M35</text>
+<text xml:space="preserve" text-anchor="middle" x="860.22" y="-145.52" font-family="Arial" font-size="16.00">record buy shortage</text>
+</g>
+<!-- M30&#45;&gt;M35 -->
+<g id="edge5" class="edge">
+<title>M30&#45;&gt;M35</title>
+<path fill="none" stroke="#475569" d="M628.59,-278C664.25,-263.05 701.22,-247.56 701.22,-247.56 701.22,-247.56 756.73,-217.32 802.15,-192.57"/>
+<polygon fill="#475569" stroke="#475569" points="803.26,-194.95 808.59,-189.06 800.74,-190.34 803.26,-194.95"/>
+<text xml:space="preserve" text-anchor="middle" x="790.67" y="-236.76" font-family="Arial" font-size="12.00">I/M35 &#160;&#160;O/M35</text>
+<text xml:space="preserve" text-anchor="middle" x="790.67" y="-222.36" font-family="Arial" font-size="12.00">REPEAT</text>
+</g>
+<!-- M36 -->
+<g id="node7" class="node">
+<title>M36</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="1145.57,-187.76 974.88,-187.76 974.88,-132.08 1145.57,-132.08 1145.57,-187.76"/>
+<text xml:space="preserve" text-anchor="middle" x="1060.22" y="-164.72" font-family="Arial" font-size="16.00">M36</text>
+<text xml:space="preserve" text-anchor="middle" x="1060.22" y="-145.52" font-family="Arial" font-size="16.00">assemble net bundle</text>
+</g>
+<!-- M30&#45;&gt;M36 -->
+<g id="edge6" class="edge">
+<title>M30&#45;&gt;M36</title>
+<path fill="none" stroke="#475569" d="M635.31,-290.13C716.19,-272.99 836.22,-247.56 836.22,-247.56 836.22,-247.56 916.44,-216.53 980.87,-191.61"/>
+<polygon fill="#475569" stroke="#475569" points="981.58,-194.15 987.63,-189 979.69,-189.26 981.58,-194.15"/>
+<text xml:space="preserve" text-anchor="middle" x="946.69" y="-229.56" font-family="Arial" font-size="12.00">I/M36 &#160;&#160;O/M36</text>
+</g>
+<!-- M52 -->
+<g id="node8" class="node">
+<title>M52</title>
+<polygon fill="#f1f5f9" stroke="#334155" stroke-width="1.4" points="747.23,-55.68 563.21,-55.68 563.21,0 747.23,0 747.23,-55.68"/>
+<text xml:space="preserve" text-anchor="middle" x="655.22" y="-32.64" font-family="Arial" font-size="16.00">M52</text>
+<text xml:space="preserve" text-anchor="middle" x="655.22" y="-13.44" font-family="Arial" font-size="16.00">subtract calendar days</text>
+</g>
+<!-- M34&#45;&gt;M52 -->
+<g id="edge7" class="edge">
+<title>M34&#45;&gt;M52</title>
+<path fill="none" stroke="#475569" stroke-dasharray="5,2" d="M655.22,-131.65C655.22,-112.31 655.22,-86.16 655.22,-65.06"/>
+<polygon fill="#475569" stroke="#475569" points="657.85,-65.09 655.22,-57.59 652.6,-65.09 657.85,-65.09"/>
+<text xml:space="preserve" text-anchor="middle" x="713.25" y="-90.28" font-family="Arial" font-size="12.00">shared &#160;&#160;I/M52 O/M52</text>
+</g>
+</g>
+</svg>
+</figure>
+<div class="table-wrap"><table><thead><tr><th>Call</th><th>Control condition</th><th>Input data couple</th><th>Return data couple</th></tr></thead><tbody>
+<tr><td>M30 -&gt; M31</td><td>call</td><td>request_id, List[Stock]</td><td>BalanceMap</td></tr>
+<tr><td>M30 -&gt; M32</td><td>repeat</td><td>task_id, material_id, DemandMap</td><td>List[Demand]</td></tr>
+<tr><td>M30 -&gt; M33</td><td>repeat</td><td>Demand, Balance</td><td>AllocationResult</td></tr>
+<tr><td>M30 -&gt; M34</td><td>repeat</td><td>NettedDemand, Material, child_edges</td><td>Result[MakeExpansion]</td></tr>
+<tr><td>M30 -&gt; M35</td><td>repeat</td><td>NettedDemand, Material</td><td>BuyShortage or null</td></tr>
+<tr><td>M30 -&gt; M36</td><td>call</td><td>Context, netted_demands, allocations, make_lines, shortages, final_balances</td><td>Result[NetBundle]</td></tr>
+<tr><td>M34 -&gt; M52</td><td>shared</td><td>Date needed_date, Int &gt;= 0 lead_days</td><td>Result[Date]</td></tr>
+</tbody></table></div>
+<h2 id="sec8">S4 Purchasing and planned surplus</h2>
+<figure><svg width="1007pt" height="441pt"
+ viewBox="0.00 0.00 1007.00 441.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(25.2 415.44)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-25.2,25.2 -25.2,-415.44 981.55,-415.44 981.55,25.2 -25.2,25.2"/>
+<text xml:space="preserve" text-anchor="middle" x="478.17" y="-364.64" font-family="Arial" font-size="24.00">S4 &#160;&#160;Purchasing and planned surplus</text>
+<!-- M40 -->
+<g id="node1" class="node">
+<title>M40</title>
+<polygon fill="#edf5ff" stroke="#334155" stroke-width="1.4" points="522.24,-353.44 390.68,-353.44 390.68,-297.76 522.24,-297.76 522.24,-353.44"/>
+<text xml:space="preserve" text-anchor="middle" x="456.46" y="-330.4" font-family="Arial" font-size="16.00">M40</text>
+<text xml:space="preserve" text-anchor="middle" x="456.46" y="-311.2" font-family="Arial" font-size="16.00">plan purchases</text>
+</g>
+<!-- M41 -->
+<g id="node2" class="node">
+<title>M41</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="168.91,-197.36 0,-197.36 0,-141.68 168.91,-141.68 168.91,-197.36"/>
+<text xml:space="preserve" text-anchor="middle" x="84.46" y="-174.32" font-family="Arial" font-size="16.00">M41</text>
+<text xml:space="preserve" text-anchor="middle" x="84.46" y="-155.12" font-family="Arial" font-size="16.00">group buy shortages</text>
+</g>
+<!-- M40&#45;&gt;M41 -->
+<g id="edge1" class="edge">
+<title>M40&#45;&gt;M41</title>
+<path fill="none" stroke="#475569" d="M390.24,-305.26C332.68,-288.45 258.43,-266.76 258.43,-266.76 258.43,-266.76 192.25,-230.15 141.52,-202.09"/>
+<polygon fill="#475569" stroke="#475569" points="143,-199.91 135.17,-198.57 140.46,-204.5 143,-199.91"/>
+<text xml:space="preserve" text-anchor="middle" x="296.44" y="-248.76" font-family="Arial" font-size="12.00">I/M41 &#160;&#160;O/M41</text>
+</g>
+<!-- M42 -->
+<g id="node3" class="node">
+<title>M42</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="344.45,-197.36 200.46,-197.36 200.46,-141.68 344.45,-141.68 344.45,-197.36"/>
+<text xml:space="preserve" text-anchor="middle" x="272.46" y="-174.32" font-family="Arial" font-size="16.00">M42</text>
+<text xml:space="preserve" text-anchor="middle" x="272.46" y="-155.12" font-family="Arial" font-size="16.00">consume surplus</text>
+</g>
+<!-- M40&#45;&gt;M42 -->
+<g id="edge2" class="edge">
+<title>M40&#45;&gt;M42</title>
+<path fill="none" stroke="#475569" d="M416.91,-297.37C395.11,-282.37 372.43,-266.76 372.43,-266.76 372.43,-266.76 336.1,-231.78 307.24,-204"/>
+<polygon fill="#475569" stroke="#475569" points="309.15,-202.2 301.93,-198.89 305.51,-205.98 309.15,-202.2"/>
+<text xml:space="preserve" text-anchor="middle" x="410.44" y="-255.96" font-family="Arial" font-size="12.00">I/M42 &#160;&#160;O/M42</text>
+<text xml:space="preserve" text-anchor="middle" x="410.44" y="-241.56" font-family="Arial" font-size="12.00">REPEAT</text>
+</g>
+<!-- M43 -->
+<g id="node4" class="node">
+<title>M43</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="536.47,-197.36 376.45,-197.36 376.45,-141.68 536.47,-141.68 536.47,-197.36"/>
+<text xml:space="preserve" text-anchor="middle" x="456.46" y="-174.32" font-family="Arial" font-size="16.00">M43</text>
+<text xml:space="preserve" text-anchor="middle" x="456.46" y="-155.12" font-family="Arial" font-size="16.00">round purchase qty</text>
+</g>
+<!-- M40&#45;&gt;M43 -->
+<g id="edge3" class="edge">
+<title>M40&#45;&gt;M43</title>
+<path fill="none" stroke="#475569" d="M456.46,-297.41C456.46,-272.26 456.46,-234.69 456.46,-206.96"/>
+<polygon fill="#475569" stroke="#475569" points="459.08,-206.97 456.46,-199.47 453.83,-206.97 459.08,-206.97"/>
+<text xml:space="preserve" text-anchor="middle" x="494.47" y="-255.96" font-family="Arial" font-size="12.00">I/M43 &#160;&#160;O/M43</text>
+<text xml:space="preserve" text-anchor="middle" x="494.47" y="-241.56" font-family="Arial" font-size="12.00">REPEAT</text>
+</g>
+<!-- M44 -->
+<g id="node5" class="node">
+<title>M44</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="762.81,-197.36 568.11,-197.36 568.11,-141.68 762.81,-141.68 762.81,-197.36"/>
+<text xml:space="preserve" text-anchor="middle" x="665.46" y="-174.32" font-family="Arial" font-size="16.00">M44</text>
+<text xml:space="preserve" text-anchor="middle" x="665.46" y="-155.12" font-family="Arial" font-size="16.00">finalize purchase bucket</text>
+</g>
+<!-- M40&#45;&gt;M44 -->
+<g id="edge4" class="edge">
+<title>M40&#45;&gt;M44</title>
+<path fill="none" stroke="#475569" d="M496,-297.37C517.78,-282.37 540.46,-266.76 540.46,-266.76 540.46,-266.76 586.65,-231.19 622.88,-203.3"/>
+<polygon fill="#475569" stroke="#475569" points="624.43,-205.42 628.77,-198.76 621.23,-201.26 624.43,-205.42"/>
+<text xml:space="preserve" text-anchor="middle" x="615.41" y="-255.96" font-family="Arial" font-size="12.00">I/M44 &#160;&#160;O/M44</text>
+<text xml:space="preserve" text-anchor="middle" x="615.41" y="-241.56" font-family="Arial" font-size="12.00">REPEAT</text>
+</g>
+<!-- M45 -->
+<g id="node6" class="node">
+<title>M45</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="956.35,-206.96 794.57,-206.96 794.57,-132.08 956.35,-132.08 956.35,-206.96"/>
+<text xml:space="preserve" text-anchor="middle" x="875.46" y="-183.92" font-family="Arial" font-size="16.00">M45</text>
+<text xml:space="preserve" text-anchor="middle" x="875.46" y="-164.72" font-family="Arial" font-size="16.00">assemble purchase</text>
+<text xml:space="preserve" text-anchor="middle" x="875.46" y="-145.52" font-family="Arial" font-size="16.00">envelope</text>
+</g>
+<!-- M40&#45;&gt;M45 -->
+<g id="edge5" class="edge">
+<title>M40&#45;&gt;M45</title>
+<path fill="none" stroke="#475569" d="M522.73,-305.9C582.63,-289 661.46,-266.76 661.46,-266.76 661.46,-266.76 727.14,-237.22 785.73,-210.87"/>
+<polygon fill="#475569" stroke="#475569" points="786.8,-213.27 792.56,-207.8 784.65,-208.48 786.8,-213.27"/>
+<text xml:space="preserve" text-anchor="middle" x="762.7" y="-248.76" font-family="Arial" font-size="12.00">I/M45 &#160;&#160;O/M45</text>
+</g>
+<!-- M52 -->
+<g id="node7" class="node">
+<title>M52</title>
+<polygon fill="#f1f5f9" stroke="#334155" stroke-width="1.4" points="757.47,-55.68 573.45,-55.68 573.45,0 757.47,0 757.47,-55.68"/>
+<text xml:space="preserve" text-anchor="middle" x="665.46" y="-32.64" font-family="Arial" font-size="16.00">M52</text>
+<text xml:space="preserve" text-anchor="middle" x="665.46" y="-13.44" font-family="Arial" font-size="16.00">subtract calendar days</text>
+</g>
+<!-- M44&#45;&gt;M52 -->
+<g id="edge6" class="edge">
+<title>M44&#45;&gt;M52</title>
+<path fill="none" stroke="#475569" stroke-dasharray="5,2" d="M665.46,-141.26C665.46,-119.43 665.46,-88.64 665.46,-64.8"/>
+<polygon fill="#475569" stroke="#475569" points="668.08,-65.05 665.46,-57.55 662.83,-65.05 668.08,-65.05"/>
+<text xml:space="preserve" text-anchor="middle" x="723.48" y="-90.28" font-family="Arial" font-size="12.00">shared &#160;&#160;I/M52 O/M52</text>
+</g>
+</g>
+</svg>
+</figure>
+<div class="table-wrap"><table><thead><tr><th>Call</th><th>Control condition</th><th>Input data couple</th><th>Return data couple</th></tr></thead><tbody>
+<tr><td>M40 -&gt; M41</td><td>call</td><td>List[BuyShortage]</td><td>List[ShortageGroup]</td></tr>
+<tr><td>M40 -&gt; M42</td><td>repeat</td><td>ShortageGroup, List[SurplusLot]</td><td>SurplusAllocation</td></tr>
+<tr><td>M40 -&gt; M43</td><td>repeat</td><td>remaining_gap, minimum_qty, purchase_multiple</td><td>Int &gt;= 0</td></tr>
+<tr><td>M40 -&gt; M44</td><td>repeat</td><td>ShortageGroup, SurplusAllocation, purchase_qty, Material</td><td>Result[PurchaseStep]</td></tr>
+<tr><td>M40 -&gt; M45</td><td>call</td><td>NetBundle, purchase_buckets, surplus_uses, surplus_lots</td><td>Result[PurchasingEnvelope]</td></tr>
+<tr><td>M44 -&gt; M52</td><td>shared</td><td>Date needed_date, Int &gt;= 0 lead_days</td><td>Result[Date]</td></tr>
+</tbody></table></div>
+<h2 id="sec9">S5 Calendar and timing risk</h2>
+<figure><svg width="823pt" height="294pt"
+ viewBox="0.00 0.00 823.00 294.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(25.2 268.96)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-25.2,25.2 -25.2,-268.96 797.67,-268.96 797.67,25.2 -25.2,25.2"/>
+<text xml:space="preserve" text-anchor="middle" x="386.24" y="-218.16" font-family="Arial" font-size="24.00">S5 &#160;&#160;Calendar and timing risk</text>
+<!-- M50 -->
+<g id="node1" class="node">
+<title>M50</title>
+<polygon fill="#edf5ff" stroke="#334155" stroke-width="1.4" points="424.89,-206.96 302.23,-206.96 302.23,-151.28 424.89,-151.28 424.89,-206.96"/>
+<text xml:space="preserve" text-anchor="middle" x="363.56" y="-183.92" font-family="Arial" font-size="16.00">M50</text>
+<text xml:space="preserve" text-anchor="middle" x="363.56" y="-164.72" font-family="Arial" font-size="16.00">complete plan</text>
+</g>
+<!-- M51 -->
+<g id="node2" class="node">
+<title>M51</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="175.13,-65.28 0,-65.28 0,-9.6 175.13,-9.6 175.13,-65.28"/>
+<text xml:space="preserve" text-anchor="middle" x="87.56" y="-42.24" font-family="Arial" font-size="16.00">M51</text>
+<text xml:space="preserve" text-anchor="middle" x="87.56" y="-23.04" font-family="Arial" font-size="16.00">collect required dates</text>
+</g>
+<!-- M50&#45;&gt;M51 -->
+<g id="edge1" class="edge">
+<title>M50&#45;&gt;M51</title>
+<path fill="none" stroke="#475569" d="M301.98,-150.72C268.37,-135.77 233.54,-120.28 233.54,-120.28 233.54,-120.28 185.39,-93.29 144.4,-70.3"/>
+<polygon fill="#475569" stroke="#475569" points="145.72,-68.04 137.9,-66.66 143.15,-72.62 145.72,-68.04"/>
+<text xml:space="preserve" text-anchor="middle" x="271.55" y="-109.48" font-family="Arial" font-size="12.00">I/M51 &#160;&#160;O/M51</text>
+</g>
+<!-- M53 -->
+<g id="node3" class="node">
+<title>M53</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="338.34,-65.28 206.79,-65.28 206.79,-9.6 338.34,-9.6 338.34,-65.28"/>
+<text xml:space="preserve" text-anchor="middle" x="272.56" y="-42.24" font-family="Arial" font-size="16.00">M53</text>
+<text xml:space="preserve" text-anchor="middle" x="272.56" y="-23.04" font-family="Arial" font-size="16.00">flag early dates</text>
+</g>
+<!-- M50&#45;&gt;M53 -->
+<g id="edge2" class="edge">
+<title>M50&#45;&gt;M53</title>
+<path fill="none" stroke="#475569" d="M345.8,-150.86C331.33,-128.65 310.81,-97.15 295.17,-73.14"/>
+<polygon fill="#475569" stroke="#475569" points="297.4,-71.75 291.11,-66.9 293,-74.62 297.4,-71.75"/>
+<text xml:space="preserve" text-anchor="middle" x="361.52" y="-109.48" font-family="Arial" font-size="12.00">I/M53 &#160;&#160;O/M53</text>
+</g>
+<!-- M54 -->
+<g id="node4" class="node">
+<title>M54</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="538.57,-74.88 370.56,-74.88 370.56,0 538.57,0 538.57,-74.88"/>
+<text xml:space="preserve" text-anchor="middle" x="454.56" y="-51.84" font-family="Arial" font-size="16.00">M54</text>
+<text xml:space="preserve" text-anchor="middle" x="454.56" y="-32.64" font-family="Arial" font-size="16.00">assemble calculated</text>
+<text xml:space="preserve" text-anchor="middle" x="454.56" y="-13.44" font-family="Arial" font-size="16.00">batch</text>
+</g>
+<!-- M50&#45;&gt;M54 -->
+<g id="edge3" class="edge">
+<title>M50&#45;&gt;M54</title>
+<path fill="none" stroke="#475569" d="M384.27,-150.89C395.69,-135.89 407.56,-120.28 407.56,-120.28 407.56,-120.28 417.9,-102.28 428.88,-83.16"/>
+<polygon fill="#475569" stroke="#475569" points="431.05,-84.65 432.51,-76.84 426.5,-82.04 431.05,-84.65"/>
+<text xml:space="preserve" text-anchor="middle" x="453.46" y="-109.48" font-family="Arial" font-size="12.00">I/M54 &#160;&#160;O/M54</text>
+</g>
+<!-- M52 -->
+<g id="node5" class="node">
+<title>M52</title>
+<polygon fill="#f1f5f9" stroke="#334155" stroke-width="1.4" points="772.47,-74.88 570.65,-74.88 570.65,0 772.47,0 772.47,-74.88"/>
+<text xml:space="preserve" text-anchor="middle" x="671.56" y="-51.84" font-family="Arial" font-size="16.00">M52</text>
+<text xml:space="preserve" text-anchor="middle" x="671.56" y="-32.64" font-family="Arial" font-size="16.00">subtract calendar days</text>
+<text xml:space="preserve" text-anchor="middle" x="671.56" y="-13.44" font-family="Arial" font-size="16.00">Exported calendar helper</text>
+</g>
+<!-- M50&#45;&gt;M52 -->
+<g id="edge4" class="edge">
+<title>M50&#45;&gt;M52</title>
+<path fill="none" stroke="#475569" stroke-dasharray="1,5" d="M425.2,-151.91C461.18,-136.6 499.56,-120.28 499.56,-120.28 499.56,-120.28 548.11,-97.18 593.61,-75.53"/>
+<text xml:space="preserve" text-anchor="middle" x="633.79" y="-109.48" font-family="Arial" font-size="12.00">ownership only; called by M34 and M44</text>
+</g>
+</g>
+</svg>
+</figure>
+<div class="table-wrap"><table><thead><tr><th>Call</th><th>Control condition</th><th>Input data couple</th><th>Return data couple</th></tr></thead><tbody>
+<tr><td>M50 -&gt; M51</td><td>call</td><td>PurchasingEnvelope</td><td>List[DatedEvent]</td></tr>
+<tr><td>M50 -&gt; M53</td><td>call</td><td>List[DatedEvent], baseline_date</td><td>List[Issue]</td></tr>
+<tr><td>M50 -&gt; M54</td><td>call</td><td>PurchasingEnvelope, List[Issue] risks</td><td>CalculatedBatch</td></tr>
+</tbody></table></div>
+<h2 id="sec10">S6 History trace and export</h2>
+<figure><svg width="1016pt" height="289pt"
+ viewBox="0.00 0.00 1016.00 289.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(25.2 264.16)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-25.2,25.2 -25.2,-264.16 990.42,-264.16 990.42,25.2 -25.2,25.2"/>
+<text xml:space="preserve" text-anchor="middle" x="482.61" y="-213.36" font-family="Arial" font-size="24.00">S6 &#160;&#160;History trace and export</text>
+<!-- M60 -->
+<g id="node1" class="node">
+<title>M60</title>
+<polygon fill="#edf5ff" stroke="#334155" stroke-width="1.4" points="549.31,-202.16 424,-202.16 424,-146.48 549.31,-146.48 549.31,-202.16"/>
+<text xml:space="preserve" text-anchor="middle" x="486.65" y="-179.12" font-family="Arial" font-size="16.00">M60</text>
+<text xml:space="preserve" text-anchor="middle" x="486.65" y="-159.92" font-family="Arial" font-size="16.00">publish results</text>
+</g>
+<!-- M61 -->
+<g id="node2" class="node">
+<title>M61</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="141.31,-55.68 0,-55.68 0,0 141.31,0 141.31,-55.68"/>
+<text xml:space="preserve" text-anchor="middle" x="70.65" y="-32.64" font-family="Arial" font-size="16.00">M61</text>
+<text xml:space="preserve" text-anchor="middle" x="70.65" y="-13.44" font-family="Arial" font-size="16.00">classify outcome</text>
+</g>
+<!-- M60&#45;&gt;M61 -->
+<g id="edge1" class="edge">
+<title>M60&#45;&gt;M61</title>
+<path fill="none" stroke="#475569" d="M423.62,-159.24C346.95,-142.12 227.63,-115.48 227.63,-115.48 227.63,-115.48 172.83,-85.24 127.99,-60.49"/>
+<polygon fill="#475569" stroke="#475569" points="129.48,-58.31 121.65,-56.98 126.94,-62.91 129.48,-58.31"/>
+<text xml:space="preserve" text-anchor="middle" x="265.64" y="-97.48" font-family="Arial" font-size="12.00">I/M61 &#160;&#160;O/M61</text>
+</g>
+<!-- M62 -->
+<g id="node3" class="node">
+<title>M62</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="325.65,-55.68 173.66,-55.68 173.66,0 325.65,0 325.65,-55.68"/>
+<text xml:space="preserve" text-anchor="middle" x="249.65" y="-32.64" font-family="Arial" font-size="16.00">M62</text>
+<text xml:space="preserve" text-anchor="middle" x="249.65" y="-13.44" font-family="Arial" font-size="16.00">save batch atomic</text>
+</g>
+<!-- M60&#45;&gt;M62 -->
+<g id="edge2" class="edge">
+<title>M60&#45;&gt;M62</title>
+<path fill="none" stroke="#475569" d="M423.46,-148.29C384,-132.66 340.64,-115.48 340.64,-115.48 340.64,-115.48 310.44,-86.72 284.83,-62.34"/>
+<polygon fill="#475569" stroke="#475569" points="286.78,-60.57 279.54,-57.3 283.16,-64.37 286.78,-60.57"/>
+<text xml:space="preserve" text-anchor="middle" x="381.65" y="-104.68" font-family="Arial" font-size="12.00">I/M62 &#160;&#160;O/M62</text>
+<text xml:space="preserve" text-anchor="middle" x="381.65" y="-90.28" font-family="Arial" font-size="12.00">CONDITIONAL</text>
+</g>
+<!-- M63 -->
+<g id="node4" class="node">
+<title>M63</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="463.97,-55.68 357.34,-55.68 357.34,0 463.97,0 463.97,-55.68"/>
+<text xml:space="preserve" text-anchor="middle" x="410.65" y="-32.64" font-family="Arial" font-size="16.00">M63</text>
+<text xml:space="preserve" text-anchor="middle" x="410.65" y="-13.44" font-family="Arial" font-size="16.00">read history</text>
+</g>
+<!-- M60&#45;&gt;M63 -->
+<g id="edge3" class="edge">
+<title>M60&#45;&gt;M63</title>
+<path fill="none" stroke="#475569" d="M465,-146.09C453.06,-131.09 440.64,-115.48 440.64,-115.48 440.64,-115.48 431.27,-88.4 423,-64.52"/>
+<polygon fill="#475569" stroke="#475569" points="425.57,-63.91 420.64,-57.68 420.61,-65.63 425.57,-63.91"/>
+<text xml:space="preserve" text-anchor="middle" x="481.65" y="-104.68" font-family="Arial" font-size="12.00">I/M63 &#160;&#160;O/M63</text>
+<text xml:space="preserve" text-anchor="middle" x="481.65" y="-90.28" font-family="Arial" font-size="12.00">CONDITIONAL</text>
+</g>
+<!-- M64 -->
+<g id="node5" class="node">
+<title>M64</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="629.31,-55.68 496,-55.68 496,0 629.31,0 629.31,-55.68"/>
+<text xml:space="preserve" text-anchor="middle" x="562.65" y="-32.64" font-family="Arial" font-size="16.00">M64</text>
+<text xml:space="preserve" text-anchor="middle" x="562.65" y="-13.44" font-family="Arial" font-size="16.00">build trace view</text>
+</g>
+<!-- M60&#45;&gt;M64 -->
+<g id="edge4" class="edge">
+<title>M60&#45;&gt;M64</title>
+<path fill="none" stroke="#475569" d="M505.48,-146.09C515.86,-131.09 526.65,-115.48 526.65,-115.48 526.65,-115.48 537.91,-88.4 547.83,-64.52"/>
+<polygon fill="#475569" stroke="#475569" points="550.23,-65.58 550.68,-57.65 545.38,-63.57 550.23,-65.58"/>
+<text xml:space="preserve" text-anchor="middle" x="576.31" y="-97.48" font-family="Arial" font-size="12.00">I/M64 &#160;&#160;O/M64</text>
+</g>
+<!-- M65 -->
+<g id="node6" class="node">
+<title>M65</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="765.64,-55.68 661.66,-55.68 661.66,0 765.64,0 765.64,-55.68"/>
+<text xml:space="preserve" text-anchor="middle" x="713.65" y="-32.64" font-family="Arial" font-size="16.00">M65</text>
+<text xml:space="preserve" text-anchor="middle" x="713.65" y="-13.44" font-family="Arial" font-size="16.00">encode csv</text>
+</g>
+<!-- M60&#45;&gt;M65 -->
+<g id="edge5" class="edge">
+<title>M60&#45;&gt;M65</title>
+<path fill="none" stroke="#475569" d="M549.88,-146.43C585.39,-131.33 622.65,-115.48 622.65,-115.48 622.65,-115.48 652.86,-86.72 678.47,-62.34"/>
+<polygon fill="#475569" stroke="#475569" points="680.14,-64.37 683.76,-57.3 676.52,-60.57 680.14,-64.37"/>
+<text xml:space="preserve" text-anchor="middle" x="693.09" y="-104.68" font-family="Arial" font-size="12.00">I/M65 &#160;&#160;O/M65</text>
+<text xml:space="preserve" text-anchor="middle" x="693.09" y="-90.28" font-family="Arial" font-size="12.00">CONDITIONAL</text>
+</g>
+<!-- M66 -->
+<g id="node7" class="node">
+<title>M66</title>
+<polygon fill="#ffffff" stroke="#334155" stroke-width="1.4" points="965.22,-55.68 798.09,-55.68 798.09,0 965.22,0 965.22,-55.68"/>
+<text xml:space="preserve" text-anchor="middle" x="881.65" y="-32.64" font-family="Arial" font-size="16.00">M66</text>
+<text xml:space="preserve" text-anchor="middle" x="881.65" y="-13.44" font-family="Arial" font-size="16.00">make plan response</text>
+</g>
+<!-- M60&#45;&gt;M66 -->
+<g id="edge6" class="edge">
+<title>M60&#45;&gt;M66</title>
+<path fill="none" stroke="#475569" d="M549.69,-159.02C625.2,-141.89 741.65,-115.48 741.65,-115.48 741.65,-115.48 790.12,-85.49 830.02,-60.79"/>
+<polygon fill="#475569" stroke="#475569" points="831.07,-63.23 836.07,-57.05 828.31,-58.76 831.07,-63.23"/>
+<text xml:space="preserve" text-anchor="middle" x="824.95" y="-97.48" font-family="Arial" font-size="12.00">I/M66 &#160;&#160;O/M66</text>
+</g>
+</g>
+</svg>
+</figure>
+<div class="table-wrap"><table><thead><tr><th>Call</th><th>Control condition</th><th>Input data couple</th><th>Return data couple</th></tr></thead><tbody>
+<tr><td>M60 -&gt; M61</td><td>call</td><td>CalculationOutcome</td><td>Result[CalculatedBatch]</td></tr>
+<tr><td>M60 -&gt; M62</td><td>conditional</td><td>CalculatedBatch, repository, batch_id, created_at</td><td>Result[BatchRecord]</td></tr>
+<tr><td>M60 -&gt; M63</td><td>conditional</td><td>QueryRequest, repository</td><td>Result[List[BatchRecord]]</td></tr>
+<tr><td>M60 -&gt; M64</td><td>call</td><td>List[BatchRecord], filters</td><td>Result[ReportView]</td></tr>
+<tr><td>M60 -&gt; M65</td><td>conditional</td><td>ReportView, table_kind</td><td>CsvDocument</td></tr>
+<tr><td>M60 -&gt; M66</td><td>call</td><td>request_id, outcome_status, saved_records, view, csv, issues</td><td>PlanResponse</td></tr>
+</tbody></table></div>
+<h2 id="sec11">Transformation from E1</h2>
+<p>The overall calculation is a transformation sequence: validate and freeze inputs, net multilevel demand against shared stock, calculate dated purchasing, assess risks, then retain and present the result. M00 controls this sequence; modules do not call each other&#x27;s top-level controllers. Task-priority stock allocation and date-ordered procurement therefore have distinct owners.</p>
+<p>M30 owns D3 working stock; M40 owns D4 planned surplus. Neither writes D1. M14 exclusively commits master-data revisions; M62 exclusively commits D2 batches. M21 and M63 read their respective stores. Calendar subtraction M52 is shared by M34 and M44 so lead-time behavior is consistent. M50 calls risk procedures, not M52 redundantly.</p>
+<h2 id="sec12">Cohesion and coupling review</h2>
+<p>S1 is cohesive around accepted data changes; S2 around valid immutable calculation input; S3 around net demand and stock; S4 around procurement quantities and excess; S5 around dates and complete risk results; S6 around retained output. Narrow leaf interfaces such as M33 and M43 take only the data needed. Aggregate Context/NetBundle carriers belong at coordinator boundaries, rather than mutable global state. Storage and presentation dependencies do not enter the pure arithmetic functions.</p>
+<p>Cross-subsystem calls are M10 to read-only M21, M34/M44 to pure M52, and M00 to the M26 failure-outcome formatter. There is no controller call cycle. Sharing a date helper does not create an object hierarchy or make the entire risk subsystem a dependency of quantity calculation.</p>
+<h2 id="sec13">4 Refined logical models</h2>
+<p>All six selected subsystems have a refined DFD. The additional bridge explains the decomposition of E1 P2.3 into S4 and S5. Rounded processes transform data; gray rectangles denote external entities or parent-level boundaries; gold store boxes marked D1-D4 denote stores. Arrows carry records, not calls. Each final primitive process maps to one procedure. E1 F01-F19 retain their established definitions.</p>
+<h2 id="sec14">S1   Refined source maintenance</h2>
+<figure><svg width="462pt" height="785pt"
+ viewBox="0.00 0.00 462.00 785.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(25.2 759.88)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-25.2,25.2 -25.2,-759.88 436.54,-759.88 436.54,25.2 -25.2,25.2"/>
+<text xml:space="preserve" text-anchor="middle" x="205.67" y="-709.08" font-family="Arial" font-size="24.00">S1 &#160;&#160;Refined source maintenance</text>
+<!-- EC -->
+<g id="node1" class="node">
+<title>EC</title>
+<polygon fill="#f1f5f9" stroke="#334155" stroke-width="1.4" points="405.54,-697.88 251.78,-697.88 251.78,-661.4 405.54,-661.4 405.54,-697.88"/>
+<text xml:space="preserve" text-anchor="middle" x="328.66" y="-674.84" font-family="Arial" font-size="16.00">Material data clerk</text>
+</g>
+<!-- A1 -->
+<g id="node3" class="node">
+<title>A1</title>
+<path fill="#edf5ff" stroke="#334155" stroke-width="1.4" d="M329.32,-585C329.32,-585 204,-585 204,-585 198,-585 192,-579 192,-573 192,-573 192,-541.32 192,-541.32 192,-535.32 198,-529.32 204,-529.32 204,-529.32 329.32,-529.32 329.32,-529.32 335.32,-529.32 341.32,-535.32 341.32,-541.32 341.32,-541.32 341.32,-573 341.32,-573 341.32,-579 335.32,-585 329.32,-585"/>
+<text xml:space="preserve" text-anchor="middle" x="266.66" y="-561.96" font-family="Arial" font-size="16.00">A1</text>
+<text xml:space="preserve" text-anchor="middle" x="266.66" y="-542.76" font-family="Arial" font-size="16.00">Parse submission</text>
+</g>
+<!-- EC&#45;&gt;A1 -->
+<g id="edge1" class="edge">
+<title>EC&#45;&gt;A1</title>
+<path fill="none" stroke="#475569" d="M319.51,-660.86C310.39,-643.14 296.14,-615.44 284.73,-593.27"/>
+<polygon fill="#475569" stroke="#475569" points="287.13,-592.2 281.36,-586.73 282.46,-594.6 287.13,-592.2"/>
+<text xml:space="preserve" text-anchor="middle" x="313.55" y="-619.6" font-family="Arial" font-size="12.00">F01</text>
+</g>
+<!-- D1 -->
+<g id="node2" class="node">
+<title>D1</title>
+<polygon fill="#fff8e8" stroke="#334155" stroke-width="1.4" points="0,-0.5 0,-56.18 109.32,-56.18 109.32,-0.5 0,-0.5"/>
+<text xml:space="preserve" text-anchor="middle" x="54.66" y="-33.14" font-family="Arial" font-size="16.00">D1</text>
+<text xml:space="preserve" text-anchor="middle" x="54.66" y="-13.94" font-family="Arial" font-size="16.00">Source data</text>
+</g>
+<!-- A2a -->
+<g id="node4" class="node">
+<title>A2a</title>
+<path fill="#edf5ff" stroke="#334155" stroke-width="1.4" d="M219.88,-452.92C219.88,-452.92 79.44,-452.92 79.44,-452.92 73.44,-452.92 67.44,-446.92 67.44,-440.92 67.44,-440.92 67.44,-409.24 67.44,-409.24 67.44,-403.24 73.44,-397.24 79.44,-397.24 79.44,-397.24 219.88,-397.24 219.88,-397.24 225.88,-397.24 231.88,-403.24 231.88,-409.24 231.88,-409.24 231.88,-440.92 231.88,-440.92 231.88,-446.92 225.88,-452.92 219.88,-452.92"/>
+<text xml:space="preserve" text-anchor="middle" x="149.66" y="-429.88" font-family="Arial" font-size="16.00">A2a</text>
+<text xml:space="preserve" text-anchor="middle" x="149.66" y="-410.68" font-family="Arial" font-size="16.00">Merge source patch</text>
+</g>
+<!-- D1&#45;&gt;A2a -->
+<g id="edge2" class="edge">
+<title>D1&#45;&gt;A2a</title>
+<path fill="none" stroke="#475569" d="M47.76,-56.87C40.06,-87.6 28.66,-133.08 28.66,-133.08 28.66,-133.08 28.66,-188.76 28.66,-188.76 28.66,-188.76 51.66,-320.84 51.66,-320.84 51.66,-320.84 89.11,-360.29 117.7,-390.41"/>
+<polygon fill="#475569" stroke="#475569" points="115.55,-391.95 122.61,-395.59 119.35,-388.34 115.55,-391.95"/>
+<text xml:space="preserve" text-anchor="middle" x="46.84" y="-223.36" font-family="Arial" font-size="12.00">F07</text>
+</g>
+<!-- A1&#45;&gt;A2a -->
+<g id="edge3" class="edge">
+<title>A1&#45;&gt;A2a</title>
+<path fill="none" stroke="#475569" d="M242.13,-528.89C224.04,-508.77 199.3,-481.27 179.97,-459.78"/>
+<polygon fill="#475569" stroke="#475569" points="182.13,-458.26 175.17,-454.44 178.23,-461.77 182.13,-458.26"/>
+<text xml:space="preserve" text-anchor="middle" x="223.01" y="-487.52" font-family="Arial" font-size="12.00">G01</text>
+</g>
+<!-- A4 -->
+<g id="node7" class="node">
+<title>A4</title>
+<path fill="#edf5ff" stroke="#334155" stroke-width="1.4" d="M387.13,-56.18C387.13,-56.18 186.19,-56.18 186.19,-56.18 180.19,-56.18 174.19,-50.18 174.19,-44.18 174.19,-44.18 174.19,-12.5 174.19,-12.5 174.19,-6.5 180.19,-0.5 186.19,-0.5 186.19,-0.5 387.13,-0.5 387.13,-0.5 393.13,-0.5 399.13,-6.5 399.13,-12.5 399.13,-12.5 399.13,-44.18 399.13,-44.18 399.13,-50.18 393.13,-56.18 387.13,-56.18"/>
+<text xml:space="preserve" text-anchor="middle" x="286.66" y="-33.14" font-family="Arial" font-size="16.00">A4</text>
+<text xml:space="preserve" text-anchor="middle" x="286.66" y="-13.94" font-family="Arial" font-size="16.00">Build maintenance response</text>
+</g>
+<!-- A1&#45;&gt;A4 -->
+<g id="edge4" class="edge">
+<title>A1&#45;&gt;A4</title>
+<path fill="none" stroke="#475569" d="M277.56,-528.89C292.81,-490.75 318.66,-426.08 318.66,-426.08 318.66,-426.08 318.66,-426.08 318.66,-159.92 318.66,-159.92 304.91,-103.81 295.44,-65.15"/>
+<polygon fill="#475569" stroke="#475569" points="298.06,-64.84 293.73,-58.18 292.96,-66.09 298.06,-64.84"/>
+<text xml:space="preserve" text-anchor="middle" x="330" y="-289.4" font-family="Arial" font-size="12.00">G03</text>
+</g>
+<!-- A2b -->
+<g id="node5" class="node">
+<title>A2b</title>
+<path fill="#edf5ff" stroke="#334155" stroke-width="1.4" d="M219.45,-320.84C219.45,-320.84 79.88,-320.84 79.88,-320.84 73.88,-320.84 67.87,-314.84 67.87,-308.84 67.87,-308.84 67.87,-277.16 67.87,-277.16 67.87,-271.16 73.87,-265.16 79.87,-265.16 79.87,-265.16 219.45,-265.16 219.45,-265.16 225.45,-265.16 231.45,-271.16 231.45,-277.16 231.45,-277.16 231.45,-308.84 231.45,-308.84 231.45,-314.84 225.45,-320.84 219.45,-320.84"/>
+<text xml:space="preserve" text-anchor="middle" x="149.66" y="-297.8" font-family="Arial" font-size="16.00">A2b</text>
+<text xml:space="preserve" text-anchor="middle" x="149.66" y="-278.6" font-family="Arial" font-size="16.00">Validate source edit</text>
+</g>
+<!-- A2a&#45;&gt;A2b -->
+<g id="edge10" class="edge">
+<title>A2a&#45;&gt;A2b</title>
+<path fill="none" stroke="#475569" d="M149.66,-396.81C149.66,-377.47 149.66,-351.32 149.66,-330.22"/>
+<polygon fill="#475569" stroke="#475569" points="152.29,-330.25 149.66,-322.75 147.04,-330.25 152.29,-330.25"/>
+<text xml:space="preserve" text-anchor="middle" x="161" y="-355.44" font-family="Arial" font-size="12.00">G05</text>
+</g>
+<!-- A3 -->
+<g id="node6" class="node">
+<title>A3</title>
+<path fill="#edf5ff" stroke="#334155" stroke-width="1.4" d="M170.52,-188.76C170.52,-188.76 56.8,-188.76 56.8,-188.76 50.8,-188.76 44.8,-182.76 44.8,-176.76 44.8,-176.76 44.8,-145.08 44.8,-145.08 44.8,-139.08 50.8,-133.08 56.8,-133.08 56.8,-133.08 170.52,-133.08 170.52,-133.08 176.52,-133.08 182.52,-139.08 182.52,-145.08 182.52,-145.08 182.52,-176.76 182.52,-176.76 182.52,-182.76 176.52,-188.76 170.52,-188.76"/>
+<text xml:space="preserve" text-anchor="middle" x="113.66" y="-165.72" font-family="Arial" font-size="16.00">A3</text>
+<text xml:space="preserve" text-anchor="middle" x="113.66" y="-146.52" font-family="Arial" font-size="16.00">Commit revision</text>
+</g>
+<!-- A2b&#45;&gt;A3 -->
+<g id="edge5" class="edge">
+<title>A2b&#45;&gt;A3</title>
+<path fill="none" stroke="#475569" d="M142.11,-264.73C136.71,-245.22 129.39,-218.77 123.53,-197.58"/>
+<polygon fill="#475569" stroke="#475569" points="126.13,-197.14 121.6,-190.61 121.07,-198.54 126.13,-197.14"/>
+<text xml:space="preserve" text-anchor="middle" x="144.08" y="-223.36" font-family="Arial" font-size="12.00">G02</text>
+</g>
+<!-- A2b&#45;&gt;A4 -->
+<g id="edge6" class="edge">
+<title>A2b&#45;&gt;A4</title>
+<path fill="none" stroke="#475569" d="M163.81,-264.88C188.78,-217.01 240.64,-117.57 268.32,-64.5"/>
+<polygon fill="#475569" stroke="#475569" points="270.55,-65.91 271.69,-58.05 265.89,-63.48 270.55,-65.91"/>
+<text xml:space="preserve" text-anchor="middle" x="243.12" y="-157.32" font-family="Arial" font-size="12.00">G03</text>
+</g>
+<!-- A3&#45;&gt;D1 -->
+<g id="edge7" class="edge">
+<title>A3&#45;&gt;D1</title>
+<path fill="none" stroke="#475569" d="M99.22,-132.69C91.26,-117.69 82.98,-102.08 82.98,-102.08 82.98,-102.08 75.77,-83.55 68.62,-65.19"/>
+<polygon fill="#475569" stroke="#475569" points="71.08,-64.29 65.92,-58.25 66.19,-66.19 71.08,-64.29"/>
+<text xml:space="preserve" text-anchor="middle" x="93.32" y="-91.28" font-family="Arial" font-size="12.00">F06</text>
+</g>
+<!-- A3&#45;&gt;A4 -->
+<g id="edge8" class="edge">
+<title>A3&#45;&gt;A4</title>
+<path fill="none" stroke="#475569" d="M145.92,-132.61C170.08,-112.15 198.98,-87.68 198.98,-87.68 198.98,-87.68 217.75,-75.19 237.92,-61.77"/>
+<polygon fill="#475569" stroke="#475569" points="239.34,-63.98 244.13,-57.64 236.43,-59.61 239.34,-63.98"/>
+<text xml:space="preserve" text-anchor="middle" x="210.32" y="-91.28" font-family="Arial" font-size="12.00">G04</text>
+</g>
+<!-- A4&#45;&gt;EC -->
+<g id="edge9" class="edge">
+<title>A4&#45;&gt;EC</title>
+<path fill="none" stroke="#475569" d="M308.46,-56.71C338.96,-95 390.66,-159.92 390.66,-159.92 390.66,-558.16 390.66,-558.16 390.66,-558.16 390.66,-558.16 360.14,-617.46 341.93,-652.85"/>
+<polygon fill="#475569" stroke="#475569" points="339.6,-651.65 338.5,-659.52 344.27,-654.05 339.6,-651.65"/>
+<text xml:space="preserve" text-anchor="middle" x="401" y="-355.44" font-family="Arial" font-size="12.00">F02</text>
+</g>
+</g>
+</svg>
+</figure>
+<div class="table-wrap"><table><thead><tr><th>Primitive process</th><th>Mapped procedure</th></tr></thead><tbody>
+<tr><td>A1 Parse submission</td><td>M11 parse_submission</td></tr>
+<tr><td>A2a Merge source patch</td><td>M12 merge_source_patch</td></tr>
+<tr><td>A2b Validate source edit</td><td>M13 validate_source_edit</td></tr>
+<tr><td>A3 Commit revision</td><td>M14 commit_source_revision</td></tr>
+<tr><td>A4 Build maintenance response</td><td>M15 make_maintenance_response</td></tr>
+</tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>Flow</th><th>Meaning</th><th>Record type</th></tr></thead><tbody>
+<tr><td>F01</td><td>Maintenance submission</td><td>MaintenanceSubmission</td></tr>
+<tr><td>F07</td><td>Existing source records</td><td>SourceSet</td></tr>
+<tr><td>G01</td><td>Typed submission</td><td>TypedImport</td></tr>
+<tr><td>G03</td><td>Located maintenance errors</td><td>List[Issue]</td></tr>
+<tr><td>G02</td><td>Validated source candidate</td><td>SourceSet</td></tr>
+<tr><td>F06</td><td>Accepted source records</td><td>SourceSet</td></tr>
+<tr><td>G04</td><td>Maintenance commit result</td><td>CommitResult</td></tr>
+<tr><td>F02</td><td>Maintenance outcome</td><td>MaintenanceOutcome</td></tr>
+<tr><td>G05</td><td>Merged source candidate</td><td>EditWork</td></tr>
+</tbody></table></div>
+<h2 id="sec15">S2   Refined snapshot and BOM validation</h2>
+<figure><svg width="519pt" height="917pt"
+ viewBox="0.00 0.00 519.00 917.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(25.2 891.96)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-25.2,25.2 -25.2,-891.96 493.47,-891.96 493.47,25.2 -25.2,25.2"/>
+<text xml:space="preserve" text-anchor="middle" x="234.14" y="-841.16" font-family="Arial" font-size="24.00">S2 &#160;&#160;Refined snapshot and BOM validation</text>
+<!-- EP -->
+<g id="node1" class="node">
+<title>EP</title>
+<polygon fill="#f1f5f9" stroke="#334155" stroke-width="1.4" points="252.6,-819.86 95.25,-819.86 95.25,-783.38 252.6,-783.38 252.6,-819.86"/>
+<text xml:space="preserve" text-anchor="middle" x="173.92" y="-796.82" font-family="Arial" font-size="16.00">Production planner</text>
+</g>
+<!-- B1a -->
+<g id="node5" class="node">
+<title>B1a</title>
+<path fill="#edf5ff" stroke="#334155" stroke-width="1.4" d="M339.04,-696.88C339.04,-696.88 172.8,-696.88 172.8,-696.88 166.8,-696.88 160.8,-690.88 160.8,-684.88 160.8,-684.88 160.8,-653.2 160.8,-653.2 160.8,-647.2 166.8,-641.2 172.8,-641.2 172.8,-641.2 339.04,-641.2 339.04,-641.2 345.04,-641.2 351.04,-647.2 351.04,-653.2 351.04,-653.2 351.04,-684.88 351.04,-684.88 351.04,-690.88 345.04,-696.88 339.04,-696.88"/>
+<text xml:space="preserve" text-anchor="middle" x="255.92" y="-673.84" font-family="Arial" font-size="16.00">B1a</text>
+<text xml:space="preserve" text-anchor="middle" x="255.92" y="-654.64" font-family="Arial" font-size="16.00">Read consistent source</text>
+</g>
+<!-- EP&#45;&gt;B1a -->
+<g id="edge1" class="edge">
+<title>EP&#45;&gt;B1a</title>
+<path fill="none" stroke="#475569" d="M185.15,-782.74C197.71,-762.73 218.36,-729.85 234.12,-704.75"/>
+<polygon fill="#475569" stroke="#475569" points="236.27,-706.27 238.04,-698.52 231.83,-703.47 236.27,-706.27"/>
+<text xml:space="preserve" text-anchor="middle" x="227.72" y="-731.48" font-family="Arial" font-size="12.00">F03</text>
+</g>
+<!-- D1 -->
+<g id="node2" class="node">
+<title>D1</title>
+<polygon fill="#fff8e8" stroke="#334155" stroke-width="1.4" points="284.26,-773.78 284.26,-829.46 393.58,-829.46 393.58,-773.78 284.26,-773.78"/>
+<text xml:space="preserve" text-anchor="middle" x="338.92" y="-806.42" font-family="Arial" font-size="16.00">D1</text>
+<text xml:space="preserve" text-anchor="middle" x="338.92" y="-787.22" font-family="Arial" font-size="16.00">Source data</text>
+</g>
+<!-- D1&#45;&gt;B1a -->
+<g id="edge2" class="edge">
+<title>D1&#45;&gt;B1a</title>
+<path fill="none" stroke="#475569" d="M321.52,-773.25C308.85,-753.31 291.59,-726.16 277.96,-704.71"/>
+<polygon fill="#475569" stroke="#475569" points="280.35,-703.58 274.11,-698.66 275.92,-706.39 280.35,-703.58"/>
+<text xml:space="preserve" text-anchor="middle" x="310.25" y="-731.48" font-family="Arial" font-size="12.00">F08</text>
+</g>
+<!-- P2.2 -->
+<g id="node3" class="node">
+<title>P2.2</title>
+<polygon fill="#f1f5f9" stroke="#334155" stroke-width="1.4" points="234.61,-36.48 61.23,-36.48 61.23,0 234.61,0 234.61,-36.48"/>
+<text xml:space="preserve" text-anchor="middle" x="147.92" y="-13.44" font-family="Arial" font-size="16.00">P2.2 Net and expand</text>
+</g>
+<!-- P3 -->
+<g id="node4" class="node">
+<title>P3</title>
+<polygon fill="#f1f5f9" stroke="#334155" stroke-width="1.4" points="395.47,-158.96 244.37,-158.96 244.37,-122.48 395.47,-122.48 395.47,-158.96"/>
+<text xml:space="preserve" text-anchor="middle" x="319.92" y="-135.92" font-family="Arial" font-size="16.00">P3 Publish results</text>
+</g>
+<!-- B1b -->
+<g id="node6" class="node">
+<title>B1b</title>
+<path fill="#edf5ff" stroke="#334155" stroke-width="1.4" d="M337.27,-564.8C337.27,-564.8 174.57,-564.8 174.57,-564.8 168.57,-564.8 162.57,-558.8 162.57,-552.8 162.57,-552.8 162.57,-521.12 162.57,-521.12 162.57,-515.12 168.57,-509.12 174.57,-509.12 174.57,-509.12 337.27,-509.12 337.27,-509.12 343.27,-509.12 349.27,-515.12 349.27,-521.12 349.27,-521.12 349.27,-552.8 349.27,-552.8 349.27,-558.8 343.27,-564.8 337.27,-564.8"/>
+<text xml:space="preserve" text-anchor="middle" x="255.92" y="-541.76" font-family="Arial" font-size="16.00">B1b</text>
+<text xml:space="preserve" text-anchor="middle" x="255.92" y="-522.56" font-family="Arial" font-size="16.00">Validate selected fields</text>
+</g>
+<!-- B1a&#45;&gt;B1b -->
+<g id="edge10" class="edge">
+<title>B1a&#45;&gt;B1b</title>
+<path fill="none" stroke="#475569" d="M255.92,-640.77C255.92,-621.43 255.92,-595.28 255.92,-574.18"/>
+<polygon fill="#475569" stroke="#475569" points="258.55,-574.21 255.92,-566.71 253.3,-574.21 258.55,-574.21"/>
+<text xml:space="preserve" text-anchor="middle" x="267.26" y="-599.4" font-family="Arial" font-size="12.00">G25</text>
+</g>
+<!-- B2 -->
+<g id="node7" class="node">
+<title>B2</title>
+<path fill="#edf5ff" stroke="#334155" stroke-width="1.4" d="M244.04,-432.72C244.04,-432.72 141.81,-432.72 141.81,-432.72 135.81,-432.72 129.81,-426.72 129.81,-420.72 129.81,-420.72 129.81,-389.04 129.81,-389.04 129.81,-383.04 135.81,-377.04 141.81,-377.04 141.81,-377.04 244.04,-377.04 244.04,-377.04 250.04,-377.04 256.04,-383.04 256.04,-389.04 256.04,-389.04 256.04,-420.72 256.04,-420.72 256.04,-426.72 250.04,-432.72 244.04,-432.72"/>
+<text xml:space="preserve" text-anchor="middle" x="192.92" y="-409.68" font-family="Arial" font-size="16.00">B2</text>
+<text xml:space="preserve" text-anchor="middle" x="192.92" y="-390.48" font-family="Arial" font-size="16.00">Validate graph</text>
+</g>
+<!-- B1b&#45;&gt;B2 -->
+<g id="edge3" class="edge">
+<title>B1b&#45;&gt;B2</title>
+<path fill="none" stroke="#475569" d="M242.72,-508.69C233.18,-489.01 220.23,-462.25 209.92,-440.97"/>
+<polygon fill="#475569" stroke="#475569" points="212.4,-440.08 206.77,-434.48 207.68,-442.37 212.4,-440.08"/>
+<text xml:space="preserve" text-anchor="middle" x="237.65" y="-467.32" font-family="Arial" font-size="12.00">G21</text>
+</g>
+<!-- B5 -->
+<g id="node10" class="node">
+<title>B5</title>
+<path fill="#edf5ff" stroke="#334155" stroke-width="1.4" d="M395.04,-300.64C395.04,-300.64 244.8,-300.64 244.8,-300.64 238.8,-300.64 232.8,-294.64 232.8,-288.64 232.8,-288.64 232.8,-256.96 232.8,-256.96 232.8,-250.96 238.8,-244.96 244.8,-244.96 244.8,-244.96 395.04,-244.96 395.04,-244.96 401.04,-244.96 407.04,-250.96 407.04,-256.96 407.04,-256.96 407.04,-288.64 407.04,-288.64 407.04,-294.64 401.04,-300.64 395.04,-300.64"/>
+<text xml:space="preserve" text-anchor="middle" x="319.92" y="-277.6" font-family="Arial" font-size="16.00">B5</text>
+<text xml:space="preserve" text-anchor="middle" x="319.92" y="-258.4" font-family="Arial" font-size="16.00">Build invalid outcome</text>
+</g>
+<!-- B1b&#45;&gt;B5 -->
+<g id="edge4" class="edge">
+<title>B1b&#45;&gt;B5</title>
+<path fill="none" stroke="#475569" d="M262.53,-508.89C274.15,-461.3 298.23,-362.67 311.2,-309.55"/>
+<polygon fill="#475569" stroke="#475569" points="313.67,-310.49 312.89,-302.58 308.57,-309.25 313.67,-310.49"/>
+<text xml:space="preserve" text-anchor="middle" x="305.62" y="-401.28" font-family="Arial" font-size="12.00">G24</text>
+</g>
+<!-- B3 -->
+<g id="node8" class="node">
+<title>B3</title>
+<path fill="#edf5ff" stroke="#334155" stroke-width="1.4" d="M188.79,-300.64C188.79,-300.64 107.06,-300.64 107.06,-300.64 101.06,-300.64 95.06,-294.64 95.06,-288.64 95.06,-288.64 95.06,-256.96 95.06,-256.96 95.06,-250.96 101.06,-244.96 107.06,-244.96 107.06,-244.96 188.79,-244.96 188.79,-244.96 194.79,-244.96 200.79,-250.96 200.79,-256.96 200.79,-256.96 200.79,-288.64 200.79,-288.64 200.79,-294.64 194.79,-300.64 188.79,-300.64"/>
+<text xml:space="preserve" text-anchor="middle" x="147.92" y="-277.6" font-family="Arial" font-size="16.00">B3</text>
+<text xml:space="preserve" text-anchor="middle" x="147.92" y="-258.4" font-family="Arial" font-size="16.00">Order tasks</text>
+</g>
+<!-- B2&#45;&gt;B3 -->
+<g id="edge5" class="edge">
+<title>B2&#45;&gt;B3</title>
+<path fill="none" stroke="#475569" d="M183.49,-376.61C176.74,-357.1 167.59,-330.65 160.26,-309.46"/>
+<polygon fill="#475569" stroke="#475569" points="162.77,-308.69 157.84,-302.46 157.81,-310.41 162.77,-308.69"/>
+<text xml:space="preserve" text-anchor="middle" x="183.11" y="-335.24" font-family="Arial" font-size="12.00">G23</text>
+</g>
+<!-- B2&#45;&gt;B5 -->
+<g id="edge6" class="edge">
+<title>B2&#45;&gt;B5</title>
+<path fill="none" stroke="#475569" d="M219.55,-376.61C239.27,-356.4 266.27,-328.76 287.29,-307.22"/>
+<polygon fill="#475569" stroke="#475569" points="288.92,-309.32 292.28,-302.12 285.16,-305.65 288.92,-309.32"/>
+<text xml:space="preserve" text-anchor="middle" x="271.57" y="-335.24" font-family="Arial" font-size="12.00">G24</text>
+</g>
+<!-- B4 -->
+<g id="node9" class="node">
+<title>B4</title>
+<path fill="#edf5ff" stroke="#334155" stroke-width="1.4" d="M200.36,-168.56C200.36,-168.56 95.49,-168.56 95.49,-168.56 89.49,-168.56 83.49,-162.56 83.49,-156.56 83.49,-156.56 83.49,-124.88 83.49,-124.88 83.49,-118.88 89.49,-112.88 95.49,-112.88 95.49,-112.88 200.36,-112.88 200.36,-112.88 206.36,-112.88 212.36,-118.88 212.36,-124.88 212.36,-124.88 212.36,-156.56 212.36,-156.56 212.36,-162.56 206.36,-168.56 200.36,-168.56"/>
+<text xml:space="preserve" text-anchor="middle" x="147.92" y="-145.52" font-family="Arial" font-size="16.00">B4</text>
+<text xml:space="preserve" text-anchor="middle" x="147.92" y="-126.32" font-family="Arial" font-size="16.00">Freeze context</text>
+</g>
+<!-- B3&#45;&gt;B4 -->
+<g id="edge7" class="edge">
+<title>B3&#45;&gt;B4</title>
+<path fill="none" stroke="#475569" d="M147.92,-244.53C147.92,-225.19 147.92,-199.04 147.92,-177.94"/>
+<polygon fill="#475569" stroke="#475569" points="150.55,-177.97 147.92,-170.47 145.3,-177.97 150.55,-177.97"/>
+<text xml:space="preserve" text-anchor="middle" x="159.26" y="-203.16" font-family="Arial" font-size="12.00">G22</text>
+</g>
+<!-- B4&#45;&gt;P2.2 -->
+<g id="edge8" class="edge">
+<title>B4&#45;&gt;P2.2</title>
+<path fill="none" stroke="#475569" d="M147.92,-112.38C147.92,-92.48 147.92,-65.68 147.92,-45.93"/>
+<polygon fill="#475569" stroke="#475569" points="150.55,-46.15 147.92,-38.65 145.3,-46.15 150.55,-46.15"/>
+<text xml:space="preserve" text-anchor="middle" x="158.26" y="-71.08" font-family="Arial" font-size="12.00">F12</text>
+</g>
+<!-- B5&#45;&gt;P3 -->
+<g id="edge9" class="edge">
+<title>B5&#45;&gt;P3</title>
+<path fill="none" stroke="#475569" d="M319.92,-244.53C319.92,-222.11 319.92,-190.52 319.92,-168.29"/>
+<polygon fill="#475569" stroke="#475569" points="322.55,-168.4 319.92,-160.9 317.3,-168.4 322.55,-168.4"/>
+<text xml:space="preserve" text-anchor="middle" x="348.94" y="-203.16" font-family="Arial" font-size="12.00">F09.invalid</text>
+</g>
+</g>
+</svg>
+</figure>
+<div class="table-wrap"><table><thead><tr><th>Primitive process</th><th>Mapped procedure</th></tr></thead><tbody>
+<tr><td>B1a Read consistent source</td><td>M21 read_source_snapshot</td></tr>
+<tr><td>B1b Validate selected fields</td><td>M22 validate_selected_data</td></tr>
+<tr><td>B2 Validate graph</td><td>M23 validate_and_index_bom</td></tr>
+<tr><td>B3 Order tasks</td><td>M24 order_tasks</td></tr>
+<tr><td>B4 Freeze context</td><td>M25 freeze_context</td></tr>
+<tr><td>B5 Build invalid outcome</td><td>M26 make_invalid_outcome</td></tr>
+</tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>Flow</th><th>Meaning</th><th>Record type</th></tr></thead><tbody>
+<tr><td>F03</td><td>Planning request</td><td>PlanningRequest</td></tr>
+<tr><td>F08</td><td>Planning source records</td><td>SourceSet</td></tr>
+<tr><td>G21</td><td>Selected snapshot envelope</td><td>ValidationEnvelope</td></tr>
+<tr><td>G24</td><td>Planning validation errors</td><td>List[Issue]</td></tr>
+<tr><td>G23</td><td>Validated graph envelope</td><td>ValidationEnvelope</td></tr>
+<tr><td>G22</td><td>Ordered task envelope</td><td>ValidationEnvelope</td></tr>
+<tr><td>F12</td><td>Validated planning context</td><td>Context</td></tr>
+<tr><td>F09.invalid</td><td>Calculation outcome</td><td>CalculationOutcome</td></tr>
+<tr><td>G25</td><td>Consistent request snapshot</td><td>ValidationEnvelope</td></tr>
+</tbody></table></div>
+<h2 id="sec16">S3   Refined multilevel demand and stock</h2>
+<figure><svg width="508pt" height="1030pt"
+ viewBox="0.00 0.00 508.00 1030.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(25.2 1004.84)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-25.2,25.2 -25.2,-1004.84 482.77,-1004.84 482.77,25.2 -25.2,25.2"/>
+<text xml:space="preserve" text-anchor="middle" x="228.79" y="-954.04" font-family="Arial" font-size="24.00">S3 &#160;&#160;Refined multilevel demand and stock</text>
+<!-- P2.1 -->
+<g id="node1" class="node">
+<title>P2.1</title>
+<polygon fill="#f1f5f9" stroke="#334155" stroke-width="1.4" points="381.29,-942.84 263.07,-942.84 263.07,-906.36 381.29,-906.36 381.29,-942.84"/>
+<text xml:space="preserve" text-anchor="middle" x="322.18" y="-919.8" font-family="Arial" font-size="16.00">P2.1 Validate</text>
+</g>
+<!-- C1 -->
+<g id="node4" class="node">
+<title>C1</title>
+<path fill="#edf5ff" stroke="#334155" stroke-width="1.4" d="M406.64,-829.96C406.64,-829.96 237.72,-829.96 237.72,-829.96 231.72,-829.96 225.72,-823.96 225.72,-817.96 225.72,-817.96 225.72,-786.28 225.72,-786.28 225.72,-780.28 231.72,-774.28 237.72,-774.28 237.72,-774.28 406.64,-774.28 406.64,-774.28 412.64,-774.28 418.64,-780.28 418.64,-786.28 418.64,-786.28 418.64,-817.96 418.64,-817.96 418.64,-823.96 412.64,-829.96 406.64,-829.96"/>
+<text xml:space="preserve" text-anchor="middle" x="322.18" y="-806.92" font-family="Arial" font-size="16.00">C1</text>
+<text xml:space="preserve" text-anchor="middle" x="322.18" y="-787.72" font-family="Arial" font-size="16.00">Initialize batch balances</text>
+</g>
+<!-- P2.1&#45;&gt;C1 -->
+<g id="edge1" class="edge">
+<title>P2.1&#45;&gt;C1</title>
+<path fill="none" stroke="#475569" d="M322.18,-905.82C322.18,-888.33 322.18,-861.13 322.18,-839.11"/>
+<polygon fill="#475569" stroke="#475569" points="324.81,-839.36 322.18,-831.86 319.56,-839.36 324.81,-839.36"/>
+<text xml:space="preserve" text-anchor="middle" x="332.52" y="-864.56" font-family="Arial" font-size="12.00">F12</text>
+</g>
+<!-- P2.3 -->
+<g id="node2" class="node">
+<title>P2.3</title>
+<polygon fill="#f1f5f9" stroke="#334155" stroke-width="1.4" points="238.41,-36.48 25.95,-36.48 25.95,0 238.41,0 238.41,-36.48"/>
+<text xml:space="preserve" text-anchor="middle" x="132.18" y="-13.44" font-family="Arial" font-size="16.00">P2.3 Procurement and risk</text>
+</g>
+<!-- D3 -->
+<g id="node3" class="node">
+<title>D3</title>
+<polygon fill="#fff8e8" stroke="#334155" stroke-width="1.4" points="205.43,-641.7 205.43,-697.38 328.94,-697.38 328.94,-641.7 205.43,-641.7"/>
+<text xml:space="preserve" text-anchor="middle" x="267.18" y="-674.34" font-family="Arial" font-size="16.00">D3</text>
+<text xml:space="preserve" text-anchor="middle" x="267.18" y="-655.14" font-family="Arial" font-size="16.00">Working stock</text>
+</g>
+<!-- C3 -->
+<g id="node6" class="node">
+<title>C3</title>
+<path fill="#edf5ff" stroke="#334155" stroke-width="1.4" d="M291.06,-564.8C291.06,-564.8 193.31,-564.8 193.31,-564.8 187.31,-564.8 181.31,-558.8 181.31,-552.8 181.31,-552.8 181.31,-521.12 181.31,-521.12 181.31,-515.12 187.31,-509.12 193.31,-509.12 193.31,-509.12 291.06,-509.12 291.06,-509.12 297.06,-509.12 303.06,-515.12 303.06,-521.12 303.06,-521.12 303.06,-552.8 303.06,-552.8 303.06,-558.8 297.06,-564.8 291.06,-564.8"/>
+<text xml:space="preserve" text-anchor="middle" x="242.18" y="-541.76" font-family="Arial" font-size="16.00">C3</text>
+<text xml:space="preserve" text-anchor="middle" x="242.18" y="-522.56" font-family="Arial" font-size="16.00">Allocate stock</text>
+</g>
+<!-- D3&#45;&gt;C3 -->
+<g id="edge5" class="edge">
+<title>D3&#45;&gt;C3</title>
+<path fill="none" stroke="#475569" d="M261.94,-641.17C258.21,-621.67 253.15,-595.26 249.09,-574.04"/>
+<polygon fill="#475569" stroke="#475569" points="251.69,-573.66 247.7,-566.78 246.53,-574.64 251.69,-573.66"/>
+<text xml:space="preserve" text-anchor="middle" x="265.77" y="-599.4" font-family="Arial" font-size="12.00">F16</text>
+</g>
+<!-- C1&#45;&gt;D3 -->
+<g id="edge2" class="edge">
+<title>C1&#45;&gt;D3</title>
+<path fill="none" stroke="#475569" d="M310.65,-773.75C302.36,-754.07 291.12,-727.37 282.14,-706.05"/>
+<polygon fill="#475569" stroke="#475569" points="284.61,-705.17 279.28,-699.27 279.78,-707.2 284.61,-705.17"/>
+<text xml:space="preserve" text-anchor="middle" x="306.67" y="-732.48" font-family="Arial" font-size="12.00">F17</text>
+</g>
+<!-- C2 -->
+<g id="node5" class="node">
+<title>C2</title>
+<path fill="#edf5ff" stroke="#334155" stroke-width="1.4" d="M419.62,-300.64C419.62,-300.64 266.74,-300.64 266.74,-300.64 260.74,-300.64 254.74,-294.64 254.74,-288.64 254.74,-288.64 254.74,-256.96 254.74,-256.96 254.74,-250.96 260.74,-244.96 266.74,-244.96 266.74,-244.96 419.62,-244.96 419.62,-244.96 425.62,-244.96 431.62,-250.96 431.62,-256.96 431.62,-256.96 431.62,-288.64 431.62,-288.64 431.62,-294.64 425.62,-300.64 419.62,-300.64"/>
+<text xml:space="preserve" text-anchor="middle" x="343.18" y="-277.6" font-family="Arial" font-size="16.00">C2</text>
+<text xml:space="preserve" text-anchor="middle" x="343.18" y="-258.4" font-family="Arial" font-size="16.00">Collect material dates</text>
+</g>
+<!-- C1&#45;&gt;C2 -->
+<g id="edge3" class="edge">
+<title>C1&#45;&gt;C2</title>
+<path fill="none" stroke="#475569" d="M333.92,-773.75C350.34,-735.46 378.18,-670.54 378.18,-670.54 378.18,-670.54 378.18,-670.54 378.18,-403.88 378.18,-403.88 363.14,-347.99 352.78,-309.48"/>
+<polygon fill="#475569" stroke="#475569" points="355.4,-309.09 350.91,-302.53 350.33,-310.46 355.4,-309.09"/>
+<text xml:space="preserve" text-anchor="middle" x="389.52" y="-533.36" font-family="Arial" font-size="12.00">G31</text>
+</g>
+<!-- C2&#45;&gt;C3 -->
+<g id="edge4" class="edge">
+<title>C2&#45;&gt;C3</title>
+<path fill="none" stroke="#475569" d="M332.66,-301.11C314.26,-348.88 276.26,-447.52 255.85,-500.49"/>
+<polygon fill="#475569" stroke="#475569" points="253.4,-499.54 253.15,-507.48 258.3,-501.42 253.4,-499.54"/>
+<text xml:space="preserve" text-anchor="middle" x="313.06" y="-401.28" font-family="Arial" font-size="12.00">F14</text>
+</g>
+<!-- C3&#45;&gt;D3 -->
+<g id="edge6" class="edge">
+<title>C3&#45;&gt;D3</title>
+<path fill="none" stroke="#475569" d="M234.33,-565.19C230.01,-580.19 225.5,-595.8 225.5,-595.8 225.5,-595.8 225.5,-610.2 225.5,-610.2 225.5,-610.2 233.51,-621.41 242.51,-634"/>
+<polygon fill="#475569" stroke="#475569" points="240.19,-635.27 246.68,-639.85 244.46,-632.22 240.19,-635.27"/>
+<text xml:space="preserve" text-anchor="middle" x="235.84" y="-599.4" font-family="Arial" font-size="12.00">F15</text>
+</g>
+<!-- C4 -->
+<g id="node7" class="node">
+<title>C4</title>
+<path fill="#edf5ff" stroke="#334155" stroke-width="1.4" d="M232.07,-432.72C232.07,-432.72 102.29,-432.72 102.29,-432.72 96.29,-432.72 90.29,-426.72 90.29,-420.72 90.29,-420.72 90.29,-389.04 90.29,-389.04 90.29,-383.04 96.29,-377.04 102.29,-377.04 102.29,-377.04 232.07,-377.04 232.07,-377.04 238.07,-377.04 244.07,-383.04 244.07,-389.04 244.07,-389.04 244.07,-420.72 244.07,-420.72 244.07,-426.72 238.07,-432.72 232.07,-432.72"/>
+<text xml:space="preserve" text-anchor="middle" x="167.18" y="-409.68" font-family="Arial" font-size="16.00">C4</text>
+<text xml:space="preserve" text-anchor="middle" x="167.18" y="-390.48" font-family="Arial" font-size="16.00">Expand net MAKE</text>
+</g>
+<!-- C3&#45;&gt;C4 -->
+<g id="edge7" class="edge">
+<title>C3&#45;&gt;C4</title>
+<path fill="none" stroke="#475569" d="M226.46,-508.69C215.06,-488.92 199.55,-462.02 187.25,-440.69"/>
+<polygon fill="#475569" stroke="#475569" points="189.66,-439.61 183.64,-434.42 185.11,-442.23 189.66,-439.61"/>
+<text xml:space="preserve" text-anchor="middle" x="217.27" y="-467.32" font-family="Arial" font-size="12.00">F18</text>
+</g>
+<!-- C4&#45;&gt;C2 -->
+<g id="edge8" class="edge">
+<title>C4&#45;&gt;C2</title>
+<path fill="none" stroke="#475569" d="M203.49,-376.36C230.43,-355.95 262.5,-331.64 262.5,-331.64 262.5,-331.64 279.78,-319.26 298.34,-305.95"/>
+<polygon fill="#475569" stroke="#475569" points="299.41,-308.41 303.98,-301.91 296.35,-304.14 299.41,-308.41"/>
+<text xml:space="preserve" text-anchor="middle" x="272.84" y="-335.24" font-family="Arial" font-size="12.00">F19</text>
+</g>
+<!-- C5 -->
+<g id="node8" class="node">
+<title>C5</title>
+<path fill="#edf5ff" stroke="#334155" stroke-width="1.4" d="M210.4,-300.64C210.4,-300.64 53.96,-300.64 53.96,-300.64 47.96,-300.64 41.96,-294.64 41.96,-288.64 41.96,-288.64 41.96,-256.96 41.96,-256.96 41.96,-250.96 47.96,-244.96 53.96,-244.96 53.96,-244.96 210.4,-244.96 210.4,-244.96 216.4,-244.96 222.4,-250.96 222.4,-256.96 222.4,-256.96 222.4,-288.64 222.4,-288.64 222.4,-294.64 216.4,-300.64 210.4,-300.64"/>
+<text xml:space="preserve" text-anchor="middle" x="132.18" y="-277.6" font-family="Arial" font-size="16.00">C5</text>
+<text xml:space="preserve" text-anchor="middle" x="132.18" y="-258.4" font-family="Arial" font-size="16.00">Record BUY residuals</text>
+</g>
+<!-- C4&#45;&gt;C5 -->
+<g id="edge9" class="edge">
+<title>C4&#45;&gt;C5</title>
+<path fill="none" stroke="#475569" d="M159.84,-376.61C154.59,-357.1 147.48,-330.65 141.78,-309.46"/>
+<polygon fill="#475569" stroke="#475569" points="144.39,-309.06 139.9,-302.49 139.32,-310.42 144.39,-309.06"/>
+<text xml:space="preserve" text-anchor="middle" x="162.07" y="-335.24" font-family="Arial" font-size="12.00">G34</text>
+</g>
+<!-- C6 -->
+<g id="node9" class="node">
+<title>C6</title>
+<path fill="#edf5ff" stroke="#334155" stroke-width="1.4" d="M206.42,-168.56C206.42,-168.56 57.95,-168.56 57.95,-168.56 51.95,-168.56 45.95,-162.56 45.95,-156.56 45.95,-156.56 45.95,-124.88 45.95,-124.88 45.95,-118.88 51.95,-112.88 57.95,-112.88 57.95,-112.88 206.42,-112.88 206.42,-112.88 212.42,-112.88 218.42,-118.88 218.42,-124.88 218.42,-124.88 218.42,-156.56 218.42,-156.56 218.42,-162.56 212.42,-168.56 206.42,-168.56"/>
+<text xml:space="preserve" text-anchor="middle" x="132.18" y="-145.52" font-family="Arial" font-size="16.00">C6</text>
+<text xml:space="preserve" text-anchor="middle" x="132.18" y="-126.32" font-family="Arial" font-size="16.00">Assemble net bundle</text>
+</g>
+<!-- C5&#45;&gt;C6 -->
+<g id="edge10" class="edge">
+<title>C5&#45;&gt;C6</title>
+<path fill="none" stroke="#475569" d="M132.18,-244.53C132.18,-225.19 132.18,-199.04 132.18,-177.94"/>
+<polygon fill="#475569" stroke="#475569" points="134.81,-177.97 132.18,-170.47 129.56,-177.97 134.81,-177.97"/>
+<text xml:space="preserve" text-anchor="middle" x="143.52" y="-203.16" font-family="Arial" font-size="12.00">G35</text>
+</g>
+<!-- C6&#45;&gt;P2.3 -->
+<g id="edge11" class="edge">
+<title>C6&#45;&gt;P2.3</title>
+<path fill="none" stroke="#475569" d="M132.18,-112.38C132.18,-92.48 132.18,-65.68 132.18,-45.93"/>
+<polygon fill="#475569" stroke="#475569" points="134.81,-46.15 132.18,-38.65 129.56,-46.15 134.81,-46.15"/>
+<text xml:space="preserve" text-anchor="middle" x="142.52" y="-71.08" font-family="Arial" font-size="12.00">F13</text>
+</g>
+</g>
+</svg>
+</figure>
+<div class="table-wrap"><table><thead><tr><th>Primitive process</th><th>Mapped procedure</th></tr></thead><tbody>
+<tr><td>C1 Initialize batch balances</td><td>M31 initialize_balances</td></tr>
+<tr><td>C2 Collect material dates</td><td>M32 collect_material_demands</td></tr>
+<tr><td>C3 Allocate stock</td><td>M33 allocate_stock</td></tr>
+<tr><td>C4 Expand net MAKE</td><td>M34 expand_make_demand</td></tr>
+<tr><td>C5 Record BUY residuals</td><td>M35 record_buy_shortage</td></tr>
+<tr><td>C6 Assemble net bundle</td><td>M36 assemble_net_bundle</td></tr>
+</tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>Flow</th><th>Meaning</th><th>Record type</th></tr></thead><tbody>
+<tr><td>F12</td><td>Validated planning context</td><td>Context</td></tr>
+<tr><td>F17</td><td>Initial working balances</td><td>List[Balance]</td></tr>
+<tr><td>G31</td><td>Initialized netting state</td><td>NettingState</td></tr>
+<tr><td>F14</td><td>Allocation candidates</td><td>CandidateEnvelope</td></tr>
+<tr><td>F16</td><td>Working stock balances</td><td>List[Balance]</td></tr>
+<tr><td>F15</td><td>Working stock updates</td><td>List[Balance]</td></tr>
+<tr><td>F18</td><td>Netted demand records</td><td>NettedEnvelope</td></tr>
+<tr><td>F19</td><td>Child demand records</td><td>List[Demand]</td></tr>
+<tr><td>G34</td><td>Manufacturing expansion</td><td>ExpansionResult</td></tr>
+<tr><td>G35</td><td>Completed netting state</td><td>NettingState</td></tr>
+<tr><td>F13</td><td>Net requirements bundle</td><td>NetBundle</td></tr>
+</tbody></table></div>
+<h2 id="sec17">S4   Refined purchasing and surplus</h2>
+<figure><svg width="453pt" height="1030pt"
+ viewBox="0.00 0.00 453.00 1030.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(25.2 1004.84)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-25.2,25.2 -25.2,-1004.84 428.11,-1004.84 428.11,25.2 -25.2,25.2"/>
+<text xml:space="preserve" text-anchor="middle" x="201.45" y="-954.04" font-family="Arial" font-size="24.00">S4 &#160;&#160;Refined purchasing and surplus</text>
+<!-- P2.2 -->
+<g id="node1" class="node">
+<title>P2.2</title>
+<polygon fill="#f1f5f9" stroke="#334155" stroke-width="1.4" points="290.41,-942.84 107.29,-942.84 107.29,-906.36 290.41,-906.36 290.41,-942.84"/>
+<text xml:space="preserve" text-anchor="middle" x="198.85" y="-919.8" font-family="Arial" font-size="16.00">P2.2 Net requirements</text>
+</g>
+<!-- D01 -->
+<g id="node4" class="node">
+<title>D01</title>
+<path fill="#edf5ff" stroke="#334155" stroke-width="1.4" d="M280.21,-829.96C280.21,-829.96 117.5,-829.96 117.5,-829.96 111.5,-829.96 105.5,-823.96 105.5,-817.96 105.5,-817.96 105.5,-786.28 105.5,-786.28 105.5,-780.28 111.5,-774.28 117.5,-774.28 117.5,-774.28 280.21,-774.28 280.21,-774.28 286.21,-774.28 292.21,-780.28 292.21,-786.28 292.21,-786.28 292.21,-817.96 292.21,-817.96 292.21,-823.96 286.21,-829.96 280.21,-829.96"/>
+<text xml:space="preserve" text-anchor="middle" x="198.85" y="-806.92" font-family="Arial" font-size="16.00">D01</text>
+<text xml:space="preserve" text-anchor="middle" x="198.85" y="-787.72" font-family="Arial" font-size="16.00">Group dated shortages</text>
+</g>
+<!-- P2.2&#45;&gt;D01 -->
+<g id="edge1" class="edge">
+<title>P2.2&#45;&gt;D01</title>
+<path fill="none" stroke="#475569" d="M198.85,-905.82C198.85,-888.33 198.85,-861.13 198.85,-839.11"/>
+<polygon fill="#475569" stroke="#475569" points="201.48,-839.36 198.85,-831.86 196.23,-839.36 201.48,-839.36"/>
+<text xml:space="preserve" text-anchor="middle" x="209.19" y="-864.56" font-family="Arial" font-size="12.00">F13</text>
+</g>
+<!-- S5 -->
+<g id="node2" class="node">
+<title>S5</title>
+<polygon fill="#f1f5f9" stroke="#334155" stroke-width="1.4" points="237.08,-36.48 64.63,-36.48 64.63,0 237.08,0 237.08,-36.48"/>
+<text xml:space="preserve" text-anchor="middle" x="150.85" y="-13.44" font-family="Arial" font-size="16.00">S5 Calendar and risk</text>
+</g>
+<!-- D4 -->
+<g id="node3" class="node">
+<title>D4</title>
+<polygon fill="#fff8e8" stroke="#334155" stroke-width="1.4" points="37.61,-641.7 37.61,-697.38 210.09,-697.38 210.09,-641.7 37.61,-641.7"/>
+<text xml:space="preserve" text-anchor="middle" x="123.85" y="-674.34" font-family="Arial" font-size="16.00">D4</text>
+<text xml:space="preserve" text-anchor="middle" x="123.85" y="-655.14" font-family="Arial" font-size="16.00">Planned surplus pool</text>
+</g>
+<!-- D02 -->
+<g id="node5" class="node">
+<title>D02</title>
+<path fill="#edf5ff" stroke="#334155" stroke-width="1.4" d="M362.75,-564.8C362.75,-564.8 184.95,-564.8 184.95,-564.8 178.95,-564.8 172.95,-558.8 172.95,-552.8 172.95,-552.8 172.95,-521.12 172.95,-521.12 172.95,-515.12 178.95,-509.12 184.95,-509.12 184.95,-509.12 362.75,-509.12 362.75,-509.12 368.75,-509.12 374.75,-515.12 374.75,-521.12 374.75,-521.12 374.75,-552.8 374.75,-552.8 374.75,-558.8 368.75,-564.8 362.75,-564.8"/>
+<text xml:space="preserve" text-anchor="middle" x="273.85" y="-541.76" font-family="Arial" font-size="16.00">D02</text>
+<text xml:space="preserve" text-anchor="middle" x="273.85" y="-522.56" font-family="Arial" font-size="16.00">Consume eligible surplus</text>
+</g>
+<!-- D4&#45;&gt;D02 -->
+<g id="edge4" class="edge">
+<title>D4&#45;&gt;D02</title>
+<path fill="none" stroke="#475569" d="M155.3,-641.17C178.8,-620.71 211.03,-592.65 235.95,-570.95"/>
+<polygon fill="#475569" stroke="#475569" points="237.38,-573.2 241.31,-566.29 233.93,-569.24 237.38,-573.2"/>
+<text xml:space="preserve" text-anchor="middle" x="214.69" y="-599.4" font-family="Arial" font-size="12.00">G45</text>
+</g>
+<!-- D01&#45;&gt;D4 -->
+<g id="edge2" class="edge">
+<title>D01&#45;&gt;D4</title>
+<path fill="none" stroke="#475569" d="M183.13,-773.75C171.73,-753.9 156.22,-726.89 143.93,-705.49"/>
+<polygon fill="#475569" stroke="#475569" points="146.32,-704.39 140.31,-699.19 141.77,-707 146.32,-704.39"/>
+<text xml:space="preserve" text-anchor="middle" x="174.94" y="-732.48" font-family="Arial" font-size="12.00">G44</text>
+</g>
+<!-- D01&#45;&gt;D02 -->
+<g id="edge3" class="edge">
+<title>D01&#45;&gt;D02</title>
+<path fill="none" stroke="#475569" d="M206.6,-773.95C220.21,-726.18 248.43,-627.17 263.63,-573.84"/>
+<polygon fill="#475569" stroke="#475569" points="266.09,-574.77 265.62,-566.83 261.04,-573.33 266.09,-574.77"/>
+<text xml:space="preserve" text-anchor="middle" x="255.15" y="-665.94" font-family="Arial" font-size="12.00">G41</text>
+</g>
+<!-- D03 -->
+<g id="node6" class="node">
+<title>D03</title>
+<path fill="#edf5ff" stroke="#334155" stroke-width="1.4" d="M361.32,-432.72C361.32,-432.72 184.38,-432.72 184.38,-432.72 178.38,-432.72 172.38,-426.72 172.38,-420.72 172.38,-420.72 172.38,-389.04 172.38,-389.04 172.38,-383.04 178.38,-377.04 184.38,-377.04 184.38,-377.04 361.32,-377.04 361.32,-377.04 367.32,-377.04 373.32,-383.04 373.32,-389.04 373.32,-389.04 373.32,-420.72 373.32,-420.72 373.32,-426.72 367.32,-432.72 361.32,-432.72"/>
+<text xml:space="preserve" text-anchor="middle" x="272.85" y="-409.68" font-family="Arial" font-size="16.00">D03</text>
+<text xml:space="preserve" text-anchor="middle" x="272.85" y="-390.48" font-family="Arial" font-size="16.00">Round purchase quantity</text>
+</g>
+<!-- D02&#45;&gt;D03 -->
+<g id="edge5" class="edge">
+<title>D02&#45;&gt;D03</title>
+<path fill="none" stroke="#475569" d="M273.64,-508.69C273.5,-489.35 273.29,-463.2 273.13,-442.1"/>
+<polygon fill="#475569" stroke="#475569" points="275.76,-442.11 273.07,-434.63 270.51,-442.15 275.76,-442.11"/>
+<text xml:space="preserve" text-anchor="middle" x="284.72" y="-467.32" font-family="Arial" font-size="12.00">G42</text>
+</g>
+<!-- D04 -->
+<g id="node7" class="node">
+<title>D04</title>
+<path fill="#edf5ff" stroke="#334155" stroke-width="1.4" d="M252.67,-300.64C252.67,-300.64 49.03,-300.64 49.03,-300.64 43.03,-300.64 37.03,-294.64 37.03,-288.64 37.03,-288.64 37.03,-256.96 37.03,-256.96 37.03,-250.96 43.03,-244.96 49.03,-244.96 49.03,-244.96 252.67,-244.96 252.67,-244.96 258.67,-244.96 264.67,-250.96 264.67,-256.96 264.67,-256.96 264.67,-288.64 264.67,-288.64 264.67,-294.64 258.67,-300.64 252.67,-300.64"/>
+<text xml:space="preserve" text-anchor="middle" x="150.85" y="-277.6" font-family="Arial" font-size="16.00">D04</text>
+<text xml:space="preserve" text-anchor="middle" x="150.85" y="-258.4" font-family="Arial" font-size="16.00">Date bucket and update pool</text>
+</g>
+<!-- D03&#45;&gt;D04 -->
+<g id="edge6" class="edge">
+<title>D03&#45;&gt;D04</title>
+<path fill="none" stroke="#475569" d="M247.28,-376.61C228.41,-356.49 202.62,-328.99 182.46,-307.5"/>
+<polygon fill="#475569" stroke="#475569" points="184.48,-305.81 177.43,-302.14 180.65,-309.4 184.48,-305.81"/>
+<text xml:space="preserve" text-anchor="middle" x="226.85" y="-335.24" font-family="Arial" font-size="12.00">G43</text>
+</g>
+<!-- D04&#45;&gt;D4 -->
+<g id="edge7" class="edge">
+<title>D04&#45;&gt;D4</title>
+<path fill="none" stroke="#475569" d="M148.97,-301.32C144.2,-371.03 131.65,-554.49 126.32,-632.55"/>
+<polygon fill="#475569" stroke="#475569" points="123.73,-631.92 125.83,-639.59 128.96,-632.28 123.73,-631.92"/>
+<text xml:space="preserve" text-anchor="middle" x="149.01" y="-467.32" font-family="Arial" font-size="12.00">G46</text>
+</g>
+<!-- D05 -->
+<g id="node8" class="node">
+<title>D05</title>
+<path fill="#edf5ff" stroke="#334155" stroke-width="1.4" d="M261.55,-168.56C261.55,-168.56 40.15,-168.56 40.15,-168.56 34.15,-168.56 28.15,-162.56 28.15,-156.56 28.15,-156.56 28.15,-124.88 28.15,-124.88 28.15,-118.88 34.15,-112.88 40.15,-112.88 40.15,-112.88 261.55,-112.88 261.55,-112.88 267.55,-112.88 273.55,-118.88 273.55,-124.88 273.55,-124.88 273.55,-156.56 273.55,-156.56 273.55,-162.56 267.55,-168.56 261.55,-168.56"/>
+<text xml:space="preserve" text-anchor="middle" x="150.85" y="-145.52" font-family="Arial" font-size="16.00">D05</text>
+<text xml:space="preserve" text-anchor="middle" x="150.85" y="-126.32" font-family="Arial" font-size="16.00">Assemble purchasing envelope</text>
+</g>
+<!-- D04&#45;&gt;D05 -->
+<g id="edge8" class="edge">
+<title>D04&#45;&gt;D05</title>
+<path fill="none" stroke="#475569" d="M150.85,-244.53C150.85,-225.19 150.85,-199.04 150.85,-177.94"/>
+<polygon fill="#475569" stroke="#475569" points="153.48,-177.97 150.85,-170.47 148.23,-177.97 153.48,-177.97"/>
+<text xml:space="preserve" text-anchor="middle" x="162.19" y="-203.16" font-family="Arial" font-size="12.00">G47</text>
+</g>
+<!-- D05&#45;&gt;S5 -->
+<g id="edge9" class="edge">
+<title>D05&#45;&gt;S5</title>
+<path fill="none" stroke="#475569" d="M150.85,-112.38C150.85,-92.48 150.85,-65.68 150.85,-45.93"/>
+<polygon fill="#475569" stroke="#475569" points="153.48,-46.15 150.85,-38.65 148.23,-46.15 153.48,-46.15"/>
+<text xml:space="preserve" text-anchor="middle" x="162.19" y="-71.08" font-family="Arial" font-size="12.00">G20</text>
+</g>
+</g>
+</svg>
+</figure>
+<div class="table-wrap"><table><thead><tr><th>Primitive process</th><th>Mapped procedure</th></tr></thead><tbody>
+<tr><td>D01 Group dated shortages</td><td>M41 group_buy_shortages</td></tr>
+<tr><td>D02 Consume eligible surplus</td><td>M42 consume_surplus</td></tr>
+<tr><td>D03 Round purchase quantity</td><td>M43 round_purchase_qty</td></tr>
+<tr><td>D04 Date bucket and update pool</td><td>M44 finalize_purchase_bucket</td></tr>
+<tr><td>D05 Assemble purchasing envelope</td><td>M45 assemble_purchase_envelope</td></tr>
+</tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>Flow</th><th>Meaning</th><th>Record type</th></tr></thead><tbody>
+<tr><td>F13</td><td>Net requirements bundle</td><td>NetBundle</td></tr>
+<tr><td>G44</td><td>Empty planned surplus pool</td><td>List[SurplusLot]</td></tr>
+<tr><td>G41</td><td>Date grouped shortage envelope</td><td>PurchaseWork</td></tr>
+<tr><td>G45</td><td>Available planned surplus lots</td><td>List[SurplusLot]</td></tr>
+<tr><td>G42</td><td>Surplus adjusted shortage</td><td>PurchaseWork</td></tr>
+<tr><td>G43</td><td>Rounded purchasing quantity</td><td>PurchaseWork</td></tr>
+<tr><td>G46</td><td>Updated planned surplus lots</td><td>List[SurplusLot]</td></tr>
+<tr><td>G47</td><td>Accumulated procurement records</td><td>PurchaseWork</td></tr>
+<tr><td>G20</td><td>Purchasing envelope</td><td>PurchasingEnvelope</td></tr>
+</tbody></table></div>
+<h2 id="sec18">S5   Refined timing risk and completed result</h2>
+<figure><svg width="543pt" height="633pt"
+ viewBox="0.00 0.00 543.00 633.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(25.2 607.6)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-25.2,25.2 -25.2,-607.6 517.43,-607.6 517.43,25.2 -25.2,25.2"/>
+<text xml:space="preserve" text-anchor="middle" x="246.11" y="-556.8" font-family="Arial" font-size="24.00">S5 &#160;&#160;Refined timing risk and completed result</text>
+<!-- S4 -->
+<g id="node1" class="node">
+<title>S4</title>
+<polygon fill="#f1f5f9" stroke="#334155" stroke-width="1.4" points="309.66,-545.6 182.56,-545.6 182.56,-509.12 309.66,-509.12 309.66,-545.6"/>
+<text xml:space="preserve" text-anchor="middle" x="246.11" y="-522.56" font-family="Arial" font-size="16.00">S4 Purchasing</text>
+</g>
+<!-- E01 -->
+<g id="node3" class="node">
+<title>E01</title>
+<path fill="#edf5ff" stroke="#334155" stroke-width="1.4" d="M323.45,-432.72C323.45,-432.72 168.77,-432.72 168.77,-432.72 162.77,-432.72 156.77,-426.72 156.77,-420.72 156.77,-420.72 156.77,-389.04 156.77,-389.04 156.77,-383.04 162.77,-377.04 168.77,-377.04 168.77,-377.04 323.45,-377.04 323.45,-377.04 329.45,-377.04 335.45,-383.04 335.45,-389.04 335.45,-389.04 335.45,-420.72 335.45,-420.72 335.45,-426.72 329.45,-432.72 323.45,-432.72"/>
+<text xml:space="preserve" text-anchor="middle" x="246.11" y="-409.68" font-family="Arial" font-size="16.00">E01</text>
+<text xml:space="preserve" text-anchor="middle" x="246.11" y="-390.48" font-family="Arial" font-size="16.00">Collect required dates</text>
+</g>
+<!-- S4&#45;&gt;E01 -->
+<g id="edge1" class="edge">
+<title>S4&#45;&gt;E01</title>
+<path fill="none" stroke="#475569" d="M246.11,-508.58C246.11,-491.09 246.11,-463.89 246.11,-441.87"/>
+<polygon fill="#475569" stroke="#475569" points="248.74,-442.12 246.11,-434.62 243.49,-442.12 248.74,-442.12"/>
+<text xml:space="preserve" text-anchor="middle" x="257.45" y="-467.32" font-family="Arial" font-size="12.00">G20</text>
+</g>
+<!-- P3 -->
+<g id="node2" class="node">
+<title>P3</title>
+<polygon fill="#f1f5f9" stroke="#334155" stroke-width="1.4" points="321.66,-36.48 170.56,-36.48 170.56,0 321.66,0 321.66,-36.48"/>
+<text xml:space="preserve" text-anchor="middle" x="246.11" y="-13.44" font-family="Arial" font-size="16.00">P3 Publish results</text>
+</g>
+<!-- E02 -->
+<g id="node4" class="node">
+<title>E02</title>
+<path fill="#edf5ff" stroke="#334155" stroke-width="1.4" d="M302.55,-300.64C302.55,-300.64 189.68,-300.64 189.68,-300.64 183.68,-300.64 177.68,-294.64 177.68,-288.64 177.68,-288.64 177.68,-256.96 177.68,-256.96 177.68,-250.96 183.68,-244.96 189.68,-244.96 189.68,-244.96 302.55,-244.96 302.55,-244.96 308.55,-244.96 314.55,-250.96 314.55,-256.96 314.55,-256.96 314.55,-288.64 314.55,-288.64 314.55,-294.64 308.55,-300.64 302.55,-300.64"/>
+<text xml:space="preserve" text-anchor="middle" x="246.11" y="-277.6" font-family="Arial" font-size="16.00">E02</text>
+<text xml:space="preserve" text-anchor="middle" x="246.11" y="-258.4" font-family="Arial" font-size="16.00">Flag early dates</text>
+</g>
+<!-- E01&#45;&gt;E02 -->
+<g id="edge2" class="edge">
+<title>E01&#45;&gt;E02</title>
+<path fill="none" stroke="#475569" d="M246.11,-376.61C246.11,-357.27 246.11,-331.12 246.11,-310.02"/>
+<polygon fill="#475569" stroke="#475569" points="248.74,-310.05 246.11,-302.55 243.49,-310.05 248.74,-310.05"/>
+<text xml:space="preserve" text-anchor="middle" x="257.45" y="-335.24" font-family="Arial" font-size="12.00">G51</text>
+</g>
+<!-- E03 -->
+<g id="node5" class="node">
+<title>E03</title>
+<path fill="#edf5ff" stroke="#334155" stroke-width="1.4" d="M337.23,-168.56C337.23,-168.56 155,-168.56 155,-168.56 149,-168.56 143,-162.56 143,-156.56 143,-156.56 143,-124.88 143,-124.88 143,-118.88 149,-112.88 155,-112.88 155,-112.88 337.23,-112.88 337.23,-112.88 343.23,-112.88 349.23,-118.88 349.23,-124.88 349.23,-124.88 349.23,-156.56 349.23,-156.56 349.23,-162.56 343.23,-168.56 337.23,-168.56"/>
+<text xml:space="preserve" text-anchor="middle" x="246.11" y="-145.52" font-family="Arial" font-size="16.00">E03</text>
+<text xml:space="preserve" text-anchor="middle" x="246.11" y="-126.32" font-family="Arial" font-size="16.00">Assemble complete result</text>
+</g>
+<!-- E02&#45;&gt;E03 -->
+<g id="edge3" class="edge">
+<title>E02&#45;&gt;E03</title>
+<path fill="none" stroke="#475569" d="M246.11,-244.53C246.11,-225.19 246.11,-199.04 246.11,-177.94"/>
+<polygon fill="#475569" stroke="#475569" points="248.74,-177.97 246.11,-170.47 243.49,-177.97 248.74,-177.97"/>
+<text xml:space="preserve" text-anchor="middle" x="257.45" y="-203.16" font-family="Arial" font-size="12.00">G52</text>
+</g>
+<!-- E03&#45;&gt;P3 -->
+<g id="edge4" class="edge">
+<title>E03&#45;&gt;P3</title>
+<path fill="none" stroke="#475569" d="M246.11,-112.38C246.11,-92.48 246.11,-65.68 246.11,-45.93"/>
+<polygon fill="#475569" stroke="#475569" points="248.74,-46.15 246.11,-38.65 243.49,-46.15 248.74,-46.15"/>
+<text xml:space="preserve" text-anchor="middle" x="270.46" y="-71.08" font-family="Arial" font-size="12.00">F09.valid</text>
+</g>
+</g>
+</svg>
+</figure>
+<div class="table-wrap"><table><thead><tr><th>Primitive process</th><th>Mapped procedure</th></tr></thead><tbody>
+<tr><td>E01 Collect required dates</td><td>M51 collect_required_dates</td></tr>
+<tr><td>E02 Flag early dates</td><td>M53 flag_early_dates</td></tr>
+<tr><td>E03 Assemble complete result</td><td>M54 assemble_calculated_batch</td></tr>
+</tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>Flow</th><th>Meaning</th><th>Record type</th></tr></thead><tbody>
+<tr><td>G20</td><td>Purchasing envelope</td><td>PurchasingEnvelope</td></tr>
+<tr><td>G51</td><td>Required dates and retained calculation</td><td>RiskWork</td></tr>
+<tr><td>G52</td><td>Assessed dates and retained calculation</td><td>RiskWork</td></tr>
+<tr><td>F09.valid</td><td>Calculation outcome</td><td>CalculationOutcome</td></tr>
+</tbody></table></div>
+<h2 id="sec19">S6   Refined history trace and export</h2>
+<figure><svg width="531pt" height="1162pt"
+ viewBox="0.00 0.00 531.00 1162.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(25.2 1136.92)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-25.2,25.2 -25.2,-1136.92 505.56,-1136.92 505.56,25.2 -25.2,25.2"/>
+<text xml:space="preserve" text-anchor="middle" x="240.18" y="-1086.12" font-family="Arial" font-size="24.00">S6 &#160;&#160;Refined history trace and export</text>
+<!-- P2 -->
+<g id="node1" class="node">
+<title>P2</title>
+<polygon fill="#f1f5f9" stroke="#334155" stroke-width="1.4" points="424.69,-1074.92 232.66,-1074.92 232.66,-1038.44 424.69,-1038.44 424.69,-1074.92"/>
+<text xml:space="preserve" text-anchor="middle" x="328.68" y="-1051.88" font-family="Arial" font-size="16.00">P2 Calculation outcome</text>
+</g>
+<!-- F1 -->
+<g id="node4" class="node">
+<title>F1</title>
+<path fill="#edf5ff" stroke="#334155" stroke-width="1.4" d="M389.11,-962.04C389.11,-962.04 268.25,-962.04 268.25,-962.04 262.25,-962.04 256.25,-956.04 256.25,-950.04 256.25,-950.04 256.25,-918.36 256.25,-918.36 256.25,-912.36 262.25,-906.36 268.25,-906.36 268.25,-906.36 389.11,-906.36 389.11,-906.36 395.11,-906.36 401.11,-912.36 401.11,-918.36 401.11,-918.36 401.11,-950.04 401.11,-950.04 401.11,-956.04 395.11,-962.04 389.11,-962.04"/>
+<text xml:space="preserve" text-anchor="middle" x="328.68" y="-939" font-family="Arial" font-size="16.00">F1</text>
+<text xml:space="preserve" text-anchor="middle" x="328.68" y="-919.8" font-family="Arial" font-size="16.00">Classify outcome</text>
+</g>
+<!-- P2&#45;&gt;F1 -->
+<g id="edge1" class="edge">
+<title>P2&#45;&gt;F1</title>
+<path fill="none" stroke="#475569" d="M328.68,-1037.9C328.68,-1020.41 328.68,-993.21 328.68,-971.19"/>
+<polygon fill="#475569" stroke="#475569" points="331.3,-971.44 328.68,-963.94 326.05,-971.44 331.3,-971.44"/>
+<text xml:space="preserve" text-anchor="middle" x="339.02" y="-996.64" font-family="Arial" font-size="12.00">F09</text>
+</g>
+<!-- EP -->
+<g id="node2" class="node">
+<title>EP</title>
+<polygon fill="#f1f5f9" stroke="#334155" stroke-width="1.4" points="157.35,-36.48 0,-36.48 0,0 157.35,0 157.35,-36.48"/>
+<text xml:space="preserve" text-anchor="middle" x="78.68" y="-13.44" font-family="Arial" font-size="16.00">Production planner</text>
+</g>
+<!-- F3 -->
+<g id="node6" class="node">
+<title>F3</title>
+<path fill="#edf5ff" stroke="#334155" stroke-width="1.4" d="M232.13,-564.8C232.13,-564.8 79.23,-564.8 79.23,-564.8 73.23,-564.8 67.23,-558.8 67.23,-552.8 67.23,-552.8 67.23,-521.12 67.23,-521.12 67.23,-515.12 73.23,-509.12 79.23,-509.12 79.23,-509.12 232.13,-509.12 232.13,-509.12 238.13,-509.12 244.13,-515.12 244.13,-521.12 244.13,-521.12 244.13,-552.8 244.13,-552.8 244.13,-558.8 238.13,-564.8 232.13,-564.8"/>
+<text xml:space="preserve" text-anchor="middle" x="155.68" y="-541.76" font-family="Arial" font-size="16.00">F3</text>
+<text xml:space="preserve" text-anchor="middle" x="155.68" y="-522.56" font-family="Arial" font-size="16.00">Read selected history</text>
+</g>
+<!-- EP&#45;&gt;F3 -->
+<g id="edge2" class="edge">
+<title>EP&#45;&gt;F3</title>
+<path fill="none" stroke="#475569" d="M74.69,-37.02C67.18,-70.53 51.68,-139.72 51.68,-139.72 51.68,-405.88 51.68,-405.88 51.68,-405.88 51.68,-405.88 97.5,-463.19 128.31,-501.73"/>
+<polygon fill="#475569" stroke="#475569" points="126.2,-503.29 132.93,-507.51 130.3,-500.01 126.2,-503.29"/>
+<text xml:space="preserve" text-anchor="middle" x="62.02" y="-269.2" font-family="Arial" font-size="12.00">F04</text>
+</g>
+<!-- D2 -->
+<g id="node3" class="node">
+<title>D2</title>
+<polygon fill="#fff8e8" stroke="#334155" stroke-width="1.4" points="78.88,-641.7 78.88,-697.38 242.47,-697.38 242.47,-641.7 78.88,-641.7"/>
+<text xml:space="preserve" text-anchor="middle" x="160.68" y="-674.34" font-family="Arial" font-size="16.00">D2</text>
+<text xml:space="preserve" text-anchor="middle" x="160.68" y="-655.14" font-family="Arial" font-size="16.00">Saved plan batches</text>
+</g>
+<!-- D2&#45;&gt;F3 -->
+<g id="edge6" class="edge">
+<title>D2&#45;&gt;F3</title>
+<path fill="none" stroke="#475569" d="M159.63,-641.17C158.88,-621.67 157.87,-595.26 157.06,-574.04"/>
+<polygon fill="#475569" stroke="#475569" points="159.69,-574.2 156.78,-566.81 154.44,-574.41 159.69,-574.2"/>
+<text xml:space="preserve" text-anchor="middle" x="168.67" y="-599.4" font-family="Arial" font-size="12.00">F11</text>
+</g>
+<!-- F2 -->
+<g id="node5" class="node">
+<title>F2</title>
+<path fill="#edf5ff" stroke="#334155" stroke-width="1.4" d="M366.91,-829.96C366.91,-829.96 218.45,-829.96 218.45,-829.96 212.45,-829.96 206.45,-823.96 206.45,-817.96 206.45,-817.96 206.45,-786.28 206.45,-786.28 206.45,-780.28 212.45,-774.28 218.45,-774.28 218.45,-774.28 366.91,-774.28 366.91,-774.28 372.91,-774.28 378.91,-780.28 378.91,-786.28 378.91,-786.28 378.91,-817.96 378.91,-817.96 378.91,-823.96 372.91,-829.96 366.91,-829.96"/>
+<text xml:space="preserve" text-anchor="middle" x="292.68" y="-806.92" font-family="Arial" font-size="16.00">F2</text>
+<text xml:space="preserve" text-anchor="middle" x="292.68" y="-787.72" font-family="Arial" font-size="16.00">Save complete batch</text>
+</g>
+<!-- F1&#45;&gt;F2 -->
+<g id="edge3" class="edge">
+<title>F1&#45;&gt;F2</title>
+<path fill="none" stroke="#475569" d="M321.13,-905.93C315.73,-886.42 308.41,-859.97 302.54,-838.78"/>
+<polygon fill="#475569" stroke="#475569" points="305.15,-838.34 300.62,-831.81 300.09,-839.74 305.15,-838.34"/>
+<text xml:space="preserve" text-anchor="middle" x="323.1" y="-864.56" font-family="Arial" font-size="12.00">G61</text>
+</g>
+<!-- F5 -->
+<g id="node9" class="node">
+<title>F5</title>
+<path fill="#edf5ff" stroke="#334155" stroke-width="1.4" d="M365.47,-168.56C365.47,-168.56 225.89,-168.56 225.89,-168.56 219.89,-168.56 213.89,-162.56 213.89,-156.56 213.89,-156.56 213.89,-124.88 213.89,-124.88 213.89,-118.88 219.89,-112.88 225.89,-112.88 225.89,-112.88 365.47,-112.88 365.47,-112.88 371.47,-112.88 377.47,-118.88 377.47,-124.88 377.47,-124.88 377.47,-156.56 377.47,-156.56 377.47,-162.56 371.47,-168.56 365.47,-168.56"/>
+<text xml:space="preserve" text-anchor="middle" x="295.68" y="-145.52" font-family="Arial" font-size="16.00">F5</text>
+<text xml:space="preserve" text-anchor="middle" x="295.68" y="-126.32" font-family="Arial" font-size="16.00">Build plan response</text>
+</g>
+<!-- F1&#45;&gt;F5 -->
+<g id="edge4" class="edge">
+<title>F1&#45;&gt;F5</title>
+<path fill="none" stroke="#475569" d="M355.72,-905.93C393.55,-867.79 457.68,-803.12 457.68,-803.12 457.68,-803.12 457.68,-803.12 457.68,-271.8 457.68,-271.8 384.51,-213.05 336.52,-174.52"/>
+<polygon fill="#475569" stroke="#475569" points="338.31,-172.59 330.82,-169.94 335.02,-176.68 338.31,-172.59"/>
+<text xml:space="preserve" text-anchor="middle" x="469.02" y="-533.36" font-family="Arial" font-size="12.00">G62</text>
+</g>
+<!-- F2&#45;&gt;D2 -->
+<g id="edge5" class="edge">
+<title>F2&#45;&gt;D2</title>
+<path fill="none" stroke="#475569" d="M265,-773.75C244.5,-753.46 216.44,-725.71 194.59,-704.09"/>
+<polygon fill="#475569" stroke="#475569" points="196.57,-702.35 189.39,-698.94 192.87,-706.08 196.57,-702.35"/>
+<text xml:space="preserve" text-anchor="middle" x="240.97" y="-732.48" font-family="Arial" font-size="12.00">F10</text>
+</g>
+<!-- F4a -->
+<g id="node7" class="node">
+<title>F4a</title>
+<path fill="#edf5ff" stroke="#334155" stroke-width="1.4" d="M358.79,-432.72C358.79,-432.72 200.56,-432.72 200.56,-432.72 194.56,-432.72 188.56,-426.72 188.56,-420.72 188.56,-420.72 188.56,-389.04 188.56,-389.04 188.56,-383.04 194.56,-377.04 200.56,-377.04 200.56,-377.04 358.79,-377.04 358.79,-377.04 364.79,-377.04 370.79,-383.04 370.79,-389.04 370.79,-389.04 370.79,-420.72 370.79,-420.72 370.79,-426.72 364.79,-432.72 358.79,-432.72"/>
+<text xml:space="preserve" text-anchor="middle" x="279.68" y="-409.68" font-family="Arial" font-size="16.00">F4a</text>
+<text xml:space="preserve" text-anchor="middle" x="279.68" y="-390.48" font-family="Arial" font-size="16.00">Build saved trace view</text>
+</g>
+<!-- F2&#45;&gt;F4a -->
+<g id="edge7" class="edge">
+<title>F2&#45;&gt;F4a</title>
+<path fill="none" stroke="#475569" d="M291.77,-773.64C289.48,-703.86 283.42,-519.8 280.86,-441.72"/>
+<polygon fill="#475569" stroke="#475569" points="283.49,-442.1 280.62,-434.69 278.25,-442.27 283.49,-442.1"/>
+<text xml:space="preserve" text-anchor="middle" x="297.67" y="-599.4" font-family="Arial" font-size="12.00">G64</text>
+</g>
+<!-- F3&#45;&gt;F4a -->
+<g id="edge8" class="edge">
+<title>F3&#45;&gt;F4a</title>
+<path fill="none" stroke="#475569" d="M181.67,-508.69C200.85,-488.57 227.06,-461.07 247.55,-439.58"/>
+<polygon fill="#475569" stroke="#475569" points="249.4,-441.45 252.67,-434.21 245.6,-437.83 249.4,-441.45"/>
+<text xml:space="preserve" text-anchor="middle" x="232.74" y="-467.32" font-family="Arial" font-size="12.00">G63</text>
+</g>
+<!-- F4b -->
+<g id="node8" class="node">
+<title>F4b</title>
+<path fill="#edf5ff" stroke="#334155" stroke-width="1.4" d="M282.81,-300.64C282.81,-300.64 116.55,-300.64 116.55,-300.64 110.55,-300.64 104.55,-294.64 104.55,-288.64 104.55,-288.64 104.55,-256.96 104.55,-256.96 104.55,-250.96 110.55,-244.96 116.55,-244.96 116.55,-244.96 282.81,-244.96 282.81,-244.96 288.81,-244.96 294.81,-250.96 294.81,-256.96 294.81,-256.96 294.81,-288.64 294.81,-288.64 294.81,-294.64 288.81,-300.64 282.81,-300.64"/>
+<text xml:space="preserve" text-anchor="middle" x="199.68" y="-277.6" font-family="Arial" font-size="16.00">F4b</text>
+<text xml:space="preserve" text-anchor="middle" x="199.68" y="-258.4" font-family="Arial" font-size="16.00">Encode requested CSV</text>
+</g>
+<!-- F4a&#45;&gt;F4b -->
+<g id="edge11" class="edge">
+<title>F4a&#45;&gt;F4b</title>
+<path fill="none" stroke="#475569" d="M262.91,-376.61C250.75,-356.84 234.2,-329.94 221.09,-308.61"/>
+<polygon fill="#475569" stroke="#475569" points="223.38,-307.34 217.22,-302.32 218.91,-310.09 223.38,-307.34"/>
+<text xml:space="preserve" text-anchor="middle" x="253.42" y="-335.24" font-family="Arial" font-size="12.00">G66</text>
+</g>
+<!-- F4a&#45;&gt;F5 -->
+<g id="edge12" class="edge">
+<title>F4a&#45;&gt;F5</title>
+<path fill="none" stroke="#475569" d="M287.9,-376.48C297.09,-345.9 310.68,-300.64 310.68,-300.64 310.68,-300.64 310.68,-244.96 310.68,-244.96 310.68,-244.96 305.23,-207.47 300.9,-177.67"/>
+<polygon fill="#475569" stroke="#475569" points="303.55,-177.66 299.87,-170.61 298.35,-178.41 303.55,-177.66"/>
+<text xml:space="preserve" text-anchor="middle" x="335.69" y="-269.2" font-family="Arial" font-size="12.00">G65.view</text>
+</g>
+<!-- F4b&#45;&gt;F5 -->
+<g id="edge9" class="edge">
+<title>F4b&#45;&gt;F5</title>
+<path fill="none" stroke="#475569" d="M219.8,-244.53C234.52,-224.58 254.59,-197.39 270.4,-175.97"/>
+<polygon fill="#475569" stroke="#475569" points="272.34,-177.76 274.68,-170.17 268.11,-174.65 272.34,-177.76"/>
+<text xml:space="preserve" text-anchor="middle" x="272.56" y="-203.16" font-family="Arial" font-size="12.00">G65.csv</text>
+</g>
+<!-- F5&#45;&gt;EP -->
+<g id="edge10" class="edge">
+<title>F5&#45;&gt;EP</title>
+<path fill="none" stroke="#475569" d="M246.16,-112.23C207.55,-90.79 154.63,-61.41 118.68,-41.45"/>
+<polygon fill="#475569" stroke="#475569" points="119.98,-39.17 112.15,-37.82 117.43,-43.76 119.98,-39.17"/>
+<text xml:space="preserve" text-anchor="middle" x="197.52" y="-71.08" font-family="Arial" font-size="12.00">F05</text>
+</g>
+</g>
+</svg>
+</figure>
+<div class="table-wrap"><table><thead><tr><th>Primitive process</th><th>Mapped procedure</th></tr></thead><tbody>
+<tr><td>F1 Classify outcome</td><td>M61 classify_outcome</td></tr>
+<tr><td>F2 Save complete batch</td><td>M62 save_batch_atomic</td></tr>
+<tr><td>F3 Read selected history</td><td>M63 read_history</td></tr>
+<tr><td>F4a Build saved trace view</td><td>M64 build_trace_view</td></tr>
+<tr><td>F4b Encode requested CSV</td><td>M65 encode_csv</td></tr>
+<tr><td>F5 Build plan response</td><td>M66 make_plan_response</td></tr>
+</tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>Flow</th><th>Meaning</th><th>Record type</th></tr></thead><tbody>
+<tr><td>F09</td><td>Calculation outcome</td><td>CalculationOutcome</td></tr>
+<tr><td>F04</td><td>Query and export request</td><td>QueryRequest</td></tr>
+<tr><td>G61</td><td>Accepted calculated result</td><td>CalculatedBatch</td></tr>
+<tr><td>G62</td><td>Rejected outcome issues</td><td>List[Issue]</td></tr>
+<tr><td>F10</td><td>Immutable batch record</td><td>BatchRecord</td></tr>
+<tr><td>F11</td><td>Historical batch records</td><td>List[BatchRecord]</td></tr>
+<tr><td>G64</td><td>Committed batch record</td><td>BatchRecord</td></tr>
+<tr><td>G63</td><td>Loaded batch records</td><td>List[BatchRecord]</td></tr>
+<tr><td>G65.csv</td><td>View and CSV data</td><td>PresentationWork</td></tr>
+<tr><td>F05</td><td>Plan response</td><td>PlanResponse</td></tr>
+<tr><td>G66</td><td>Prepared report view</td><td>PresentationWork</td></tr>
+<tr><td>G65.view</td><td>View and CSV data</td><td>PresentationWork</td></tr>
+</tbody></table></div>
+<h2 id="sec20">P2.3   Purchasing and risk decomposition</h2>
+<figure><svg width="508pt" height="501pt"
+ viewBox="0.00 0.00 508.00 501.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(25.2 475.52)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-25.2,25.2 -25.2,-475.52 482.77,-475.52 482.77,25.2 -25.2,25.2"/>
+<text xml:space="preserve" text-anchor="middle" x="228.79" y="-424.72" font-family="Arial" font-size="24.00">P2.3 &#160;&#160;Purchasing and risk decomposition</text>
+<!-- P2.2 -->
+<g id="node1" class="node">
+<title>P2.2</title>
+<polygon fill="#f1f5f9" stroke="#334155" stroke-width="1.4" points="320.35,-413.52 137.23,-413.52 137.23,-377.04 320.35,-377.04 320.35,-413.52"/>
+<text xml:space="preserve" text-anchor="middle" x="228.79" y="-390.48" font-family="Arial" font-size="16.00">P2.2 Net requirements</text>
+</g>
+<!-- S4 -->
+<g id="node3" class="node">
+<title>S4</title>
+<path fill="#edf5ff" stroke="#334155" stroke-width="1.4" d="M283.45,-300.64C283.45,-300.64 174.12,-300.64 174.12,-300.64 168.12,-300.64 162.12,-294.64 162.12,-288.64 162.12,-288.64 162.12,-256.96 162.12,-256.96 162.12,-250.96 168.12,-244.96 174.12,-244.96 174.12,-244.96 283.45,-244.96 283.45,-244.96 289.45,-244.96 295.45,-250.96 295.45,-256.96 295.45,-256.96 295.45,-288.64 295.45,-288.64 295.45,-294.64 289.45,-300.64 283.45,-300.64"/>
+<text xml:space="preserve" text-anchor="middle" x="228.79" y="-277.6" font-family="Arial" font-size="16.00">S4</text>
+<text xml:space="preserve" text-anchor="middle" x="228.79" y="-258.4" font-family="Arial" font-size="16.00">Plan purchases</text>
+</g>
+<!-- P2.2&#45;&gt;S4 -->
+<g id="edge1" class="edge">
+<title>P2.2&#45;&gt;S4</title>
+<path fill="none" stroke="#475569" d="M228.79,-376.5C228.79,-359.01 228.79,-331.81 228.79,-309.79"/>
+<polygon fill="#475569" stroke="#475569" points="231.41,-310.04 228.79,-302.54 226.16,-310.04 231.41,-310.04"/>
+<text xml:space="preserve" text-anchor="middle" x="239.13" y="-335.24" font-family="Arial" font-size="12.00">F13</text>
+</g>
+<!-- P3 -->
+<g id="node2" class="node">
+<title>P3</title>
+<polygon fill="#f1f5f9" stroke="#334155" stroke-width="1.4" points="304.34,-36.48 153.24,-36.48 153.24,0 304.34,0 304.34,-36.48"/>
+<text xml:space="preserve" text-anchor="middle" x="228.79" y="-13.44" font-family="Arial" font-size="16.00">P3 Publish results</text>
+</g>
+<!-- S5 -->
+<g id="node4" class="node">
+<title>S5</title>
+<path fill="#edf5ff" stroke="#334155" stroke-width="1.4" d="M319.01,-168.56C319.01,-168.56 138.56,-168.56 138.56,-168.56 132.56,-168.56 126.56,-162.56 126.56,-156.56 126.56,-156.56 126.56,-124.88 126.56,-124.88 126.56,-118.88 132.56,-112.88 138.56,-112.88 138.56,-112.88 319.01,-112.88 319.01,-112.88 325.01,-112.88 331.01,-118.88 331.01,-124.88 331.01,-124.88 331.01,-156.56 331.01,-156.56 331.01,-162.56 325.01,-168.56 319.01,-168.56"/>
+<text xml:space="preserve" text-anchor="middle" x="228.79" y="-145.52" font-family="Arial" font-size="16.00">S5</text>
+<text xml:space="preserve" text-anchor="middle" x="228.79" y="-126.32" font-family="Arial" font-size="16.00">Assess risk and complete</text>
+</g>
+<!-- S4&#45;&gt;S5 -->
+<g id="edge2" class="edge">
+<title>S4&#45;&gt;S5</title>
+<path fill="none" stroke="#475569" d="M228.79,-244.53C228.79,-225.19 228.79,-199.04 228.79,-177.94"/>
+<polygon fill="#475569" stroke="#475569" points="231.41,-177.97 228.79,-170.47 226.16,-177.97 231.41,-177.97"/>
+<text xml:space="preserve" text-anchor="middle" x="240.13" y="-203.16" font-family="Arial" font-size="12.00">G20</text>
+</g>
+<!-- S5&#45;&gt;P3 -->
+<g id="edge3" class="edge">
+<title>S5&#45;&gt;P3</title>
+<path fill="none" stroke="#475569" d="M228.79,-112.38C228.79,-92.48 228.79,-65.68 228.79,-45.93"/>
+<polygon fill="#475569" stroke="#475569" points="231.41,-46.15 228.79,-38.65 226.16,-46.15 231.41,-46.15"/>
+<text xml:space="preserve" text-anchor="middle" x="253.13" y="-71.08" font-family="Arial" font-size="12.00">F09.valid</text>
+</g>
+</g>
+</svg>
+</figure>
+<div class="table-wrap"><table><thead><tr><th>Primitive process</th><th>Mapped procedure</th></tr></thead><tbody>
+<tr><td>S4 Plan purchases</td><td>M40 plan_purchases</td></tr>
+<tr><td>S5 Assess risk and complete</td><td>M50 complete_plan</td></tr>
+</tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>Flow</th><th>Meaning</th><th>Record type</th></tr></thead><tbody>
+<tr><td>F13</td><td>Net requirements bundle</td><td>NetBundle</td></tr>
+<tr><td>G20</td><td>Purchasing envelope</td><td>PurchasingEnvelope</td></tr>
+<tr><td>F09.valid</td><td>Calculation outcome</td><td>CalculationOutcome</td></tr>
+</tbody></table></div>
+<h2 id="sec21">Iteration and retained data</h2>
+<p>In S3, C1 initializes stock once. M30 processes a complete task before the next task and waits for all parents before finalizing a shared material. C2 groups same-date requests; C3 nets them; C4 creates children from positive MAKE residuals only. C5 retains BUY residuals and forwards accumulated state; C6 emits F13 only after the entire run. Zero-net records remain in trace. G34 explicitly retains the original netted record so BUY requirements are not lost on the MAKE path.</p>
+<p>In S4, D01 initializes an empty D4 pool once per run. Each material/date consumes prior eligible surplus, rounds the remaining gap, and updates D4. D05 emits G20 only after every dated group is processed. D4 is not physical stock. It is internal to the refinement of P2.3 and never adds an external parent input.</p>
+<p>S6 has an explicit optional conversion branch: F4a sends VIEW/LIST data directly to F5 through G65.view; CSV goes through F4b/M65 and G65.csv. Both flows are alternatives of the same PresentationWork record. The call chart records this selection. Commit and read failures are propagated to F05 by M60/M66; successful G64 exists only after a full commit.</p>
+<p>Unchanged context carried along a DFD flow is retained by its coordinator; a leaf function consumes only its documented slice and returns the transformed data. This pass-through convention explains the difference between a complete logical flow envelope and a narrow procedure signature. For example C1 returns BalanceMap while M30 carries forward the received Context in G31. F12 remains the E1 Context; the graph index in PreparedContext is derived from that same BOM, not a new external input.</p>
+<p>The reusable calendar function M52 implements the date transformation inside C4/D04. It is shown in module charts and does not require an additional business data-flow boundary.</p>
+<h2 id="sec22">Added internal flow dictionary</h2>
+<div class="table-wrap"><table><thead><tr><th>ID</th><th>Data</th><th>Type</th></tr></thead><tbody>
+<tr><td>G01</td><td>Typed submission</td><td>TypedImport</td></tr>
+<tr><td>G02</td><td>Validated source candidate</td><td>SourceSet</td></tr>
+<tr><td>G03</td><td>Located maintenance errors</td><td>List[Issue]</td></tr>
+<tr><td>G04</td><td>Maintenance commit result</td><td>CommitResult</td></tr>
+<tr><td>G21</td><td>Selected snapshot envelope</td><td>ValidationEnvelope</td></tr>
+<tr><td>G22</td><td>Ordered task envelope</td><td>ValidationEnvelope</td></tr>
+<tr><td>G23</td><td>Validated graph envelope</td><td>ValidationEnvelope</td></tr>
+<tr><td>G24</td><td>Planning validation errors</td><td>List[Issue]</td></tr>
+<tr><td>G31</td><td>Initialized netting state</td><td>NettingState</td></tr>
+<tr><td>G34</td><td>Manufacturing expansion</td><td>ExpansionResult</td></tr>
+<tr><td>G35</td><td>Completed netting state</td><td>NettingState</td></tr>
+<tr><td>G41</td><td>Date grouped shortage envelope</td><td>PurchaseWork</td></tr>
+<tr><td>G42</td><td>Surplus adjusted shortage</td><td>PurchaseWork</td></tr>
+<tr><td>G43</td><td>Rounded purchasing quantity</td><td>PurchaseWork</td></tr>
+<tr><td>G44</td><td>Empty planned surplus pool</td><td>List[SurplusLot]</td></tr>
+<tr><td>G45</td><td>Available planned surplus lots</td><td>List[SurplusLot]</td></tr>
+<tr><td>G46</td><td>Updated planned surplus lots</td><td>List[SurplusLot]</td></tr>
+<tr><td>G47</td><td>Accumulated procurement records</td><td>PurchaseWork</td></tr>
+<tr><td>G20</td><td>Purchasing envelope</td><td>PurchasingEnvelope</td></tr>
+<tr><td>G51</td><td>Required dates and retained calculation</td><td>RiskWork</td></tr>
+<tr><td>G52</td><td>Assessed dates and retained calculation</td><td>RiskWork</td></tr>
+<tr><td>G61</td><td>Accepted calculated result</td><td>CalculatedBatch</td></tr>
+<tr><td>G62</td><td>Rejected outcome issues</td><td>List[Issue]</td></tr>
+<tr><td>G63</td><td>Loaded batch records</td><td>List[BatchRecord]</td></tr>
+<tr><td>G64</td><td>Committed batch record</td><td>BatchRecord</td></tr>
+<tr><td>G65</td><td>View and CSV data</td><td>PresentationWork</td></tr>
+<tr><td>G05</td><td>Merged source candidate</td><td>EditWork</td></tr>
+<tr><td>G25</td><td>Consistent request snapshot</td><td>ValidationEnvelope</td></tr>
+<tr><td>G66</td><td>Prepared report view</td><td>PresentationWork</td></tr>
+</tbody></table></div>
+<p>Envelope fields are defined in interfaces.md. F09.valid and F09.invalid are alternatives of F09. Parent/child balance compares their union, never treats them as unrelated flows.</p>
+<h2 id="sec23">5 Procedure contracts</h2>
+<p>Version 0.1, 26 September 2026. Signatures are language-neutral and describe plain records, sequences and functions. They do not mandate classes, Python or a UI framework.</p>
+<h2 id="sec24">Error and state conventions</h2>
+<p>All calculation data is passed explicitly. Pure functions do not read the database or mutate caller-owned input. Coordinators install returned values into private state. Result[T] carries either a value or located issues. INVALID input, DATE_RANGE, SOURCE_CONFLICT, STORAGE_READ_FAILED, STORAGE_WRITE_FAILED and NOT_FOUND cannot produce a saved successful batch. Unexpected technical failures abort the coordinator and are converted through the existing outer response interface; DFDs show business data paths rather than every infrastructure exception.</p>
+<p>RuleSnapshot is the documented supported configuration supplied by the application entry point. Request rule_version must match it; downstream functions receive it through Context rather than reading a mutable global.</p>
+<h2 id="sec25">S1 Source maintenance</h2>
+<h3>M10 maintain_sources</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>MaintenanceSubmission, repository</td></tr>
+<tr><td>Returns</td><td>MaintenanceOutcome</td></tr>
+<tr><td>State and I/O</td><td>Coordinator</td></tr>
+<tr><td>Behavior</td><td>Read current revision; parse, merge and validate one submission; commit only a fully accepted candidate.</td></tr>
+</tbody></table></div>
+<h3>M11 parse_submission</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>MaintenanceSubmission</td></tr>
+<tr><td>Returns</td><td>Result[TypedImport]</td></tr>
+<tr><td>State and I/O</td><td>Pure</td></tr>
+<tr><td>Behavior</td><td>Parse required fields without rounding, preserve row locations, reject duplicate input keys and unknown columns where policy requires.</td></tr>
+</tbody></table></div>
+<h3>M12 merge_source_patch</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>SourceSet, TypedImport</td></tr>
+<tr><td>Returns</td><td>SourceSet</td></tr>
+<tr><td>State and I/O</td><td>Pure</td></tr>
+<tr><td>Behavior</td><td>Apply explicit upserts to a copy. Stock upserts identify both snapshot date and material. No implicit deletion or mutation of the original.</td></tr>
+</tbody></table></div>
+<h3>M13 validate_source_edit</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>SourceSet candidate, TypedImport</td></tr>
+<tr><td>Returns</td><td>List[Issue]</td></tr>
+<tr><td>State and I/O</td><td>Pure</td></tr>
+<tr><td>Behavior</td><td>Check uniqueness, referenced IDs, integer/date domains and stock bounds. Detect incompatible BUY edges and cycles in changed BOM; full selected MAKE completeness is checked in S2.</td></tr>
+</tbody></table></div>
+<h3>M14 commit_source_revision</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>repository, expected_revision, SourceSet candidate</td></tr>
+<tr><td>Returns</td><td>Result[revision_id]</td></tr>
+<tr><td>State and I/O</td><td>Writes D1 atomically</td></tr>
+<tr><td>Behavior</td><td>In one transaction create an immutable revision, compare the current revision, move the head, and commit; conflicts and failures roll back.</td></tr>
+</tbody></table></div>
+<h3>M15 make_maintenance_response</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>request_id, accepted_count, List[Issue], commit_result</td></tr>
+<tr><td>Returns</td><td>MaintenanceOutcome</td></tr>
+<tr><td>State and I/O</td><td>Pure</td></tr>
+<tr><td>Behavior</td><td>REJECTED has zero accepted records. On commit failure do not report accepted data.</td></tr>
+</tbody></table></div>
+<h2 id="sec26">S2 Snapshot and BOM validation</h2>
+<h3>M20 prepare_context</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>PlanningRequest, repository, RuleSnapshot</td></tr>
+<tr><td>Returns</td><td>PreparationResult</td></tr>
+<tr><td>State and I/O</td><td>Coordinator</td></tr>
+<tr><td>Behavior</td><td>Obtain one consistent snapshot, validate selected data and BOM, order tasks and freeze a read-only context. Return READY with prepared input, or call M26 and return INVALID with that outcome.</td></tr>
+</tbody></table></div>
+<h3>M21 read_source_snapshot</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>repository, baseline_date or null</td></tr>
+<tr><td>Returns</td><td>Result[SourceSet]</td></tr>
+<tr><td>State and I/O</td><td>Reads D1</td></tr>
+<tr><td>Behavior</td><td>Read source head and all required revision rows in one read transaction. Null date is used for maintenance reads; planning selects the baseline stock snapshot.</td></tr>
+</tbody></table></div>
+<h3>M22 validate_selected_data</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>PlanningRequest, SourceSet, RuleSnapshot</td></tr>
+<tr><td>Returns</td><td>List[Issue]</td></tr>
+<tr><td>State and I/O</td><td>Pure</td></tr>
+<tr><td>Behavior</td><td>Reject no selection, duplicate or unknown task IDs, unsupported rules, invalid fields and missing reachable stock. Snapshot date must equal baseline.</td></tr>
+</tbody></table></div>
+<h3>M23 validate_and_index_bom</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>SourceSet, selected_task_ids</td></tr>
+<tr><td>Returns</td><td>Result[GraphIndex]</td></tr>
+<tr><td>State and I/O</td><td>Pure</td></tr>
+<tr><td>Behavior</td><td>Validate all selected reachable edges including stock-covered branches; return adjacency and deterministic parent-before-child order or located graph errors.</td></tr>
+</tbody></table></div>
+<h3>M24 order_tasks</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>List[Task], selected_task_ids</td></tr>
+<tr><td>Returns</td><td>List[Task]</td></tr>
+<tr><td>State and I/O</td><td>Pure</td></tr>
+<tr><td>Behavior</td><td>Sort by priority ascending, due date ascending, then ordinal task ID. Preserve no import-row tie-break.</td></tr>
+</tbody></table></div>
+<h3>M25 freeze_context</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>request, sources, rules, ordered_tasks, GraphIndex</td></tr>
+<tr><td>Returns</td><td>PreparedContext</td></tr>
+<tr><td>State and I/O</td><td>Pure</td></tr>
+<tr><td>Behavior</td><td>Copy validated inputs and initial availability into E1 Context; attach only a derived graph index outside the retained E1 Context.</td></tr>
+</tbody></table></div>
+<h3>M26 make_invalid_outcome</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>request_id, nonempty List[Issue]</td></tr>
+<tr><td>Returns</td><td>CalculationOutcome</td></tr>
+<tr><td>State and I/O</td><td>Pure</td></tr>
+<tr><td>Behavior</td><td>Return INVALID with null result and blocking issues. Do not manufacture an empty successful batch.</td></tr>
+</tbody></table></div>
+<h2 id="sec27">S3 Demand and shared inventory</h2>
+<h3>M30 net_requirements</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>PreparedContext</td></tr>
+<tr><td>Returns</td><td>Result[NetBundle]</td></tr>
+<tr><td>State and I/O</td><td>Coordinator; private memory only</td></tr>
+<tr><td>Behavior</td><td>Own the batch balance map. Complete each task before the next; visit materials in parent-before-child order, then dates ascending.</td></tr>
+</tbody></table></div>
+<h3>M31 initialize_balances</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>request_id, List[Stock]</td></tr>
+<tr><td>Returns</td><td>BalanceMap</td></tr>
+<tr><td>State and I/O</td><td>Pure</td></tr>
+<tr><td>Behavior</td><td>Create available quantities as on_hand minus reserved exactly once per run.</td></tr>
+</tbody></table></div>
+<h3>M32 collect_material_demands</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>task_id, material_id, DemandMap</td></tr>
+<tr><td>Returns</td><td>List[Demand]</td></tr>
+<tr><td>State and I/O</td><td>Pure</td></tr>
+<tr><td>Behavior</td><td>For this task/material collect all contributions, group by date, preserve origins and return dates ascending. The caller must first finish all parents.</td></tr>
+</tbody></table></div>
+<h3>M33 allocate_stock</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>Demand, Balance</td></tr>
+<tr><td>Returns</td><td>AllocationResult</td></tr>
+<tr><td>State and I/O</td><td>Pure</td></tr>
+<tr><td>Behavior</td><td>Allocate min(balance,gross). Split origin attribution by ordinal BOM path then origin ID. Return residual, ledger and new balance; do not mutate caller inputs.</td></tr>
+</tbody></table></div>
+<h3>M34 expand_make_demand</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>NettedDemand, Material, child_edges</td></tr>
+<tr><td>Returns</td><td>Result[MakeExpansion]</td></tr>
+<tr><td>State and I/O</td><td>Pure</td></tr>
+<tr><td>Behavior</td><td>For positive MAKE net quantity derive start date, one MAKE row and children from attributed net origins. Zero net yields no MAKE row or children. Calls M52.</td></tr>
+</tbody></table></div>
+<h3>M35 record_buy_shortage</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>NettedDemand, Material</td></tr>
+<tr><td>Returns</td><td>BuyShortage or null</td></tr>
+<tr><td>State and I/O</td><td>Pure</td></tr>
+<tr><td>Behavior</td><td>Return a positive BUY residual with date/source links; otherwise return null.</td></tr>
+</tbody></table></div>
+<h3>M36 assemble_net_bundle</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>Context, netted_demands, allocations, make_lines, shortages, final_balances</td></tr>
+<tr><td>Returns</td><td>Result[NetBundle]</td></tr>
+<tr><td>State and I/O</td><td>Pure</td></tr>
+<tr><td>Behavior</td><td>Check gross=allocated+net, origin totals, stock conservation and reference integrity before returning the completed bundle.</td></tr>
+</tbody></table></div>
+<h2 id="sec28">S4 Purchasing and planned surplus</h2>
+<h3>M40 plan_purchases</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>NetBundle</td></tr>
+<tr><td>Returns</td><td>Result[PurchasingEnvelope]</td></tr>
+<tr><td>State and I/O</td><td>Coordinator; private memory only</td></tr>
+<tr><td>Behavior</td><td>Use only BUY residuals after existing-stock allocation completes; iterate material IDs and needed dates with one separate surplus pool per material.</td></tr>
+</tbody></table></div>
+<h3>M41 group_buy_shortages</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>List[BuyShortage]</td></tr>
+<tr><td>Returns</td><td>List[ShortageGroup]</td></tr>
+<tr><td>State and I/O</td><td>Pure</td></tr>
+<tr><td>Behavior</td><td>Group by material and needed date across tasks; preserve shortage IDs. Sort material ID ordinal, then date.</td></tr>
+</tbody></table></div>
+<h3>M42 consume_surplus</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>ShortageGroup, List[SurplusLot]</td></tr>
+<tr><td>Returns</td><td>SurplusAllocation</td></tr>
+<tr><td>State and I/O</td><td>Pure</td></tr>
+<tr><td>Behavior</td><td>Consume only lots available by the needed date, earliest arrival then supply bucket ID. Return remaining gap, updated lots and source-use links.</td></tr>
+</tbody></table></div>
+<h3>M43 round_purchase_qty</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>remaining_gap, minimum_qty, purchase_multiple</td></tr>
+<tr><td>Returns</td><td>Int &gt;= 0</td></tr>
+<tr><td>State and I/O</td><td>Pure</td></tr>
+<tr><td>Behavior</td><td>Zero gap returns zero even with a positive minimum. Otherwise use exact integer ceiling of max(gap,minimum) to the multiple.</td></tr>
+</tbody></table></div>
+<h3>M44 finalize_purchase_bucket</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>ShortageGroup, SurplusAllocation, purchase_qty, Material</td></tr>
+<tr><td>Returns</td><td>Result[PurchaseStep]</td></tr>
+<tr><td>State and I/O</td><td>Pure</td></tr>
+<tr><td>Behavior</td><td>Build the dated bucket and update the returned pool with new rounding excess; no order date for zero purchase. Calls M52 only for positive purchases.</td></tr>
+</tbody></table></div>
+<h3>M45 assemble_purchase_envelope</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>NetBundle, purchase_buckets, surplus_uses, surplus_lots</td></tr>
+<tr><td>Returns</td><td>Result[PurchasingEnvelope]</td></tr>
+<tr><td>State and I/O</td><td>Pure</td></tr>
+<tr><td>Behavior</td><td>Check quantity/date conservation and produce the complete purchasing result, retaining zero-purchase buckets for trace.</td></tr>
+</tbody></table></div>
+<h2 id="sec29">S5 Calendar and timing risk</h2>
+<h3>M50 complete_plan</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>PurchasingEnvelope</td></tr>
+<tr><td>Returns</td><td>Result[CalculationOutcome]</td></tr>
+<tr><td>State and I/O</td><td>Coordinator</td></tr>
+<tr><td>Behavior</td><td>Collect required events, assess dates against baseline, assemble totals and return VALID with the calculated result.</td></tr>
+</tbody></table></div>
+<h3>M51 collect_required_dates</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>PurchasingEnvelope</td></tr>
+<tr><td>Returns</td><td>List[DatedEvent]</td></tr>
+<tr><td>State and I/O</td><td>Pure</td></tr>
+<tr><td>Behavior</td><td>Include every selected task due date and positive manufacturing/purchase start; retain event/task/material links. Ignore nonexistent zero-quantity orders.</td></tr>
+</tbody></table></div>
+<h3>M52 subtract_calendar_days</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>Date needed_date, Int &gt;= 0 lead_days</td></tr>
+<tr><td>Returns</td><td>Result[Date]</td></tr>
+<tr><td>State and I/O</td><td>Pure</td></tr>
+<tr><td>Behavior</td><td>Subtract calendar days including weekends and leap days. Zero is valid; return DATE_RANGE if the result cannot be represented.</td></tr>
+</tbody></table></div>
+<h3>M53 flag_early_dates</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>List[DatedEvent], baseline_date</td></tr>
+<tr><td>Returns</td><td>List[Issue]</td></tr>
+<tr><td>State and I/O</td><td>Pure</td></tr>
+<tr><td>Behavior</td><td>Only dates strictly before baseline are RISK; retain original date and positive difference in calendar days.</td></tr>
+</tbody></table></div>
+<h3>M54 assemble_calculated_batch</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>PurchasingEnvelope, List[Issue] risks</td></tr>
+<tr><td>Returns</td><td>CalculatedBatch</td></tr>
+<tr><td>State and I/O</td><td>Pure</td></tr>
+<tr><td>Behavior</td><td>Attach net bundle, procurement, surplus uses, risks and count summary. Do not add quantities across unrelated units.</td></tr>
+</tbody></table></div>
+<h2 id="sec30">S6 History trace and export</h2>
+<h3>M60 publish_results</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>PublishCommand, repository, clock, id_factory</td></tr>
+<tr><td>Returns</td><td>PlanResponse</td></tr>
+<tr><td>State and I/O</td><td>Coordinator</td></tr>
+<tr><td>Behavior</td><td>For VALID outcome save first, then expose saved data; INVALID becomes rejection. For queries load saved history, build views and optionally CSV.</td></tr>
+</tbody></table></div>
+<h3>M61 classify_outcome</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>CalculationOutcome</td></tr>
+<tr><td>Returns</td><td>Result[CalculatedBatch]</td></tr>
+<tr><td>State and I/O</td><td>Pure</td></tr>
+<tr><td>Behavior</td><td>Pass a valid complete result or return its blocking issues; enforce the tagged union.</td></tr>
+</tbody></table></div>
+<h3>M62 save_batch_atomic</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>CalculatedBatch, repository, batch_id, created_at</td></tr>
+<tr><td>Returns</td><td>Result[BatchRecord]</td></tr>
+<tr><td>State and I/O</td><td>Writes D2 atomically</td></tr>
+<tr><td>Behavior</td><td>Insert one canonical result document including all snapshots in a transaction. Return SAVED only after commit.</td></tr>
+</tbody></table></div>
+<h3>M63 read_history</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>QueryRequest, repository</td></tr>
+<tr><td>Returns</td><td>Result[List[BatchRecord]]</td></tr>
+<tr><td>State and I/O</td><td>Reads D2</td></tr>
+<tr><td>Behavior</td><td>Read exact saved documents; return NOT_FOUND for missing detail/export batches; listing may return an empty list.</td></tr>
+</tbody></table></div>
+<h3>M64 build_trace_view</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>List[BatchRecord], filters</td></tr>
+<tr><td>Returns</td><td>Result[ReportView]</td></tr>
+<tr><td>State and I/O</td><td>Pure</td></tr>
+<tr><td>Behavior</td><td>Filter display rows while retaining their linked source, demand, allocation and supply records. Never consult current source data.</td></tr>
+</tbody></table></div>
+<h3>M65 encode_csv</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>ReportView, table_kind</td></tr>
+<tr><td>Returns</td><td>CsvDocument</td></tr>
+<tr><td>State and I/O</td><td>Pure</td></tr>
+<tr><td>Behavior</td><td>UTF-8 CSV with a header, proper quoting and ISO dates. Export MAKE, PURCHASE, ALLOCATION, TRACE or RISK; preserve batch identifiers.</td></tr>
+</tbody></table></div>
+<h3>M66 make_plan_response</h3>
+<div class="table-wrap"><table><thead><tr><th>Contract</th><th>Definition</th></tr></thead><tbody>
+<tr><td>Inputs</td><td>request_id, outcome_status, saved_records, view, csv, issues</td></tr>
+<tr><td>Returns</td><td>PlanResponse</td></tr>
+<tr><td>State and I/O</td><td>Pure</td></tr>
+<tr><td>Behavior</td><td>Map failures and successes consistently. A failed save returns SAVE_FAILED with no successful saved records.</td></tr>
+</tbody></table></div>
+<h2 id="sec31">Entry coordinator</h2>
+<div class="table-wrap"><table><thead><tr><th>Function</th><th>Inputs</th><th>Returns</th><th>Behavior</th></tr></thead><tbody>
+<tr><td>handle_action</td><td>Action, payload, repository, supported_rules, clock, id_factory</td><td>ApplicationResponse</td><td>Dispatch maintenance, calculation, history or export. During calculation call S2 then S3 then S4 then S5 then S6; stop at the first error and convert its issues through M26 before publishing rejection.</td></tr>
+</tbody></table></div>
+<h2 id="sec32">Additional record and envelope definitions</h2>
+<div class="table-wrap"><table><thead><tr><th>Type</th><th>Fields</th><th>Constraint</th></tr></thead><tbody>
+<tr><td>Result[T]</td><td>tag OK or ERROR; value T only for OK; nonempty issues only for ERROR</td><td>No exceptions used as ordinary valid return data; I/O/date failures are handled by the coordinator.</td></tr>
+<tr><td>Action / PublishCommand</td><td>MAINTAIN, CALCULATE, LIST, VIEW or CSV plus matching payload; publish accepts OUTCOME or QUERY</td><td>No arbitrary function names accepted.</td></tr>
+<tr><td>TypedImport</td><td>dataset_kind, typed_rows, row_locations, request_id</td><td>All rows remain attributable to their original input.</td></tr>
+<tr><td>EditWork</td><td>candidate SourceSet, TypedImport, request_id, issues</td><td>A2a merges; A2b validates. Includes original field locations.</td></tr>
+<tr><td>CommitResult</td><td>request_id, revision_id or null, accepted_count, issues</td><td>Failed commit has no accepted records.</td></tr>
+<tr><td>PreparationResult</td><td>tag READY or INVALID; prepared: PreparedContext only for READY; outcome: CalculationOutcome only for INVALID</td><td>M00 sends INVALID directly to M60, and calls M26 itself only for a later calculation failure.</td></tr>
+<tr><td>MakeExpansion</td><td>optional MAKE line and child demands</td><td>The narrow M34 return; M30 retains the unmodified netted demand and prior accumulated state in the logical G34 carrier.</td></tr>
+<tr><td>PreparedContext</td><td>context: E1 Context; graph: GraphIndex</td><td>Graph is derived and immutable; it is not a class.</td></tr>
+<tr><td>GraphIndex</td><td>adjacency by material; reachable IDs; deterministic topological order; roots by task</td><td>Each parent precedes each child; disconnected selected roots included.</td></tr>
+<tr><td>ValidationEnvelope</td><td>request, sources, supported rules, graph if available, ordered tasks if available, issues</td><td>Carries progressively validated data through B1a to B4.</td></tr>
+<tr><td>BalanceMap / DemandMap</td><td>material ID -&gt; Balance; task/material/date -&gt; origins</td><td>Private to one M30 call; only M30 installs updated balances.</td></tr>
+<tr><td>AllocationResult</td><td>netted demand, Allocation ledger row, new Balance</td><td>Ledger and origin totals reconcile.</td></tr>
+<tr><td>ExpansionResult</td><td>current NettedEnvelope, optional MAKE line, child demands, accumulated NettingState</td><td>Retains the original netted BUY record so C5 can classify it. This is the G34 carrier, not only newly generated children.</td></tr>
+<tr><td>NettingState</td><td>Context, GraphIndex, current task/material position, pending demand map, balances, accumulated netted demands/allocations/MAKE lines/BUY shortages</td><td>G31 and G35 are logical carriers; production interfaces pass only the relevant slices. Completion is emitted only after all tasks/materials finish.</td></tr>
+<tr><td>ShortageGroup</td><td>material_id, needed_date, gross_shortage, shortage_ids</td><td>Across-task aggregation follows completed priority-based stock allocation.</td></tr>
+<tr><td>SurplusLot</td><td>supply_bucket_id, material_id, arrival_date, remaining_qty</td><td>Nonnegative temporary planned excess, not on-hand stock.</td></tr>
+<tr><td>SurplusAllocation</td><td>group, used_qty, remaining_gap, updated_lots, SurplusUse records</td><td>No future supply can cover an earlier demand.</td></tr>
+<tr><td>PurchaseStep</td><td>PurchaseBucket, updated_lots, SurplusUse records</td><td>A zero-gap bucket remains in trace but creates no purchase recommendation.</td></tr>
+<tr><td>PurchaseWork</td><td>NetBundle, ordered shortage groups, current group, surplus allocation, quantity if computed, accumulated purchase records</td><td>G41-G43/G47 retain policies, context and already accumulated output.</td></tr>
+<tr><td>PurchasingEnvelope</td><td>NetBundle, purchase_buckets, surplus_uses, final_surplus_lots</td><td>G20 retains all input snapshots and original task due dates.</td></tr>
+<tr><td>DatedEvent</td><td>event_id, TASK_DUE or MAKE_START or BUY_ORDER, date, task_id/material_id when relevant, source_line_id</td><td>Only actual required events are included; one aggregated purchase need not be duplicated per task.</td></tr>
+<tr><td>RiskWork</td><td>PurchasingEnvelope, required events, assessed risks if available</td><td>G51/G52 keep enough data to assemble the final batch.</td></tr>
+<tr><td>ReportView</td><td>batch IDs, filtered display tables, required trace closure, immutable snapshots</td><td>Filters affect display rows, not historical calculation.</td></tr>
+<tr><td>CsvDocument</td><td>table_kind, filename, UTF-8 content, ordered column names</td><td>CSV uses saved values and includes stable identifiers.</td></tr>
+<tr><td>PresentationWork</td><td>saved records, query/filter context, ReportView, optional CsvDocument, response status, issues</td><td>G66 bypasses CSV encoding for VIEW/LIST; G65 carries the selected representation.</td></tr>
+</tbody></table></div>
+<h2 id="sec33">Query refinement</h2>
+<p>CSV requests add an explicit table_kind selector to E1 QueryRequest: MAKE, PURCHASE, ALLOCATION, TRACE or RISK. VIEW and LIST require no selector and bypass M65. PlanResponse.csv holds one requested CSV table; its export_columns describe that table. This is a presentation refinement, not a new business calculation. A later multi-file export can call the same procedure repeatedly.</p>
+<h2 id="sec34">6 Data ownership and storage</h2>
+<p>This is a proposed relational storage layout. Python and SQLite remain an implementation option, not a confirmed course constraint. Table descriptions define responsibilities and keys; no database has been created by this design.</p>
+<h2 id="sec35">Source data and revisions</h2>
+<p>Master-data edits use copy-on-write revisions to make consistent snapshots straightforward for a small course project. A source transaction creates a new revision, copies unchanged rows, applies validated upserts, checks the expected old head, and switches the head only at commit. A conflict returns SOURCE_CONFLICT for explicit reload; no silent lost update. Old revisions are retained while referenced by history. This trades additional storage for simpler traceability; optimize only after measurement.</p>
+<div class="table-wrap"><table><thead><tr><th>Table</th><th>Key</th><th>Fields and constraints</th><th>Owner</th></tr></thead><tbody>
+<tr><td>source_revision</td><td>revision_id</td><td>created_at; optional parent_revision_id. Immutable after creation.</td><td>M14</td></tr>
+<tr><td>source_head</td><td>singleton_id = 1</td><td>current_revision_id references source_revision; compare-and-swap within commit.</td><td>M14</td></tr>
+<tr><td>material</td><td>(revision_id, material_id)</td><td>name, supply_type, unit, lead_time_days, min_purchase_qty, purchase_multiple; E1 domains.</td><td>M14</td></tr>
+<tr><td>bom_edge</td><td>(revision_id, parent_id, child_id)</td><td>qty_per &gt; 0; both references use the same revision; graph cycles checked by procedures.</td><td>M14</td></tr>
+<tr><td>inventory_snapshot</td><td>(revision_id, snapshot_date, material_id)</td><td>on_hand &gt;= reserved &gt;= 0; material reference in the same revision.</td><td>M14</td></tr>
+<tr><td>production_task</td><td>(revision_id, task_id)</td><td>product_id, required_qty &gt; 0, due_date, priority in 1/2/3. Run selection is not a stock reservation.</td><td>M14</td></tr>
+<tr><td>plan_batch</td><td>batch_id</td><td>created_at, source_revision_id, rule_version, baseline_date, status=SAVED, result_document.</td><td>M62</td></tr>
+</tbody></table></div>
+<h2 id="sec36">Canonical saved result</h2>
+<p>result_document is a canonical UTF-8 serialized CalculatedBatch document containing its complete source and rule snapshots, every netted demand, origin, allocation, manufacturing line, BUY shortage, purchase bucket, surplus link, risk and summary. E1 BatchRecord metadata wraps it. Preserve exact integers and date text; do not convert quantities to floating point during serialization. Collection ordering is deterministic.</p>
+<p>One saved batch is one atomic record; do not split successful metadata from partially saved details. A write transaction either commits the whole document or rolls back. Future normalized result indexes must remain derived views of this canonical record. The current design reads and filters that saved document, which is sufficient as a proposed design for the stated coursework dataset; performance has not been measured.</p>
+<p>A batch stores its own calculation snapshot even if the referenced master-data revision is later unavailable. Therefore historical export and source explanation do not depend on current master data.</p>
+<h2 id="sec37">Data lifetime</h2>
+<p>D1 corresponds to source revisions and the current head. D2 corresponds to immutable plan batches. D3 BalanceMap and D4 surplus lots exist only inside one calculation and are discarded afterward. Saving a batch never writes inventory_snapshot or creates a real purchase order.</p>
+<p>M21 reads the source head and matching rows in the same read transaction. The later planning calculation uses the frozen copy, so a subsequent maintenance edit does not change that run. M63 reads D2, not the current source head.</p>
+<h2 id="sec38">Representation and error policy</h2>
+<p>IDs remain case-sensitive; perform ordinal ordering in the application rather than relying on database locale collation. Dates must be validated as calendar dates in addition to database field constraints. Use parameterized persistence operations and explicit transactions. The repository parameter denotes a set of function adapters or an opaque connection passed to procedures; no repository class or inheritance is required.</p>
+<p>The internal arbitrary-precision integer model must survive the selected storage representation. If an implementation uses a bounded SQL integer, it must validate and report overflow, or store exact decimal text with exact parsing. Do not truncate a correct computed quantity. DATE_RANGE likewise aborts calculation without moving dates or saving partial results.</p>
+<h2 id="sec39">7 End to end design walkthrough</h2>
+<p>For CASE01, M20 freezes A demand 100 and the validated graph. M30 initializes A/B/C/D balances 0/20/50/100. A nets to 100 and creates B 200 and C 300. B nets to 180 and creates D 720. C nets to BUY 250; D nets to BUY 620. M40 groups those dated BUY residuals; with minimum 0 and multiple 1 the purchases remain 250 and 620. Calls to M52 give A start October 18, B start October 15, C order October 14 and D order October 10. M50 finds no date risk against October 1. Only then does M60/M62 save the complete calculated batch.</p>
+<p>For CASE04, M24 places the later-due priority-1 HIGH task before the earlier-due priority-2 LOW task. M30 retains the same balance map between tasks, so HIGH takes B 20, C 50 and D 100. M40 may list LOW purchase dates earlier without undoing that stock ownership. For CASE05, M42/M44 carry a planned excess of 7 from an October 10 purchase of 30 to the October 11 gap of 7, so M43 returns zero for the latter date. D3 remains separate from this D4 surplus.</p>
+<p>For a shared component with two parent paths, M23 supplies a parent-before-child order. M30 finishes both parents before M32 processes the child; M32 retains both origins. A naive depth-first immediate allocation would not guarantee the required earliest-date behavior, so it is not the selected control design.</p>
+<p>These are design walkthroughs against independent expected values, not software test results.</p>
+<h2 id="sec40">8 Traceability to later detailed design and testing</h2>
+<div class="table-wrap"><table><thead><tr><th>Requirement</th><th>Main procedures</th><th>Existing acceptance cases</th></tr></thead><tbody>
+<tr><td>FR01</td><td>M10-M15</td><td>CASE09</td></tr>
+<tr><td>FR02</td><td>M20, M22, M24, M25</td><td>CASE04, CASE11</td></tr>
+<tr><td>FR03</td><td>M22, M23</td><td>CASE09</td></tr>
+<tr><td>FR04</td><td>M30, M32, M34, M35, M36</td><td>CASE01, CASE07</td></tr>
+<tr><td>FR05</td><td>M31, M33</td><td>CASE04, CASE06, CASE11</td></tr>
+<tr><td>FR06</td><td>M40-M45</td><td>CASE03, CASE05</td></tr>
+<tr><td>FR07</td><td>M34, M44, M50-M54</td><td>CASE02, CASE08</td></tr>
+<tr><td>FR08</td><td>M60-M66</td><td>CASE10</td></tr>
+</tbody></table></div>
+<p>E3 will specify algorithms and pseudocode, using the required detailed-design diagram types. Suitable functions include M23, M32, M33, M34, M42, M43, M52 and M62. The required number depends on actual N. E4 must later exercise the required five coverage criteria for selected modules; E5 must apply equivalence classes and boundary values. No design check is counted as those runtime tests.</p>
+<h2 id="sec41">9 Member task allocation</h2>
+<div class="table-wrap"><table><thead><tr><th>Actual member and ID</th><th>Assigned subsystem</th><th>Refined DFD and module chart</th><th>Interface/data work</th><th>Review evidence</th></tr></thead><tbody>
+<tr><td>[TO COMPLETE]</td><td>S1</td><td>[TO ASSIGN]</td><td>[TO ASSIGN]</td><td>[TO COMPLETE]</td></tr>
+<tr><td>[TO COMPLETE]</td><td>S2</td><td>[TO ASSIGN]</td><td>[TO ASSIGN]</td><td>[TO COMPLETE]</td></tr>
+<tr><td>[TO COMPLETE]</td><td>S3</td><td>[TO ASSIGN]</td><td>[TO ASSIGN]</td><td>[TO COMPLETE]</td></tr>
+<tr><td>[TO COMPLETE]</td><td>S4</td><td>[TO ASSIGN]</td><td>[TO ASSIGN]</td><td>[TO COMPLETE]</td></tr>
+<tr><td>[TO COMPLETE]</td><td>S5</td><td>[TO ASSIGN]</td><td>[TO ASSIGN]</td><td>[TO COMPLETE]</td></tr>
+<tr><td>[TO COMPLETE]</td><td>S6</td><td>[TO ASSIGN]</td><td>[TO ASSIGN]</td><td>[TO COMPLETE]</td></tr>
+</tbody></table></div>
+<p>Rows represent six responsibility areas, not six asserted group members. One member may own multiple areas; every actual member needs attributable work.</p>
+<h2 id="sec42">10 Actual review meeting record</h2>
+<p>Meeting date/time [TO COMPLETE]; location/channel [TO COMPLETE]; attendees [TO COMPLETE]; reviewed version [TO COMPLETE]. No meeting has been claimed by this draft.</p>
+<div class="table-wrap"><table><thead><tr><th>Review question</th><th>Actual finding</th><th>Owner and correction evidence</th></tr></thead><tbody>
+<tr><td>Are subsystem and chart counts at least N?</td><td>[TO COMPLETE]</td><td>[TO COMPLETE]</td></tr>
+<tr><td>Does every primitive DFD process map to a callable function?</td><td>[TO COMPLETE]</td><td>[TO COMPLETE]</td></tr>
+<tr><td>Do data couples, flows and interface types agree?</td><td>[TO COMPLETE]</td><td>[TO COMPLETE]</td></tr>
+<tr><td>Can stock or planned surplus be consumed twice?</td><td>[TO COMPLETE]</td><td>[TO COMPLETE]</td></tr>
+<tr><td>Are task-priority order and purchase-date order kept separate?</td><td>[TO COMPLETE]</td><td>[TO COMPLETE]</td></tr>
+<tr><td>Are error handling, snapshot history and atomic save unambiguous?</td><td>[TO COMPLETE]</td><td>[TO COMPLETE]</td></tr>
+</tbody></table></div>
+<h2 id="sec43">11 Individual contribution record</h2>
+<p>For each actual member, record name and student ID [TO COMPLETE], assigned subsystem [TO COMPLETE], diagrams/procedures analyzed [TO COMPLETE], design decisions and sources studied [TO COMPLETE], review corrections [TO COMPLETE], and concrete evidence [TO COMPLETE]. Do not replace actual work with generic contribution claims.</p>
+<h2 id="sec44">12 Verification and remaining work</h2>
+<p>252 structural checks passed for this document model. Application behavior, performance, E4 coverage and E5 system tests have not been executed. Before submission complete the actual member information, assumptions review, all-member meeting and teacher clarification. The current deliverable is a reviewable E2 design draft.</p></main></body></html>

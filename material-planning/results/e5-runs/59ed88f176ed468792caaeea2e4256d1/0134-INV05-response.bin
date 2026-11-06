@@ -1,0 +1,1 @@
+{"request_id": "E5", "status": "INVALID", "result": null, "errors": [{"code": "BOM_CYCLE", "severity": "BLOCKING", "source_location": "bom", "message": "Cycle prevents ordering; affected materials: P, R", "task_id": null, "material_id": null, "computed_date": null, "days_before_baseline": null}]}

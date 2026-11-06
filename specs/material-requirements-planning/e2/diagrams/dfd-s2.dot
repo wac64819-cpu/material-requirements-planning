@@ -1,0 +1,25 @@
+digraph G {
+graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.45", ranksep="0.85", splines=polyline, label="S2   Refined snapshot and BOM validation", labelloc=t, fontsize=24, fontname="Arial"];
+node [shape=box, fontname="Arial", fontsize=16, margin="0.16,0.12", color="#334155", penwidth=1.4];
+edge [fontname="Arial", fontsize=12, color="#475569", arrowsize=0.75];
+"EP" [label="Production planner", shape=box, style="filled", fillcolor="#f1f5f9"];
+"D1" [label="D1\nSource data", shape=record, style="filled", fillcolor="#fff8e8"];
+"P2.2" [label="P2.2 Net and expand", shape=box, style="filled", fillcolor="#f1f5f9"];
+"P3" [label="P3 Publish results", shape=box, style="filled", fillcolor="#f1f5f9"];
+"B1a" [label="B1a\nRead consistent source", shape=box, style="rounded,filled", fillcolor="#edf5ff"];
+"B1b" [label="B1b\nValidate selected fields", shape=box, style="rounded,filled", fillcolor="#edf5ff"];
+"B2" [label="B2\nValidate graph", shape=box, style="rounded,filled", fillcolor="#edf5ff"];
+"B3" [label="B3\nOrder tasks", shape=box, style="rounded,filled", fillcolor="#edf5ff"];
+"B4" [label="B4\nFreeze context", shape=box, style="rounded,filled", fillcolor="#edf5ff"];
+"B5" [label="B5\nBuild invalid outcome", shape=box, style="rounded,filled", fillcolor="#edf5ff"];
+"EP" -> "B1a" [label="F03"];
+"D1" -> "B1a" [label="F08"];
+"B1b" -> "B2" [label="G21"];
+"B1b" -> "B5" [label="G24"];
+"B2" -> "B3" [label="G23"];
+"B2" -> "B5" [label="G24"];
+"B3" -> "B4" [label="G22"];
+"B4" -> "P2.2" [label="F12"];
+"B5" -> "P3" [label="F09.invalid"];
+"B1a" -> "B1b" [label="G25"];
+}

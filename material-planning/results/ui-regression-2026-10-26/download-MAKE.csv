@@ -1,0 +1,5 @@
+﻿batch_id,line_id,task_id,material_id,gross_qty,allocated_qty,make_qty,needed_date,start_date
+dd650453eabd40d4948ef0850e5ba785,"[""make"",""HIGH"",""A"",""2026-10-21""]",HIGH,A,60,0,60,2026-10-21,2026-10-19
+dd650453eabd40d4948ef0850e5ba785,"[""make"",""HIGH"",""B"",""2026-10-19""]",HIGH,B,120,20,100,2026-10-19,2026-10-16
+dd650453eabd40d4948ef0850e5ba785,"[""make"",""LOW"",""A"",""2026-10-20""]",LOW,A,100,0,100,2026-10-20,2026-10-18
+dd650453eabd40d4948ef0850e5ba785,"[""make"",""LOW"",""B"",""2026-10-18""]",LOW,B,200,0,200,2026-10-18,2026-10-15

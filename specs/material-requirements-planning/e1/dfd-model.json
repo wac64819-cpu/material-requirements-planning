@@ -1,0 +1,1004 @@
+{
+  "flows": {
+    "F01": [
+      "Maintenance submission",
+      "MaintenanceSubmission",
+      "Data clerk -> P1",
+      "A submitted dataset and its input location; never silently round invalid quantities."
+    ],
+    "F02": [
+      "Maintenance outcome",
+      "MaintenanceOutcome",
+      "P1 -> Data clerk",
+      "Accepted record counts or located errors. Proposed import policy: validate the entire submission before committing it."
+    ],
+    "F03": [
+      "Planning request",
+      "PlanningRequest",
+      "Planner -> P2 / P2.1",
+      "Selected task IDs, baseline date and rule version; reject an empty selection."
+    ],
+    "F04": [
+      "Query and export request",
+      "QueryRequest",
+      "Planner -> P3",
+      "A saved batch, optional filters, and VIEW or CSV output mode."
+    ],
+    "F05": [
+      "Plan response",
+      "PlanResponse",
+      "P3 -> Planner",
+      "Saved results, history views, export data, or located errors. Never label a failed save as successful."
+    ],
+    "F06": [
+      "Accepted source records",
+      "SourceSet",
+      "P1 -> D1",
+      "Validated source updates. Only maintenance changes source data."
+    ],
+    "F07": [
+      "Existing source records",
+      "SourceSet",
+      "D1 -> P1",
+      "Current records for uniqueness, reference and update checks."
+    ],
+    "F08": [
+      "Planning source records",
+      "SourceSet",
+      "D1 -> P2 / P2.1",
+      "One consistent read of selected tasks and their reachable materials, BOM and stock."
+    ],
+    "F09": [
+      "Calculation outcome",
+      "CalculationOutcome",
+      "P2 / P2.1 / P2.3 -> P3",
+      "Tagged union: INVALID with errors, or VALID with a complete calculated batch. F09.invalid and F09.valid denote its alternatives."
+    ],
+    "F10": [
+      "Immutable batch record",
+      "BatchRecord",
+      "P3 -> D2",
+      "Successful results plus complete input and rule snapshots, written atomically. No actual inventory update."
+    ],
+    "F11": [
+      "Historical batch records",
+      "List[BatchRecord]",
+      "D2 -> P3",
+      "Saved snapshots and matching results used for history, trace and CSV."
+    ],
+    "F12": [
+      "Validated planning context",
+      "Context",
+      "P2.1 -> P2.2 / P2.2.1",
+      "Valid selected data, deterministic task order, initial availability and rule snapshot."
+    ],
+    "F13": [
+      "Net requirements bundle",
+      "NetBundle",
+      "P2.2 / P2.2.3 -> P2.3",
+      "Complete context, net manufacturing requirements, dated BUY shortages, demand provenance and allocation ledger."
+    ],
+    "F14": [
+      "Allocation candidates",
+      "CandidateEnvelope",
+      "P2.2.1 -> P2.2.2",
+      "Context plus ordered, merged task-material-date demand buckets with every contributing source."
+    ],
+    "F15": [
+      "Working stock updates",
+      "List[Balance]",
+      "P2.2.2 -> D3",
+      "Replacement batch balances after allocation; nonnegative and isolated from actual stock."
+    ],
+    "F16": [
+      "Working stock balances",
+      "List[Balance]",
+      "D3 -> P2.2.2",
+      "Current batch balances before allocation, indexed by material."
+    ],
+    "F17": [
+      "Initial working balances",
+      "List[Balance]",
+      "P2.2.1 -> D3",
+      "Available stock initialized once per batch from on_hand minus reserved."
+    ],
+    "F18": [
+      "Netted demand records",
+      "NettedEnvelope",
+      "P2.2.2 -> P2.2.3",
+      "Context, demands with allocation and residual quantities, and their allocation records."
+    ],
+    "F19": [
+      "Child demand records",
+      "List[Demand]",
+      "P2.2.3 -> P2.2.1",
+      "New child requests from positive MAKE residuals; child date equals parent planned start."
+    ]
+  },
+  "stores": [
+    [
+      "D1",
+      "Source data",
+      "SourceSet",
+      "P1 writes; P1 and P2.1 read",
+      "Material, BOM, task and inventory data. No planning process writes to this store."
+    ],
+    [
+      "D2",
+      "Saved plan batches",
+      "List[BatchRecord]",
+      "P3 writes and reads",
+      "All-or-nothing saved input snapshots and output history."
+    ],
+    [
+      "D3",
+      "Working stock",
+      "List[Balance]",
+      "P2.2.1 initializes; P2.2.2 reads and updates",
+      "Transient, private to one calculation; introduced inside P2.2, not a new parent boundary."
+    ]
+  ],
+  "diagrams": [
+    {
+      "id": "tier-0",
+      "title": "Tier 0   System context",
+      "parent": null,
+      "nodes": [
+        {
+          "id": "EC",
+          "label": "Material data clerk",
+          "x": 70,
+          "y": 300,
+          "w": 260,
+          "h": 130,
+          "kind": "entity"
+        },
+        {
+          "id": "P0",
+          "label": "P0\nPlan material requirements",
+          "x": 630,
+          "y": 300,
+          "w": 340,
+          "h": 160,
+          "kind": "process"
+        },
+        {
+          "id": "EP",
+          "label": "Production planner",
+          "x": 1250,
+          "y": 300,
+          "w": 280,
+          "h": 160,
+          "kind": "entity"
+        }
+      ],
+      "edges": [
+        {
+          "src": "EC",
+          "dst": "P0",
+          "flow": "F01",
+          "points": [
+            [
+              330,
+              330
+            ],
+            [
+              630,
+              330
+            ]
+          ],
+          "label": [
+            470,
+            311
+          ]
+        },
+        {
+          "src": "P0",
+          "dst": "EC",
+          "flow": "F02",
+          "points": [
+            [
+              630,
+              400
+            ],
+            [
+              330,
+              400
+            ]
+          ],
+          "label": [
+            470,
+            382
+          ]
+        },
+        {
+          "src": "EP",
+          "dst": "P0",
+          "flow": "F03",
+          "points": [
+            [
+              1250,
+              320
+            ],
+            [
+              970,
+              320
+            ]
+          ],
+          "label": [
+            1105,
+            301
+          ]
+        },
+        {
+          "src": "EP",
+          "dst": "P0",
+          "flow": "F04",
+          "points": [
+            [
+              1250,
+              370
+            ],
+            [
+              970,
+              370
+            ]
+          ],
+          "label": [
+            1105,
+            351
+          ]
+        },
+        {
+          "src": "P0",
+          "dst": "EP",
+          "flow": "F05",
+          "points": [
+            [
+              970,
+              430
+            ],
+            [
+              1250,
+              430
+            ]
+          ],
+          "label": [
+            1105,
+            411
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tier-1",
+      "title": "Tier 1   Source data calculation and results",
+      "parent": "P0",
+      "nodes": [
+        {
+          "id": "EC",
+          "label": "Material data clerk",
+          "x": 40,
+          "y": 140,
+          "w": 250,
+          "h": 120,
+          "kind": "entity"
+        },
+        {
+          "id": "P1",
+          "label": "P1\nMaintain source data",
+          "x": 470,
+          "y": 140,
+          "w": 270,
+          "h": 115,
+          "kind": "process"
+        },
+        {
+          "id": "D1",
+          "label": "D1   Source data",
+          "x": 470,
+          "y": 455,
+          "w": 270,
+          "h": 100,
+          "kind": "store"
+        },
+        {
+          "id": "P2",
+          "label": "P2\nCalculate plan",
+          "x": 905,
+          "y": 435,
+          "w": 270,
+          "h": 115,
+          "kind": "process"
+        },
+        {
+          "id": "EP",
+          "label": "Production planner",
+          "x": 905,
+          "y": 130,
+          "w": 270,
+          "h": 120,
+          "kind": "entity"
+        },
+        {
+          "id": "P3",
+          "label": "P3\nPublish and retain results",
+          "x": 905,
+          "y": 720,
+          "w": 310,
+          "h": 115,
+          "kind": "process"
+        },
+        {
+          "id": "EP2",
+          "label": "Production planner\nsame entity",
+          "x": 40,
+          "y": 720,
+          "w": 280,
+          "h": 115,
+          "kind": "entity"
+        },
+        {
+          "id": "D2",
+          "label": "D2   Saved batches",
+          "x": 1300,
+          "y": 725,
+          "w": 270,
+          "h": 105,
+          "kind": "store"
+        }
+      ],
+      "edges": [
+        {
+          "src": "EC",
+          "dst": "P1",
+          "flow": "F01",
+          "points": [
+            [
+              290,
+              175
+            ],
+            [
+              470,
+              175
+            ]
+          ],
+          "label": [
+            380,
+            156
+          ]
+        },
+        {
+          "src": "P1",
+          "dst": "EC",
+          "flow": "F02",
+          "points": [
+            [
+              470,
+              225
+            ],
+            [
+              290,
+              225
+            ]
+          ],
+          "label": [
+            380,
+            206
+          ]
+        },
+        {
+          "src": "P1",
+          "dst": "D1",
+          "flow": "F06",
+          "points": [
+            [
+              550,
+              255
+            ],
+            [
+              550,
+              455
+            ]
+          ],
+          "label": [
+            520,
+            353
+          ]
+        },
+        {
+          "src": "D1",
+          "dst": "P1",
+          "flow": "F07",
+          "points": [
+            [
+              660,
+              455
+            ],
+            [
+              660,
+              255
+            ]
+          ],
+          "label": [
+            693,
+            353
+          ]
+        },
+        {
+          "src": "D1",
+          "dst": "P2",
+          "flow": "F08",
+          "points": [
+            [
+              740,
+              500
+            ],
+            [
+              905,
+              500
+            ]
+          ],
+          "label": [
+            822,
+            478
+          ]
+        },
+        {
+          "src": "EP",
+          "dst": "P2",
+          "flow": "F03",
+          "points": [
+            [
+              1040,
+              250
+            ],
+            [
+              1040,
+              435
+            ]
+          ],
+          "label": [
+            1071,
+            345
+          ]
+        },
+        {
+          "src": "P2",
+          "dst": "P3",
+          "flow": "F09",
+          "points": [
+            [
+              1040,
+              550
+            ],
+            [
+              1040,
+              720
+            ]
+          ],
+          "label": [
+            1072,
+            635
+          ]
+        },
+        {
+          "src": "EP2",
+          "dst": "P3",
+          "flow": "F04",
+          "points": [
+            [
+              320,
+              753
+            ],
+            [
+              905,
+              753
+            ]
+          ],
+          "label": [
+            620,
+            733
+          ]
+        },
+        {
+          "src": "P3",
+          "dst": "EP2",
+          "flow": "F05",
+          "points": [
+            [
+              905,
+              806
+            ],
+            [
+              320,
+              806
+            ]
+          ],
+          "label": [
+            620,
+            788
+          ]
+        },
+        {
+          "src": "P3",
+          "dst": "D2",
+          "flow": "F10",
+          "points": [
+            [
+              1215,
+              755
+            ],
+            [
+              1300,
+              755
+            ]
+          ],
+          "label": [
+            1256,
+            734
+          ]
+        },
+        {
+          "src": "D2",
+          "dst": "P3",
+          "flow": "F11",
+          "points": [
+            [
+              1300,
+              810
+            ],
+            [
+              1215,
+              810
+            ]
+          ],
+          "label": [
+            1256,
+            792
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tier-2",
+      "title": "Tier 2   Decomposition of P2 Calculate plan",
+      "parent": "P2",
+      "nodes": [
+        {
+          "id": "EP",
+          "label": "Production planner",
+          "x": 45,
+          "y": 110,
+          "w": 270,
+          "h": 110,
+          "kind": "entity"
+        },
+        {
+          "id": "D1",
+          "label": "D1   Source data",
+          "x": 45,
+          "y": 410,
+          "w": 270,
+          "h": 100,
+          "kind": "store"
+        },
+        {
+          "id": "P2.1",
+          "label": "P2.1\nValidate and snapshot",
+          "x": 485,
+          "y": 260,
+          "w": 310,
+          "h": 130,
+          "kind": "process"
+        },
+        {
+          "id": "P2.2",
+          "label": "P2.2\nNet and expand demands",
+          "x": 1030,
+          "y": 260,
+          "w": 320,
+          "h": 130,
+          "kind": "process"
+        },
+        {
+          "id": "P2.3",
+          "label": "P2.3\nPlan purchases and risks",
+          "x": 1030,
+          "y": 635,
+          "w": 320,
+          "h": 130,
+          "kind": "process"
+        },
+        {
+          "id": "P3",
+          "label": "P3   Publish results\noutside P2",
+          "x": 475,
+          "y": 635,
+          "w": 320,
+          "h": 130,
+          "kind": "boundary"
+        }
+      ],
+      "edges": [
+        {
+          "src": "EP",
+          "dst": "P2.1",
+          "flow": "F03",
+          "points": [
+            [
+              315,
+              165
+            ],
+            [
+              635,
+              165
+            ],
+            [
+              635,
+              260
+            ]
+          ],
+          "label": [
+            440,
+            147
+          ]
+        },
+        {
+          "src": "D1",
+          "dst": "P2.1",
+          "flow": "F08",
+          "points": [
+            [
+              315,
+              460
+            ],
+            [
+              420,
+              460
+            ],
+            [
+              420,
+              325
+            ],
+            [
+              485,
+              325
+            ]
+          ],
+          "label": [
+            370,
+            442
+          ]
+        },
+        {
+          "src": "P2.1",
+          "dst": "P2.2",
+          "flow": "F12",
+          "points": [
+            [
+              795,
+              325
+            ],
+            [
+              1030,
+              325
+            ]
+          ],
+          "label": [
+            913,
+            303
+          ]
+        },
+        {
+          "src": "P2.2",
+          "dst": "P2.3",
+          "flow": "F13",
+          "points": [
+            [
+              1190,
+              390
+            ],
+            [
+              1190,
+              635
+            ]
+          ],
+          "label": [
+            1224,
+            510
+          ]
+        },
+        {
+          "src": "P2.1",
+          "dst": "P3",
+          "flow": "F09.invalid",
+          "points": [
+            [
+              635,
+              390
+            ],
+            [
+              635,
+              635
+            ]
+          ],
+          "label": [
+            716,
+            515
+          ]
+        },
+        {
+          "src": "P2.3",
+          "dst": "P3",
+          "flow": "F09.valid",
+          "points": [
+            [
+              1030,
+              700
+            ],
+            [
+              795,
+              700
+            ]
+          ],
+          "label": [
+            913,
+            679
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tier-3",
+      "title": "Tier 3   Decomposition of P2.2 Net and expand demands",
+      "parent": "P2.2",
+      "nodes": [
+        {
+          "id": "P2.1",
+          "label": "P2.1   Validate\noutside P2.2",
+          "x": 35,
+          "y": 145,
+          "w": 270,
+          "h": 120,
+          "kind": "boundary"
+        },
+        {
+          "id": "P2.2.1",
+          "label": "P2.2.1\nOrganize demand buckets",
+          "x": 495,
+          "y": 145,
+          "w": 300,
+          "h": 120,
+          "kind": "process"
+        },
+        {
+          "id": "P2.2.2",
+          "label": "P2.2.2\nAllocate working stock",
+          "x": 1080,
+          "y": 145,
+          "w": 310,
+          "h": 120,
+          "kind": "process"
+        },
+        {
+          "id": "D3",
+          "label": "D3   Working stock\ntransient",
+          "x": 735,
+          "y": 410,
+          "w": 300,
+          "h": 110,
+          "kind": "store"
+        },
+        {
+          "id": "P2.2.3",
+          "label": "P2.2.3\nExpand net MAKE demand",
+          "x": 1080,
+          "y": 700,
+          "w": 310,
+          "h": 130,
+          "kind": "process"
+        },
+        {
+          "id": "P2.3",
+          "label": "P2.3   Purchases\noutside P2.2",
+          "x": 495,
+          "y": 700,
+          "w": 300,
+          "h": 130,
+          "kind": "boundary"
+        }
+      ],
+      "edges": [
+        {
+          "src": "P2.1",
+          "dst": "P2.2.1",
+          "flow": "F12",
+          "points": [
+            [
+              305,
+              205
+            ],
+            [
+              495,
+              205
+            ]
+          ],
+          "label": [
+            400,
+            184
+          ]
+        },
+        {
+          "src": "P2.2.1",
+          "dst": "P2.2.2",
+          "flow": "F14",
+          "points": [
+            [
+              795,
+              205
+            ],
+            [
+              1080,
+              205
+            ]
+          ],
+          "label": [
+            937,
+            184
+          ]
+        },
+        {
+          "src": "P2.2.1",
+          "dst": "D3",
+          "flow": "F17",
+          "points": [
+            [
+              645,
+              265
+            ],
+            [
+              645,
+              460
+            ],
+            [
+              735,
+              460
+            ]
+          ],
+          "label": [
+            682,
+            377
+          ]
+        },
+        {
+          "src": "P2.2.2",
+          "dst": "D3",
+          "flow": "F15",
+          "points": [
+            [
+              1160,
+              265
+            ],
+            [
+              1160,
+              435
+            ],
+            [
+              1035,
+              435
+            ]
+          ],
+          "label": [
+            1191,
+            360
+          ]
+        },
+        {
+          "src": "D3",
+          "dst": "P2.2.2",
+          "flow": "F16",
+          "points": [
+            [
+              935,
+              410
+            ],
+            [
+              935,
+              315
+            ],
+            [
+              1080,
+              315
+            ],
+            [
+              1080,
+              240
+            ]
+          ],
+          "label": [
+            969,
+            293
+          ]
+        },
+        {
+          "src": "P2.2.2",
+          "dst": "P2.2.3",
+          "flow": "F18",
+          "points": [
+            [
+              1290,
+              265
+            ],
+            [
+              1290,
+              700
+            ]
+          ],
+          "label": [
+            1322,
+            526
+          ]
+        },
+        {
+          "src": "P2.2.3",
+          "dst": "P2.2.1",
+          "flow": "F19",
+          "points": [
+            [
+              1080,
+              790
+            ],
+            [
+              1020,
+              790
+            ],
+            [
+              1020,
+              855
+            ],
+            [
+              20,
+              855
+            ],
+            [
+              20,
+              105
+            ],
+            [
+              645,
+              105
+            ],
+            [
+              645,
+              145
+            ]
+          ],
+          "label": [
+            59,
+            570
+          ]
+        },
+        {
+          "src": "P2.2.3",
+          "dst": "P2.3",
+          "flow": "F13",
+          "points": [
+            [
+              1080,
+              735
+            ],
+            [
+              795,
+              735
+            ]
+          ],
+          "label": [
+            938,
+            712
+          ]
+        }
+      ]
+    }
+  ]
+}

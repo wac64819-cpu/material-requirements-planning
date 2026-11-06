@@ -1,0 +1,14 @@
+digraph G {
+graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.45", ranksep="0.85", splines=polyline, label="S5   Calendar and timing risk", labelloc=t, fontsize=24, fontname="Arial"];
+node [shape=box, fontname="Arial", fontsize=16, margin="0.16,0.12", color="#334155", penwidth=1.4];
+edge [fontname="Arial", fontsize=12, color="#475569", arrowsize=0.75];
+"M50" [label="M50\ncomplete plan", style="filled", fillcolor="#edf5ff"];
+"M51" [label="M51\ncollect required dates", style="filled", fillcolor="#ffffff"];
+"M53" [label="M53\nflag early dates", style="filled", fillcolor="#ffffff"];
+"M54" [label="M54\nassemble calculated\nbatch", style="filled", fillcolor="#ffffff"];
+"M50" -> "M51" [label="I/M51   O/M51"];
+"M50" -> "M53" [label="I/M53   O/M53"];
+"M50" -> "M54" [label="I/M54   O/M54"];
+"M52" [label="M52\nsubtract calendar days\nExported calendar helper",style="filled",fillcolor="#f1f5f9"];
+"M50" -> "M52" [style=dotted,arrowhead=none,label="ownership only; called by M34 and M44"];
+}

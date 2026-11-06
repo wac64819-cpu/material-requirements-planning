@@ -1,0 +1,92 @@
+{
+  "executed_at": "2026-10-22T04:26:41.137Z",
+  "passed": 14,
+  "total": 14,
+  "checks": [
+    {
+      "name": "First save creates source version",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Reload restores saved edit",
+      "actual": "成品甲",
+      "expected": "成品甲",
+      "passed": true
+    },
+    {
+      "name": "Plan saved badge shown",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "History shows old LOW quantity",
+      "actual": "100",
+      "expected": "100",
+      "passed": true
+    },
+    {
+      "name": "History does not replace current edit",
+      "actual": "10",
+      "expected": "10",
+      "passed": true
+    },
+    {
+      "name": "History includes original source snapshot",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Conflict keeps unsaved local edit",
+      "actual": "另一页面的编辑",
+      "expected": "另一页面的编辑",
+      "passed": true
+    },
+    {
+      "name": "Conflict does not overwrite database",
+      "actual": "成品甲",
+      "expected": "成品甲",
+      "passed": true
+    },
+    {
+      "name": "Invalid save keeps previous data",
+      "actual": 10,
+      "expected": 10,
+      "passed": true
+    },
+    {
+      "name": "Explicit reload restores valid data",
+      "actual": "10",
+      "expected": "10",
+      "passed": true
+    },
+    {
+      "name": "Server restart restores source",
+      "actual": "成品甲",
+      "expected": "成品甲",
+      "passed": true
+    },
+    {
+      "name": "Server restart preserves history",
+      "actual": "e8d8cbeeaf4848f0bfa65d93b9df3451",
+      "expected": "e8d8cbeeaf4848f0bfa65d93b9df3451",
+      "passed": true
+    },
+    {
+      "name": "Persistence toolbar and history fit mobile",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "No unhandled page errors",
+      "actual": [],
+      "expected": [],
+      "passed": true
+    }
+  ],
+  "scope": "Isolated temporary SQLite, real browser and server restart. User database untouched."
+}

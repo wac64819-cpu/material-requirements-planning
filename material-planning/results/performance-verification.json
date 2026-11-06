@@ -1,0 +1,558 @@
+{
+  "executed_at": "2026-10-12T23:36:16.297038+08:00",
+  "environment": {
+    "python": "3.12.14",
+    "os": "Windows-11-10.0.26200-SP0",
+    "cpu": "Intel(R) Core(TM) i7-14650HX",
+    "logical_cpus": 24,
+    "sqlite": "3.53.1"
+  },
+  "method": {
+    "warmups_per_case": 1,
+    "measured_core_runs": 5,
+    "adapter_runs": 3,
+    "core_target_seconds": 10,
+    "gc_enabled": true,
+    "depth_definition": "Longest root-to-leaf path, counted in BOM edges",
+    "core_scope": "calculate_plan including validation and complete trace results; excludes I/O and checking",
+    "adapter_scope": "WSGI call including JSON parsing, calculate, SQLite commit and response JSON; excludes network/browser",
+    "limitations": "Two fixed DAG topologies on this machine; not a worst-case guarantee, load test or browser timing"
+  },
+  "source_sha256": {
+    "performance_data.py": "60c356971d58074e076462fea120ac576d674311caf1f007a1bc02e77f4a75c9",
+    "verify_performance.py": "b746bdf96e64740a3958a0e0feeeb533e5bd9a64a45df282997eaa9e700184a7",
+    "core.py": "01f67b289617224e6b10e39b189482f32806580538c7c6208c1496f0cd658ca8",
+    "planner.py": "b6879011d10f9b2218ebdaf4c498edb4bf357234604eaa2612642541adfd8caf",
+    "storage.py": "56d2e978975d4e94420dadb60f25360eaed510c0788d2c54b2f113b01434cea3",
+    "web_server.py": "b67e8e80ffa38b5c8d75288633cb9963cabb7cb22b974c6b6f1008aad25fc661",
+    "csv_io.py": "d6150f390f4aaa33f7ccba40867ba5474a1c7126de1b88a6e974c881814260c3"
+  },
+  "cases": [
+    {
+      "case": "shared-stock",
+      "input_sha256": "dc11d5fdfeeef6fff6498a01d107bef22971dbe32a227b774b3dc1cae91bd0cf",
+      "input_file": "performance-shared-stock.json",
+      "facts": {
+        "materials": 200,
+        "bom_edges": 500,
+        "tasks": 100,
+        "selected_tasks": 100,
+        "all_materials_reachable": true,
+        "acyclic": true,
+        "depth_edges": 3,
+        "potential_origin_rows_without_stock": 8845
+      },
+      "output_counts": {
+        "demands": 4823,
+        "origin_rows": 6844,
+        "allocations": 4823,
+        "task_count": 100,
+        "make_line_count": 1375,
+        "purchase_line_count": 1241,
+        "risk_count": 0
+      },
+      "core": {
+        "samples_seconds": [
+          0.240328199999567,
+          0.24006310000004305,
+          0.24147249999987253,
+          0.24090400000022782,
+          0.23863060000076075
+        ],
+        "min_seconds": 0.23863060000076075,
+        "median_seconds": 0.240328199999567,
+        "max_seconds": 0.24147249999987253
+      },
+      "adapter": {
+        "samples_seconds": [
+          0.5487550999987434,
+          0.5509498999999778,
+          0.5402199999989534
+        ],
+        "min_seconds": 0.5402199999989534,
+        "median_seconds": 0.5487550999987434,
+        "max_seconds": 0.5509498999999778
+      },
+      "response_bytes": 9281065,
+      "database_bytes_for_3_batches": 26517504,
+      "history_read_seconds": 0.07884139999987383,
+      "csv_exports": {
+        "MAKE": {
+          "seconds": 0.006311999999525142,
+          "bytes": 184720
+        },
+        "PURCHASE": {
+          "seconds": 0.03266259999873,
+          "bytes": 443985
+        },
+        "ALLOCATION": {
+          "seconds": 0.029262800000651623,
+          "bytes": 1061583
+        },
+        "TRACE": {
+          "seconds": 0.07792070000141393,
+          "bytes": 2088510
+        },
+        "RISK": {
+          "seconds": 0.00012590000005729962,
+          "bytes": 106
+        }
+      },
+      "passed": 23,
+      "total": 23,
+      "checks": [
+        {
+          "name": "Required scale",
+          "passed": true,
+          "actual": [
+            200,
+            500,
+            100,
+            100
+          ],
+          "expected": [
+            200,
+            500,
+            100,
+            100
+          ]
+        },
+        {
+          "name": "Every material is reached; BOM is acyclic",
+          "passed": true,
+          "actual": [
+            true,
+            true
+          ],
+          "expected": [
+            true,
+            true
+          ]
+        },
+        {
+          "name": "Longest path at selected fixture depth",
+          "passed": true,
+          "actual": 3,
+          "expected": 3
+        },
+        {
+          "name": "Warm-up returns valid plan",
+          "passed": true,
+          "actual": "VALID",
+          "expected": "VALID"
+        },
+        {
+          "name": "Every stock ledger balances and never double allocates",
+          "passed": true,
+          "actual": true,
+          "expected": true
+        },
+        {
+          "name": "Final balances reconcile with every stock ledger",
+          "passed": true,
+          "actual_sha256": "b4370fb363d1602bd5b88493a3315f596a08c15bcaa589cd7f8011fe85460855",
+          "expected_sha256": "b4370fb363d1602bd5b88493a3315f596a08c15bcaa589cd7f8011fe85460855"
+        },
+        {
+          "name": "Every demand equals allocated plus net and all origin contributions",
+          "passed": true,
+          "actual": true,
+          "expected": true
+        },
+        {
+          "name": "All 100 tasks use priority before due date",
+          "passed": true,
+          "actual_sha256": "4b921ee14287a1aef28f85cdf8c043a251d7aa9ac857a303f2992e2afda0537d",
+          "expected_sha256": "4b921ee14287a1aef28f85cdf8c043a251d7aa9ac857a303f2992e2afda0537d"
+        },
+        {
+          "name": "Purchases reconcile with shortages and final surplus",
+          "passed": true,
+          "actual_sha256": "c191efa5602bf2c8acc944b5fe5553893f9b473dc3f2a589926d659978c79e12",
+          "expected_sha256": "c191efa5602bf2c8acc944b5fe5553893f9b473dc3f2a589926d659978c79e12"
+        },
+        {
+          "name": "Surplus never moves backwards in time",
+          "passed": true,
+          "actual": true,
+          "expected": true
+        },
+        {
+          "name": "Timed result 1 equals the warm-up",
+          "passed": true,
+          "actual": "0349201091e91cc0c075f57a5f6bf634e8b37dfcecb63acbe95add64e928f2a0",
+          "expected": "0349201091e91cc0c075f57a5f6bf634e8b37dfcecb63acbe95add64e928f2a0"
+        },
+        {
+          "name": "Timed result 2 equals the warm-up",
+          "passed": true,
+          "actual": "0349201091e91cc0c075f57a5f6bf634e8b37dfcecb63acbe95add64e928f2a0",
+          "expected": "0349201091e91cc0c075f57a5f6bf634e8b37dfcecb63acbe95add64e928f2a0"
+        },
+        {
+          "name": "Timed result 3 equals the warm-up",
+          "passed": true,
+          "actual": "0349201091e91cc0c075f57a5f6bf634e8b37dfcecb63acbe95add64e928f2a0",
+          "expected": "0349201091e91cc0c075f57a5f6bf634e8b37dfcecb63acbe95add64e928f2a0"
+        },
+        {
+          "name": "Timed result 4 equals the warm-up",
+          "passed": true,
+          "actual": "0349201091e91cc0c075f57a5f6bf634e8b37dfcecb63acbe95add64e928f2a0",
+          "expected": "0349201091e91cc0c075f57a5f6bf634e8b37dfcecb63acbe95add64e928f2a0"
+        },
+        {
+          "name": "Timed result 5 equals the warm-up",
+          "passed": true,
+          "actual": "0349201091e91cc0c075f57a5f6bf634e8b37dfcecb63acbe95add64e928f2a0",
+          "expected": "0349201091e91cc0c075f57a5f6bf634e8b37dfcecb63acbe95add64e928f2a0"
+        },
+        {
+          "name": "Every measured core run completes within 10 seconds",
+          "passed": true,
+          "actual": true,
+          "expected": true
+        },
+        {
+          "name": "Calculation preserves input",
+          "passed": true,
+          "actual": "dc11d5fdfeeef6fff6498a01d107bef22971dbe32a227b774b3dc1cae91bd0cf",
+          "expected": "dc11d5fdfeeef6fff6498a01d107bef22971dbe32a227b774b3dc1cae91bd0cf"
+        },
+        {
+          "name": "Reversed table rows produce identical complete output",
+          "passed": true,
+          "actual": "0349201091e91cc0c075f57a5f6bf634e8b37dfcecb63acbe95add64e928f2a0",
+          "expected": "0349201091e91cc0c075f57a5f6bf634e8b37dfcecb63acbe95add64e928f2a0"
+        },
+        {
+          "name": "Adapter call 1 commits a complete batch",
+          "passed": true,
+          "actual": [
+            "200 OK",
+            "VALID",
+            true
+          ],
+          "expected": [
+            "200 OK",
+            "VALID",
+            true
+          ]
+        },
+        {
+          "name": "Adapter call 2 commits a complete batch",
+          "passed": true,
+          "actual": [
+            "200 OK",
+            "VALID",
+            true
+          ],
+          "expected": [
+            "200 OK",
+            "VALID",
+            true
+          ]
+        },
+        {
+          "name": "Adapter call 3 commits a complete batch",
+          "passed": true,
+          "actual": [
+            "200 OK",
+            "VALID",
+            true
+          ],
+          "expected": [
+            "200 OK",
+            "VALID",
+            true
+          ]
+        },
+        {
+          "name": "History exactly matches the saved result",
+          "passed": true,
+          "actual_sha256": "550f0e70036a528a42edae2c9cde953de8723e7adb52471ebf61e24901905b17",
+          "expected_sha256": "550f0e70036a528a42edae2c9cde953de8723e7adb52471ebf61e24901905b17"
+        },
+        {
+          "name": "Exactly three isolated history batches; workspace untouched",
+          "passed": true,
+          "actual": [
+            3,
+            null
+          ],
+          "expected": [
+            3,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "case": "deep-zero-stock",
+      "input_sha256": "0d2a4e88e893444148795c47d5d0526093fdeada2df86e858c64649a5154f61e",
+      "input_file": "performance-deep-zero-stock.json",
+      "facts": {
+        "materials": 200,
+        "bom_edges": 500,
+        "tasks": 100,
+        "selected_tasks": 100,
+        "all_materials_reachable": true,
+        "acyclic": true,
+        "depth_edges": 10,
+        "potential_origin_rows_without_stock": 5000
+      },
+      "output_counts": {
+        "demands": 5000,
+        "origin_rows": 5000,
+        "allocations": 5000,
+        "task_count": 100,
+        "make_line_count": 1000,
+        "purchase_line_count": 1478,
+        "risk_count": 0
+      },
+      "core": {
+        "samples_seconds": [
+          0.22615729999961331,
+          0.22191230000134965,
+          0.221915899999658,
+          0.22236549999979616,
+          0.23324619999948482
+        ],
+        "min_seconds": 0.22191230000134965,
+        "median_seconds": 0.22236549999979616,
+        "max_seconds": 0.23324619999948482
+      },
+      "adapter": {
+        "samples_seconds": [
+          0.5154775999999401,
+          0.5272402999999031,
+          0.548660700000255
+        ],
+        "min_seconds": 0.5154775999999401,
+        "median_seconds": 0.5272402999999031,
+        "max_seconds": 0.548660700000255
+      },
+      "response_bytes": 10049678,
+      "database_bytes_for_3_batches": 28864512,
+      "history_read_seconds": 0.10169499999938125,
+      "csv_exports": {
+        "MAKE": {
+          "seconds": 0.005309899999701884,
+          "bytes": 135871
+        },
+        "PURCHASE": {
+          "seconds": 0.03878670000085549,
+          "bytes": 500105
+        },
+        "ALLOCATION": {
+          "seconds": 0.0340567999992345,
+          "bytes": 1100104
+        },
+        "TRACE": {
+          "seconds": 0.07127949999994598,
+          "bytes": 2315005
+        },
+        "RISK": {
+          "seconds": 0.0001343000003544148,
+          "bytes": 106
+        }
+      },
+      "passed": 24,
+      "total": 24,
+      "checks": [
+        {
+          "name": "Required scale",
+          "passed": true,
+          "actual": [
+            200,
+            500,
+            100,
+            100
+          ],
+          "expected": [
+            200,
+            500,
+            100,
+            100
+          ]
+        },
+        {
+          "name": "Every material is reached; BOM is acyclic",
+          "passed": true,
+          "actual": [
+            true,
+            true
+          ],
+          "expected": [
+            true,
+            true
+          ]
+        },
+        {
+          "name": "Longest path at selected fixture depth",
+          "passed": true,
+          "actual": 10,
+          "expected": 10
+        },
+        {
+          "name": "Warm-up returns valid plan",
+          "passed": true,
+          "actual": "VALID",
+          "expected": "VALID"
+        },
+        {
+          "name": "Every stock ledger balances and never double allocates",
+          "passed": true,
+          "actual": true,
+          "expected": true
+        },
+        {
+          "name": "Final balances reconcile with every stock ledger",
+          "passed": true,
+          "actual_sha256": "234941e5f881443a417d283466adf6fd2e26a57bf82411e75673395bb0a0222c",
+          "expected_sha256": "234941e5f881443a417d283466adf6fd2e26a57bf82411e75673395bb0a0222c"
+        },
+        {
+          "name": "Every demand equals allocated plus net and all origin contributions",
+          "passed": true,
+          "actual": true,
+          "expected": true
+        },
+        {
+          "name": "All 100 tasks use priority before due date",
+          "passed": true,
+          "actual_sha256": "4b921ee14287a1aef28f85cdf8c043a251d7aa9ac857a303f2992e2afda0537d",
+          "expected_sha256": "4b921ee14287a1aef28f85cdf8c043a251d7aa9ac857a303f2992e2afda0537d"
+        },
+        {
+          "name": "Purchases reconcile with shortages and final surplus",
+          "passed": true,
+          "actual_sha256": "d6db228b8b5ba5c6b194ffc7720905652d22b2fe907b49fba87a39c5d2a42107",
+          "expected_sha256": "d6db228b8b5ba5c6b194ffc7720905652d22b2fe907b49fba87a39c5d2a42107"
+        },
+        {
+          "name": "Surplus never moves backwards in time",
+          "passed": true,
+          "actual": true,
+          "expected": true
+        },
+        {
+          "name": "Zero stock totals match independent aggregate graph oracle",
+          "passed": true,
+          "actual_sha256": "ae8c151c431768f4fd1c5521c8f6b18630fd4584d3cc0228e02dd4c4c0f378d8",
+          "expected_sha256": "ae8c151c431768f4fd1c5521c8f6b18630fd4584d3cc0228e02dd4c4c0f378d8"
+        },
+        {
+          "name": "Timed result 1 equals the warm-up",
+          "passed": true,
+          "actual": "ba29955d309641d06b0e7ad5b33447997371b4bccac1c804f274a5120b103e0b",
+          "expected": "ba29955d309641d06b0e7ad5b33447997371b4bccac1c804f274a5120b103e0b"
+        },
+        {
+          "name": "Timed result 2 equals the warm-up",
+          "passed": true,
+          "actual": "ba29955d309641d06b0e7ad5b33447997371b4bccac1c804f274a5120b103e0b",
+          "expected": "ba29955d309641d06b0e7ad5b33447997371b4bccac1c804f274a5120b103e0b"
+        },
+        {
+          "name": "Timed result 3 equals the warm-up",
+          "passed": true,
+          "actual": "ba29955d309641d06b0e7ad5b33447997371b4bccac1c804f274a5120b103e0b",
+          "expected": "ba29955d309641d06b0e7ad5b33447997371b4bccac1c804f274a5120b103e0b"
+        },
+        {
+          "name": "Timed result 4 equals the warm-up",
+          "passed": true,
+          "actual": "ba29955d309641d06b0e7ad5b33447997371b4bccac1c804f274a5120b103e0b",
+          "expected": "ba29955d309641d06b0e7ad5b33447997371b4bccac1c804f274a5120b103e0b"
+        },
+        {
+          "name": "Timed result 5 equals the warm-up",
+          "passed": true,
+          "actual": "ba29955d309641d06b0e7ad5b33447997371b4bccac1c804f274a5120b103e0b",
+          "expected": "ba29955d309641d06b0e7ad5b33447997371b4bccac1c804f274a5120b103e0b"
+        },
+        {
+          "name": "Every measured core run completes within 10 seconds",
+          "passed": true,
+          "actual": true,
+          "expected": true
+        },
+        {
+          "name": "Calculation preserves input",
+          "passed": true,
+          "actual": "0d2a4e88e893444148795c47d5d0526093fdeada2df86e858c64649a5154f61e",
+          "expected": "0d2a4e88e893444148795c47d5d0526093fdeada2df86e858c64649a5154f61e"
+        },
+        {
+          "name": "Reversed table rows produce identical complete output",
+          "passed": true,
+          "actual": "ba29955d309641d06b0e7ad5b33447997371b4bccac1c804f274a5120b103e0b",
+          "expected": "ba29955d309641d06b0e7ad5b33447997371b4bccac1c804f274a5120b103e0b"
+        },
+        {
+          "name": "Adapter call 1 commits a complete batch",
+          "passed": true,
+          "actual": [
+            "200 OK",
+            "VALID",
+            true
+          ],
+          "expected": [
+            "200 OK",
+            "VALID",
+            true
+          ]
+        },
+        {
+          "name": "Adapter call 2 commits a complete batch",
+          "passed": true,
+          "actual": [
+            "200 OK",
+            "VALID",
+            true
+          ],
+          "expected": [
+            "200 OK",
+            "VALID",
+            true
+          ]
+        },
+        {
+          "name": "Adapter call 3 commits a complete batch",
+          "passed": true,
+          "actual": [
+            "200 OK",
+            "VALID",
+            true
+          ],
+          "expected": [
+            "200 OK",
+            "VALID",
+            true
+          ]
+        },
+        {
+          "name": "History exactly matches the saved result",
+          "passed": true,
+          "actual_sha256": "7fbf78febb5d3e8079f82ac1709aced34384871cf5ef0eb78cb5c5239302e91b",
+          "expected_sha256": "7fbf78febb5d3e8079f82ac1709aced34384871cf5ef0eb78cb5c5239302e91b"
+        },
+        {
+          "name": "Exactly three isolated history batches; workspace untouched",
+          "passed": true,
+          "actual": [
+            3,
+            null
+          ],
+          "expected": [
+            3,
+            null
+          ]
+        }
+      ]
+    }
+  ],
+  "passed": 47,
+  "total": 47
+}

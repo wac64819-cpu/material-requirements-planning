@@ -1,0 +1,151 @@
+{
+  "date": "2026-10-15",
+  "group_size": 2,
+  "subsystems": 6,
+  "module_count": 14,
+  "modules": [
+    {
+      "id": "M11",
+      "subsystem": "S1",
+      "file": "csv_io.py",
+      "functions": [
+        "parse_table",
+        "preview_import"
+      ],
+      "anchor": "csv_io.py:38-76 parse_table; csv_io.py:79-111 preview_import"
+    },
+    {
+      "id": "M14",
+      "subsystem": "S1",
+      "file": "storage.py",
+      "functions": [
+        "save_workspace"
+      ],
+      "anchor": "storage.py:60-90 save_workspace"
+    },
+    {
+      "id": "M23",
+      "subsystem": "S2",
+      "file": "planner.py",
+      "functions": [
+        "validate_and_prepare"
+      ],
+      "anchor": "planner.py:27-198 validate_and_prepare"
+    },
+    {
+      "id": "M30",
+      "subsystem": "S3",
+      "file": "planner.py",
+      "functions": [
+        "net_requirements"
+      ],
+      "anchor": "planner.py:208-256 net_requirements"
+    },
+    {
+      "id": "M33",
+      "subsystem": "S3",
+      "file": "core.py",
+      "functions": [
+        "allocate_stock"
+      ],
+      "anchor": "core.py:24-85 allocate_stock"
+    },
+    {
+      "id": "M40",
+      "subsystem": "S4",
+      "file": "planner.py",
+      "functions": [
+        "plan_purchases"
+      ],
+      "anchor": "planner.py:259-300 plan_purchases"
+    },
+    {
+      "id": "M42",
+      "subsystem": "S4",
+      "file": "planner.py",
+      "functions": [
+        "plan_purchases"
+      ],
+      "anchor": "planner.py:259-300 plan_purchases"
+    },
+    {
+      "id": "M43",
+      "subsystem": "S4",
+      "file": "core.py",
+      "functions": [
+        "round_purchase_qty"
+      ],
+      "anchor": "core.py:88-97 round_purchase_qty"
+    },
+    {
+      "id": "M50",
+      "subsystem": "S5",
+      "file": "planner.py",
+      "functions": [
+        "calculate_plan"
+      ],
+      "anchor": "planner.py:303-326 calculate_plan"
+    },
+    {
+      "id": "M52",
+      "subsystem": "S5",
+      "file": "core.py",
+      "functions": [
+        "subtract_calendar_days"
+      ],
+      "anchor": "core.py:100-117 subtract_calendar_days"
+    },
+    {
+      "id": "M53",
+      "subsystem": "S5",
+      "file": "core.py",
+      "functions": [
+        "flag_early_dates"
+      ],
+      "anchor": "core.py:120-137 flag_early_dates"
+    },
+    {
+      "id": "M62",
+      "subsystem": "S6",
+      "file": "storage.py",
+      "functions": [
+        "calculate_and_save"
+      ],
+      "anchor": "storage.py:93-111 calculate_and_save"
+    },
+    {
+      "id": "M63",
+      "subsystem": "S6",
+      "file": "storage.py",
+      "functions": [
+        "list_batches",
+        "get_batch"
+      ],
+      "anchor": "storage.py:114-120 list_batches; storage.py:123-126 get_batch"
+    },
+    {
+      "id": "M65",
+      "subsystem": "S6",
+      "file": "csv_io.py",
+      "functions": [
+        "export_batch",
+        "encode_csv"
+      ],
+      "anchor": "csv_io.py:123-151 export_batch; csv_io.py:25-31 encode_csv"
+    }
+  ],
+  "figures": [
+    "m23-flow.png",
+    "m62-flow.png",
+    "m33-ns.png",
+    "m43-ns.png"
+  ],
+  "source_sha256": {
+    "core.py": "01f67b289617224e6b10e39b189482f32806580538c7c6208c1496f0cd658ca8",
+    "planner.py": "b6879011d10f9b2218ebdaf4c498edb4bf357234604eaa2612642541adfd8caf",
+    "storage.py": "56d2e978975d4e94420dadb60f25360eaed510c0788d2c54b2f113b01434cea3",
+    "csv_io.py": "d6150f390f4aaa33f7ccba40867ba5474a1c7126de1b88a6e974c881814260c3",
+    "web_server.py": "b67e8e80ffa38b5c8d75288633cb9963cabb7cb22b974c6b6f1008aad25fc661"
+  },
+  "source_brief_sha256": "0ee75969454c4199254ffc20d157c80f26a68294711bdce8de2fc77d50162eee"
+}

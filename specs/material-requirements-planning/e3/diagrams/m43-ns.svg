@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="580" viewBox="0 0 960 580">
+<rect width="960" height="580" fill="white"/>
+<g font-family="Arial,sans-serif" fill="#111827" text-anchor="middle">
+<text x="480" y="43" font-size="26">M43 Purchase quantity   Nassi Shneiderman diagram</text>
+<rect x="60" y="85" width="840" height="415" fill="white" stroke="#334155" stroke-width="2"/>
+<path d="M60 85 L480 215 L900 85 M60 215 H900 M480 215 V425 M60 425 H900 M480 285 H900 M480 355 H900" fill="none" stroke="#334155" stroke-width="2"/>
+<text x="480" y="125" font-size="23">remaining_gap = 0 ?</text>
+<text x="118" y="191" font-size="20">True</text><text x="843" y="191" font-size="20">False</text>
+<text x="270" y="325" font-size="23">purchase_qty = 0</text>
+<text x="690" y="246" font-size="19">target = MAX(gap, minimum)</text>
+<text x="690" y="309" font-size="18">lot_count = (target + multiple - 1)</text>
+<text x="690" y="336" font-size="18">DIV multiple</text>
+<text x="690" y="397" font-size="19">purchase_qty = lot_count * multiple</text>
+<text x="480" y="471" font-size="23">RETURN purchase_qty</text>
+<text x="480" y="544" font-size="18">Preconditions: gap and minimum are nonnegative integers; multiple is positive.</text>
+</g></svg>

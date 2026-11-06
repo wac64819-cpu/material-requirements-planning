@@ -1,0 +1,1 @@
+{"request_id": "E5", "status": "INVALID", "result": null, "errors": [{"code": "INTEGER", "severity": "BLOCKING", "source_location": "materials[1].lead_time_days", "message": "lead_time_days must be an integer >= 0", "task_id": null, "material_id": null, "computed_date": null, "days_before_baseline": null}]}

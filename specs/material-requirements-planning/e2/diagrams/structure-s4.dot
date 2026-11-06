@@ -1,0 +1,18 @@
+digraph G {
+graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.45", ranksep="0.85", splines=polyline, label="S4   Purchasing and planned surplus", labelloc=t, fontsize=24, fontname="Arial"];
+node [shape=box, fontname="Arial", fontsize=16, margin="0.16,0.12", color="#334155", penwidth=1.4];
+edge [fontname="Arial", fontsize=12, color="#475569", arrowsize=0.75];
+"M40" [label="M40\nplan purchases", style="filled", fillcolor="#edf5ff"];
+"M41" [label="M41\ngroup buy shortages", style="filled", fillcolor="#ffffff"];
+"M42" [label="M42\nconsume surplus", style="filled", fillcolor="#ffffff"];
+"M43" [label="M43\nround purchase qty", style="filled", fillcolor="#ffffff"];
+"M44" [label="M44\nfinalize purchase bucket", style="filled", fillcolor="#ffffff"];
+"M45" [label="M45\nassemble purchase\nenvelope", style="filled", fillcolor="#ffffff"];
+"M52" [label="M52\nsubtract calendar days", style="filled", fillcolor="#f1f5f9"];
+"M40" -> "M41" [label="I/M41   O/M41"];
+"M40" -> "M42" [label="I/M42   O/M42\nREPEAT"];
+"M40" -> "M43" [label="I/M43   O/M43\nREPEAT"];
+"M40" -> "M44" [label="I/M44   O/M44\nREPEAT"];
+"M40" -> "M45" [label="I/M45   O/M45"];
+"M44" -> "M52" [style=dashed,label="shared   I/M52 O/M52"];
+}

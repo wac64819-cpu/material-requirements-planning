@@ -1,0 +1,9 @@
+﻿batch_id,allocation_id,demand_id,task_id,material_id,needed_date,before_qty,allocated_qty,after_qty
+dd650453eabd40d4948ef0850e5ba785,"[""allocation"",""HIGH"",""[\""demand\"",\""HIGH\"",\""A\"",\""2026-10-21\""]""]","[""demand"",""HIGH"",""A"",""2026-10-21""]",HIGH,A,2026-10-21,0,0,0
+dd650453eabd40d4948ef0850e5ba785,"[""allocation"",""HIGH"",""[\""demand\"",\""HIGH\"",\""B\"",\""2026-10-19\""]""]","[""demand"",""HIGH"",""B"",""2026-10-19""]",HIGH,B,2026-10-19,20,20,0
+dd650453eabd40d4948ef0850e5ba785,"[""allocation"",""HIGH"",""[\""demand\"",\""HIGH\"",\""C\"",\""2026-10-19\""]""]","[""demand"",""HIGH"",""C"",""2026-10-19""]",HIGH,C,2026-10-19,50,50,0
+dd650453eabd40d4948ef0850e5ba785,"[""allocation"",""HIGH"",""[\""demand\"",\""HIGH\"",\""D\"",\""2026-10-16\""]""]","[""demand"",""HIGH"",""D"",""2026-10-16""]",HIGH,D,2026-10-16,100,100,0
+dd650453eabd40d4948ef0850e5ba785,"[""allocation"",""LOW"",""[\""demand\"",\""LOW\"",\""A\"",\""2026-10-20\""]""]","[""demand"",""LOW"",""A"",""2026-10-20""]",LOW,A,2026-10-20,0,0,0
+dd650453eabd40d4948ef0850e5ba785,"[""allocation"",""LOW"",""[\""demand\"",\""LOW\"",\""B\"",\""2026-10-18\""]""]","[""demand"",""LOW"",""B"",""2026-10-18""]",LOW,B,2026-10-18,0,0,0
+dd650453eabd40d4948ef0850e5ba785,"[""allocation"",""LOW"",""[\""demand\"",\""LOW\"",\""C\"",\""2026-10-18\""]""]","[""demand"",""LOW"",""C"",""2026-10-18""]",LOW,C,2026-10-18,0,0,0
+dd650453eabd40d4948ef0850e5ba785,"[""allocation"",""LOW"",""[\""demand\"",\""LOW\"",\""D\"",\""2026-10-15\""]""]","[""demand"",""LOW"",""D"",""2026-10-15""]",LOW,D,2026-10-15,0,0,0

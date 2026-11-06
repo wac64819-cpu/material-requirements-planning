@@ -1,0 +1,2 @@
+﻿batch_id,line_id,task_id,material_id,gross_qty,allocated_qty,make_qty,needed_date,start_date
+1c7376326c4741109f30b4aa43165124,"[""make"",""T1"",""P"",""2026-11-20""]",T1,P,10,0,10,2026-11-20,2026-11-18

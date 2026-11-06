@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>物料计划工作台</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
+<body>
+<a class="skip-link" href="#page-title">跳至主要内容</a>
+<aside class="sidebar">
+<div class="brand"><span class="mark" aria-hidden="true">m<span>.</span></span><div><strong>物料计划</strong><small>PLANNING WORKSPACE</small></div></div>
+<p class="nav-label">工作空间 / WORKSPACE</p>
+<nav aria-label="工作区导航">
+<button data-view="data" aria-current="page"><span class="nav-number">01</span><span>基础数据<small>物料 · BOM · 库存 · 任务</small></span></button>
+<button data-view="planning"><span class="nav-number">02</span><span>计划计算<small>需求展开与采购建议</small></span></button>
+<button data-view="history"><span class="nav-number">03</span><span>历史记录<small>回溯计划与导出结果</small></span></button>
+</nav>
+<div class="sidebar-note"><span class="signal" aria-hidden="true"></span>本地工作空间<p>从物料到计划<br>让每一步需求都有依据。</p><span class="version-label">MRP / 优先级驱动</span></div>
+</aside>
+<div class="workspace"><header><div class="breadcrumb">工作台 <span>/</span> <strong id="breadcrumb-current">基础数据</strong></div><span class="local-label">本地运行</span></header>
+<main>
+<section class="intro"><div><p class="eyebrow" id="page-eyebrow">01 / DATA FOUNDATION</p><h1 id="page-title" tabindex="-1">把数据准备好，<span>让计划有据可依。</span></h1><p id="page-description">维护物料、结构与库存，构建本次生产计划的数据基础。</p></div><div class="intro-tag">MRP<span>物料需求计划</span></div></section>
+<section id="view-data" class="view" aria-label="基础数据工作区">
+<div class="overview" aria-label="当前数据概览"><div><span>物料档案</span><strong id="count-materials">—</strong><small>自制件与外购件</small></div><div><span>BOM 关系</span><strong id="count-bom">—</strong><small>多层物料结构</small></div><div><span>库存记录</span><strong id="count-stocks">—</strong><small>本次库存快照</small></div><div><span>生产任务</span><strong id="count-tasks">—</strong><small>待选择参与计算</small></div></div>
+<div class="source-toolbar"><div class="example"><label for="example">试用示例</label><select id="example"><option value="priority">多任务争用库存</option><option value="basic">多层 BOM 与日期倒推</option><option value="surplus">采购余量跨日使用</option></select><button id="load">载入</button></div><span class="muted">可以直接体验示例，也可以编辑自己的数据</span></div>
+<div class="save-toolbar"><span id="save-status" role="status">正在读取已保存数据…</span><div><button id="reload-saved">载入已保存数据</button><button id="save-data">保存数据</button></div></div>
+<section class="panel data-panel"><div class="section-head"><div><span class="section-kicker">SOURCE DATA</span><h2>基础数据</h2></div><span id="edit-state" class="pill">正在载入…</span></div>
+<div class="tabs" role="tablist" aria-label="数据类别"><button role="tab" data-tab="materials" aria-selected="true">物料</button><button role="tab" data-tab="bom" aria-selected="false">BOM</button><button role="tab" data-tab="stocks" aria-selected="false">库存</button><button role="tab" data-tab="tasks" aria-selected="false">生产任务</button></div>
+<p id="table-help" class="muted"></p><div id="editor" class="table-wrap" role="tabpanel"></div><button id="add" class="secondary"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>新增一行</button>
+<details class="csv-panel"><summary>从 CSV 导入数据</summary><p class="muted">选择需要替换的数据表，校验通过后再应用。未选的表保持原样；应用后仍需点击“保存数据”。</p><a href="/api/csv/templates.zip" download>下载四表示例模板</a><p class="muted">UTF-8 CSV，每个文件最多500KB；示例库存日期为2026-10-01。</p>
+<div class="csv-files"><label>物料 CSV<input type="file" accept=".csv,text/csv" data-csv="materials"></label><label>BOM CSV<input type="file" accept=".csv,text/csv" data-csv="bom"></label><label>库存 CSV<input type="file" accept=".csv,text/csv" data-csv="stocks"></label><label>任务 CSV<input type="file" accept=".csv,text/csv" data-csv="tasks"></label></div>
+<div class="csv-actions"><button id="preview-csv">校验所选文件</button><button id="apply-csv" disabled>应用并替换所选表</button></div><div id="csv-message" role="status" aria-live="polite"></div></details></section>
+<div class="next-step"><div><strong>数据准备完成？</strong><p>进入计划计算，选择需要安排的生产任务。</p></div><button data-go="planning" class="primary">前往计划计算 <span aria-hidden="true">→</span></button></div>
+</section>
+<section id="view-planning" class="view" aria-label="计划计算工作区" hidden>
+<div class="process-strip"><span><b>01</b> 选择任务</span><i aria-hidden="true">→</i><span><b>02</b> 展开需求</span><i aria-hidden="true">→</i><span><b>03</b> 生成计划</span></div>
+<div class="planning-layout"><aside class="panel plan"><span class="section-kicker">PLAN CONFIGURATION</span><h2>本次计算</h2><label for="baseline">计划基准日</label><input id="baseline" type="date"><p class="muted">须与库存快照日期一致</p><div class="selection-title"><strong>选择任务 <span id="selected-count" class="selection-count"></span></strong><button id="select-all" class="text-button">全选</button></div><div id="task-selection"></div><p class="rule">优先级优先，同级按交期分配库存。</p><button id="calculate" class="primary">生成计划</button><p id="status" role="status" aria-live="polite">正在准备数据…</p><button class="text-button back-data" data-go="data">← 返回基础数据</button></aside>
+<section class="panel result-panel" id="result-section"><div class="section-head"><h2>计算结果</h2><span id="result-badge" class="pill">尚未计算</span></div><p id="history-meta" class="notice" hidden></p><div id="export-controls" hidden><label for="export-kind">导出当前计划</label><select id="export-kind"><option value="MAKE">生产计划</option><option value="PURCHASE">采购与余量</option><option value="ALLOCATION">库存分配</option><option value="TRACE">需求来源</option><option value="RISK">交期风险</option></select><button id="export-csv">下载 CSV</button><span id="export-status" role="status"></span></div><div id="results"><div class="empty">等待生成计划<small>结果将在这里展示</small></div></div></section>
+</div></section>
+<section id="view-history" class="view" aria-label="历史记录工作区" hidden><section class="panel result-panel"><div class="section-head"><div><span class="section-kicker">PLAN ARCHIVE</span><h2>历史计划</h2></div><button id="refresh-history" class="text-button">刷新列表</button></div><p class="muted">每次成功计算均保存独立快照。查看历史不会替换当前编辑数据。</p><div id="history-message" role="status" aria-live="polite"></div><div id="history-list">正在读取…</div><button id="more-history" hidden>加载更多</button></section></section>
+<footer><span>计划仅供参考，不扣减实际库存。</span><span>单仓库 <i>/</i> 整数数量 <i>/</i> 日历日提前期</span></footer>
+</main></div></body></html>

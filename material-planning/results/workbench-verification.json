@@ -1,0 +1,189 @@
+{
+  "executed_at": "2026-10-22T04:26:36.482Z",
+  "url": "http://127.0.0.1:8767",
+  "passed": 30,
+  "total": 30,
+  "checks": [
+    {
+      "name": "Initial material rows",
+      "actual": 4,
+      "expected": 4,
+      "passed": true
+    },
+    {
+      "name": "Priority order",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Higher priority B net production",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Lower priority B net production",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Edit invalidates old results",
+      "actual": "待重新计算",
+      "expected": "待重新计算",
+      "passed": true
+    },
+    {
+      "name": "Old result tables removed",
+      "actual": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "Edited LOW quantity recalculated",
+      "actual": "10",
+      "expected": "10",
+      "passed": true
+    },
+    {
+      "name": "Decimal input rejected",
+      "actual": "校验未通过",
+      "expected": "校验未通过",
+      "passed": true
+    },
+    {
+      "name": "Error location focuses field",
+      "actual": "生产任务第1行 需求数量",
+      "expected": "生产任务第1行 需求数量",
+      "passed": true
+    },
+    {
+      "name": "Unsafe integer input rejected",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Large calculated quantity displayed exactly",
+      "actual": "18014398509481962",
+      "expected": "18014398509481962",
+      "passed": true
+    },
+    {
+      "name": "物料 row addition",
+      "actual": 5,
+      "expected": 5,
+      "passed": true
+    },
+    {
+      "name": "物料 row deletion",
+      "actual": 4,
+      "expected": 4,
+      "passed": true
+    },
+    {
+      "name": "BOM row addition",
+      "actual": 4,
+      "expected": 4,
+      "passed": true
+    },
+    {
+      "name": "BOM row deletion",
+      "actual": 3,
+      "expected": 3,
+      "passed": true
+    },
+    {
+      "name": "库存 row addition",
+      "actual": 5,
+      "expected": 5,
+      "passed": true
+    },
+    {
+      "name": "库存 row deletion",
+      "actual": 4,
+      "expected": 4,
+      "passed": true
+    },
+    {
+      "name": "生产任务 row addition",
+      "actual": 3,
+      "expected": 3,
+      "passed": true
+    },
+    {
+      "name": "生产任务 row deletion",
+      "actual": 2,
+      "expected": 2,
+      "passed": true
+    },
+    {
+      "name": "Empty task selection rejected",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Invalid reserved stock surfaced",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Two purchase date buckets",
+      "actual": 2,
+      "expected": 2,
+      "passed": true
+    },
+    {
+      "name": "Later bucket buys zero",
+      "actual": "0",
+      "expected": "0",
+      "passed": true
+    },
+    {
+      "name": "Early-date risk visible",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Stale response rejected",
+      "actual": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "Network failure allows retry",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Retry succeeds",
+      "actual": "已生成",
+      "expected": "已生成",
+      "passed": true
+    },
+    {
+      "name": "Mobile no page overflow",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Mobile calculate reachable",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "No uncaught browser errors",
+      "actual": [],
+      "expected": [],
+      "passed": true
+    }
+  ],
+  "errors": []
+}

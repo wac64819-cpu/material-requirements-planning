@@ -1,0 +1,20 @@
+digraph G {
+graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.45", ranksep="0.85", splines=polyline, label="S3   Demand and shared inventory", labelloc=t, fontsize=24, fontname="Arial"];
+node [shape=box, fontname="Arial", fontsize=16, margin="0.16,0.12", color="#334155", penwidth=1.4];
+edge [fontname="Arial", fontsize=12, color="#475569", arrowsize=0.75];
+"M30" [label="M30\nnet requirements", style="filled", fillcolor="#edf5ff"];
+"M31" [label="M31\ninitialize balances", style="filled", fillcolor="#ffffff"];
+"M32" [label="M32\ncollect material demands", style="filled", fillcolor="#ffffff"];
+"M33" [label="M33\nallocate stock", style="filled", fillcolor="#ffffff"];
+"M34" [label="M34\nexpand make demand", style="filled", fillcolor="#ffffff"];
+"M35" [label="M35\nrecord buy shortage", style="filled", fillcolor="#ffffff"];
+"M36" [label="M36\nassemble net bundle", style="filled", fillcolor="#ffffff"];
+"M52" [label="M52\nsubtract calendar days", style="filled", fillcolor="#f1f5f9"];
+"M30" -> "M31" [label="I/M31   O/M31"];
+"M30" -> "M32" [label="I/M32   O/M32\nREPEAT"];
+"M30" -> "M33" [label="I/M33   O/M33\nREPEAT"];
+"M30" -> "M34" [label="I/M34   O/M34\nREPEAT"];
+"M30" -> "M35" [label="I/M35   O/M35\nREPEAT"];
+"M30" -> "M36" [label="I/M36   O/M36"];
+"M34" -> "M52" [style=dashed,label="shared   I/M52 O/M52"];
+}

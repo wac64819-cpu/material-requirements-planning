@@ -1,0 +1,6100 @@
+{
+  "sources": {
+    "source_revision": "performance-20261012-deep-zero-stock",
+    "materials": [
+      {
+        "material_id": "L00-000",
+        "name": "L00-000",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L00-001",
+        "name": "L00-001",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L00-002",
+        "name": "L00-002",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L00-003",
+        "name": "L00-003",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L00-004",
+        "name": "L00-004",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L00-005",
+        "name": "L00-005",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L00-006",
+        "name": "L00-006",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L00-007",
+        "name": "L00-007",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L00-008",
+        "name": "L00-008",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L00-009",
+        "name": "L00-009",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L00-010",
+        "name": "L00-010",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L00-011",
+        "name": "L00-011",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L00-012",
+        "name": "L00-012",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L00-013",
+        "name": "L00-013",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L00-014",
+        "name": "L00-014",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L00-015",
+        "name": "L00-015",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L00-016",
+        "name": "L00-016",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L00-017",
+        "name": "L00-017",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L00-018",
+        "name": "L00-018",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L00-019",
+        "name": "L00-019",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L01-000",
+        "name": "L01-000",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 2
+      },
+      {
+        "material_id": "L01-001",
+        "name": "L01-001",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 2
+      },
+      {
+        "material_id": "L01-002",
+        "name": "L01-002",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 2
+      },
+      {
+        "material_id": "L01-003",
+        "name": "L01-003",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 2
+      },
+      {
+        "material_id": "L01-004",
+        "name": "L01-004",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 2
+      },
+      {
+        "material_id": "L01-005",
+        "name": "L01-005",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 2
+      },
+      {
+        "material_id": "L01-006",
+        "name": "L01-006",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 2
+      },
+      {
+        "material_id": "L01-007",
+        "name": "L01-007",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 2
+      },
+      {
+        "material_id": "L01-008",
+        "name": "L01-008",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 2
+      },
+      {
+        "material_id": "L01-009",
+        "name": "L01-009",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 2
+      },
+      {
+        "material_id": "L02-000",
+        "name": "L02-000",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 3
+      },
+      {
+        "material_id": "L02-001",
+        "name": "L02-001",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 3
+      },
+      {
+        "material_id": "L02-002",
+        "name": "L02-002",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 3
+      },
+      {
+        "material_id": "L02-003",
+        "name": "L02-003",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 3
+      },
+      {
+        "material_id": "L02-004",
+        "name": "L02-004",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 3
+      },
+      {
+        "material_id": "L02-005",
+        "name": "L02-005",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 3
+      },
+      {
+        "material_id": "L02-006",
+        "name": "L02-006",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 3
+      },
+      {
+        "material_id": "L02-007",
+        "name": "L02-007",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 3
+      },
+      {
+        "material_id": "L02-008",
+        "name": "L02-008",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 3
+      },
+      {
+        "material_id": "L02-009",
+        "name": "L02-009",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 3
+      },
+      {
+        "material_id": "L03-000",
+        "name": "L03-000",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L03-001",
+        "name": "L03-001",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L03-002",
+        "name": "L03-002",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L03-003",
+        "name": "L03-003",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L03-004",
+        "name": "L03-004",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L03-005",
+        "name": "L03-005",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L03-006",
+        "name": "L03-006",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L03-007",
+        "name": "L03-007",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L03-008",
+        "name": "L03-008",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L03-009",
+        "name": "L03-009",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L04-000",
+        "name": "L04-000",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 2
+      },
+      {
+        "material_id": "L04-001",
+        "name": "L04-001",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 2
+      },
+      {
+        "material_id": "L04-002",
+        "name": "L04-002",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 2
+      },
+      {
+        "material_id": "L04-003",
+        "name": "L04-003",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 2
+      },
+      {
+        "material_id": "L04-004",
+        "name": "L04-004",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 2
+      },
+      {
+        "material_id": "L04-005",
+        "name": "L04-005",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 2
+      },
+      {
+        "material_id": "L04-006",
+        "name": "L04-006",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 2
+      },
+      {
+        "material_id": "L04-007",
+        "name": "L04-007",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 2
+      },
+      {
+        "material_id": "L04-008",
+        "name": "L04-008",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 2
+      },
+      {
+        "material_id": "L04-009",
+        "name": "L04-009",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 2
+      },
+      {
+        "material_id": "L05-000",
+        "name": "L05-000",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 3
+      },
+      {
+        "material_id": "L05-001",
+        "name": "L05-001",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 3
+      },
+      {
+        "material_id": "L05-002",
+        "name": "L05-002",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 3
+      },
+      {
+        "material_id": "L05-003",
+        "name": "L05-003",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 3
+      },
+      {
+        "material_id": "L05-004",
+        "name": "L05-004",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 3
+      },
+      {
+        "material_id": "L05-005",
+        "name": "L05-005",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 3
+      },
+      {
+        "material_id": "L05-006",
+        "name": "L05-006",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 3
+      },
+      {
+        "material_id": "L05-007",
+        "name": "L05-007",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 3
+      },
+      {
+        "material_id": "L05-008",
+        "name": "L05-008",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 3
+      },
+      {
+        "material_id": "L05-009",
+        "name": "L05-009",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 3
+      },
+      {
+        "material_id": "L06-000",
+        "name": "L06-000",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L06-001",
+        "name": "L06-001",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L06-002",
+        "name": "L06-002",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L06-003",
+        "name": "L06-003",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L06-004",
+        "name": "L06-004",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L06-005",
+        "name": "L06-005",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L06-006",
+        "name": "L06-006",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L06-007",
+        "name": "L06-007",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L06-008",
+        "name": "L06-008",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L06-009",
+        "name": "L06-009",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L07-000",
+        "name": "L07-000",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 2
+      },
+      {
+        "material_id": "L07-001",
+        "name": "L07-001",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 2
+      },
+      {
+        "material_id": "L07-002",
+        "name": "L07-002",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 2
+      },
+      {
+        "material_id": "L07-003",
+        "name": "L07-003",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 2
+      },
+      {
+        "material_id": "L07-004",
+        "name": "L07-004",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 2
+      },
+      {
+        "material_id": "L07-005",
+        "name": "L07-005",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 2
+      },
+      {
+        "material_id": "L07-006",
+        "name": "L07-006",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 2
+      },
+      {
+        "material_id": "L07-007",
+        "name": "L07-007",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 2
+      },
+      {
+        "material_id": "L07-008",
+        "name": "L07-008",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 2
+      },
+      {
+        "material_id": "L07-009",
+        "name": "L07-009",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 2
+      },
+      {
+        "material_id": "L08-000",
+        "name": "L08-000",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 3
+      },
+      {
+        "material_id": "L08-001",
+        "name": "L08-001",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 3
+      },
+      {
+        "material_id": "L08-002",
+        "name": "L08-002",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 3
+      },
+      {
+        "material_id": "L08-003",
+        "name": "L08-003",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 3
+      },
+      {
+        "material_id": "L08-004",
+        "name": "L08-004",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 3
+      },
+      {
+        "material_id": "L08-005",
+        "name": "L08-005",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 3
+      },
+      {
+        "material_id": "L08-006",
+        "name": "L08-006",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 3
+      },
+      {
+        "material_id": "L08-007",
+        "name": "L08-007",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 3
+      },
+      {
+        "material_id": "L08-008",
+        "name": "L08-008",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 3
+      },
+      {
+        "material_id": "L08-009",
+        "name": "L08-009",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 3
+      },
+      {
+        "material_id": "L09-000",
+        "name": "L09-000",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L09-001",
+        "name": "L09-001",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L09-002",
+        "name": "L09-002",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L09-003",
+        "name": "L09-003",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L09-004",
+        "name": "L09-004",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L09-005",
+        "name": "L09-005",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L09-006",
+        "name": "L09-006",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L09-007",
+        "name": "L09-007",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L09-008",
+        "name": "L09-008",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L09-009",
+        "name": "L09-009",
+        "supply_type": "MAKE",
+        "unit": "pcs",
+        "lead_time_days": 1
+      },
+      {
+        "material_id": "L10-000",
+        "name": "L10-000",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-001",
+        "name": "L10-001",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-002",
+        "name": "L10-002",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-003",
+        "name": "L10-003",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-004",
+        "name": "L10-004",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-005",
+        "name": "L10-005",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-006",
+        "name": "L10-006",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-007",
+        "name": "L10-007",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-008",
+        "name": "L10-008",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-009",
+        "name": "L10-009",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-010",
+        "name": "L10-010",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-011",
+        "name": "L10-011",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-012",
+        "name": "L10-012",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-013",
+        "name": "L10-013",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-014",
+        "name": "L10-014",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-015",
+        "name": "L10-015",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-016",
+        "name": "L10-016",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-017",
+        "name": "L10-017",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-018",
+        "name": "L10-018",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-019",
+        "name": "L10-019",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-020",
+        "name": "L10-020",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-021",
+        "name": "L10-021",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-022",
+        "name": "L10-022",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-023",
+        "name": "L10-023",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-024",
+        "name": "L10-024",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-025",
+        "name": "L10-025",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-026",
+        "name": "L10-026",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-027",
+        "name": "L10-027",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-028",
+        "name": "L10-028",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-029",
+        "name": "L10-029",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-030",
+        "name": "L10-030",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-031",
+        "name": "L10-031",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-032",
+        "name": "L10-032",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-033",
+        "name": "L10-033",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-034",
+        "name": "L10-034",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-035",
+        "name": "L10-035",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-036",
+        "name": "L10-036",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-037",
+        "name": "L10-037",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-038",
+        "name": "L10-038",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-039",
+        "name": "L10-039",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-040",
+        "name": "L10-040",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-041",
+        "name": "L10-041",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-042",
+        "name": "L10-042",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-043",
+        "name": "L10-043",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-044",
+        "name": "L10-044",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-045",
+        "name": "L10-045",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-046",
+        "name": "L10-046",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-047",
+        "name": "L10-047",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-048",
+        "name": "L10-048",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-049",
+        "name": "L10-049",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-050",
+        "name": "L10-050",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-051",
+        "name": "L10-051",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-052",
+        "name": "L10-052",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-053",
+        "name": "L10-053",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-054",
+        "name": "L10-054",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-055",
+        "name": "L10-055",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-056",
+        "name": "L10-056",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-057",
+        "name": "L10-057",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-058",
+        "name": "L10-058",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-059",
+        "name": "L10-059",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-060",
+        "name": "L10-060",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-061",
+        "name": "L10-061",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-062",
+        "name": "L10-062",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-063",
+        "name": "L10-063",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-064",
+        "name": "L10-064",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-065",
+        "name": "L10-065",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-066",
+        "name": "L10-066",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-067",
+        "name": "L10-067",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-068",
+        "name": "L10-068",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-069",
+        "name": "L10-069",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-070",
+        "name": "L10-070",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-071",
+        "name": "L10-071",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-072",
+        "name": "L10-072",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-073",
+        "name": "L10-073",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-074",
+        "name": "L10-074",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-075",
+        "name": "L10-075",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-076",
+        "name": "L10-076",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-077",
+        "name": "L10-077",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-078",
+        "name": "L10-078",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-079",
+        "name": "L10-079",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-080",
+        "name": "L10-080",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-081",
+        "name": "L10-081",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-082",
+        "name": "L10-082",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-083",
+        "name": "L10-083",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-084",
+        "name": "L10-084",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-085",
+        "name": "L10-085",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-086",
+        "name": "L10-086",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-087",
+        "name": "L10-087",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-088",
+        "name": "L10-088",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      },
+      {
+        "material_id": "L10-089",
+        "name": "L10-089",
+        "supply_type": "BUY",
+        "unit": "pcs",
+        "lead_time_days": 2,
+        "min_purchase_qty": 25,
+        "purchase_multiple": 12
+      }
+    ],
+    "bom": [
+      {
+        "parent_id": "L00-000",
+        "child_id": "L01-000",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L00-001",
+        "child_id": "L01-001",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L00-002",
+        "child_id": "L01-002",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L00-003",
+        "child_id": "L01-003",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L00-004",
+        "child_id": "L01-004",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L00-005",
+        "child_id": "L01-005",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L00-006",
+        "child_id": "L01-006",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L00-007",
+        "child_id": "L01-007",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L00-008",
+        "child_id": "L01-008",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L00-009",
+        "child_id": "L01-009",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L00-010",
+        "child_id": "L01-000",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L00-011",
+        "child_id": "L01-001",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L00-012",
+        "child_id": "L01-002",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L00-013",
+        "child_id": "L01-003",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L00-014",
+        "child_id": "L01-004",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L00-015",
+        "child_id": "L01-005",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L00-016",
+        "child_id": "L01-006",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L00-017",
+        "child_id": "L01-007",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L00-018",
+        "child_id": "L01-008",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L00-019",
+        "child_id": "L01-009",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L01-000",
+        "child_id": "L02-000",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L01-001",
+        "child_id": "L02-001",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L01-002",
+        "child_id": "L02-002",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L01-003",
+        "child_id": "L02-003",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L01-004",
+        "child_id": "L02-004",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L01-005",
+        "child_id": "L02-005",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L01-006",
+        "child_id": "L02-006",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L01-007",
+        "child_id": "L02-007",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L01-008",
+        "child_id": "L02-008",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L01-009",
+        "child_id": "L02-009",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L02-000",
+        "child_id": "L03-000",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L02-001",
+        "child_id": "L03-001",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L02-002",
+        "child_id": "L03-002",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L02-003",
+        "child_id": "L03-003",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L02-004",
+        "child_id": "L03-004",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L02-005",
+        "child_id": "L03-005",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L02-006",
+        "child_id": "L03-006",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L02-007",
+        "child_id": "L03-007",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L02-008",
+        "child_id": "L03-008",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L02-009",
+        "child_id": "L03-009",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L03-000",
+        "child_id": "L04-000",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L03-001",
+        "child_id": "L04-001",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L03-002",
+        "child_id": "L04-002",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L03-003",
+        "child_id": "L04-003",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L03-004",
+        "child_id": "L04-004",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L03-005",
+        "child_id": "L04-005",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L03-006",
+        "child_id": "L04-006",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L03-007",
+        "child_id": "L04-007",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L03-008",
+        "child_id": "L04-008",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L03-009",
+        "child_id": "L04-009",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L04-000",
+        "child_id": "L05-000",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L04-001",
+        "child_id": "L05-001",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L04-002",
+        "child_id": "L05-002",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L04-003",
+        "child_id": "L05-003",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L04-004",
+        "child_id": "L05-004",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L04-005",
+        "child_id": "L05-005",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L04-006",
+        "child_id": "L05-006",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L04-007",
+        "child_id": "L05-007",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L04-008",
+        "child_id": "L05-008",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L04-009",
+        "child_id": "L05-009",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L05-000",
+        "child_id": "L06-000",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L05-001",
+        "child_id": "L06-001",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L05-002",
+        "child_id": "L06-002",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L05-003",
+        "child_id": "L06-003",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L05-004",
+        "child_id": "L06-004",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L05-005",
+        "child_id": "L06-005",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L05-006",
+        "child_id": "L06-006",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L05-007",
+        "child_id": "L06-007",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L05-008",
+        "child_id": "L06-008",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L05-009",
+        "child_id": "L06-009",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L06-000",
+        "child_id": "L07-000",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L06-001",
+        "child_id": "L07-001",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L06-002",
+        "child_id": "L07-002",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L06-003",
+        "child_id": "L07-003",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L06-004",
+        "child_id": "L07-004",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L06-005",
+        "child_id": "L07-005",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L06-006",
+        "child_id": "L07-006",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L06-007",
+        "child_id": "L07-007",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L06-008",
+        "child_id": "L07-008",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L06-009",
+        "child_id": "L07-009",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L07-000",
+        "child_id": "L08-000",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L07-001",
+        "child_id": "L08-001",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L07-002",
+        "child_id": "L08-002",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L07-003",
+        "child_id": "L08-003",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L07-004",
+        "child_id": "L08-004",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L07-005",
+        "child_id": "L08-005",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L07-006",
+        "child_id": "L08-006",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L07-007",
+        "child_id": "L08-007",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L07-008",
+        "child_id": "L08-008",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L07-009",
+        "child_id": "L08-009",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L08-000",
+        "child_id": "L09-000",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L08-001",
+        "child_id": "L09-001",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L08-002",
+        "child_id": "L09-002",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L08-003",
+        "child_id": "L09-003",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L08-004",
+        "child_id": "L09-004",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L08-005",
+        "child_id": "L09-005",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L08-006",
+        "child_id": "L09-006",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L08-007",
+        "child_id": "L09-007",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L08-008",
+        "child_id": "L09-008",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L08-009",
+        "child_id": "L09-009",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-000",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-003",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-004",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-008",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-010",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-015",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-019",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-020",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-021",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-022",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-026",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-030",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-033",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-036",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-037",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-040",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-041",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-043",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-045",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-048",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-050",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-051",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-052",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-053",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-054",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-056",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-058",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-059",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-060",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-061",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-063",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-067",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-068",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-070",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-073",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-075",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-080",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-081",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-083",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-084",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-086",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-087",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-000",
+        "child_id": "L10-088",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-001",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-004",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-006",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-009",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-011",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-014",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-016",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-017",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-019",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-021",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-025",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-027",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-031",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-033",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-041",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-042",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-046",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-051",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-052",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-056",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-059",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-060",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-061",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-063",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-064",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-067",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-068",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-071",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-073",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-074",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-075",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-076",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-079",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-081",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-083",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-001",
+        "child_id": "L10-086",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-000",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-001",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-002",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-004",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-008",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-012",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-019",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-022",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-024",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-027",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-032",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-033",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-034",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-035",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-036",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-038",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-042",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-043",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-044",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-045",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-049",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-050",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-051",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-052",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-053",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-054",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-058",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-059",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-060",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-062",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-063",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-067",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-069",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-071",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-072",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-074",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-075",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-080",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-082",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-087",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-002",
+        "child_id": "L10-088",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-000",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-002",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-003",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-005",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-007",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-008",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-009",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-011",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-013",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-014",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-016",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-018",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-022",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-023",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-024",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-025",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-029",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-030",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-033",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-041",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-042",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-043",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-047",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-048",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-050",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-053",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-056",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-057",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-058",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-060",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-063",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-065",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-066",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-069",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-071",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-073",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-074",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-076",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-077",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-080",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-081",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-083",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-084",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-086",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-003",
+        "child_id": "L10-087",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-002",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-003",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-004",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-007",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-008",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-013",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-014",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-017",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-018",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-021",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-024",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-026",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-027",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-028",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-029",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-031",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-033",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-034",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-035",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-037",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-039",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-043",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-044",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-049",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-050",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-054",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-059",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-061",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-063",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-064",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-067",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-068",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-069",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-072",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-073",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-074",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-075",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-076",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-078",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-079",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-080",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-084",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-086",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-004",
+        "child_id": "L10-089",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-005",
+        "child_id": "L10-003",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-005",
+        "child_id": "L10-005",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-005",
+        "child_id": "L10-010",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-005",
+        "child_id": "L10-013",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-005",
+        "child_id": "L10-015",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-005",
+        "child_id": "L10-023",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-005",
+        "child_id": "L10-025",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-005",
+        "child_id": "L10-026",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-005",
+        "child_id": "L10-028",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-005",
+        "child_id": "L10-029",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-005",
+        "child_id": "L10-030",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-005",
+        "child_id": "L10-031",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-005",
+        "child_id": "L10-033",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-005",
+        "child_id": "L10-035",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-005",
+        "child_id": "L10-038",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-005",
+        "child_id": "L10-039",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-005",
+        "child_id": "L10-041",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-005",
+        "child_id": "L10-044",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-005",
+        "child_id": "L10-045",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-005",
+        "child_id": "L10-046",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-005",
+        "child_id": "L10-050",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-005",
+        "child_id": "L10-055",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-005",
+        "child_id": "L10-056",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-005",
+        "child_id": "L10-058",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-005",
+        "child_id": "L10-059",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-005",
+        "child_id": "L10-065",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-005",
+        "child_id": "L10-069",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-005",
+        "child_id": "L10-075",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-005",
+        "child_id": "L10-077",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-005",
+        "child_id": "L10-078",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-005",
+        "child_id": "L10-079",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-005",
+        "child_id": "L10-083",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-005",
+        "child_id": "L10-085",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-005",
+        "child_id": "L10-088",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-001",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-005",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-006",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-007",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-012",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-013",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-014",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-016",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-017",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-018",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-023",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-026",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-032",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-034",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-036",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-041",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-045",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-046",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-049",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-052",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-053",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-054",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-055",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-056",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-065",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-066",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-067",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-068",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-072",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-074",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-075",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-076",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-077",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-086",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-006",
+        "child_id": "L10-089",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-001",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-007",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-012",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-013",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-015",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-017",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-018",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-019",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-021",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-024",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-026",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-027",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-030",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-036",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-037",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-041",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-042",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-044",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-047",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-049",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-051",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-052",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-055",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-057",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-058",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-064",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-067",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-068",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-072",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-073",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-076",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-077",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-078",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-079",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-081",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-083",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-084",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-087",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-007",
+        "child_id": "L10-089",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-001",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-002",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-003",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-005",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-006",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-008",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-009",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-011",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-012",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-014",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-015",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-016",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-018",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-020",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-024",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-026",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-028",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-031",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-033",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-034",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-035",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-038",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-041",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-042",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-044",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-048",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-049",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-050",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-052",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-053",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-054",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-057",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-058",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-060",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-061",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-063",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-064",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-065",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-068",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-071",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-072",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-073",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-078",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-081",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-086",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-087",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-088",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-008",
+        "child_id": "L10-089",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-002",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-005",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-006",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-009",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-012",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-019",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-020",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-021",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-024",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-025",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-027",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-029",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-031",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-034",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-039",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-041",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-042",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-044",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-046",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-047",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-048",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-049",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-051",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-053",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-059",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-064",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-066",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-069",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-072",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-073",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-079",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-081",
+        "qty_per": 2
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-083",
+        "qty_per": 3
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-084",
+        "qty_per": 1
+      },
+      {
+        "parent_id": "L09-009",
+        "child_id": "L10-089",
+        "qty_per": 2
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "PERF-000",
+        "product_id": "L00-000",
+        "required_qty": 10,
+        "due_date": "2026-11-01",
+        "priority": 1
+      },
+      {
+        "task_id": "PERF-001",
+        "product_id": "L00-001",
+        "required_qty": 11,
+        "due_date": "2026-11-02",
+        "priority": 2
+      },
+      {
+        "task_id": "PERF-002",
+        "product_id": "L00-002",
+        "required_qty": 12,
+        "due_date": "2026-11-03",
+        "priority": 3
+      },
+      {
+        "task_id": "PERF-003",
+        "product_id": "L00-003",
+        "required_qty": 13,
+        "due_date": "2026-11-04",
+        "priority": 1
+      },
+      {
+        "task_id": "PERF-004",
+        "product_id": "L00-004",
+        "required_qty": 14,
+        "due_date": "2026-11-05",
+        "priority": 2
+      },
+      {
+        "task_id": "PERF-005",
+        "product_id": "L00-005",
+        "required_qty": 15,
+        "due_date": "2026-11-06",
+        "priority": 3
+      },
+      {
+        "task_id": "PERF-006",
+        "product_id": "L00-006",
+        "required_qty": 16,
+        "due_date": "2026-11-07",
+        "priority": 1
+      },
+      {
+        "task_id": "PERF-007",
+        "product_id": "L00-007",
+        "required_qty": 17,
+        "due_date": "2026-11-08",
+        "priority": 2
+      },
+      {
+        "task_id": "PERF-008",
+        "product_id": "L00-008",
+        "required_qty": 18,
+        "due_date": "2026-11-09",
+        "priority": 3
+      },
+      {
+        "task_id": "PERF-009",
+        "product_id": "L00-009",
+        "required_qty": 19,
+        "due_date": "2026-11-10",
+        "priority": 1
+      },
+      {
+        "task_id": "PERF-010",
+        "product_id": "L00-010",
+        "required_qty": 20,
+        "due_date": "2026-11-11",
+        "priority": 2
+      },
+      {
+        "task_id": "PERF-011",
+        "product_id": "L00-011",
+        "required_qty": 10,
+        "due_date": "2026-11-12",
+        "priority": 3
+      },
+      {
+        "task_id": "PERF-012",
+        "product_id": "L00-012",
+        "required_qty": 11,
+        "due_date": "2026-11-13",
+        "priority": 1
+      },
+      {
+        "task_id": "PERF-013",
+        "product_id": "L00-013",
+        "required_qty": 12,
+        "due_date": "2026-11-14",
+        "priority": 2
+      },
+      {
+        "task_id": "PERF-014",
+        "product_id": "L00-014",
+        "required_qty": 13,
+        "due_date": "2026-11-15",
+        "priority": 3
+      },
+      {
+        "task_id": "PERF-015",
+        "product_id": "L00-015",
+        "required_qty": 14,
+        "due_date": "2026-11-16",
+        "priority": 1
+      },
+      {
+        "task_id": "PERF-016",
+        "product_id": "L00-016",
+        "required_qty": 15,
+        "due_date": "2026-11-17",
+        "priority": 2
+      },
+      {
+        "task_id": "PERF-017",
+        "product_id": "L00-017",
+        "required_qty": 16,
+        "due_date": "2026-11-01",
+        "priority": 3
+      },
+      {
+        "task_id": "PERF-018",
+        "product_id": "L00-018",
+        "required_qty": 17,
+        "due_date": "2026-11-02",
+        "priority": 1
+      },
+      {
+        "task_id": "PERF-019",
+        "product_id": "L00-019",
+        "required_qty": 18,
+        "due_date": "2026-11-03",
+        "priority": 2
+      },
+      {
+        "task_id": "PERF-020",
+        "product_id": "L00-000",
+        "required_qty": 19,
+        "due_date": "2026-11-04",
+        "priority": 3
+      },
+      {
+        "task_id": "PERF-021",
+        "product_id": "L00-001",
+        "required_qty": 20,
+        "due_date": "2026-11-05",
+        "priority": 1
+      },
+      {
+        "task_id": "PERF-022",
+        "product_id": "L00-002",
+        "required_qty": 10,
+        "due_date": "2026-11-06",
+        "priority": 2
+      },
+      {
+        "task_id": "PERF-023",
+        "product_id": "L00-003",
+        "required_qty": 11,
+        "due_date": "2026-11-07",
+        "priority": 3
+      },
+      {
+        "task_id": "PERF-024",
+        "product_id": "L00-004",
+        "required_qty": 12,
+        "due_date": "2026-11-08",
+        "priority": 1
+      },
+      {
+        "task_id": "PERF-025",
+        "product_id": "L00-005",
+        "required_qty": 13,
+        "due_date": "2026-11-09",
+        "priority": 2
+      },
+      {
+        "task_id": "PERF-026",
+        "product_id": "L00-006",
+        "required_qty": 14,
+        "due_date": "2026-11-10",
+        "priority": 3
+      },
+      {
+        "task_id": "PERF-027",
+        "product_id": "L00-007",
+        "required_qty": 15,
+        "due_date": "2026-11-11",
+        "priority": 1
+      },
+      {
+        "task_id": "PERF-028",
+        "product_id": "L00-008",
+        "required_qty": 16,
+        "due_date": "2026-11-12",
+        "priority": 2
+      },
+      {
+        "task_id": "PERF-029",
+        "product_id": "L00-009",
+        "required_qty": 17,
+        "due_date": "2026-11-13",
+        "priority": 3
+      },
+      {
+        "task_id": "PERF-030",
+        "product_id": "L00-010",
+        "required_qty": 18,
+        "due_date": "2026-11-14",
+        "priority": 1
+      },
+      {
+        "task_id": "PERF-031",
+        "product_id": "L00-011",
+        "required_qty": 19,
+        "due_date": "2026-11-15",
+        "priority": 2
+      },
+      {
+        "task_id": "PERF-032",
+        "product_id": "L00-012",
+        "required_qty": 20,
+        "due_date": "2026-11-16",
+        "priority": 3
+      },
+      {
+        "task_id": "PERF-033",
+        "product_id": "L00-013",
+        "required_qty": 10,
+        "due_date": "2026-11-17",
+        "priority": 1
+      },
+      {
+        "task_id": "PERF-034",
+        "product_id": "L00-014",
+        "required_qty": 11,
+        "due_date": "2026-11-01",
+        "priority": 2
+      },
+      {
+        "task_id": "PERF-035",
+        "product_id": "L00-015",
+        "required_qty": 12,
+        "due_date": "2026-11-02",
+        "priority": 3
+      },
+      {
+        "task_id": "PERF-036",
+        "product_id": "L00-016",
+        "required_qty": 13,
+        "due_date": "2026-11-03",
+        "priority": 1
+      },
+      {
+        "task_id": "PERF-037",
+        "product_id": "L00-017",
+        "required_qty": 14,
+        "due_date": "2026-11-04",
+        "priority": 2
+      },
+      {
+        "task_id": "PERF-038",
+        "product_id": "L00-018",
+        "required_qty": 15,
+        "due_date": "2026-11-05",
+        "priority": 3
+      },
+      {
+        "task_id": "PERF-039",
+        "product_id": "L00-019",
+        "required_qty": 16,
+        "due_date": "2026-11-06",
+        "priority": 1
+      },
+      {
+        "task_id": "PERF-040",
+        "product_id": "L00-000",
+        "required_qty": 17,
+        "due_date": "2026-11-07",
+        "priority": 2
+      },
+      {
+        "task_id": "PERF-041",
+        "product_id": "L00-001",
+        "required_qty": 18,
+        "due_date": "2026-11-08",
+        "priority": 3
+      },
+      {
+        "task_id": "PERF-042",
+        "product_id": "L00-002",
+        "required_qty": 19,
+        "due_date": "2026-11-09",
+        "priority": 1
+      },
+      {
+        "task_id": "PERF-043",
+        "product_id": "L00-003",
+        "required_qty": 20,
+        "due_date": "2026-11-10",
+        "priority": 2
+      },
+      {
+        "task_id": "PERF-044",
+        "product_id": "L00-004",
+        "required_qty": 10,
+        "due_date": "2026-11-11",
+        "priority": 3
+      },
+      {
+        "task_id": "PERF-045",
+        "product_id": "L00-005",
+        "required_qty": 11,
+        "due_date": "2026-11-12",
+        "priority": 1
+      },
+      {
+        "task_id": "PERF-046",
+        "product_id": "L00-006",
+        "required_qty": 12,
+        "due_date": "2026-11-13",
+        "priority": 2
+      },
+      {
+        "task_id": "PERF-047",
+        "product_id": "L00-007",
+        "required_qty": 13,
+        "due_date": "2026-11-14",
+        "priority": 3
+      },
+      {
+        "task_id": "PERF-048",
+        "product_id": "L00-008",
+        "required_qty": 14,
+        "due_date": "2026-11-15",
+        "priority": 1
+      },
+      {
+        "task_id": "PERF-049",
+        "product_id": "L00-009",
+        "required_qty": 15,
+        "due_date": "2026-11-16",
+        "priority": 2
+      },
+      {
+        "task_id": "PERF-050",
+        "product_id": "L00-010",
+        "required_qty": 16,
+        "due_date": "2026-11-17",
+        "priority": 3
+      },
+      {
+        "task_id": "PERF-051",
+        "product_id": "L00-011",
+        "required_qty": 17,
+        "due_date": "2026-11-01",
+        "priority": 1
+      },
+      {
+        "task_id": "PERF-052",
+        "product_id": "L00-012",
+        "required_qty": 18,
+        "due_date": "2026-11-02",
+        "priority": 2
+      },
+      {
+        "task_id": "PERF-053",
+        "product_id": "L00-013",
+        "required_qty": 19,
+        "due_date": "2026-11-03",
+        "priority": 3
+      },
+      {
+        "task_id": "PERF-054",
+        "product_id": "L00-014",
+        "required_qty": 20,
+        "due_date": "2026-11-04",
+        "priority": 1
+      },
+      {
+        "task_id": "PERF-055",
+        "product_id": "L00-015",
+        "required_qty": 10,
+        "due_date": "2026-11-05",
+        "priority": 2
+      },
+      {
+        "task_id": "PERF-056",
+        "product_id": "L00-016",
+        "required_qty": 11,
+        "due_date": "2026-11-06",
+        "priority": 3
+      },
+      {
+        "task_id": "PERF-057",
+        "product_id": "L00-017",
+        "required_qty": 12,
+        "due_date": "2026-11-07",
+        "priority": 1
+      },
+      {
+        "task_id": "PERF-058",
+        "product_id": "L00-018",
+        "required_qty": 13,
+        "due_date": "2026-11-08",
+        "priority": 2
+      },
+      {
+        "task_id": "PERF-059",
+        "product_id": "L00-019",
+        "required_qty": 14,
+        "due_date": "2026-11-09",
+        "priority": 3
+      },
+      {
+        "task_id": "PERF-060",
+        "product_id": "L00-000",
+        "required_qty": 15,
+        "due_date": "2026-11-10",
+        "priority": 1
+      },
+      {
+        "task_id": "PERF-061",
+        "product_id": "L00-001",
+        "required_qty": 16,
+        "due_date": "2026-11-11",
+        "priority": 2
+      },
+      {
+        "task_id": "PERF-062",
+        "product_id": "L00-002",
+        "required_qty": 17,
+        "due_date": "2026-11-12",
+        "priority": 3
+      },
+      {
+        "task_id": "PERF-063",
+        "product_id": "L00-003",
+        "required_qty": 18,
+        "due_date": "2026-11-13",
+        "priority": 1
+      },
+      {
+        "task_id": "PERF-064",
+        "product_id": "L00-004",
+        "required_qty": 19,
+        "due_date": "2026-11-14",
+        "priority": 2
+      },
+      {
+        "task_id": "PERF-065",
+        "product_id": "L00-005",
+        "required_qty": 20,
+        "due_date": "2026-11-15",
+        "priority": 3
+      },
+      {
+        "task_id": "PERF-066",
+        "product_id": "L00-006",
+        "required_qty": 10,
+        "due_date": "2026-11-16",
+        "priority": 1
+      },
+      {
+        "task_id": "PERF-067",
+        "product_id": "L00-007",
+        "required_qty": 11,
+        "due_date": "2026-11-17",
+        "priority": 2
+      },
+      {
+        "task_id": "PERF-068",
+        "product_id": "L00-008",
+        "required_qty": 12,
+        "due_date": "2026-11-01",
+        "priority": 3
+      },
+      {
+        "task_id": "PERF-069",
+        "product_id": "L00-009",
+        "required_qty": 13,
+        "due_date": "2026-11-02",
+        "priority": 1
+      },
+      {
+        "task_id": "PERF-070",
+        "product_id": "L00-010",
+        "required_qty": 14,
+        "due_date": "2026-11-03",
+        "priority": 2
+      },
+      {
+        "task_id": "PERF-071",
+        "product_id": "L00-011",
+        "required_qty": 15,
+        "due_date": "2026-11-04",
+        "priority": 3
+      },
+      {
+        "task_id": "PERF-072",
+        "product_id": "L00-012",
+        "required_qty": 16,
+        "due_date": "2026-11-05",
+        "priority": 1
+      },
+      {
+        "task_id": "PERF-073",
+        "product_id": "L00-013",
+        "required_qty": 17,
+        "due_date": "2026-11-06",
+        "priority": 2
+      },
+      {
+        "task_id": "PERF-074",
+        "product_id": "L00-014",
+        "required_qty": 18,
+        "due_date": "2026-11-07",
+        "priority": 3
+      },
+      {
+        "task_id": "PERF-075",
+        "product_id": "L00-015",
+        "required_qty": 19,
+        "due_date": "2026-11-08",
+        "priority": 1
+      },
+      {
+        "task_id": "PERF-076",
+        "product_id": "L00-016",
+        "required_qty": 20,
+        "due_date": "2026-11-09",
+        "priority": 2
+      },
+      {
+        "task_id": "PERF-077",
+        "product_id": "L00-017",
+        "required_qty": 10,
+        "due_date": "2026-11-10",
+        "priority": 3
+      },
+      {
+        "task_id": "PERF-078",
+        "product_id": "L00-018",
+        "required_qty": 11,
+        "due_date": "2026-11-11",
+        "priority": 1
+      },
+      {
+        "task_id": "PERF-079",
+        "product_id": "L00-019",
+        "required_qty": 12,
+        "due_date": "2026-11-12",
+        "priority": 2
+      },
+      {
+        "task_id": "PERF-080",
+        "product_id": "L00-000",
+        "required_qty": 13,
+        "due_date": "2026-11-13",
+        "priority": 3
+      },
+      {
+        "task_id": "PERF-081",
+        "product_id": "L00-001",
+        "required_qty": 14,
+        "due_date": "2026-11-14",
+        "priority": 1
+      },
+      {
+        "task_id": "PERF-082",
+        "product_id": "L00-002",
+        "required_qty": 15,
+        "due_date": "2026-11-15",
+        "priority": 2
+      },
+      {
+        "task_id": "PERF-083",
+        "product_id": "L00-003",
+        "required_qty": 16,
+        "due_date": "2026-11-16",
+        "priority": 3
+      },
+      {
+        "task_id": "PERF-084",
+        "product_id": "L00-004",
+        "required_qty": 17,
+        "due_date": "2026-11-17",
+        "priority": 1
+      },
+      {
+        "task_id": "PERF-085",
+        "product_id": "L00-005",
+        "required_qty": 18,
+        "due_date": "2026-11-01",
+        "priority": 2
+      },
+      {
+        "task_id": "PERF-086",
+        "product_id": "L00-006",
+        "required_qty": 19,
+        "due_date": "2026-11-02",
+        "priority": 3
+      },
+      {
+        "task_id": "PERF-087",
+        "product_id": "L00-007",
+        "required_qty": 20,
+        "due_date": "2026-11-03",
+        "priority": 1
+      },
+      {
+        "task_id": "PERF-088",
+        "product_id": "L00-008",
+        "required_qty": 10,
+        "due_date": "2026-11-04",
+        "priority": 2
+      },
+      {
+        "task_id": "PERF-089",
+        "product_id": "L00-009",
+        "required_qty": 11,
+        "due_date": "2026-11-05",
+        "priority": 3
+      },
+      {
+        "task_id": "PERF-090",
+        "product_id": "L00-010",
+        "required_qty": 12,
+        "due_date": "2026-11-06",
+        "priority": 1
+      },
+      {
+        "task_id": "PERF-091",
+        "product_id": "L00-011",
+        "required_qty": 13,
+        "due_date": "2026-11-07",
+        "priority": 2
+      },
+      {
+        "task_id": "PERF-092",
+        "product_id": "L00-012",
+        "required_qty": 14,
+        "due_date": "2026-11-08",
+        "priority": 3
+      },
+      {
+        "task_id": "PERF-093",
+        "product_id": "L00-013",
+        "required_qty": 15,
+        "due_date": "2026-11-09",
+        "priority": 1
+      },
+      {
+        "task_id": "PERF-094",
+        "product_id": "L00-014",
+        "required_qty": 16,
+        "due_date": "2026-11-10",
+        "priority": 2
+      },
+      {
+        "task_id": "PERF-095",
+        "product_id": "L00-015",
+        "required_qty": 17,
+        "due_date": "2026-11-11",
+        "priority": 3
+      },
+      {
+        "task_id": "PERF-096",
+        "product_id": "L00-016",
+        "required_qty": 18,
+        "due_date": "2026-11-12",
+        "priority": 1
+      },
+      {
+        "task_id": "PERF-097",
+        "product_id": "L00-017",
+        "required_qty": 19,
+        "due_date": "2026-11-13",
+        "priority": 2
+      },
+      {
+        "task_id": "PERF-098",
+        "product_id": "L00-018",
+        "required_qty": 20,
+        "due_date": "2026-11-14",
+        "priority": 3
+      },
+      {
+        "task_id": "PERF-099",
+        "product_id": "L00-019",
+        "required_qty": 10,
+        "due_date": "2026-11-15",
+        "priority": 1
+      }
+    ],
+    "stocks": [
+      {
+        "material_id": "L00-000",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L00-001",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L00-002",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L00-003",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L00-004",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L00-005",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L00-006",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L00-007",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L00-008",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L00-009",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L00-010",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L00-011",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L00-012",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L00-013",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L00-014",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L00-015",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L00-016",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L00-017",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L00-018",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L00-019",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L01-000",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L01-001",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L01-002",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L01-003",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L01-004",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L01-005",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L01-006",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L01-007",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L01-008",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L01-009",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L02-000",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L02-001",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L02-002",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L02-003",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L02-004",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L02-005",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L02-006",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L02-007",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L02-008",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L02-009",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L03-000",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L03-001",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L03-002",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L03-003",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L03-004",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L03-005",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L03-006",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L03-007",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L03-008",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L03-009",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L04-000",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L04-001",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L04-002",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L04-003",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L04-004",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L04-005",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L04-006",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L04-007",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L04-008",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L04-009",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L05-000",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L05-001",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L05-002",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L05-003",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L05-004",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L05-005",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L05-006",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L05-007",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L05-008",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L05-009",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L06-000",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L06-001",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L06-002",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L06-003",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L06-004",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L06-005",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L06-006",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L06-007",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L06-008",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L06-009",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L07-000",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L07-001",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L07-002",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L07-003",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L07-004",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L07-005",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L07-006",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L07-007",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L07-008",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L07-009",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L08-000",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L08-001",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L08-002",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L08-003",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L08-004",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L08-005",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L08-006",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L08-007",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L08-008",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L08-009",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L09-000",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L09-001",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L09-002",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L09-003",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L09-004",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L09-005",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L09-006",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L09-007",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L09-008",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L09-009",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-000",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-001",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-002",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-003",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-004",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-005",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-006",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-007",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-008",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-009",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-010",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-011",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-012",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-013",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-014",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-015",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-016",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-017",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-018",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-019",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-020",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-021",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-022",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-023",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-024",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-025",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-026",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-027",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-028",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-029",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-030",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-031",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-032",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-033",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-034",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-035",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-036",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-037",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-038",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-039",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-040",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-041",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-042",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-043",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-044",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-045",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-046",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-047",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-048",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-049",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-050",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-051",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-052",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-053",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-054",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-055",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-056",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-057",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-058",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-059",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-060",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-061",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-062",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-063",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-064",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-065",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-066",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-067",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-068",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-069",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-070",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-071",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-072",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-073",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-074",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-075",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-076",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-077",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-078",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-079",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-080",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-081",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-082",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-083",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-084",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-085",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-086",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-087",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-088",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      },
+      {
+        "material_id": "L10-089",
+        "on_hand": 0,
+        "reserved": 0,
+        "snapshot_date": "2026-10-01"
+      }
+    ]
+  },
+  "request": {
+    "request_id": "PERFORMANCE-deep-zero-stock",
+    "selected_task_ids": [
+      "PERF-000",
+      "PERF-001",
+      "PERF-002",
+      "PERF-003",
+      "PERF-004",
+      "PERF-005",
+      "PERF-006",
+      "PERF-007",
+      "PERF-008",
+      "PERF-009",
+      "PERF-010",
+      "PERF-011",
+      "PERF-012",
+      "PERF-013",
+      "PERF-014",
+      "PERF-015",
+      "PERF-016",
+      "PERF-017",
+      "PERF-018",
+      "PERF-019",
+      "PERF-020",
+      "PERF-021",
+      "PERF-022",
+      "PERF-023",
+      "PERF-024",
+      "PERF-025",
+      "PERF-026",
+      "PERF-027",
+      "PERF-028",
+      "PERF-029",
+      "PERF-030",
+      "PERF-031",
+      "PERF-032",
+      "PERF-033",
+      "PERF-034",
+      "PERF-035",
+      "PERF-036",
+      "PERF-037",
+      "PERF-038",
+      "PERF-039",
+      "PERF-040",
+      "PERF-041",
+      "PERF-042",
+      "PERF-043",
+      "PERF-044",
+      "PERF-045",
+      "PERF-046",
+      "PERF-047",
+      "PERF-048",
+      "PERF-049",
+      "PERF-050",
+      "PERF-051",
+      "PERF-052",
+      "PERF-053",
+      "PERF-054",
+      "PERF-055",
+      "PERF-056",
+      "PERF-057",
+      "PERF-058",
+      "PERF-059",
+      "PERF-060",
+      "PERF-061",
+      "PERF-062",
+      "PERF-063",
+      "PERF-064",
+      "PERF-065",
+      "PERF-066",
+      "PERF-067",
+      "PERF-068",
+      "PERF-069",
+      "PERF-070",
+      "PERF-071",
+      "PERF-072",
+      "PERF-073",
+      "PERF-074",
+      "PERF-075",
+      "PERF-076",
+      "PERF-077",
+      "PERF-078",
+      "PERF-079",
+      "PERF-080",
+      "PERF-081",
+      "PERF-082",
+      "PERF-083",
+      "PERF-084",
+      "PERF-085",
+      "PERF-086",
+      "PERF-087",
+      "PERF-088",
+      "PERF-089",
+      "PERF-090",
+      "PERF-091",
+      "PERF-092",
+      "PERF-093",
+      "PERF-094",
+      "PERF-095",
+      "PERF-096",
+      "PERF-097",
+      "PERF-098",
+      "PERF-099"
+    ],
+    "baseline_date": "2026-10-01",
+    "rule_version": "prototype-v0.2"
+  }
+}

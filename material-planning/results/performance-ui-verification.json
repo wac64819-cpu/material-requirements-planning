@@ -1,0 +1,166 @@
+{
+  "executed_at": "2026-10-12T15:39:10.906Z",
+  "completed": true,
+  "browser": "Headless Microsoft Edge 155.0.4283.45",
+  "method": "One UI observation per fixture; real loopback HTTP, commit, JSON and DOM. Timing includes automation and is not a latency guarantee.",
+  "passed": 15,
+  "total": 15,
+  "checks": [
+    {
+      "name": "shared-stock: source save",
+      "actual": "SAVED",
+      "expected": "SAVED",
+      "passed": true
+    },
+    {
+      "name": "shared-stock: 200 material rows and 100 selected tasks",
+      "actual": [
+        200,
+        100
+      ],
+      "expected": [
+        200,
+        100
+      ],
+      "passed": true
+    },
+    {
+      "name": "shared-stock: complete batch generated",
+      "actual": "VALID",
+      "expected": "VALID",
+      "passed": true
+    },
+    {
+      "name": "shared-stock: all result and trace rows reach the DOM",
+      "actual": [
+        1375,
+        1248,
+        4823,
+        6844
+      ],
+      "expected": [
+        1375,
+        1248,
+        4823,
+        6844
+      ],
+      "passed": true
+    },
+    {
+      "name": "shared-stock: 100 tasks visible in summary",
+      "actual": "100",
+      "expected": "100",
+      "passed": true
+    },
+    {
+      "name": "shared-stock: history retains every production row",
+      "actual": 1375,
+      "expected": 1375,
+      "passed": true
+    },
+    {
+      "name": "shared-stock: narrow viewport has no page overflow",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "deep-zero-stock: source save",
+      "actual": "SAVED",
+      "expected": "SAVED",
+      "passed": true
+    },
+    {
+      "name": "deep-zero-stock: 200 material rows and 100 selected tasks",
+      "actual": [
+        200,
+        100
+      ],
+      "expected": [
+        200,
+        100
+      ],
+      "passed": true
+    },
+    {
+      "name": "deep-zero-stock: complete batch generated",
+      "actual": "VALID",
+      "expected": "VALID",
+      "passed": true
+    },
+    {
+      "name": "deep-zero-stock: all result and trace rows reach the DOM",
+      "actual": [
+        1000,
+        1478,
+        5000,
+        5000
+      ],
+      "expected": [
+        1000,
+        1478,
+        5000,
+        5000
+      ],
+      "passed": true
+    },
+    {
+      "name": "deep-zero-stock: 100 tasks visible in summary",
+      "actual": "100",
+      "expected": "100",
+      "passed": true
+    },
+    {
+      "name": "deep-zero-stock: history retains every production row",
+      "actual": 1000,
+      "expected": 1000,
+      "passed": true
+    },
+    {
+      "name": "deep-zero-stock: narrow viewport has no page overflow",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "No unhandled browser errors",
+      "actual": [],
+      "expected": [],
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "measurements": [
+    {
+      "case": "shared-stock",
+      "load_seconds": 0.2594677999999999,
+      "click_to_visible_seconds": 1.8667526,
+      "history_click_to_visible_seconds": 3.0329036,
+      "result_rows": [
+        1375,
+        1248,
+        4823,
+        6844
+      ]
+    },
+    {
+      "case": "deep-zero-stock",
+      "load_seconds": 0.2472644999999993,
+      "click_to_visible_seconds": 1.7365453000000006,
+      "history_click_to_visible_seconds": 3.1357042,
+      "result_rows": [
+        1000,
+        1478,
+        5000,
+        5000
+      ]
+    }
+  ],
+  "source_sha256": {
+    "verify_performance_ui.cjs": "c7b9a04eceba963a7d42b8100576bb862c2bb2b0ed9b0e8c5d31830c99232d64",
+    "web/app.js": "97dc18ccd2b38fc609a539a02f4c35ddc83926652bb9a4435a79d54236cb01f3",
+    "web/style.css": "7f3d2eb0f4e8b9221ac9dd5518609bb16c630cbca6c523dc89cb88399bae3909",
+    "web/index.html": "c11f6e50ad2cc7a3fad804b3a467bb1c5edc19d2f30fc3c7b4770c390621699c"
+  },
+  "scope": "Fresh isolated database. Formal workspace and history not changed."
+}

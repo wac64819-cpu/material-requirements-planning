@@ -1,0 +1,110 @@
+{
+  "executed_at": "2026-10-26T07:21:48.109Z",
+  "completed": false,
+  "failure": "Cancelled history read clears loading message: \"正在读取计划…\"",
+  "passed": 9,
+  "total": 10,
+  "checks": [
+    {
+      "name": "planning is the sole visible section",
+      "actual": [
+        "view-planning"
+      ],
+      "expected": [
+        "view-planning"
+      ],
+      "passed": true
+    },
+    {
+      "name": "planning navigation and focus match",
+      "actual": [
+        "planning",
+        "page-title"
+      ],
+      "expected": [
+        "planning",
+        "page-title"
+      ],
+      "passed": true
+    },
+    {
+      "name": "history is the sole visible section",
+      "actual": [
+        "view-history"
+      ],
+      "expected": [
+        "view-history"
+      ],
+      "passed": true
+    },
+    {
+      "name": "history navigation and focus match",
+      "actual": [
+        "history",
+        "page-title"
+      ],
+      "expected": [
+        "history",
+        "page-title"
+      ],
+      "passed": true
+    },
+    {
+      "name": "data is the sole visible section",
+      "actual": [
+        "view-data"
+      ],
+      "expected": [
+        "view-data"
+      ],
+      "passed": true
+    },
+    {
+      "name": "data navigation and focus match",
+      "actual": [
+        "data",
+        "page-title"
+      ],
+      "expected": [
+        "data",
+        "page-title"
+      ],
+      "passed": true
+    },
+    {
+      "name": "Overview matches source rows",
+      "actual": [
+        "4",
+        "3",
+        "4",
+        "2"
+      ],
+      "expected": [
+        "4",
+        "3",
+        "4",
+        "2"
+      ],
+      "passed": true
+    },
+    {
+      "name": "Navigation retains unsaved input",
+      "actual": "跨页编辑保留",
+      "expected": "跨页编辑保留",
+      "passed": true
+    },
+    {
+      "name": "Calculation keeps priority ordering",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Cancelled history read clears loading message",
+      "actual": "正在读取计划…",
+      "expected": "",
+      "passed": false
+    }
+  ],
+  "errors": []
+}

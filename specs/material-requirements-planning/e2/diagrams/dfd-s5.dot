@@ -1,0 +1,14 @@
+digraph G {
+graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.45", ranksep="0.85", splines=polyline, label="S5   Refined timing risk and completed result", labelloc=t, fontsize=24, fontname="Arial"];
+node [shape=box, fontname="Arial", fontsize=16, margin="0.16,0.12", color="#334155", penwidth=1.4];
+edge [fontname="Arial", fontsize=12, color="#475569", arrowsize=0.75];
+"S4" [label="S4 Purchasing", shape=box, style="filled", fillcolor="#f1f5f9"];
+"P3" [label="P3 Publish results", shape=box, style="filled", fillcolor="#f1f5f9"];
+"E01" [label="E01\nCollect required dates", shape=box, style="rounded,filled", fillcolor="#edf5ff"];
+"E02" [label="E02\nFlag early dates", shape=box, style="rounded,filled", fillcolor="#edf5ff"];
+"E03" [label="E03\nAssemble complete result", shape=box, style="rounded,filled", fillcolor="#edf5ff"];
+"S4" -> "E01" [label="G20"];
+"E01" -> "E02" [label="G51"];
+"E02" -> "E03" [label="G52"];
+"E03" -> "P3" [label="F09.valid"];
+}

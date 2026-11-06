@@ -1,0 +1,917 @@
+{
+  "executed_at": "2026-10-22T12:28:11.350677+08:00",
+  "passed": 38,
+  "total": 38,
+  "checks": [
+    {
+      "name": "Four named templates",
+      "actual": [
+        "bom.csv",
+        "materials.csv",
+        "stocks.csv",
+        "tasks.csv"
+      ],
+      "expected": [
+        "bom.csv",
+        "materials.csv",
+        "stocks.csv",
+        "tasks.csv"
+      ],
+      "passed": true
+    },
+    {
+      "name": "Four table preview valid",
+      "actual": "READY",
+      "expected": "READY",
+      "passed": true
+    },
+    {
+      "name": "Preview preserves current input",
+      "actual": {
+        "sources": {
+          "source_revision": "sample-v1",
+          "materials": [
+            {
+              "material_id": "A",
+              "name": "A",
+              "supply_type": "MAKE",
+              "unit": "pcs",
+              "lead_time_days": 2
+            },
+            {
+              "material_id": "B",
+              "name": "B",
+              "supply_type": "MAKE",
+              "unit": "pcs",
+              "lead_time_days": 3
+            },
+            {
+              "material_id": "C",
+              "name": "C",
+              "supply_type": "BUY",
+              "unit": "pcs",
+              "lead_time_days": 4,
+              "min_purchase_qty": 0,
+              "purchase_multiple": 1
+            },
+            {
+              "material_id": "D",
+              "name": "D",
+              "supply_type": "BUY",
+              "unit": "pcs",
+              "lead_time_days": 5,
+              "min_purchase_qty": 0,
+              "purchase_multiple": 1
+            }
+          ],
+          "bom": [
+            {
+              "parent_id": "A",
+              "child_id": "B",
+              "qty_per": 2
+            },
+            {
+              "parent_id": "A",
+              "child_id": "C",
+              "qty_per": 3
+            },
+            {
+              "parent_id": "B",
+              "child_id": "D",
+              "qty_per": 4
+            }
+          ],
+          "tasks": [
+            {
+              "task_id": "LOW",
+              "product_id": "A",
+              "required_qty": 100,
+              "due_date": "2026-10-20",
+              "priority": 2
+            },
+            {
+              "task_id": "HIGH",
+              "product_id": "A",
+              "required_qty": 50,
+              "due_date": "2026-10-21",
+              "priority": 1
+            }
+          ],
+          "stocks": [
+            {
+              "material_id": "A",
+              "on_hand": 0,
+              "reserved": 0,
+              "snapshot_date": "2026-10-01"
+            },
+            {
+              "material_id": "B",
+              "on_hand": 20,
+              "reserved": 0,
+              "snapshot_date": "2026-10-01"
+            },
+            {
+              "material_id": "C",
+              "on_hand": 50,
+              "reserved": 0,
+              "snapshot_date": "2026-10-01"
+            },
+            {
+              "material_id": "D",
+              "on_hand": 100,
+              "reserved": 0,
+              "snapshot_date": "2026-10-01"
+            }
+          ]
+        },
+        "request": {
+          "request_id": "DEMO-001",
+          "selected_task_ids": [
+            "LOW",
+            "HIGH"
+          ],
+          "baseline_date": "2026-10-01",
+          "rule_version": "prototype-v0.2"
+        }
+      },
+      "expected": {
+        "sources": {
+          "source_revision": "sample-v1",
+          "materials": [
+            {
+              "material_id": "A",
+              "name": "A",
+              "supply_type": "MAKE",
+              "unit": "pcs",
+              "lead_time_days": 2
+            },
+            {
+              "material_id": "B",
+              "name": "B",
+              "supply_type": "MAKE",
+              "unit": "pcs",
+              "lead_time_days": 3
+            },
+            {
+              "material_id": "C",
+              "name": "C",
+              "supply_type": "BUY",
+              "unit": "pcs",
+              "lead_time_days": 4,
+              "min_purchase_qty": 0,
+              "purchase_multiple": 1
+            },
+            {
+              "material_id": "D",
+              "name": "D",
+              "supply_type": "BUY",
+              "unit": "pcs",
+              "lead_time_days": 5,
+              "min_purchase_qty": 0,
+              "purchase_multiple": 1
+            }
+          ],
+          "bom": [
+            {
+              "parent_id": "A",
+              "child_id": "B",
+              "qty_per": 2
+            },
+            {
+              "parent_id": "A",
+              "child_id": "C",
+              "qty_per": 3
+            },
+            {
+              "parent_id": "B",
+              "child_id": "D",
+              "qty_per": 4
+            }
+          ],
+          "tasks": [
+            {
+              "task_id": "LOW",
+              "product_id": "A",
+              "required_qty": 100,
+              "due_date": "2026-10-20",
+              "priority": 2
+            },
+            {
+              "task_id": "HIGH",
+              "product_id": "A",
+              "required_qty": 50,
+              "due_date": "2026-10-21",
+              "priority": 1
+            }
+          ],
+          "stocks": [
+            {
+              "material_id": "A",
+              "on_hand": 0,
+              "reserved": 0,
+              "snapshot_date": "2026-10-01"
+            },
+            {
+              "material_id": "B",
+              "on_hand": 20,
+              "reserved": 0,
+              "snapshot_date": "2026-10-01"
+            },
+            {
+              "material_id": "C",
+              "on_hand": 50,
+              "reserved": 0,
+              "snapshot_date": "2026-10-01"
+            },
+            {
+              "material_id": "D",
+              "on_hand": 100,
+              "reserved": 0,
+              "snapshot_date": "2026-10-01"
+            }
+          ]
+        },
+        "request": {
+          "request_id": "DEMO-001",
+          "selected_task_ids": [
+            "LOW",
+            "HIGH"
+          ],
+          "baseline_date": "2026-10-01",
+          "rule_version": "prototype-v0.2"
+        }
+      },
+      "passed": true
+    },
+    {
+      "name": "Preview counts",
+      "actual": {
+        "materials": 4,
+        "bom": 3,
+        "stocks": 4,
+        "tasks": 2
+      },
+      "expected": {
+        "materials": 4,
+        "bom": 3,
+        "stocks": 4,
+        "tasks": 2
+      },
+      "passed": true
+    },
+    {
+      "name": "Preview preserves selection IDs",
+      "actual": [
+        "LOW",
+        "HIGH"
+      ],
+      "expected": [
+        "LOW",
+        "HIGH"
+      ],
+      "passed": true
+    },
+    {
+      "name": "CSV_HEADER rejected",
+      "actual": [
+        "INVALID",
+        "CSV_HEADER"
+      ],
+      "expected": [
+        "INVALID",
+        "CSV_HEADER"
+      ],
+      "passed": true
+    },
+    {
+      "name": "CSV_HEADER rejected",
+      "actual": [
+        "INVALID",
+        "CSV_HEADER"
+      ],
+      "expected": [
+        "INVALID",
+        "CSV_HEADER"
+      ],
+      "passed": true
+    },
+    {
+      "name": "CSV_INTEGER rejected",
+      "actual": [
+        "INVALID",
+        "CSV_INTEGER"
+      ],
+      "expected": [
+        "INVALID",
+        "CSV_INTEGER"
+      ],
+      "passed": true
+    },
+    {
+      "name": "CSV_INTEGER rejected",
+      "actual": [
+        "INVALID",
+        "CSV_INTEGER"
+      ],
+      "expected": [
+        "INVALID",
+        "CSV_INTEGER"
+      ],
+      "passed": true
+    },
+    {
+      "name": "CSV_INTEGER rejected",
+      "actual": [
+        "INVALID",
+        "CSV_INTEGER"
+      ],
+      "expected": [
+        "INVALID",
+        "CSV_INTEGER"
+      ],
+      "passed": true
+    },
+    {
+      "name": "CSV_COLUMNS rejected",
+      "actual": [
+        "INVALID",
+        "CSV_COLUMNS"
+      ],
+      "expected": [
+        "INVALID",
+        "CSV_COLUMNS"
+      ],
+      "passed": true
+    },
+    {
+      "name": "CSV_SYNTAX rejected",
+      "actual": [
+        "INVALID",
+        "CSV_SYNTAX"
+      ],
+      "expected": [
+        "INVALID",
+        "CSV_SYNTAX"
+      ],
+      "passed": true
+    },
+    {
+      "name": "Unknown reference rejected",
+      "actual": "INVALID",
+      "expected": "INVALID",
+      "passed": true
+    },
+    {
+      "name": "CSV row location retained",
+      "actual": "CSV bom.csv:2",
+      "expected": "CSV bom.csv:2",
+      "passed": true
+    },
+    {
+      "name": "BOM cycle blocks import",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Snapshot mismatch rejected",
+      "actual": "SNAPSHOT_DATE",
+      "expected": "SNAPSHOT_DATE",
+      "passed": true
+    },
+    {
+      "name": "Empty file rejected",
+      "actual": "INVALID",
+      "expected": "INVALID",
+      "passed": true
+    },
+    {
+      "name": "No files rejected",
+      "actual": "INVALID",
+      "expected": "INVALID",
+      "passed": true
+    },
+    {
+      "name": "Unknown table rejected",
+      "actual": "INVALID",
+      "expected": "INVALID",
+      "passed": true
+    },
+    {
+      "name": "Size limit",
+      "actual": "CSV_SIZE",
+      "expected": "CSV_SIZE",
+      "passed": true
+    },
+    {
+      "name": "UTF8 BOM present",
+      "actual": "efbbbf",
+      "expected": "efbbbf",
+      "passed": true
+    },
+    {
+      "name": "Quoted Chinese roundtrip",
+      "actual": [
+        "成品甲, \"限定\"\n第二行",
+        "=1+1",
+        "'名称"
+      ],
+      "expected": [
+        "成品甲, \"限定\"\n第二行",
+        "=1+1",
+        "'名称"
+      ],
+      "passed": true
+    },
+    {
+      "name": "Protected formula cell",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Quoted input no parse errors",
+      "actual": [],
+      "expected": [],
+      "passed": true
+    },
+    {
+      "name": "Single table leaves stock unchanged",
+      "actual": [
+        {
+          "material_id": "A",
+          "on_hand": 0,
+          "reserved": 0,
+          "snapshot_date": "2026-10-01"
+        },
+        {
+          "material_id": "B",
+          "on_hand": 20,
+          "reserved": 0,
+          "snapshot_date": "2026-10-01"
+        },
+        {
+          "material_id": "C",
+          "on_hand": 50,
+          "reserved": 0,
+          "snapshot_date": "2026-10-01"
+        },
+        {
+          "material_id": "D",
+          "on_hand": 100,
+          "reserved": 0,
+          "snapshot_date": "2026-10-01"
+        }
+      ],
+      "expected": [
+        {
+          "material_id": "A",
+          "on_hand": 0,
+          "reserved": 0,
+          "snapshot_date": "2026-10-01"
+        },
+        {
+          "material_id": "B",
+          "on_hand": 20,
+          "reserved": 0,
+          "snapshot_date": "2026-10-01"
+        },
+        {
+          "material_id": "C",
+          "on_hand": 50,
+          "reserved": 0,
+          "snapshot_date": "2026-10-01"
+        },
+        {
+          "material_id": "D",
+          "on_hand": 100,
+          "reserved": 0,
+          "snapshot_date": "2026-10-01"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Removed tasks deselected",
+      "actual": [
+        "HIGH"
+      ],
+      "expected": [
+        "HIGH"
+      ],
+      "passed": true
+    },
+    {
+      "name": "MAKE independent quantities",
+      "actual": [
+        [
+          "HIGH",
+          "A",
+          "50"
+        ],
+        [
+          "HIGH",
+          "B",
+          "80"
+        ],
+        [
+          "LOW",
+          "A",
+          "100"
+        ],
+        [
+          "LOW",
+          "B",
+          "200"
+        ]
+      ],
+      "expected": [
+        [
+          "HIGH",
+          "A",
+          "50"
+        ],
+        [
+          "HIGH",
+          "B",
+          "80"
+        ],
+        [
+          "LOW",
+          "A",
+          "100"
+        ],
+        [
+          "LOW",
+          "B",
+          "200"
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "name": "Batch ID in every row",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "PURCHASE rows",
+      "actual": 4,
+      "expected": 4,
+      "passed": true
+    },
+    {
+      "name": "ALLOCATION rows",
+      "actual": 8,
+      "expected": 8,
+      "passed": true
+    },
+    {
+      "name": "TRACE rows",
+      "actual": 8,
+      "expected": 8,
+      "passed": true
+    },
+    {
+      "name": "RISK rows",
+      "actual": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "Historical CSV unchanged after new source/plan",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Preview does not persist",
+      "actual": [
+        {
+          "revision_id": "b26a723615184ba09f112ee775105c05",
+          "created_at": "2026-10-22T04:28:11.299423+00:00",
+          "payload": {
+            "request": {
+              "baseline_date": "2026-10-01",
+              "request_id": "DEMO-001",
+              "rule_version": "prototype-v0.2",
+              "selected_task_ids": [
+                "HIGH",
+                "LOW"
+              ]
+            },
+            "sources": {
+              "bom": [
+                {
+                  "child_id": "B",
+                  "parent_id": "A",
+                  "qty_per": 2
+                },
+                {
+                  "child_id": "C",
+                  "parent_id": "A",
+                  "qty_per": 3
+                },
+                {
+                  "child_id": "D",
+                  "parent_id": "B",
+                  "qty_per": 4
+                }
+              ],
+              "materials": [
+                {
+                  "lead_time_days": 2,
+                  "material_id": "A",
+                  "name": "A",
+                  "supply_type": "MAKE",
+                  "unit": "pcs"
+                },
+                {
+                  "lead_time_days": 3,
+                  "material_id": "B",
+                  "name": "B",
+                  "supply_type": "MAKE",
+                  "unit": "pcs"
+                },
+                {
+                  "lead_time_days": 4,
+                  "material_id": "C",
+                  "min_purchase_qty": 0,
+                  "name": "C",
+                  "purchase_multiple": 1,
+                  "supply_type": "BUY",
+                  "unit": "pcs"
+                },
+                {
+                  "lead_time_days": 5,
+                  "material_id": "D",
+                  "min_purchase_qty": 0,
+                  "name": "D",
+                  "purchase_multiple": 1,
+                  "supply_type": "BUY",
+                  "unit": "pcs"
+                }
+              ],
+              "source_revision": "b26a723615184ba09f112ee775105c05",
+              "stocks": [
+                {
+                  "material_id": "A",
+                  "on_hand": 0,
+                  "reserved": 0,
+                  "snapshot_date": "2026-10-01"
+                },
+                {
+                  "material_id": "B",
+                  "on_hand": 20,
+                  "reserved": 0,
+                  "snapshot_date": "2026-10-01"
+                },
+                {
+                  "material_id": "C",
+                  "on_hand": 50,
+                  "reserved": 0,
+                  "snapshot_date": "2026-10-01"
+                },
+                {
+                  "material_id": "D",
+                  "on_hand": 100,
+                  "reserved": 0,
+                  "snapshot_date": "2026-10-01"
+                }
+              ],
+              "tasks": [
+                {
+                  "due_date": "2026-10-21",
+                  "priority": 1,
+                  "product_id": "A",
+                  "required_qty": 50,
+                  "task_id": "HIGH"
+                },
+                {
+                  "due_date": "2026-10-20",
+                  "priority": 2,
+                  "product_id": "A",
+                  "required_qty": 10,
+                  "task_id": "LOW"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "items": [
+            {
+              "batch_id": "12af39a9e773409fb935ff81e7944768",
+              "created_at": "2026-10-22T04:28:11.310422+00:00",
+              "baseline_date": "2026-10-01",
+              "task_ids": [
+                "HIGH",
+                "LOW"
+              ],
+              "summary": {
+                "make_line_count": 4,
+                "purchase_line_count": 4,
+                "risk_count": 0,
+                "task_count": 2
+              }
+            },
+            {
+              "batch_id": "1cdebf735408440297c30a028181817f",
+              "created_at": "2026-10-22T04:28:11.279667+00:00",
+              "baseline_date": "2026-10-01",
+              "task_ids": [
+                "HIGH",
+                "LOW"
+              ],
+              "summary": {
+                "make_line_count": 4,
+                "purchase_line_count": 4,
+                "risk_count": 0,
+                "task_count": 2
+              }
+            }
+          ],
+          "next_offset": null
+        }
+      ],
+      "expected": [
+        {
+          "revision_id": "b26a723615184ba09f112ee775105c05",
+          "created_at": "2026-10-22T04:28:11.299423+00:00",
+          "payload": {
+            "request": {
+              "baseline_date": "2026-10-01",
+              "request_id": "DEMO-001",
+              "rule_version": "prototype-v0.2",
+              "selected_task_ids": [
+                "HIGH",
+                "LOW"
+              ]
+            },
+            "sources": {
+              "bom": [
+                {
+                  "child_id": "B",
+                  "parent_id": "A",
+                  "qty_per": 2
+                },
+                {
+                  "child_id": "C",
+                  "parent_id": "A",
+                  "qty_per": 3
+                },
+                {
+                  "child_id": "D",
+                  "parent_id": "B",
+                  "qty_per": 4
+                }
+              ],
+              "materials": [
+                {
+                  "lead_time_days": 2,
+                  "material_id": "A",
+                  "name": "A",
+                  "supply_type": "MAKE",
+                  "unit": "pcs"
+                },
+                {
+                  "lead_time_days": 3,
+                  "material_id": "B",
+                  "name": "B",
+                  "supply_type": "MAKE",
+                  "unit": "pcs"
+                },
+                {
+                  "lead_time_days": 4,
+                  "material_id": "C",
+                  "min_purchase_qty": 0,
+                  "name": "C",
+                  "purchase_multiple": 1,
+                  "supply_type": "BUY",
+                  "unit": "pcs"
+                },
+                {
+                  "lead_time_days": 5,
+                  "material_id": "D",
+                  "min_purchase_qty": 0,
+                  "name": "D",
+                  "purchase_multiple": 1,
+                  "supply_type": "BUY",
+                  "unit": "pcs"
+                }
+              ],
+              "source_revision": "b26a723615184ba09f112ee775105c05",
+              "stocks": [
+                {
+                  "material_id": "A",
+                  "on_hand": 0,
+                  "reserved": 0,
+                  "snapshot_date": "2026-10-01"
+                },
+                {
+                  "material_id": "B",
+                  "on_hand": 20,
+                  "reserved": 0,
+                  "snapshot_date": "2026-10-01"
+                },
+                {
+                  "material_id": "C",
+                  "on_hand": 50,
+                  "reserved": 0,
+                  "snapshot_date": "2026-10-01"
+                },
+                {
+                  "material_id": "D",
+                  "on_hand": 100,
+                  "reserved": 0,
+                  "snapshot_date": "2026-10-01"
+                }
+              ],
+              "tasks": [
+                {
+                  "due_date": "2026-10-21",
+                  "priority": 1,
+                  "product_id": "A",
+                  "required_qty": 50,
+                  "task_id": "HIGH"
+                },
+                {
+                  "due_date": "2026-10-20",
+                  "priority": 2,
+                  "product_id": "A",
+                  "required_qty": 10,
+                  "task_id": "LOW"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "items": [
+            {
+              "batch_id": "12af39a9e773409fb935ff81e7944768",
+              "created_at": "2026-10-22T04:28:11.310422+00:00",
+              "baseline_date": "2026-10-01",
+              "task_ids": [
+                "HIGH",
+                "LOW"
+              ],
+              "summary": {
+                "make_line_count": 4,
+                "purchase_line_count": 4,
+                "risk_count": 0,
+                "task_count": 2
+              }
+            },
+            {
+              "batch_id": "1cdebf735408440297c30a028181817f",
+              "created_at": "2026-10-22T04:28:11.279667+00:00",
+              "baseline_date": "2026-10-01",
+              "task_ids": [
+                "HIGH",
+                "LOW"
+              ],
+              "summary": {
+                "make_line_count": 4,
+                "purchase_line_count": 4,
+                "risk_count": 0,
+                "task_count": 2
+              }
+            }
+          ],
+          "next_offset": null
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "HTTP export body exact",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "HTTP download header",
+      "actual": "attachment; filename=\"plan-1cdebf735408440297c30a028181817f-MAKE.csv\"",
+      "expected": "attachment; filename=\"plan-1cdebf735408440297c30a028181817f-MAKE.csv\"",
+      "passed": true
+    },
+    {
+      "name": "Unknown batch returns404",
+      "actual": "404 Not Found",
+      "expected": "404 Not Found",
+      "passed": true
+    },
+    {
+      "name": "Invalid export type returns400",
+      "actual": "400 Bad Request",
+      "expected": "400 Bad Request",
+      "passed": true
+    }
+  ],
+  "source_sha256": {
+    "csv_io.py": "4cf5f8c0899bb0cc40e2111c8006a5fba7f926727ed3b212e1ac82e71d51e23e",
+    "web_server.py": "b67e8e80ffa38b5c8d75288633cb9963cabb7cb22b974c6b6f1008aad25fc661"
+  }
+}

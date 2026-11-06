@@ -1,0 +1,1 @@
+{"request_id": "E5", "status": "INVALID", "result": null, "errors": [{"code": "DATE_RANGE", "severity": "BLOCKING", "message": "Calculated date is outside the supported calendar range.", "source_location": "[\"demand\",\"T1\",\"P\",\"0001-01-01\"]", "task_id": "T1", "material_id": "P", "computed_date": null, "days_before_baseline": null}]}

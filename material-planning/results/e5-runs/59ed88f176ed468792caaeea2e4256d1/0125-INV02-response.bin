@@ -1,0 +1,1 @@
+{"request_id": "E5", "status": "INVALID", "result": null, "errors": [{"code": "UNKNOWN_MATERIAL", "severity": "BLOCKING", "source_location": "bom[0]", "message": "BOM references an unknown material.", "task_id": null, "material_id": null, "computed_date": null, "days_before_baseline": null}]}

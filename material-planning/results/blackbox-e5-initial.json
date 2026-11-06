@@ -1,0 +1,2751 @@
+{
+  "executed_at": "2026-10-22T12:25:54.930859+08:00",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "passed": 118,
+  "total": 121,
+  "cases": [
+    {
+      "id": "S00",
+      "group": "Source",
+      "requirement": "FR01",
+      "method": "EP",
+      "description": "Fresh workspace has no saved revision",
+      "expected": {
+        "revision_id": null,
+        "payload": null,
+        "created_at": null
+      },
+      "actual": {
+        "revision_id": null,
+        "payload": null,
+        "created_at": null
+      },
+      "passed": true
+    },
+    {
+      "id": "P00",
+      "group": "Planning",
+      "requirement": "FR04 FR06 FR07",
+      "method": "EP+BVA",
+      "description": "Base P10 with two R per P: make10, buy20; calendar lead2+3",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          [
+            [
+              "P",
+              10,
+              "2026-11-18"
+            ]
+          ],
+          [
+            [
+              "R",
+              "2026-11-18",
+              20,
+              "2026-11-15"
+            ]
+          ],
+          []
+        ]
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          [
+            [
+              "P",
+              10,
+              "2026-11-18"
+            ]
+          ],
+          [
+            [
+              "R",
+              "2026-11-18",
+              20,
+              "2026-11-15"
+            ]
+          ],
+          []
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "Q00",
+      "group": "Planning",
+      "requirement": "FR01 FR04 FR06",
+      "method": "EP+BVA",
+      "description": "Task quantity 0; valid positive safe integer partition",
+      "expected": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "actual": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "passed": true
+    },
+    {
+      "id": "Q01",
+      "group": "Planning",
+      "requirement": "FR01 FR04 FR06",
+      "method": "EP+BVA",
+      "description": "Task quantity 1; valid positive safe integer partition",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          1,
+          5
+        ]
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          1,
+          5
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "Q02",
+      "group": "Planning",
+      "requirement": "FR01 FR04 FR06",
+      "method": "EP+BVA",
+      "description": "Task quantity 2; valid positive safe integer partition",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          2,
+          5
+        ]
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          2,
+          5
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "Q03",
+      "group": "Planning",
+      "requirement": "FR01 FR04 FR06",
+      "method": "EP+BVA",
+      "description": "Task quantity 9007199254740990; valid positive safe integer partition",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          9007199254740990,
+          18014398509481980
+        ]
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          9007199254740990,
+          18014398509481980
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "Q04",
+      "group": "Planning",
+      "requirement": "FR01 FR04 FR06",
+      "method": "EP+BVA",
+      "description": "Task quantity 9007199254740991; valid positive safe integer partition",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          9007199254740991,
+          18014398509481985
+        ]
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          9007199254740991,
+          18014398509481985
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "Q05",
+      "group": "Planning",
+      "requirement": "FR01 FR04 FR06",
+      "method": "EP+BVA",
+      "description": "Task quantity 9007199254740992; valid positive safe integer partition",
+      "expected": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "located_errors": false,
+        "history_unchanged": false,
+        "saved": true
+      },
+      "passed": false
+    },
+    {
+      "id": "Q06",
+      "group": "Planning",
+      "requirement": "FR01 FR04 FR06",
+      "method": "EP+BVA",
+      "description": "Task quantity 1.5; valid positive safe integer partition",
+      "expected": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "actual": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "passed": true
+    },
+    {
+      "id": "Q07",
+      "group": "Planning",
+      "requirement": "FR01 FR04 FR06",
+      "method": "EP+BVA",
+      "description": "Task quantity True; valid positive safe integer partition",
+      "expected": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "actual": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "passed": true
+    },
+    {
+      "id": "Q08",
+      "group": "Planning",
+      "requirement": "FR01 FR04 FR06",
+      "method": "EP+BVA",
+      "description": "Task quantity '10'; valid positive safe integer partition",
+      "expected": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "actual": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "passed": true
+    },
+    {
+      "id": "B00",
+      "group": "Planning",
+      "requirement": "FR03 FR04",
+      "method": "EP+BVA",
+      "description": "BOM usage 0; positive lower boundary",
+      "expected": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "actual": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "passed": true
+    },
+    {
+      "id": "B01",
+      "group": "Planning",
+      "requirement": "FR03 FR04",
+      "method": "EP+BVA",
+      "description": "BOM usage 1; positive lower boundary",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 10
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 10
+      },
+      "passed": true
+    },
+    {
+      "id": "B02",
+      "group": "Planning",
+      "requirement": "FR03 FR04",
+      "method": "EP+BVA",
+      "description": "BOM usage 2; positive lower boundary",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 20
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 20
+      },
+      "passed": true
+    },
+    {
+      "id": "PR0",
+      "group": "Planning",
+      "requirement": "FR01 FR02",
+      "method": "EP+BVA",
+      "description": "Priority 0; closed domain 1 to 3",
+      "expected": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "actual": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "passed": true
+    },
+    {
+      "id": "PR1",
+      "group": "Planning",
+      "requirement": "FR01 FR02",
+      "method": "EP+BVA",
+      "description": "Priority 1; closed domain 1 to 3",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          "T1"
+        ]
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          "T1"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "PR2",
+      "group": "Planning",
+      "requirement": "FR01 FR02",
+      "method": "EP+BVA",
+      "description": "Priority 2; closed domain 1 to 3",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          "T1"
+        ]
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          "T1"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "PR3",
+      "group": "Planning",
+      "requirement": "FR01 FR02",
+      "method": "EP+BVA",
+      "description": "Priority 3; closed domain 1 to 3",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          "T1"
+        ]
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          "T1"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "PR4",
+      "group": "Planning",
+      "requirement": "FR01 FR02",
+      "method": "EP+BVA",
+      "description": "Priority 4; closed domain 1 to 3",
+      "expected": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "actual": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "passed": true
+    },
+    {
+      "id": "ST0",
+      "group": "Planning",
+      "requirement": "FR05 FR06",
+      "method": "EP+BVA",
+      "description": "Raw stock -1 around gross requirement20",
+      "expected": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "actual": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "passed": true
+    },
+    {
+      "id": "ST1",
+      "group": "Planning",
+      "requirement": "FR05 FR06",
+      "method": "EP+BVA",
+      "description": "Raw stock 0 around gross requirement20",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 20
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 20
+      },
+      "passed": true
+    },
+    {
+      "id": "ST2",
+      "group": "Planning",
+      "requirement": "FR05 FR06",
+      "method": "EP+BVA",
+      "description": "Raw stock 19 around gross requirement20",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 5
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 5
+      },
+      "passed": true
+    },
+    {
+      "id": "ST3",
+      "group": "Planning",
+      "requirement": "FR05 FR06",
+      "method": "EP+BVA",
+      "description": "Raw stock 20 around gross requirement20",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 0
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 0
+      },
+      "passed": true
+    },
+    {
+      "id": "ST4",
+      "group": "Planning",
+      "requirement": "FR05 FR06",
+      "method": "EP+BVA",
+      "description": "Raw stock 21 around gross requirement20",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 0
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 0
+      },
+      "passed": true
+    },
+    {
+      "id": "RS0",
+      "group": "Planning",
+      "requirement": "FR01 FR05",
+      "method": "EP+BVA",
+      "description": "Reserved -1 with on-hand20; allowed interval0..20",
+      "expected": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "actual": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "passed": true
+    },
+    {
+      "id": "RS1",
+      "group": "Planning",
+      "requirement": "FR01 FR05",
+      "method": "EP+BVA",
+      "description": "Reserved 0 with on-hand20; allowed interval0..20",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 0
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 0
+      },
+      "passed": true
+    },
+    {
+      "id": "RS2",
+      "group": "Planning",
+      "requirement": "FR01 FR05",
+      "method": "EP+BVA",
+      "description": "Reserved 1 with on-hand20; allowed interval0..20",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 5
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 5
+      },
+      "passed": true
+    },
+    {
+      "id": "RS3",
+      "group": "Planning",
+      "requirement": "FR01 FR05",
+      "method": "EP+BVA",
+      "description": "Reserved 20 with on-hand20; allowed interval0..20",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 20
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 20
+      },
+      "passed": true
+    },
+    {
+      "id": "RS4",
+      "group": "Planning",
+      "requirement": "FR01 FR05",
+      "method": "EP+BVA",
+      "description": "Reserved 21 with on-hand20; allowed interval0..20",
+      "expected": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "actual": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "passed": true
+    },
+    {
+      "id": "LD0",
+      "group": "Planning",
+      "requirement": "FR01 FR07",
+      "method": "EP+BVA",
+      "description": "Purchase lead time -1; nonnegative lower boundary",
+      "expected": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "actual": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "passed": true
+    },
+    {
+      "id": "LD1",
+      "group": "Planning",
+      "requirement": "FR01 FR07",
+      "method": "EP+BVA",
+      "description": "Purchase lead time 0; nonnegative lower boundary",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": "2026-11-18"
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": "2026-11-18"
+      },
+      "passed": true
+    },
+    {
+      "id": "LD2",
+      "group": "Planning",
+      "requirement": "FR01 FR07",
+      "method": "EP+BVA",
+      "description": "Purchase lead time 1; nonnegative lower boundary",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": "2026-11-17"
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": "2026-11-17"
+      },
+      "passed": true
+    },
+    {
+      "id": "MU0",
+      "group": "Planning",
+      "requirement": "FR01 FR06",
+      "method": "EP+BVA",
+      "description": "Purchase multiple 0; positive lower boundary",
+      "expected": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "actual": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "passed": true
+    },
+    {
+      "id": "MU1",
+      "group": "Planning",
+      "requirement": "FR01 FR06",
+      "method": "EP+BVA",
+      "description": "Purchase multiple 1; positive lower boundary",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 20
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 20
+      },
+      "passed": true
+    },
+    {
+      "id": "MU2",
+      "group": "Planning",
+      "requirement": "FR01 FR06",
+      "method": "EP+BVA",
+      "description": "Purchase multiple 2; positive lower boundary",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 20
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 20
+      },
+      "passed": true
+    },
+    {
+      "id": "LOT0",
+      "group": "Planning",
+      "requirement": "FR06",
+      "method": "EP+BVA",
+      "description": "BUY root gap9, minimum0, multiple10",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 10
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 10
+      },
+      "passed": true
+    },
+    {
+      "id": "LOT1",
+      "group": "Planning",
+      "requirement": "FR06",
+      "method": "EP+BVA",
+      "description": "BUY root gap10, minimum0, multiple10",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 10
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 10
+      },
+      "passed": true
+    },
+    {
+      "id": "LOT2",
+      "group": "Planning",
+      "requirement": "FR06",
+      "method": "EP+BVA",
+      "description": "BUY root gap11, minimum0, multiple10",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 20
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 20
+      },
+      "passed": true
+    },
+    {
+      "id": "LOT3",
+      "group": "Planning",
+      "requirement": "FR06",
+      "method": "EP+BVA",
+      "description": "BUY root gap1, minimum9, multiple10",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 10
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 10
+      },
+      "passed": true
+    },
+    {
+      "id": "LOT4",
+      "group": "Planning",
+      "requirement": "FR06",
+      "method": "EP+BVA",
+      "description": "BUY root gap1, minimum10, multiple10",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 10
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 10
+      },
+      "passed": true
+    },
+    {
+      "id": "LOT5",
+      "group": "Planning",
+      "requirement": "FR06",
+      "method": "EP+BVA",
+      "description": "BUY root gap1, minimum11, multiple10",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 20
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 20
+      },
+      "passed": true
+    },
+    {
+      "id": "LOT6",
+      "group": "Planning",
+      "requirement": "FR06",
+      "method": "EP+BVA",
+      "description": "BUY root gap1, minimum-1, multiple10",
+      "expected": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "actual": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "passed": true
+    },
+    {
+      "id": "LOT7",
+      "group": "Planning",
+      "requirement": "FR05 FR06",
+      "method": "EP+BVA",
+      "description": "Zero shortage with minimum100 creates no purchase",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": []
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": []
+      },
+      "passed": true
+    },
+    {
+      "id": "DT0",
+      "group": "Planning",
+      "requirement": "FR07",
+      "method": "EP+BVA",
+      "description": "Order date one day before/on/after baseline; due=2026-11-05",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          [
+            "2026-10-31",
+            1
+          ]
+        ]
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          [
+            "2026-10-31",
+            1
+          ]
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "DT1",
+      "group": "Planning",
+      "requirement": "FR07",
+      "method": "EP+BVA",
+      "description": "Order date one day before/on/after baseline; due=2026-11-06",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": []
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": []
+      },
+      "passed": true
+    },
+    {
+      "id": "DT2",
+      "group": "Planning",
+      "requirement": "FR07",
+      "method": "EP+BVA",
+      "description": "Order date one day before/on/after baseline; due=2026-11-07",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": []
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": []
+      },
+      "passed": true
+    },
+    {
+      "id": "CAL0",
+      "group": "Planning",
+      "requirement": "FR01 FR07",
+      "method": "EP+BVA",
+      "description": "Calendar partition 2026-02-30; leap, format and representable range",
+      "expected": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "actual": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "passed": true
+    },
+    {
+      "id": "CAL1",
+      "group": "Planning",
+      "requirement": "FR01 FR07",
+      "method": "EP+BVA",
+      "description": "Calendar partition 2028-02-29; leap, format and representable range",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": "2028-02-24"
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": "2028-02-24"
+      },
+      "passed": true
+    },
+    {
+      "id": "CAL2",
+      "group": "Planning",
+      "requirement": "FR01 FR07",
+      "method": "EP+BVA",
+      "description": "Calendar partition 20261120; leap, format and representable range",
+      "expected": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "actual": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "passed": true
+    },
+    {
+      "id": "CAL3",
+      "group": "Planning",
+      "requirement": "FR01 FR07",
+      "method": "EP+BVA",
+      "description": "Calendar partition 0001-01-01; leap, format and representable range",
+      "expected": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "actual": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "passed": true
+    },
+    {
+      "id": "CAL4",
+      "group": "Planning",
+      "requirement": "FR01 FR07",
+      "method": "EP+BVA",
+      "description": "Calendar partition 9999-12-31; leap, format and representable range",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": "9999-12-26"
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": "9999-12-26"
+      },
+      "passed": true
+    },
+    {
+      "id": "INV00",
+      "group": "Planning",
+      "requirement": "FR02",
+      "method": "EP",
+      "description": "Empty selected task set",
+      "expected": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "actual": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "passed": true
+    },
+    {
+      "id": "INV01",
+      "group": "Planning",
+      "requirement": "FR02",
+      "method": "EP",
+      "description": "Unknown selected task",
+      "expected": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "actual": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "passed": true
+    },
+    {
+      "id": "INV02",
+      "group": "Planning",
+      "requirement": "FR03",
+      "method": "EP",
+      "description": "Unknown BOM reference",
+      "expected": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "actual": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "passed": true
+    },
+    {
+      "id": "INV03",
+      "group": "Planning",
+      "requirement": "FR03",
+      "method": "EP",
+      "description": "Duplicate BOM edge",
+      "expected": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "actual": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "passed": true
+    },
+    {
+      "id": "INV04",
+      "group": "Planning",
+      "requirement": "FR03",
+      "method": "EP",
+      "description": "Self cycle",
+      "expected": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "actual": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "passed": true
+    },
+    {
+      "id": "INV05",
+      "group": "Planning",
+      "requirement": "FR03",
+      "method": "EP",
+      "description": "Two-node cycle even when finished stock covers task",
+      "expected": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "actual": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "passed": true
+    },
+    {
+      "id": "INV06",
+      "group": "Planning",
+      "requirement": "FR03",
+      "method": "EP",
+      "description": "MAKE material without children",
+      "expected": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "actual": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "passed": true
+    },
+    {
+      "id": "INV07",
+      "group": "Planning",
+      "requirement": "FR03",
+      "method": "EP",
+      "description": "BUY material with children",
+      "expected": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "actual": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "passed": true
+    },
+    {
+      "id": "INV08",
+      "group": "Planning",
+      "requirement": "FR03",
+      "method": "EP",
+      "description": "Reachable material missing stock",
+      "expected": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "actual": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "passed": true
+    },
+    {
+      "id": "INV09",
+      "group": "Planning",
+      "requirement": "FR01",
+      "method": "EP",
+      "description": "Snapshot date differs from baseline",
+      "expected": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "actual": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "passed": true
+    },
+    {
+      "id": "INV10",
+      "group": "Planning",
+      "requirement": "FR01",
+      "method": "EP",
+      "description": "Duplicate material ID",
+      "expected": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "actual": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "passed": true
+    },
+    {
+      "id": "INV11",
+      "group": "Planning",
+      "requirement": "FR01",
+      "method": "EP",
+      "description": "Blank required identifier",
+      "expected": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "actual": {
+        "http": 200,
+        "status": "INVALID",
+        "located_errors": true,
+        "history_unchanged": true,
+        "saved": false
+      },
+      "passed": true
+    },
+    {
+      "id": "NET0",
+      "group": "Planning",
+      "requirement": "FR04 FR05",
+      "method": "EP+BVA",
+      "description": "Finished stock exactly covers demand; no lower requirements",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          [],
+          [],
+          1
+        ]
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          [],
+          [],
+          1
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "NET1",
+      "group": "Planning",
+      "requirement": "FR04 FR05 FR06 FR07",
+      "method": "EP",
+      "description": "Multilevel net explosion: P8, S12, raw gap32 rounded35",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          [
+            [
+              "P",
+              8,
+              "2026-11-18"
+            ],
+            [
+              "S",
+              12,
+              "2026-11-17"
+            ]
+          ],
+          [
+            [
+              "R",
+              "2026-11-17",
+              35,
+              "2026-11-14"
+            ]
+          ]
+        ]
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          [
+            [
+              "P",
+              8,
+              "2026-11-18"
+            ],
+            [
+              "S",
+              12,
+              "2026-11-17"
+            ]
+          ],
+          [
+            [
+              "R",
+              "2026-11-17",
+              35,
+              "2026-11-14"
+            ]
+          ]
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "ORD0",
+      "group": "Planning",
+      "requirement": "FR02 FR05",
+      "method": "EP",
+      "description": "Shared stock ordering by priority",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          [
+            "A",
+            "Z"
+          ],
+          [
+            [
+              "A",
+              4
+            ],
+            [
+              "Z",
+              1
+            ]
+          ]
+        ]
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          [
+            "A",
+            "Z"
+          ],
+          [
+            [
+              "A",
+              4
+            ],
+            [
+              "Z",
+              1
+            ]
+          ]
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "ORD3",
+      "group": "Planning",
+      "requirement": "FR02 FR05 NFR02",
+      "method": "EP",
+      "description": "Reversed input rows preserve business allocation",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          [
+            "A",
+            "Z"
+          ],
+          [
+            [
+              "A",
+              4
+            ],
+            [
+              "Z",
+              1
+            ]
+          ]
+        ]
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          [
+            "A",
+            "Z"
+          ],
+          [
+            [
+              "A",
+              4
+            ],
+            [
+              "Z",
+              1
+            ]
+          ]
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "ORD4",
+      "group": "Planning",
+      "requirement": "FR02 FR05",
+      "method": "EP",
+      "description": "Unselected high-priority task consumes no stock",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          [
+            "Z"
+          ],
+          [
+            [
+              "Z",
+              4
+            ]
+          ]
+        ]
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          [
+            "Z"
+          ],
+          [
+            [
+              "Z",
+              4
+            ]
+          ]
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "ORD1",
+      "group": "Planning",
+      "requirement": "FR02 FR05",
+      "method": "EP",
+      "description": "Shared stock ordering by date",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          [
+            "Z",
+            "A"
+          ],
+          [
+            [
+              "Z",
+              4
+            ],
+            [
+              "A",
+              1
+            ]
+          ]
+        ]
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          [
+            "Z",
+            "A"
+          ],
+          [
+            [
+              "Z",
+              4
+            ],
+            [
+              "A",
+              1
+            ]
+          ]
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "ORD2",
+      "group": "Planning",
+      "requirement": "FR02 FR05",
+      "method": "EP",
+      "description": "Shared stock ordering by identifier",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          [
+            "A",
+            "Z"
+          ],
+          [
+            [
+              "A",
+              4
+            ],
+            [
+              "Z",
+              1
+            ]
+          ]
+        ]
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          [
+            "A",
+            "Z"
+          ],
+          [
+            [
+              "A",
+              4
+            ],
+            [
+              "Z",
+              1
+            ]
+          ]
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "SUR0",
+      "group": "Planning",
+      "requirement": "FR06",
+      "method": "EP",
+      "description": "Earlier purchase surplus covers later demand despite priority order",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          [
+            [
+              "R",
+              "2026-11-10",
+              10,
+              "2026-11-07"
+            ],
+            [
+              "R",
+              "2026-11-11",
+              0,
+              null
+            ]
+          ],
+          [
+            4
+          ]
+        ]
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          [
+            [
+              "R",
+              "2026-11-10",
+              10,
+              "2026-11-07"
+            ],
+            [
+              "R",
+              "2026-11-11",
+              0,
+              null
+            ]
+          ],
+          [
+            4
+          ]
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "SUR1",
+      "group": "Planning",
+      "requirement": "FR06",
+      "method": "EP",
+      "description": "Future lot cannot supply earlier demand; chronology reversed",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          [
+            "R",
+            "2026-11-09",
+            10,
+            "2026-11-06"
+          ],
+          [
+            "R",
+            "2026-11-10",
+            0,
+            null
+          ]
+        ]
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          [
+            "R",
+            "2026-11-09",
+            10,
+            "2026-11-06"
+          ],
+          [
+            "R",
+            "2026-11-10",
+            0,
+            null
+          ]
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "SUR2",
+      "group": "Planning",
+      "requirement": "FR06",
+      "method": "EP",
+      "description": "Same-date shortages merge before rounding",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          [
+            "R",
+            "2026-11-09",
+            10,
+            "2026-11-06"
+          ]
+        ]
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": [
+          [
+            "R",
+            "2026-11-09",
+            10,
+            "2026-11-06"
+          ]
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "CSV00",
+      "group": "Source",
+      "requirement": "FR01",
+      "method": "EP+BVA",
+      "description": "Valid four tables; preview does not save or create a plan",
+      "expected": [
+        200,
+        "READY",
+        true,
+        true
+      ],
+      "actual": [
+        200,
+        "READY",
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "id": "CSV01",
+      "group": "Source",
+      "requirement": "FR01",
+      "method": "EP+BVA",
+      "description": "Empty file selection",
+      "expected": [
+        200,
+        "INVALID",
+        true,
+        true
+      ],
+      "actual": [
+        200,
+        "INVALID",
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "id": "CSV02",
+      "group": "Source",
+      "requirement": "FR01",
+      "method": "EP+BVA",
+      "description": "Empty tasks file",
+      "expected": [
+        200,
+        "INVALID",
+        true,
+        true
+      ],
+      "actual": [
+        200,
+        "INVALID",
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "id": "CSV03",
+      "group": "Source",
+      "requirement": "FR01",
+      "method": "EP+BVA",
+      "description": "Unknown table",
+      "expected": [
+        200,
+        "INVALID",
+        true,
+        true
+      ],
+      "actual": [
+        200,
+        "INVALID",
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "id": "CSV04",
+      "group": "Source",
+      "requirement": "FR01",
+      "method": "EP+BVA",
+      "description": "Missing header",
+      "expected": [
+        200,
+        "INVALID",
+        true,
+        true
+      ],
+      "actual": [
+        200,
+        "INVALID",
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "id": "CSV05",
+      "group": "Source",
+      "requirement": "FR01",
+      "method": "EP+BVA",
+      "description": "Duplicate header",
+      "expected": [
+        200,
+        "INVALID",
+        true,
+        true
+      ],
+      "actual": [
+        200,
+        "INVALID",
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "id": "CSV06",
+      "group": "Source",
+      "requirement": "FR01",
+      "method": "EP+BVA",
+      "description": "Too few columns",
+      "expected": [
+        200,
+        "INVALID",
+        true,
+        true
+      ],
+      "actual": [
+        200,
+        "INVALID",
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "id": "CSV07",
+      "group": "Source",
+      "requirement": "FR01",
+      "method": "EP+BVA",
+      "description": "Unclosed quote",
+      "expected": [
+        200,
+        "INVALID",
+        true,
+        true
+      ],
+      "actual": [
+        200,
+        "INVALID",
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "id": "CSV08",
+      "group": "Source",
+      "requirement": "FR01",
+      "method": "EP+BVA",
+      "description": "Decimal quantity",
+      "expected": [
+        200,
+        "INVALID",
+        true,
+        true
+      ],
+      "actual": [
+        200,
+        "INVALID",
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "id": "CSV09",
+      "group": "Source",
+      "requirement": "FR01",
+      "method": "EP+BVA",
+      "description": "Scientific quantity",
+      "expected": [
+        200,
+        "INVALID",
+        true,
+        true
+      ],
+      "actual": [
+        200,
+        "INVALID",
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "id": "CSV10",
+      "group": "Source",
+      "requirement": "FR01",
+      "method": "EP+BVA",
+      "description": "Quoted Chinese comma quote and newline preserved",
+      "expected": [
+        200,
+        [
+          "READY",
+          "产品, \"甲\"\n第二行"
+        ],
+        true,
+        true
+      ],
+      "actual": [
+        200,
+        [
+          "READY",
+          "产品, \"甲\"\n第二行"
+        ],
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "id": "ROW0",
+      "group": "Source",
+      "requirement": "FR01",
+      "method": "EP+BVA",
+      "description": "CSV row count 4999 around5000 maximum",
+      "expected": [
+        200,
+        "READY",
+        true,
+        true
+      ],
+      "actual": [
+        200,
+        "READY",
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "id": "ROW1",
+      "group": "Source",
+      "requirement": "FR01",
+      "method": "EP+BVA",
+      "description": "CSV row count 5000 around5000 maximum",
+      "expected": [
+        200,
+        "READY",
+        true,
+        true
+      ],
+      "actual": [
+        200,
+        "READY",
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "id": "ROW2",
+      "group": "Source",
+      "requirement": "FR01",
+      "method": "EP+BVA",
+      "description": "CSV row count 5001 around5000 maximum",
+      "expected": [
+        200,
+        "INVALID",
+        true,
+        true
+      ],
+      "actual": [
+        200,
+        "INVALID",
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "id": "BYTE0",
+      "group": "Source",
+      "requirement": "FR01",
+      "method": "EP+BVA",
+      "description": "CSV bytes 499999 around500000 maximum",
+      "expected": [
+        200,
+        "READY",
+        true,
+        true
+      ],
+      "actual": [
+        200,
+        "INVALID",
+        true,
+        true
+      ],
+      "passed": false
+    },
+    {
+      "id": "BYTE1",
+      "group": "Source",
+      "requirement": "FR01",
+      "method": "EP+BVA",
+      "description": "CSV bytes 500000 around500000 maximum",
+      "expected": [
+        200,
+        "READY",
+        true,
+        true
+      ],
+      "actual": [
+        200,
+        "INVALID",
+        true,
+        true
+      ],
+      "passed": false
+    },
+    {
+      "id": "BYTE2",
+      "group": "Source",
+      "requirement": "FR01",
+      "method": "EP+BVA",
+      "description": "CSV bytes 500001 around500000 maximum",
+      "expected": [
+        200,
+        "INVALID",
+        true,
+        true
+      ],
+      "actual": [
+        200,
+        "INVALID",
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "id": "CSV11",
+      "group": "Source",
+      "requirement": "FR01",
+      "method": "EP",
+      "description": "Template ZIP contains four data tables",
+      "expected": [
+        200,
+        [
+          "bom.csv",
+          "materials.csv",
+          "stocks.csv",
+          "tasks.csv"
+        ]
+      ],
+      "actual": [
+        200,
+        [
+          "bom.csv",
+          "materials.csv",
+          "stocks.csv",
+          "tasks.csv"
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "id": "H00",
+      "group": "History",
+      "requirement": "FR01 FR08",
+      "method": "EP",
+      "description": "First save from null revision creates a source version",
+      "expected": [
+        200,
+        "SAVED",
+        true
+      ],
+      "actual": [
+        200,
+        "SAVED",
+        true
+      ],
+      "passed": true
+    },
+    {
+      "id": "H01",
+      "group": "History",
+      "requirement": "FR01 NFR07",
+      "method": "EP+BVA",
+      "description": "Invalid save preserves last valid revision",
+      "expected": [
+        200,
+        "INVALID",
+        "dced7b78b142415ca34eb7ec9868ffc0"
+      ],
+      "actual": [
+        200,
+        "INVALID",
+        "dced7b78b142415ca34eb7ec9868ffc0"
+      ],
+      "passed": true
+    },
+    {
+      "id": "H02",
+      "group": "History",
+      "requirement": "FR01 FR08",
+      "method": "EP",
+      "description": "Matching revision permits new version",
+      "expected": [
+        200,
+        "SAVED",
+        true
+      ],
+      "actual": [
+        200,
+        "SAVED",
+        true
+      ],
+      "passed": true
+    },
+    {
+      "id": "H03",
+      "group": "History",
+      "requirement": "FR01 NFR07",
+      "method": "EP",
+      "description": "Stale revision fails without overwriting newer source",
+      "expected": [
+        409,
+        "CONFLICT",
+        11
+      ],
+      "actual": [
+        409,
+        "CONFLICT",
+        11
+      ],
+      "passed": true
+    },
+    {
+      "id": "H04",
+      "group": "Planning",
+      "requirement": "FR08",
+      "method": "EP",
+      "description": "Save baseline plan for historical export",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 20
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 20
+      },
+      "passed": true
+    },
+    {
+      "id": "EX0",
+      "group": "History",
+      "requirement": "FR08",
+      "method": "EP+BVA",
+      "description": "MAKE download rows and batch ID; zero-risk header-only partition",
+      "expected": [
+        200,
+        1,
+        true,
+        true
+      ],
+      "actual": [
+        200,
+        1,
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "id": "EX1",
+      "group": "History",
+      "requirement": "FR08",
+      "method": "EP+BVA",
+      "description": "PURCHASE download rows and batch ID; zero-risk header-only partition",
+      "expected": [
+        200,
+        1,
+        true,
+        true
+      ],
+      "actual": [
+        200,
+        1,
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "id": "EX2",
+      "group": "History",
+      "requirement": "FR08",
+      "method": "EP+BVA",
+      "description": "ALLOCATION download rows and batch ID; zero-risk header-only partition",
+      "expected": [
+        200,
+        2,
+        true,
+        true
+      ],
+      "actual": [
+        200,
+        2,
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "id": "EX3",
+      "group": "History",
+      "requirement": "FR08",
+      "method": "EP+BVA",
+      "description": "TRACE download rows and batch ID; zero-risk header-only partition",
+      "expected": [
+        200,
+        2,
+        true,
+        true
+      ],
+      "actual": [
+        200,
+        2,
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "id": "EX4",
+      "group": "History",
+      "requirement": "FR08",
+      "method": "EP+BVA",
+      "description": "RISK download rows and batch ID; zero-risk header-only partition",
+      "expected": [
+        200,
+        0,
+        true,
+        true
+      ],
+      "actual": [
+        200,
+        0,
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "id": "EX5",
+      "group": "History",
+      "requirement": "FR04 FR08",
+      "method": "EP",
+      "description": "Export agrees with independent make10 and start date",
+      "expected": [
+        [
+          10,
+          "2026-11-18"
+        ]
+      ],
+      "actual": [
+        [
+          10,
+          "2026-11-18"
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "id": "H06",
+      "group": "Planning",
+      "requirement": "FR06 FR08",
+      "method": "EP",
+      "description": "New plan reflects changed demand11",
+      "expected": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 25
+      },
+      "actual": {
+        "http": 200,
+        "status": "VALID",
+        "saved": true,
+        "value": 25
+      },
+      "passed": true
+    },
+    {
+      "id": "H07",
+      "group": "History",
+      "requirement": "FR08",
+      "method": "EP",
+      "description": "Old complete snapshot and CSV unchanged after new plan",
+      "expected": [
+        true,
+        true
+      ],
+      "actual": [
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "id": "H08",
+      "group": "History",
+      "requirement": "FR05 FR08",
+      "method": "EP",
+      "description": "Calculating plans does not deduct persisted stock",
+      "expected": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "actual": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "id": "HX0",
+      "group": "History",
+      "requirement": "FR08",
+      "method": "EP+BVA",
+      "description": "/api/history/missing",
+      "expected": 404,
+      "actual": 404,
+      "passed": true
+    },
+    {
+      "id": "HX1",
+      "group": "History",
+      "requirement": "FR08",
+      "method": "EP+BVA",
+      "description": "/api/history/missing/csv/MAKE",
+      "expected": 404,
+      "actual": 404,
+      "passed": true
+    },
+    {
+      "id": "HX2",
+      "group": "History",
+      "requirement": "FR08",
+      "method": "EP+BVA",
+      "description": "/api/history/aea322316ea1425bb3e2942e09f0eda2/csv/OTHER",
+      "expected": 400,
+      "actual": 400,
+      "passed": true
+    },
+    {
+      "id": "HX3",
+      "group": "History",
+      "requirement": "FR08",
+      "method": "EP+BVA",
+      "description": "/api/history?offset=-1",
+      "expected": 400,
+      "actual": 400,
+      "passed": true
+    },
+    {
+      "id": "HX4",
+      "group": "History",
+      "requirement": "FR08",
+      "method": "EP+BVA",
+      "description": "/api/history?offset=abc",
+      "expected": 400,
+      "actual": 400,
+      "passed": true
+    },
+    {
+      "id": "PAGE0",
+      "group": "History",
+      "requirement": "FR08",
+      "method": "BVA",
+      "description": "History offset0 with 101 saved plans",
+      "expected": [
+        200,
+        100,
+        100
+      ],
+      "actual": [
+        200,
+        100,
+        100
+      ],
+      "passed": true
+    },
+    {
+      "id": "PAGE1",
+      "group": "History",
+      "requirement": "FR08",
+      "method": "BVA",
+      "description": "History offset99 with 101 saved plans",
+      "expected": [
+        200,
+        2,
+        null
+      ],
+      "actual": [
+        200,
+        2,
+        null
+      ],
+      "passed": true
+    },
+    {
+      "id": "PAGE2",
+      "group": "History",
+      "requirement": "FR08",
+      "method": "BVA",
+      "description": "History offset100 with 101 saved plans",
+      "expected": [
+        200,
+        1,
+        null
+      ],
+      "actual": [
+        200,
+        1,
+        null
+      ],
+      "passed": true
+    },
+    {
+      "id": "PAGE3",
+      "group": "History",
+      "requirement": "FR08",
+      "method": "BVA",
+      "description": "History offset101 with 101 saved plans",
+      "expected": [
+        200,
+        0,
+        null
+      ],
+      "actual": [
+        200,
+        0,
+        null
+      ],
+      "passed": true
+    },
+    {
+      "id": "PAGE4",
+      "group": "History",
+      "requirement": "FR08",
+      "method": "BVA",
+      "description": "History offset102 with 101 saved plans",
+      "expected": [
+        200,
+        0,
+        null
+      ],
+      "actual": [
+        200,
+        0,
+        null
+      ],
+      "passed": true
+    },
+    {
+      "id": "RESTART",
+      "group": "History",
+      "requirement": "FR08 NFR07",
+      "method": "EP",
+      "description": "Restart retains workspace and all saved history",
+      "expected": [
+        true,
+        true
+      ],
+      "actual": [
+        true,
+        true
+      ],
+      "passed": true
+    },
+    {
+      "id": "HTTP0",
+      "group": "Transport",
+      "requirement": "FR01",
+      "method": "EP+BVA",
+      "description": "Empty request body",
+      "expected": 413,
+      "actual": 413,
+      "passed": true
+    },
+    {
+      "id": "HTTP1",
+      "group": "Transport",
+      "requirement": "FR01",
+      "method": "EP+BVA",
+      "description": "Malformed JSON",
+      "expected": 400,
+      "actual": 400,
+      "passed": true
+    },
+    {
+      "id": "HTTP2",
+      "group": "Transport",
+      "requirement": "FR01",
+      "method": "EP+BVA",
+      "description": "Wrong content type",
+      "expected": 415,
+      "actual": 415,
+      "passed": true
+    },
+    {
+      "id": "HTTP3",
+      "group": "Transport",
+      "requirement": "FR01",
+      "method": "BVA",
+      "description": "HTTP UTF-8 body 1999999 bytes",
+      "expected": [
+        200,
+        "INVALID"
+      ],
+      "actual": [
+        200,
+        "INVALID"
+      ],
+      "passed": true
+    },
+    {
+      "id": "HTTP4",
+      "group": "Transport",
+      "requirement": "FR01",
+      "method": "BVA",
+      "description": "HTTP UTF-8 body 2000000 bytes",
+      "expected": [
+        200,
+        "INVALID"
+      ],
+      "actual": [
+        200,
+        "INVALID"
+      ],
+      "passed": true
+    }
+  ],
+  "exchange_count": 356,
+  "artifacts": "results\\e5-runs\\63ffccea1fc84ed98e9f3f0dd1fcd98e",
+  "source_sha256": {
+    "core.py": "01f67b289617224e6b10e39b189482f32806580538c7c6208c1496f0cd658ca8",
+    "planner.py": "b6879011d10f9b2218ebdaf4c498edb4bf357234604eaa2612642541adfd8caf",
+    "storage.py": "56d2e978975d4e94420dadb60f25360eaed510c0788d2c54b2f113b01434cea3",
+    "csv_io.py": "d6150f390f4aaa33f7ccba40867ba5474a1c7126de1b88a6e974c881814260c3",
+    "web_server.py": "b67e8e80ffa38b5c8d75288633cb9963cabb7cb22b974c6b6f1008aad25fc661",
+    "web/app.js": "97dc18ccd2b38fc609a539a02f4c35ddc83926652bb9a4435a79d54236cb01f3",
+    "web/index.html": "c11f6e50ad2cc7a3fad804b3a467bb1c5edc19d2f30fc3c7b4770c390621699c",
+    "web/style.css": "7f3d2eb0f4e8b9221ac9dd5518609bb16c630cbca6c523dc89cb88399bae3909"
+  },
+  "harness_sha256": "9974532bfd2e9424419d28cc29f7e9ce466a82724c08903f7bdcf556264ff8b5",
+  "scope": "External HTTP only, no application imports, no internal coverage instrumentation, isolated test SQLite; not a complete test of all possible inputs."
+}

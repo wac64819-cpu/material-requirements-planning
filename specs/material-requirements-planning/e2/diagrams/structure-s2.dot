@@ -1,0 +1,18 @@
+digraph G {
+graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.45", ranksep="0.85", splines=polyline, label="S2   Snapshot and BOM validation", labelloc=t, fontsize=24, fontname="Arial"];
+node [shape=box, fontname="Arial", fontsize=16, margin="0.16,0.12", color="#334155", penwidth=1.4];
+edge [fontname="Arial", fontsize=12, color="#475569", arrowsize=0.75];
+"M20" [label="M20\nprepare context", style="filled", fillcolor="#edf5ff"];
+"M21" [label="M21\nread source snapshot", style="filled", fillcolor="#ffffff"];
+"M22" [label="M22\nvalidate selected data", style="filled", fillcolor="#ffffff"];
+"M23" [label="M23\nvalidate and index bom", style="filled", fillcolor="#ffffff"];
+"M24" [label="M24\norder tasks", style="filled", fillcolor="#ffffff"];
+"M25" [label="M25\nfreeze context", style="filled", fillcolor="#ffffff"];
+"M26" [label="M26\nmake invalid outcome", style="filled", fillcolor="#ffffff"];
+"M20" -> "M21" [label="I/M21   O/M21"];
+"M20" -> "M22" [label="I/M22   O/M22"];
+"M20" -> "M23" [label="I/M23   O/M23"];
+"M20" -> "M24" [label="I/M24   O/M24"];
+"M20" -> "M25" [label="I/M25   O/M25"];
+"M20" -> "M26" [label="I/M26   O/M26\nCONDITIONAL"];
+}

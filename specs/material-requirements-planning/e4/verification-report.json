@@ -1,0 +1,216 @@
+{
+  "checked_at": "2026-10-22T12:17:45.620732+08:00",
+  "passed": 51,
+  "total": 51,
+  "document_sha256": "07db3d6a9a16263893c207ca2f0c9f2e0879d8f5ddfbaebea2a689581bbfff70",
+  "evidence_sha256": "169ff6113b56e9dbc7a59f0317a2a3b9974aee156cfba35a1ff2c44af267cf8e",
+  "pdf_sha256": "737f1ef382069ef70e34b76f751412d57e039a8efaabd69284470f90843c9b29",
+  "pages": 14,
+  "checks": [
+    {
+      "name": "Source hash unchanged",
+      "passed": true
+    },
+    {
+      "name": "Harness hash matches",
+      "passed": true
+    },
+    {
+      "name": "All 62 cases passed",
+      "passed": true
+    },
+    {
+      "name": "Twelve evidence checks passed",
+      "passed": true
+    },
+    {
+      "name": "All original and observed full outputs match",
+      "passed": true
+    },
+    {
+      "name": "All inputs unchanged",
+      "passed": true
+    },
+    {
+      "name": "Six deliberate defects detected",
+      "passed": true
+    },
+    {
+      "name": "M33 statement denominator independently recounted",
+      "passed": true
+    },
+    {
+      "name": "M33 branch denominator independently recounted",
+      "passed": true
+    },
+    {
+      "name": "M33 statement numerator complete",
+      "passed": true
+    },
+    {
+      "name": "M33 statement figure in report",
+      "passed": true
+    },
+    {
+      "name": "M33 statement selected subset covers measured universe",
+      "passed": true
+    },
+    {
+      "name": "M33 branch numerator complete",
+      "passed": true
+    },
+    {
+      "name": "M33 branch figure in report",
+      "passed": true
+    },
+    {
+      "name": "M33 branch selected subset covers measured universe",
+      "passed": true
+    },
+    {
+      "name": "M33 condition numerator complete",
+      "passed": true
+    },
+    {
+      "name": "M33 condition figure in report",
+      "passed": true
+    },
+    {
+      "name": "M33 condition selected subset covers measured universe",
+      "passed": true
+    },
+    {
+      "name": "M33 path representatives valid",
+      "passed": true
+    },
+    {
+      "name": "M43 statement denominator independently recounted",
+      "passed": true
+    },
+    {
+      "name": "M43 branch denominator independently recounted",
+      "passed": true
+    },
+    {
+      "name": "M43 statement numerator complete",
+      "passed": true
+    },
+    {
+      "name": "M43 statement figure in report",
+      "passed": true
+    },
+    {
+      "name": "M43 statement selected subset covers measured universe",
+      "passed": true
+    },
+    {
+      "name": "M43 branch numerator complete",
+      "passed": true
+    },
+    {
+      "name": "M43 branch figure in report",
+      "passed": true
+    },
+    {
+      "name": "M43 branch selected subset covers measured universe",
+      "passed": true
+    },
+    {
+      "name": "M43 condition numerator complete",
+      "passed": true
+    },
+    {
+      "name": "M43 condition figure in report",
+      "passed": true
+    },
+    {
+      "name": "M43 condition selected subset covers measured universe",
+      "passed": true
+    },
+    {
+      "name": "M43 path representatives valid",
+      "passed": true
+    },
+    {
+      "name": "Eight M43 finite paths",
+      "passed": true
+    },
+    {
+      "name": "Twenty M33 observed traces",
+      "passed": true
+    },
+    {
+      "name": "C logical vectors complete",
+      "passed": true
+    },
+    {
+      "name": "C shadow values match asserted vectors",
+      "passed": true
+    },
+    {
+      "name": "I logical vectors complete",
+      "passed": true
+    },
+    {
+      "name": "I shadow values match asserted vectors",
+      "passed": true
+    },
+    {
+      "name": "G logical vectors complete",
+      "passed": true
+    },
+    {
+      "name": "G shadow values match asserted vectors",
+      "passed": true
+    },
+    {
+      "name": "Tuple and list distinctions preserved in literal evidence",
+      "passed": true
+    },
+    {
+      "name": "Report shows tuple path notation",
+      "passed": true
+    },
+    {
+      "name": "Report source and harness hashes present",
+      "passed": true
+    },
+    {
+      "name": "Report execution timestamp matches",
+      "passed": true
+    },
+    {
+      "name": "Two embedded diagrams",
+      "passed": true
+    },
+    {
+      "name": "Title style used",
+      "passed": true
+    },
+    {
+      "name": "M33 exhaustive path limitation stated",
+      "passed": true
+    },
+    {
+      "name": "Group review and identity remain placeholders",
+      "passed": true
+    },
+    {
+      "name": "E5 explicitly separate",
+      "passed": true
+    },
+    {
+      "name": "Both regression evidence files pass",
+      "passed": true
+    },
+    {
+      "name": "Rendered PDF has matching execution timestamp",
+      "passed": true
+    },
+    {
+      "name": "No empty rendered page",
+      "passed": true
+    }
+  ],
+  "rendering": "Packaged render_docx.py failed because LibreOffice soffice.exe is unavailable; Word read-only export plus pypdfium2 rasterization used. Visual review is documented separately."
+}

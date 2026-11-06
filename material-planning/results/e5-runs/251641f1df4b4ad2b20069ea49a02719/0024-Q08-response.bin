@@ -1,0 +1,1 @@
+{"request_id": "E5", "status": "INVALID", "result": null, "errors": [{"code": "INTEGER", "severity": "BLOCKING", "source_location": "tasks[0].required_qty", "message": "required_qty must be an integer >= 1", "task_id": null, "material_id": null, "computed_date": null, "days_before_baseline": null}]}

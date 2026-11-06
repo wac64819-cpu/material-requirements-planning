@@ -1,0 +1,20 @@
+digraph G {
+graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.45", ranksep="0.85", splines=polyline, label="System module structure", labelloc=t, fontsize=24, fontname="Arial"];
+node [shape=box, fontname="Arial", fontsize=16, margin="0.16,0.12", color="#334155", penwidth=1.4];
+edge [fontname="Arial", fontsize=12, color="#475569", arrowsize=0.75];
+"M00" [label="M00\nhandle action", style="filled", fillcolor="#edf5ff"];
+"M10" [label="M10\nmaintain sources", style="filled", fillcolor="#ffffff"];
+"M20" [label="M20\nprepare context", style="filled", fillcolor="#ffffff"];
+"M30" [label="M30\nnet requirements", style="filled", fillcolor="#ffffff"];
+"M40" [label="M40\nplan purchases", style="filled", fillcolor="#ffffff"];
+"M50" [label="M50\ncomplete plan", style="filled", fillcolor="#ffffff"];
+"M60" [label="M60\npublish results", style="filled", fillcolor="#ffffff"];
+"M26" [label="M26\nmake invalid outcome", style="filled", fillcolor="#f1f5f9"];
+"M00" -> "M10" [label="I/M10   O/M10\nSELECTION"];
+"M00" -> "M20" [label="I/M20   O/M20"];
+"M00" -> "M30" [label="I/M30   O/M30"];
+"M00" -> "M40" [label="I/M40   O/M40"];
+"M00" -> "M50" [label="I/M50   O/M50"];
+"M00" -> "M60" [label="I/M60   O/M60\nSELECTION"];
+"M00" -> "M26" [style=dashed,label="shared   I/M26 O/M26"];
+}

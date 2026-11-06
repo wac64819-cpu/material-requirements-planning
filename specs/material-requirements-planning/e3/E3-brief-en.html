@@ -1,0 +1,255 @@
+<html lang="en"><head><meta charset="utf-8"><title>E3 Detailed Design Starter</title><style>body{margin:0;background:#f4f6f8;font:16px/1.65 Arial,sans-serif;color:#17212e}main{max-width:1000px;margin:25px auto;background:white;padding:40px}h1,h2{color:black;line-height:1.3}h1{font-size:30px}h2{font-size:23px;margin-top:35px}pre{background:#f2f5f8;padding:18px;overflow:auto;font:14px/1.55 Consolas,monospace}table{width:100%;border-collapse:collapse}td,th{border:1px solid #d9d9d9;padding:9px;text-align:left}th{background:#e8eef5}figure{margin:20px 0}svg{width:100%;height:auto;max-height:950px}@media(max-width:700px){main{padding:20px;margin:0}}</style></head><body><main><h1>E3 Detailed Design Starter</h1>
+<p>Version 0.1 short draft, 26 September 2026. Project: Material Requirements and Purchasing Plan System.</p>
+<h2>Scope of this short draft</h2>
+<p>This deliberately partial E3 draft covers six selected procedures from E2 with concise pseudocode, one flowchart and one Nassi-Shneiderman diagram. It preserves structured/procedural design and the confirmed priority-first inventory rule. It is not a complete submission, executable application, group review or test report.</p>
+<p>The course&#x27;s count requirement depends on N and its module/subsystem wording still needs confirmation. Six selected procedures do not establish compliance while N and that interpretation remain unknown. The remaining interface detail, exceptional paths, additional detailed-design diagrams and actual group records will be added later.</p>
+<h2>M23 Validate and index the BOM</h2>
+<p>Input: SourceSet and validated selected task IDs. Output: Result[GraphIndex]. Inspect every reachable branch, including stock-covered materials.</p>
+<pre><code>reachable, edges = collect_reachable_graph_with_visited_set(selected_roots)
+IF an unknown material, duplicate edge or nonpositive usage exists:
+    RETURN ERROR(located issues)
+IF any BUY has children OR any reachable MAKE has no children:
+    RETURN ERROR(type/structure issues)
+indegree = count_incoming_edges(reachable, edges)
+ready = zero-indegree materials ordered by ordinal material ID
+order = empty list
+WHILE ready is not empty:
+    parent = remove_smallest(ready)
+    append parent to order
+    FOR each child edge in ordinal child-ID order:
+        decrement indegree[child]
+        IF indegree[child] = 0: add child to ready
+IF length(order) != size(reachable):
+    RETURN ERROR(BOM_CYCLE, remaining graph records)
+RETURN OK(GraphIndex(adjacency, reachable, order, roots))</code></pre>
+<p>Later: specify graph collection, exact error locations and extraction of a concrete cycle. A visited set prevents traversal from looping; it must not discard distinct valid BOM edges.</p>
+<h2>M30 Net multilevel requirements</h2>
+<p>Input: PreparedContext from E2. Output: Result[NetBundle]. All field and graph validation has passed. M30 alone owns the temporary balance map.</p>
+<pre><code>context, graph = prepared.context, prepared.graph
+balances = M31.initialize_balances(context.request.request_id, context.sources.stocks)    // once per batch
+outputs = empty accumulated demand, allocation, MAKE and BUY records
+FOR task_id IN context.ordered_task_ids:    // priority, due date, ordinal ID
+    task = lookup task_id in context.sources.tasks
+    pending = one root demand(task.product_id, task.required_qty, task.due_date)
+    FOR material IN graph.parent_before_child_order:
+        buckets = M32.collect_material_demands(task_id, material, pending)
+        FOR demand IN buckets ordered by needed_date:
+            allocation = M33.allocate_stock(demand, balances[material])
+            balances[material] = allocation.new_balance
+            retain allocation.netted_demand and allocation.ledger
+            IF material.supply_type = MAKE:
+                expansion = M34.expand_make_demand(
+                    allocation.netted_demand, material, graph.children[material])
+                IF expansion is ERROR: RETURN that ERROR
+                retain expansion.make_line if present
+                merge expansion.children into pending, preserving origins
+            ELSE:
+                retain M35.record_buy_shortage(allocation.netted_demand, material)
+                    if the returned shortage is not null
+RETURN M36.assemble_net_bundle(context, outputs.netted_demands,
+    outputs.allocations, outputs.make_lines, outputs.buy_shortages, balances)</code></pre>
+<p>All parents finish before a shared child is processed. Same-task, same-material, same-date requests merge before stock allocation. Purchasing surplus is calculated later in M40, not inside this stock loop.</p>
+<h2>M33 Allocate shared stock</h2>
+<p>Input: Demand and Balance with matching material IDs. Preconditions: gross equals origin contributions; quantities are valid and nonnegative. Output: AllocationResult. Inputs are not mutated.</p>
+<pre><code>allocated = MIN(balance.available_qty, demand.gross_qty)
+new_balance = balance.available_qty - allocated
+net = demand.gross_qty - allocated
+left_to_attribute = allocated
+source_allocations = empty list
+FOR origin IN demand.origins ordered by ordinal BOM path then origin ID:
+    taken = MIN(left_to_attribute, origin.contribution_qty)
+    append (origin.id, taken, origin.contribution_qty - taken)
+    left_to_attribute = left_to_attribute - taken
+ASSERT left_to_attribute = 0
+RETURN AllocationResult(
+    netted demand(gross, allocated, net, source_allocations),
+    ledger(before=balance.available_qty, allocated, after=new_balance),
+    copied balance with available_qty=new_balance)</code></pre>
+<p>Invariant: gross = allocated + net; before = allocated + after; after &gt;= 0. Flowchart 1 uses an equivalent conditional form of MIN and summarizes the origin-attribution loop as one process.</p>
+<h2>M34 Expand net manufacturing demand</h2>
+<p>Input: NettedDemand for a MAKE material, its Material record and validated child edges. Output: Result[MakeExpansion]. BUY materials follow M35 instead.</p>
+<pre><code>IF netted.net_qty = 0:
+    RETURN OK(no MAKE line, empty child list)
+start = M52.subtract_calendar_days(netted.demand.needed_date, material.lead_time_days)
+IF start is ERROR: RETURN that ERROR
+make_line = record netted.net_qty with needed_date and start.value
+children = empty list
+FOR source IN netted.source_allocations:
+    IF source.residual_qty = 0: CONTINUE
+    FOR edge IN child_edges ordered by ordinal child ID:
+        quantity = source.residual_qty * edge.qty_per
+        append child contribution(
+            task=netted.demand.task_id, material=edge.child_id,
+            needed_date=start.value, quantity=quantity,
+            parent_demand_id=netted.demand.demand_id,
+            BOM_path=lookup(source.origin_id, netted.demand.origins).bom_path extended with edge.child_id)
+RETURN OK(MakeExpansion(make_line, children))</code></pre>
+<p>Only residual parent manufacture consumes new child materials. Child contribution IDs must be stable; their exact encoding and merging procedure will be specified in the expanded design.</p>
+<h2>M43 Round a purchase quantity</h2>
+<p>Input: nonnegative integer remaining_gap and minimum_qty; positive integer purchase_multiple. Output: nonnegative integer purchase quantity. M42 has already consumed eligible earlier surplus.</p>
+<pre><code>IF remaining_gap = 0:
+    purchase_qty = 0
+ELSE:
+    target = MAX(remaining_gap, minimum_qty)
+    lot_count = (target + purchase_multiple - 1) DIV purchase_multiple
+    purchase_qty = lot_count * purchase_multiple
+RETURN purchase_qty</code></pre>
+<p>DIV is exact integer division. No floating-point rounding is used. N-S diagram 2 shows the same selection and sequence. Invalid parameter handling belongs to input validation and will be documented explicitly later.</p>
+<h2>M53 Flag early required dates</h2>
+<p>Input: required events from M51 and baseline_date. Output: List[Issue]. M51 excludes nonexistent zero-quantity manufacturing or purchasing starts.</p>
+<pre><code>risks = empty list
+FOR event IN required_events:
+    IF event.date &lt; baseline_date:
+        append Issue(
+            severity=RISK, source_location=event.event_id,
+            computed_date=event.date,
+            days_before_baseline=calendar_days_between(event.date, baseline_date),
+            task_id=event.task_id, material_id=event.material_id)
+RETURN risks</code></pre>
+<p>Equality with baseline is allowed. Dates are preserved, not moved forward. Task due dates are checked even when finished stock satisfies the whole task.</p>
+<h2>Diagram 1 Flowchart for M33</h2>
+<figure><svg width="376pt" height="643pt"
+ viewBox="0.00 0.00 376.00 643.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(21.6 621.84)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-21.6,21.6 -21.6,-621.84 354.84,-621.84 354.84,21.6 -21.6,21.6"/>
+<text xml:space="preserve" text-anchor="middle" x="166.62" y="-576.44" font-family="Arial" font-size="22.00">M33 &#160;Allocate shared stock</text>
+<!-- start -->
+<g id="node1" class="node">
+<title>start</title>
+<ellipse fill="none" stroke="#334155" cx="162.54" cy="-542.93" rx="162.54" ry="22.91"/>
+<text xml:space="preserve" text-anchor="middle" x="162.54" y="-538.43" font-family="Arial" font-size="15.00">Validated demand and balance</text>
+</g>
+<!-- decision -->
+<g id="node2" class="node">
+<title>decision</title>
+<polygon fill="none" stroke="#334155" points="162.54,-483.02 9.42,-450.62 162.54,-418.22 315.67,-450.62 162.54,-483.02"/>
+<text xml:space="preserve" text-anchor="middle" x="162.54" y="-446.12" font-family="Arial" font-size="15.00">available &gt;= gross?</text>
+</g>
+<!-- start&#45;&gt;decision -->
+<g id="edge1" class="edge">
+<title>start&#45;&gt;decision</title>
+<path fill="none" stroke="#475569" d="M162.54,-519.61C162.54,-511.98 162.54,-503.17 162.54,-494.48"/>
+<polygon fill="#475569" stroke="#475569" points="166.04,-494.74 162.54,-484.74 159.04,-494.74 166.04,-494.74"/>
+</g>
+<!-- yes -->
+<g id="node3" class="node">
+<title>yes</title>
+<polygon fill="none" stroke="#334155" points="141.97,-366.62 5.11,-366.62 5.11,-330.62 141.97,-330.62 141.97,-366.62"/>
+<text xml:space="preserve" text-anchor="middle" x="73.54" y="-344.12" font-family="Arial" font-size="15.00">allocated = gross</text>
+</g>
+<!-- decision&#45;&gt;yes -->
+<g id="edge2" class="edge">
+<title>decision&#45;&gt;yes</title>
+<path fill="none" stroke="#475569" d="M138.69,-422.82C125.64,-408.16 109.55,-390.08 96.63,-375.56"/>
+<polygon fill="#475569" stroke="#475569" points="99.31,-373.31 90.05,-368.17 94.08,-377.96 99.31,-373.31"/>
+<text xml:space="preserve" text-anchor="middle" x="129.24" y="-388.52" font-family="Arial" font-size="13.00">Yes</text>
+</g>
+<!-- no -->
+<g id="node4" class="node">
+<title>no</title>
+<polygon fill="none" stroke="#334155" points="333.24,-366.62 173.85,-366.62 173.85,-330.62 333.24,-330.62 333.24,-366.62"/>
+<text xml:space="preserve" text-anchor="middle" x="253.54" y="-344.12" font-family="Arial" font-size="15.00">allocated = available</text>
+</g>
+<!-- decision&#45;&gt;no -->
+<g id="edge3" class="edge">
+<title>decision&#45;&gt;no</title>
+<path fill="none" stroke="#475569" d="M186.69,-423.08C200.25,-408.19 217.07,-389.7 230.45,-374.99"/>
+<polygon fill="#475569" stroke="#475569" points="232.72,-377.7 236.86,-367.95 227.55,-372.99 232.72,-377.7"/>
+<text xml:space="preserve" text-anchor="middle" x="229.82" y="-388.52" font-family="Arial" font-size="13.00">No</text>
+</g>
+<!-- net -->
+<g id="node5" class="node">
+<title>net</title>
+<polygon fill="none" stroke="#334155" points="291.01,-293.62 34.07,-293.62 34.07,-243.22 291.01,-243.22 291.01,-293.62"/>
+<text xml:space="preserve" text-anchor="middle" x="162.54" y="-272.92" font-family="Arial" font-size="15.00">net = gross &#45; allocated</text>
+<text xml:space="preserve" text-anchor="middle" x="162.54" y="-254.92" font-family="Arial" font-size="15.00">new balance = available &#45; allocated</text>
+</g>
+<!-- yes&#45;&gt;net -->
+<g id="edge4" class="edge">
+<title>yes&#45;&gt;net</title>
+<path fill="none" stroke="#475569" d="M93.29,-330.27C103.01,-321.73 115.02,-311.17 126.31,-301.26"/>
+<polygon fill="#475569" stroke="#475569" points="128.4,-304.07 133.61,-294.84 123.78,-298.82 128.4,-304.07"/>
+</g>
+<!-- no&#45;&gt;net -->
+<g id="edge5" class="edge">
+<title>no&#45;&gt;net</title>
+<path fill="none" stroke="#475569" d="M233.35,-330.27C223.42,-321.73 211.13,-311.17 199.59,-301.26"/>
+<polygon fill="#475569" stroke="#475569" points="201.98,-298.69 192.11,-294.83 197.42,-304 201.98,-298.69"/>
+</g>
+<!-- origins -->
+<g id="node6" class="node">
+<title>origins</title>
+<polygon fill="none" stroke="#334155" points="322.9,-206.22 2.18,-206.22 2.18,-155.82 322.9,-155.82 322.9,-206.22"/>
+<text xml:space="preserve" text-anchor="middle" x="162.54" y="-185.52" font-family="Arial" font-size="15.00">Attribute allocated quantity to ordered origins</text>
+<text xml:space="preserve" text-anchor="middle" x="162.54" y="-167.52" font-family="Arial" font-size="15.00">Retain each origin residual</text>
+</g>
+<!-- net&#45;&gt;origins -->
+<g id="edge6" class="edge">
+<title>net&#45;&gt;origins</title>
+<path fill="none" stroke="#475569" d="M162.54,-243.18C162.54,-235.31 162.54,-226.41 162.54,-217.88"/>
+<polygon fill="#475569" stroke="#475569" points="166.04,-218.13 162.54,-208.14 159.04,-218.14 166.04,-218.13"/>
+</g>
+<!-- result -->
+<g id="node7" class="node">
+<title>result</title>
+<polygon fill="none" stroke="#334155" points="314.16,-118.82 10.92,-118.82 10.92,-82.82 314.16,-82.82 314.16,-118.82"/>
+<text xml:space="preserve" text-anchor="middle" x="162.54" y="-96.32" font-family="Arial" font-size="15.00">Build netted demand and allocation ledger</text>
+</g>
+<!-- origins&#45;&gt;result -->
+<g id="edge7" class="edge">
+<title>origins&#45;&gt;result</title>
+<path fill="none" stroke="#475569" d="M162.54,-155.71C162.54,-147.75 162.54,-138.84 162.54,-130.59"/>
+<polygon fill="#475569" stroke="#475569" points="166.04,-130.68 162.54,-120.68 159.04,-130.68 166.04,-130.68"/>
+</g>
+<!-- end -->
+<g id="node8" class="node">
+<title>end</title>
+<ellipse fill="none" stroke="#334155" cx="162.54" cy="-22.91" rx="127.13" ry="22.91"/>
+<text xml:space="preserve" text-anchor="middle" x="162.54" y="-18.41" font-family="Arial" font-size="15.00">Return AllocationResult</text>
+</g>
+<!-- result&#45;&gt;end -->
+<g id="edge8" class="edge">
+<title>result&#45;&gt;end</title>
+<path fill="none" stroke="#475569" d="M162.54,-82.6C162.54,-75.2 162.54,-66.28 162.54,-57.66"/>
+<polygon fill="#475569" stroke="#475569" points="166.04,-57.77 162.54,-47.77 159.04,-57.77 166.04,-57.77"/>
+</g>
+</g>
+</svg>
+</figure>
+<p>The origin-attribution block follows the loop written in the M33 pseudocode. This first diagram focuses on allocation quantity and balance conservation; expanded error and loop paths remain future work.</p>
+<h2>Diagram 2 Nassi Shneiderman diagram for M43</h2>
+<figure><svg xmlns="http://www.w3.org/2000/svg" width="960" height="580" viewBox="0 0 960 580">
+<rect width="960" height="580" fill="white"/>
+<g font-family="Arial,sans-serif" fill="#111827" text-anchor="middle">
+<text x="480" y="43" font-size="26">M43 Purchase quantity   Nassi Shneiderman diagram</text>
+<rect x="60" y="85" width="840" height="415" fill="white" stroke="#334155" stroke-width="2"/>
+<path d="M60 85 L480 215 L900 85 M60 215 H900 M480 215 V425 M60 425 H900 M480 285 H900 M480 355 H900" fill="none" stroke="#334155" stroke-width="2"/>
+<text x="480" y="125" font-size="23">remaining_gap = 0 ?</text>
+<text x="118" y="191" font-size="20">True</text><text x="843" y="191" font-size="20">False</text>
+<text x="270" y="325" font-size="23">purchase_qty = 0</text>
+<text x="690" y="246" font-size="19">target = MAX(gap, minimum)</text>
+<text x="690" y="309" font-size="18">lot_count = (target + multiple - 1)</text>
+<text x="690" y="336" font-size="18">DIV multiple</text>
+<text x="690" y="397" font-size="19">purchase_qty = lot_count * multiple</text>
+<text x="480" y="471" font-size="23">RETURN purchase_qty</text>
+<text x="480" y="544" font-size="18">Preconditions: gap and minimum are nonnegative integers; multiple is positive.</text>
+</g></svg></figure>
+<p>The left branch handles zero gap. The right branch applies the minimum and then rounds to a purchase multiple. Both branches return a purchase quantity.</p>
+<h2>Small design walkthroughs</h2>
+<table><thead><tr><th>Procedure</th><th>Input</th><th>Expected result</th></tr></thead><tbody>
+<tr><td>M33</td><td>Gross 200; available 20</td><td>Allocated 20; net 180; balance 0</td></tr>
+<tr><td>M33</td><td>Gross 10; available 10</td><td>Allocated 10; net 0; balance 0</td></tr>
+<tr><td>M34</td><td>B net 180; each B needs 4 D</td><td>D gross demand 720</td></tr>
+<tr><td>M43</td><td>Gap 620; minimum 100; multiple 100</td><td>Purchase 700</td></tr>
+<tr><td>M43</td><td>Gap 0; minimum 100; multiple 10</td><td>Purchase 0</td></tr>
+<tr><td>M53</td><td>Event 2026-10-09; baseline 2026-10-10</td><td>Risk 1 calendar day before baseline</td></tr>
+</tbody></table>
+<p>These are independent expected values, not program test results. In the full CASE01, D demand 720 minus stock 100 yields purchase 620 before lot-size adjustment.</p>
+<h2>What to add next</h2>
+<p>1. M32 demand merging, M42 chronological surplus use and M62 atomic-save pseudocode.</p>
+<p>2. Complete preconditions, postconditions, error results, stable ID construction and trace fields.</p>
+<p>3. More flowcharts and N-S or PAD diagrams for the chosen detailed-design objects; verify the required count with actual N.</p>
+<p>4. A consistent mapping from each decision/loop to later E4 and E5 cases.</p>
+<p>5. Actual member tasks, all-member meeting record and individual contributions.</p>
+<p>No application code, database or test execution is included in this short draft.</p></main></body></html>

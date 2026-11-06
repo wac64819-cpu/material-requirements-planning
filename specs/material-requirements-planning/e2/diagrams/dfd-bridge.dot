@@ -1,0 +1,12 @@
+digraph G {
+graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.45", ranksep="0.85", splines=polyline, label="P2.3   Purchasing and risk decomposition", labelloc=t, fontsize=24, fontname="Arial"];
+node [shape=box, fontname="Arial", fontsize=16, margin="0.16,0.12", color="#334155", penwidth=1.4];
+edge [fontname="Arial", fontsize=12, color="#475569", arrowsize=0.75];
+"P2.2" [label="P2.2 Net requirements", shape=box, style="filled", fillcolor="#f1f5f9"];
+"P3" [label="P3 Publish results", shape=box, style="filled", fillcolor="#f1f5f9"];
+"S4" [label="S4\nPlan purchases", shape=box, style="rounded,filled", fillcolor="#edf5ff"];
+"S5" [label="S5\nAssess risk and complete", shape=box, style="rounded,filled", fillcolor="#edf5ff"];
+"P2.2" -> "S4" [label="F13"];
+"S4" -> "S5" [label="G20"];
+"S5" -> "P3" [label="F09.valid"];
+}

@@ -1,0 +1,9 @@
+﻿batch_id,code,severity,source_location,task_id,material_id,computed_date,days_before_baseline,message
+c6d49d736219451aa147ab1f86173b3b,EARLY_REQUIRED_DATE,RISK,"[""make"",""HIGH"",""A"",""2026-10-21""]",HIGH,A,2026-09-21,10,Required date precedes the planning baseline.
+c6d49d736219451aa147ab1f86173b3b,EARLY_REQUIRED_DATE,RISK,"[""make"",""HIGH"",""B"",""2026-09-21""]",HIGH,B,2026-09-18,13,Required date precedes the planning baseline.
+c6d49d736219451aa147ab1f86173b3b,EARLY_REQUIRED_DATE,RISK,"[""make"",""LOW"",""A"",""2026-10-20""]",LOW,A,2026-09-20,11,Required date precedes the planning baseline.
+c6d49d736219451aa147ab1f86173b3b,EARLY_REQUIRED_DATE,RISK,"[""make"",""LOW"",""B"",""2026-09-20""]",LOW,B,2026-09-17,14,Required date precedes the planning baseline.
+c6d49d736219451aa147ab1f86173b3b,EARLY_REQUIRED_DATE,RISK,"[""purchase_bucket"",""C"",""2026-09-20""]",,C,2026-09-16,15,Required date precedes the planning baseline.
+c6d49d736219451aa147ab1f86173b3b,EARLY_REQUIRED_DATE,RISK,"[""purchase_bucket"",""C"",""2026-09-21""]",,C,2026-09-17,14,Required date precedes the planning baseline.
+c6d49d736219451aa147ab1f86173b3b,EARLY_REQUIRED_DATE,RISK,"[""purchase_bucket"",""D"",""2026-09-17""]",,D,2026-09-12,19,Required date precedes the planning baseline.
+c6d49d736219451aa147ab1f86173b3b,EARLY_REQUIRED_DATE,RISK,"[""purchase_bucket"",""D"",""2026-09-18""]",,D,2026-09-13,18,Required date precedes the planning baseline.

@@ -1,0 +1,18 @@
+digraph G {
+graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.45", ranksep="0.85", splines=polyline, label="S6   History trace and export", labelloc=t, fontsize=24, fontname="Arial"];
+node [shape=box, fontname="Arial", fontsize=16, margin="0.16,0.12", color="#334155", penwidth=1.4];
+edge [fontname="Arial", fontsize=12, color="#475569", arrowsize=0.75];
+"M60" [label="M60\npublish results", style="filled", fillcolor="#edf5ff"];
+"M61" [label="M61\nclassify outcome", style="filled", fillcolor="#ffffff"];
+"M62" [label="M62\nsave batch atomic", style="filled", fillcolor="#ffffff"];
+"M63" [label="M63\nread history", style="filled", fillcolor="#ffffff"];
+"M64" [label="M64\nbuild trace view", style="filled", fillcolor="#ffffff"];
+"M65" [label="M65\nencode csv", style="filled", fillcolor="#ffffff"];
+"M66" [label="M66\nmake plan response", style="filled", fillcolor="#ffffff"];
+"M60" -> "M61" [label="I/M61   O/M61"];
+"M60" -> "M62" [label="I/M62   O/M62\nCONDITIONAL"];
+"M60" -> "M63" [label="I/M63   O/M63\nCONDITIONAL"];
+"M60" -> "M64" [label="I/M64   O/M64"];
+"M60" -> "M65" [label="I/M65   O/M65\nCONDITIONAL"];
+"M60" -> "M66" [label="I/M66   O/M66"];
+}

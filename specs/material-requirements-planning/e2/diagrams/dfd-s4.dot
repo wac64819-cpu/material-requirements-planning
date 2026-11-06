@@ -1,0 +1,22 @@
+digraph G {
+graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.45", ranksep="0.85", splines=polyline, label="S4   Refined purchasing and surplus", labelloc=t, fontsize=24, fontname="Arial"];
+node [shape=box, fontname="Arial", fontsize=16, margin="0.16,0.12", color="#334155", penwidth=1.4];
+edge [fontname="Arial", fontsize=12, color="#475569", arrowsize=0.75];
+"P2.2" [label="P2.2 Net requirements", shape=box, style="filled", fillcolor="#f1f5f9"];
+"S5" [label="S5 Calendar and risk", shape=box, style="filled", fillcolor="#f1f5f9"];
+"D4" [label="D4\nPlanned surplus pool", shape=record, style="filled", fillcolor="#fff8e8"];
+"D01" [label="D01\nGroup dated shortages", shape=box, style="rounded,filled", fillcolor="#edf5ff"];
+"D02" [label="D02\nConsume eligible surplus", shape=box, style="rounded,filled", fillcolor="#edf5ff"];
+"D03" [label="D03\nRound purchase quantity", shape=box, style="rounded,filled", fillcolor="#edf5ff"];
+"D04" [label="D04\nDate bucket and update pool", shape=box, style="rounded,filled", fillcolor="#edf5ff"];
+"D05" [label="D05\nAssemble purchasing envelope", shape=box, style="rounded,filled", fillcolor="#edf5ff"];
+"P2.2" -> "D01" [label="F13"];
+"D01" -> "D4" [label="G44"];
+"D01" -> "D02" [label="G41"];
+"D4" -> "D02" [label="G45"];
+"D02" -> "D03" [label="G42"];
+"D03" -> "D04" [label="G43"];
+"D04" -> "D4" [label="G46"];
+"D04" -> "D05" [label="G47"];
+"D05" -> "S5" [label="G20"];
+}

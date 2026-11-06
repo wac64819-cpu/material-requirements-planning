@@ -1,0 +1,1 @@
+{"status": "INVALID", "errors": [{"code": "CSV_HEADER", "severity": "BLOCKING", "source_location": "tasks.csv:1", "message": "表头缺失、重复或含未知列。请使用下载模板的完整表头。"}]}

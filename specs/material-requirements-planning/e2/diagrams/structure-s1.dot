@@ -1,0 +1,18 @@
+digraph G {
+graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.45", ranksep="0.85", splines=polyline, label="S1   Source maintenance", labelloc=t, fontsize=24, fontname="Arial"];
+node [shape=box, fontname="Arial", fontsize=16, margin="0.16,0.12", color="#334155", penwidth=1.4];
+edge [fontname="Arial", fontsize=12, color="#475569", arrowsize=0.75];
+"M10" [label="M10\nmaintain sources", style="filled", fillcolor="#edf5ff"];
+"M11" [label="M11\nparse submission", style="filled", fillcolor="#ffffff"];
+"M12" [label="M12\nmerge source patch", style="filled", fillcolor="#ffffff"];
+"M13" [label="M13\nvalidate source edit", style="filled", fillcolor="#ffffff"];
+"M14" [label="M14\ncommit source revision", style="filled", fillcolor="#ffffff"];
+"M15" [label="M15\nmake maintenance\nresponse", style="filled", fillcolor="#ffffff"];
+"M21" [label="M21\nread source snapshot", style="filled", fillcolor="#f1f5f9"];
+"M10" -> "M11" [label="I/M11   O/M11"];
+"M10" -> "M12" [label="I/M12   O/M12"];
+"M10" -> "M13" [label="I/M13   O/M13"];
+"M10" -> "M14" [label="I/M14   O/M14\nCONDITIONAL"];
+"M10" -> "M15" [label="I/M15   O/M15"];
+"M10" -> "M21" [style=dashed,label="shared   I/M21 O/M21"];
+}

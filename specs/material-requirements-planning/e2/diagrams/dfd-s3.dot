@@ -1,0 +1,25 @@
+digraph G {
+graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.45", ranksep="0.85", splines=polyline, label="S3   Refined multilevel demand and stock", labelloc=t, fontsize=24, fontname="Arial"];
+node [shape=box, fontname="Arial", fontsize=16, margin="0.16,0.12", color="#334155", penwidth=1.4];
+edge [fontname="Arial", fontsize=12, color="#475569", arrowsize=0.75];
+"P2.1" [label="P2.1 Validate", shape=box, style="filled", fillcolor="#f1f5f9"];
+"P2.3" [label="P2.3 Procurement and risk", shape=box, style="filled", fillcolor="#f1f5f9"];
+"D3" [label="D3\nWorking stock", shape=record, style="filled", fillcolor="#fff8e8"];
+"C1" [label="C1\nInitialize batch balances", shape=box, style="rounded,filled", fillcolor="#edf5ff"];
+"C2" [label="C2\nCollect material dates", shape=box, style="rounded,filled", fillcolor="#edf5ff"];
+"C3" [label="C3\nAllocate stock", shape=box, style="rounded,filled", fillcolor="#edf5ff"];
+"C4" [label="C4\nExpand net MAKE", shape=box, style="rounded,filled", fillcolor="#edf5ff"];
+"C5" [label="C5\nRecord BUY residuals", shape=box, style="rounded,filled", fillcolor="#edf5ff"];
+"C6" [label="C6\nAssemble net bundle", shape=box, style="rounded,filled", fillcolor="#edf5ff"];
+"P2.1" -> "C1" [label="F12"];
+"C1" -> "D3" [label="F17"];
+"C1" -> "C2" [label="G31"];
+"C2" -> "C3" [label="F14"];
+"D3" -> "C3" [label="F16"];
+"C3" -> "D3" [label="F15"];
+"C3" -> "C4" [label="F18"];
+"C4" -> "C2" [label="F19"];
+"C4" -> "C5" [label="G34"];
+"C5" -> "C6" [label="G35"];
+"C6" -> "P2.3" [label="F13"];
+}

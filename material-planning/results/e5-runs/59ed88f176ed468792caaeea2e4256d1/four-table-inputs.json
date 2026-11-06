@@ -1,0 +1,6 @@
+{
+  "materials": "material_id,name,supply_type,unit,lead_time_days,min_purchase_qty,purchase_multiple\r\nP,Product,MAKE,pcs,2,,\r\nR,Raw,BUY,pcs,3,0,5\r\n",
+  "bom": "parent_id,child_id,qty_per\r\nP,R,2\r\n",
+  "stocks": "material_id,on_hand,reserved,snapshot_date\r\nP,0,0,2026-11-01\r\nR,0,0,2026-11-01\r\n",
+  "tasks": "task_id,product_id,required_qty,due_date,priority\r\nT1,P,10,2026-11-20,2\r\n"
+}

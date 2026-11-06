@@ -1,0 +1,777 @@
+{
+  "executed_at": "2026-10-22T12:12:14.708813+08:00",
+  "python_version": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "source_sha256": "01f67b289617224e6b10e39b189482f32806580538c7c6208c1496f0cd658ca8",
+  "passed": 38,
+  "total": 38,
+  "checks": [
+    {
+      "case": "P00",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "case": "P01",
+      "expected": 700,
+      "actual": 700,
+      "passed": true
+    },
+    {
+      "case": "P02",
+      "expected": 100,
+      "actual": 100,
+      "passed": true
+    },
+    {
+      "case": "P03",
+      "expected": 100,
+      "actual": 100,
+      "passed": true
+    },
+    {
+      "case": "P04",
+      "expected": 110,
+      "actual": 110,
+      "passed": true
+    },
+    {
+      "case": "P05",
+      "expected": 30,
+      "actual": 30,
+      "passed": true
+    },
+    {
+      "case": "P06",
+      "expected": 7,
+      "actual": 7,
+      "passed": true
+    },
+    {
+      "case": "P07",
+      "expected": 9007199254741000,
+      "actual": 9007199254741000,
+      "passed": true
+    },
+    {
+      "case": "P08-negative-gap",
+      "expected": "ValueError",
+      "actual": "ValueError",
+      "passed": true
+    },
+    {
+      "case": "P09-zero-multiple",
+      "expected": "ValueError",
+      "actual": "ValueError",
+      "passed": true
+    },
+    {
+      "case": "P10-decimal-gap",
+      "expected": "ValueError",
+      "actual": "ValueError",
+      "passed": true
+    },
+    {
+      "case": "P11-boolean-gap",
+      "expected": "ValueError",
+      "actual": "ValueError",
+      "passed": true
+    },
+    {
+      "case": "A0-quantity",
+      "expected": [
+        0,
+        10,
+        0
+      ],
+      "actual": [
+        0,
+        10,
+        0
+      ],
+      "passed": true
+    },
+    {
+      "case": "A0-immutable",
+      "expected": [
+        {
+          "demand_id": "D1",
+          "task_id": "T1",
+          "material_id": "X",
+          "needed_date": "2026-10-15",
+          "gross_qty": 10,
+          "origins": [
+            {
+              "origin_id": "O1",
+              "task_id": "T1",
+              "parent_demand_id": null,
+              "bom_path": [
+                "A",
+                "X"
+              ],
+              "contribution_qty": 10
+            }
+          ]
+        },
+        {
+          "request_id": "R1",
+          "material_id": "X",
+          "available_qty": 0
+        }
+      ],
+      "actual": [
+        {
+          "demand_id": "D1",
+          "task_id": "T1",
+          "material_id": "X",
+          "needed_date": "2026-10-15",
+          "gross_qty": 10,
+          "origins": [
+            {
+              "origin_id": "O1",
+              "task_id": "T1",
+              "parent_demand_id": null,
+              "bom_path": [
+                "A",
+                "X"
+              ],
+              "contribution_qty": 10
+            }
+          ]
+        },
+        {
+          "request_id": "R1",
+          "material_id": "X",
+          "available_qty": 0
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case": "A9-quantity",
+      "expected": [
+        9,
+        1,
+        0
+      ],
+      "actual": [
+        9,
+        1,
+        0
+      ],
+      "passed": true
+    },
+    {
+      "case": "A9-immutable",
+      "expected": [
+        {
+          "demand_id": "D1",
+          "task_id": "T1",
+          "material_id": "X",
+          "needed_date": "2026-10-15",
+          "gross_qty": 10,
+          "origins": [
+            {
+              "origin_id": "O1",
+              "task_id": "T1",
+              "parent_demand_id": null,
+              "bom_path": [
+                "A",
+                "X"
+              ],
+              "contribution_qty": 10
+            }
+          ]
+        },
+        {
+          "request_id": "R1",
+          "material_id": "X",
+          "available_qty": 9
+        }
+      ],
+      "actual": [
+        {
+          "demand_id": "D1",
+          "task_id": "T1",
+          "material_id": "X",
+          "needed_date": "2026-10-15",
+          "gross_qty": 10,
+          "origins": [
+            {
+              "origin_id": "O1",
+              "task_id": "T1",
+              "parent_demand_id": null,
+              "bom_path": [
+                "A",
+                "X"
+              ],
+              "contribution_qty": 10
+            }
+          ]
+        },
+        {
+          "request_id": "R1",
+          "material_id": "X",
+          "available_qty": 9
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case": "A10-quantity",
+      "expected": [
+        10,
+        0,
+        0
+      ],
+      "actual": [
+        10,
+        0,
+        0
+      ],
+      "passed": true
+    },
+    {
+      "case": "A10-immutable",
+      "expected": [
+        {
+          "demand_id": "D1",
+          "task_id": "T1",
+          "material_id": "X",
+          "needed_date": "2026-10-15",
+          "gross_qty": 10,
+          "origins": [
+            {
+              "origin_id": "O1",
+              "task_id": "T1",
+              "parent_demand_id": null,
+              "bom_path": [
+                "A",
+                "X"
+              ],
+              "contribution_qty": 10
+            }
+          ]
+        },
+        {
+          "request_id": "R1",
+          "material_id": "X",
+          "available_qty": 10
+        }
+      ],
+      "actual": [
+        {
+          "demand_id": "D1",
+          "task_id": "T1",
+          "material_id": "X",
+          "needed_date": "2026-10-15",
+          "gross_qty": 10,
+          "origins": [
+            {
+              "origin_id": "O1",
+              "task_id": "T1",
+              "parent_demand_id": null,
+              "bom_path": [
+                "A",
+                "X"
+              ],
+              "contribution_qty": 10
+            }
+          ]
+        },
+        {
+          "request_id": "R1",
+          "material_id": "X",
+          "available_qty": 10
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case": "A11-quantity",
+      "expected": [
+        10,
+        0,
+        1
+      ],
+      "actual": [
+        10,
+        0,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "case": "A11-immutable",
+      "expected": [
+        {
+          "demand_id": "D1",
+          "task_id": "T1",
+          "material_id": "X",
+          "needed_date": "2026-10-15",
+          "gross_qty": 10,
+          "origins": [
+            {
+              "origin_id": "O1",
+              "task_id": "T1",
+              "parent_demand_id": null,
+              "bom_path": [
+                "A",
+                "X"
+              ],
+              "contribution_qty": 10
+            }
+          ]
+        },
+        {
+          "request_id": "R1",
+          "material_id": "X",
+          "available_qty": 11
+        }
+      ],
+      "actual": [
+        {
+          "demand_id": "D1",
+          "task_id": "T1",
+          "material_id": "X",
+          "needed_date": "2026-10-15",
+          "gross_qty": 10,
+          "origins": [
+            {
+              "origin_id": "O1",
+              "task_id": "T1",
+              "parent_demand_id": null,
+              "bom_path": [
+                "A",
+                "X"
+              ],
+              "contribution_qty": 10
+            }
+          ]
+        },
+        {
+          "request_id": "R1",
+          "material_id": "X",
+          "available_qty": 11
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case": "A-origin-attribution",
+      "expected": [
+        {
+          "origin_id": "O1",
+          "allocated_qty": 4,
+          "residual_qty": 0
+        },
+        {
+          "origin_id": "O2",
+          "allocated_qty": 1,
+          "residual_qty": 5
+        }
+      ],
+      "actual": [
+        {
+          "origin_id": "O1",
+          "allocated_qty": 4,
+          "residual_qty": 0
+        },
+        {
+          "origin_id": "O2",
+          "allocated_qty": 1,
+          "residual_qty": 5
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case": "A-origin-row-order",
+      "expected": {
+        "allocation_id": "[\"allocation\",\"T1\",\"D1\"]",
+        "demand_id": "D1",
+        "task_id": "T1",
+        "material_id": "X",
+        "needed_date": "2026-10-15",
+        "before_qty": 5,
+        "allocated_qty": 5,
+        "after_qty": 0,
+        "source_allocations": [
+          {
+            "origin_id": "O1",
+            "allocated_qty": 4,
+            "residual_qty": 0
+          },
+          {
+            "origin_id": "O2",
+            "allocated_qty": 1,
+            "residual_qty": 5
+          }
+        ]
+      },
+      "actual": {
+        "allocation_id": "[\"allocation\",\"T1\",\"D1\"]",
+        "demand_id": "D1",
+        "task_id": "T1",
+        "material_id": "X",
+        "needed_date": "2026-10-15",
+        "before_qty": 5,
+        "allocated_qty": 5,
+        "after_qty": 0,
+        "source_allocations": [
+          {
+            "origin_id": "O1",
+            "allocated_qty": 4,
+            "residual_qty": 0
+          },
+          {
+            "origin_id": "O2",
+            "allocated_qty": 1,
+            "residual_qty": 5
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "case": "A-shared-stock",
+      "expected": [
+        20,
+        0
+      ],
+      "actual": [
+        20,
+        0
+      ],
+      "passed": true
+    },
+    {
+      "case": "A-mismatched-material",
+      "expected": "ValueError",
+      "actual": "ValueError",
+      "passed": true
+    },
+    {
+      "case": "A-inconsistent-origins",
+      "expected": "ValueError",
+      "actual": "ValueError",
+      "passed": true
+    },
+    {
+      "case": "A-duplicate-origin",
+      "expected": "ValueError",
+      "actual": "ValueError",
+      "passed": true
+    },
+    {
+      "case": "D-normal",
+      "expected": {
+        "status": "OK",
+        "value": "2026-10-10",
+        "issues": []
+      },
+      "actual": {
+        "status": "OK",
+        "value": "2026-10-10",
+        "issues": []
+      },
+      "passed": true
+    },
+    {
+      "case": "D-zero",
+      "expected": {
+        "status": "OK",
+        "value": "2026-10-10",
+        "issues": []
+      },
+      "actual": {
+        "status": "OK",
+        "value": "2026-10-10",
+        "issues": []
+      },
+      "passed": true
+    },
+    {
+      "case": "D-year",
+      "expected": {
+        "status": "OK",
+        "value": "2026-12-29",
+        "issues": []
+      },
+      "actual": {
+        "status": "OK",
+        "value": "2026-12-29",
+        "issues": []
+      },
+      "passed": true
+    },
+    {
+      "case": "D-leap",
+      "expected": {
+        "status": "OK",
+        "value": "2028-02-28",
+        "issues": []
+      },
+      "actual": {
+        "status": "OK",
+        "value": "2028-02-28",
+        "issues": []
+      },
+      "passed": true
+    },
+    {
+      "case": "D-range",
+      "expected": "ERROR",
+      "actual": "ERROR",
+      "passed": true
+    },
+    {
+      "case": "D-invalid",
+      "expected": "ValueError",
+      "actual": "ValueError",
+      "passed": true
+    },
+    {
+      "case": "D-format",
+      "expected": "ValueError",
+      "actual": "ValueError",
+      "passed": true
+    },
+    {
+      "case": "D-negative-lead",
+      "expected": "ValueError",
+      "actual": "ValueError",
+      "passed": true
+    },
+    {
+      "case": "R-date-boundaries",
+      "expected": [
+        [
+          "before",
+          "2026-10-09",
+          1
+        ]
+      ],
+      "actual": [
+        [
+          "before",
+          "2026-10-09",
+          1
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "case": "R-input-immutable",
+      "expected": [
+        {
+          "event_id": "before",
+          "date": "2026-10-09",
+          "task_id": "T1"
+        },
+        {
+          "event_id": "equal",
+          "date": "2026-10-10"
+        },
+        {
+          "event_id": "after",
+          "date": "2026-10-11"
+        }
+      ],
+      "actual": [
+        {
+          "event_id": "before",
+          "date": "2026-10-09",
+          "task_id": "T1"
+        },
+        {
+          "event_id": "equal",
+          "date": "2026-10-10"
+        },
+        {
+          "event_id": "after",
+          "date": "2026-10-11"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case": "R-empty",
+      "expected": [],
+      "actual": [],
+      "passed": true
+    },
+    {
+      "case": "W-M43-statements-P00-P01",
+      "expected": [
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97
+      ],
+      "actual": [
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97
+      ],
+      "passed": true
+    }
+  ],
+  "M43_traces": {
+    "P00": {
+      "inputs": [
+        0,
+        100,
+        10
+      ],
+      "line_sequence": [
+        90,
+        91,
+        92,
+        93,
+        94
+      ],
+      "actual": 0
+    },
+    "P01": {
+      "inputs": [
+        620,
+        100,
+        100
+      ],
+      "line_sequence": [
+        90,
+        91,
+        92,
+        93,
+        95,
+        96,
+        97
+      ],
+      "actual": 700
+    },
+    "P02": {
+      "inputs": [
+        1,
+        100,
+        10
+      ],
+      "line_sequence": [
+        90,
+        91,
+        92,
+        93,
+        95,
+        96,
+        97
+      ],
+      "actual": 100
+    },
+    "P03": {
+      "inputs": [
+        100,
+        100,
+        10
+      ],
+      "line_sequence": [
+        90,
+        91,
+        92,
+        93,
+        95,
+        96,
+        97
+      ],
+      "actual": 100
+    },
+    "P04": {
+      "inputs": [
+        101,
+        100,
+        10
+      ],
+      "line_sequence": [
+        90,
+        91,
+        92,
+        93,
+        95,
+        96,
+        97
+      ],
+      "actual": 110
+    },
+    "P05": {
+      "inputs": [
+        23,
+        25,
+        10
+      ],
+      "line_sequence": [
+        90,
+        91,
+        92,
+        93,
+        95,
+        96,
+        97
+      ],
+      "actual": 30
+    },
+    "P06": {
+      "inputs": [
+        7,
+        0,
+        1
+      ],
+      "line_sequence": [
+        90,
+        91,
+        92,
+        93,
+        95,
+        96,
+        97
+      ],
+      "actual": 7
+    },
+    "P07": {
+      "inputs": [
+        9007199254740993,
+        0,
+        10
+      ],
+      "line_sequence": [
+        90,
+        91,
+        92,
+        93,
+        95,
+        96,
+        97
+      ],
+      "actual": 9007199254741000
+    }
+  },
+  "M43_statement_lines": [
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97
+  ],
+  "scope": "Four implemented leaves; M43 normal paths under validated-input preconditions. Not full E4/E5."
+}

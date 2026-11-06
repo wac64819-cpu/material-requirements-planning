@@ -1,0 +1,5 @@
+﻿batch_id,bucket_id,material_id,needed_date,gross_shortage,surplus_used,remaining_gap,purchase_qty,order_date,surplus_after,adjustment_reason,shortage_ids
+dd650453eabd40d4948ef0850e5ba785,"[""purchase_bucket"",""C"",""2026-10-18""]",C,2026-10-18,300,0,300,300,2026-10-14,0,EXACT_SHORTAGE,"[""[\""shortage\"",\""LOW\"",\""C\"",\""2026-10-18\""]""]"
+dd650453eabd40d4948ef0850e5ba785,"[""purchase_bucket"",""C"",""2026-10-19""]",C,2026-10-19,130,0,130,130,2026-10-15,0,EXACT_SHORTAGE,"[""[\""shortage\"",\""HIGH\"",\""C\"",\""2026-10-19\""]""]"
+dd650453eabd40d4948ef0850e5ba785,"[""purchase_bucket"",""D"",""2026-10-15""]",D,2026-10-15,800,0,800,800,2026-10-10,0,EXACT_SHORTAGE,"[""[\""shortage\"",\""LOW\"",\""D\"",\""2026-10-15\""]""]"
+dd650453eabd40d4948ef0850e5ba785,"[""purchase_bucket"",""D"",""2026-10-16""]",D,2026-10-16,300,0,300,300,2026-10-11,0,EXACT_SHORTAGE,"[""[\""shortage\"",\""HIGH\"",\""D\"",\""2026-10-16\""]""]"

@@ -1,0 +1,135 @@
+{
+  "executed_at": "2026-10-22T04:28:19.331Z",
+  "passed": 21,
+  "total": 21,
+  "checks": [
+    {
+      "name": "Template ZIP downloads",
+      "actual": "mrp-csv-templates.zip",
+      "expected": "mrp-csv-templates.zip",
+      "passed": true
+    },
+    {
+      "name": "ZIP signature",
+      "actual": "PK",
+      "expected": "PK",
+      "passed": true
+    },
+    {
+      "name": "Preview does not replace editor",
+      "actual": "100",
+      "expected": "100",
+      "passed": true
+    },
+    {
+      "name": "Preview does not save database",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "name": "Apply installs imported row",
+      "actual": "60",
+      "expected": "60",
+      "passed": true
+    },
+    {
+      "name": "Apply leaves save explicit",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "name": "Download identifies saved batch",
+      "actual": "plan-812fb1b804a44f0aa53ed9b1a3993553-MAKE.csv",
+      "expected": "plan-812fb1b804a44f0aa53ed9b1a3993553-MAKE.csv",
+      "passed": true
+    },
+    {
+      "name": "CSV contains independent expected production",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "PURCHASE downloads UTF8 BOM",
+      "actual": "efbbbf",
+      "expected": "efbbbf",
+      "passed": true
+    },
+    {
+      "name": "ALLOCATION downloads UTF8 BOM",
+      "actual": "efbbbf",
+      "expected": "efbbbf",
+      "passed": true
+    },
+    {
+      "name": "TRACE downloads UTF8 BOM",
+      "actual": "efbbbf",
+      "expected": "efbbbf",
+      "passed": true
+    },
+    {
+      "name": "RISK downloads UTF8 BOM",
+      "actual": "efbbbf",
+      "expected": "efbbbf",
+      "passed": true
+    },
+    {
+      "name": "Edit clears stale export control",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Historical download unaffected by new input",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Bad CSV keeps original edit",
+      "actual": "10",
+      "expected": "10",
+      "passed": true
+    },
+    {
+      "name": "Bad CSV cannot apply",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Bad header error visible",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Editor change invalidates preview",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Invalid encoding cannot apply",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Import toolbar fits narrow screen",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "No unhandled browser errors",
+      "actual": [],
+      "expected": [],
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "scope": "Isolated test database; no user data changed."
+}

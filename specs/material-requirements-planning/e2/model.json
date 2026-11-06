@@ -1,0 +1,1818 @@
+{
+  "modules": {
+    "M00": {
+      "id": "M00",
+      "subsystem": "APP",
+      "name": "handle_action",
+      "inputs": "Action, payload, repository, supported_rules, clock, id_factory",
+      "outputs": "ApplicationResponse",
+      "contract": "Dispatch maintenance, calculation, history or export. During calculation call S2 then S3 then S4 then S5 then S6; stop at the first error and convert its issues through M26 before publishing rejection.",
+      "effect": "Coordinator; no direct SQL"
+    },
+    "M10": {
+      "id": "M10",
+      "subsystem": "S1",
+      "name": "maintain_sources",
+      "inputs": "MaintenanceSubmission, repository",
+      "outputs": "MaintenanceOutcome",
+      "contract": "Read current revision; parse, merge and validate one submission; commit only a fully accepted candidate.",
+      "effect": "Coordinator"
+    },
+    "M11": {
+      "id": "M11",
+      "subsystem": "S1",
+      "name": "parse_submission",
+      "inputs": "MaintenanceSubmission",
+      "outputs": "Result[TypedImport]",
+      "contract": "Parse required fields without rounding, preserve row locations, reject duplicate input keys and unknown columns where policy requires.",
+      "effect": "Pure"
+    },
+    "M12": {
+      "id": "M12",
+      "subsystem": "S1",
+      "name": "merge_source_patch",
+      "inputs": "SourceSet, TypedImport",
+      "outputs": "SourceSet",
+      "contract": "Apply explicit upserts to a copy. Stock upserts identify both snapshot date and material. No implicit deletion or mutation of the original.",
+      "effect": "Pure"
+    },
+    "M13": {
+      "id": "M13",
+      "subsystem": "S1",
+      "name": "validate_source_edit",
+      "inputs": "SourceSet candidate, TypedImport",
+      "outputs": "List[Issue]",
+      "contract": "Check uniqueness, referenced IDs, integer/date domains and stock bounds. Detect incompatible BUY edges and cycles in changed BOM; full selected MAKE completeness is checked in S2.",
+      "effect": "Pure"
+    },
+    "M14": {
+      "id": "M14",
+      "subsystem": "S1",
+      "name": "commit_source_revision",
+      "inputs": "repository, expected_revision, SourceSet candidate",
+      "outputs": "Result[revision_id]",
+      "contract": "In one transaction create an immutable revision, compare the current revision, move the head, and commit; conflicts and failures roll back.",
+      "effect": "Writes D1 atomically"
+    },
+    "M15": {
+      "id": "M15",
+      "subsystem": "S1",
+      "name": "make_maintenance_response",
+      "inputs": "request_id, accepted_count, List[Issue], commit_result",
+      "outputs": "MaintenanceOutcome",
+      "contract": "REJECTED has zero accepted records. On commit failure do not report accepted data.",
+      "effect": "Pure"
+    },
+    "M20": {
+      "id": "M20",
+      "subsystem": "S2",
+      "name": "prepare_context",
+      "inputs": "PlanningRequest, repository, RuleSnapshot",
+      "outputs": "PreparationResult",
+      "contract": "Obtain one consistent snapshot, validate selected data and BOM, order tasks and freeze a read-only context. Return READY with prepared input, or call M26 and return INVALID with that outcome.",
+      "effect": "Coordinator"
+    },
+    "M21": {
+      "id": "M21",
+      "subsystem": "S2",
+      "name": "read_source_snapshot",
+      "inputs": "repository, baseline_date or null",
+      "outputs": "Result[SourceSet]",
+      "contract": "Read source head and all required revision rows in one read transaction. Null date is used for maintenance reads; planning selects the baseline stock snapshot.",
+      "effect": "Reads D1"
+    },
+    "M22": {
+      "id": "M22",
+      "subsystem": "S2",
+      "name": "validate_selected_data",
+      "inputs": "PlanningRequest, SourceSet, RuleSnapshot",
+      "outputs": "List[Issue]",
+      "contract": "Reject no selection, duplicate or unknown task IDs, unsupported rules, invalid fields and missing reachable stock. Snapshot date must equal baseline.",
+      "effect": "Pure"
+    },
+    "M23": {
+      "id": "M23",
+      "subsystem": "S2",
+      "name": "validate_and_index_bom",
+      "inputs": "SourceSet, selected_task_ids",
+      "outputs": "Result[GraphIndex]",
+      "contract": "Validate all selected reachable edges including stock-covered branches; return adjacency and deterministic parent-before-child order or located graph errors.",
+      "effect": "Pure"
+    },
+    "M24": {
+      "id": "M24",
+      "subsystem": "S2",
+      "name": "order_tasks",
+      "inputs": "List[Task], selected_task_ids",
+      "outputs": "List[Task]",
+      "contract": "Sort by priority ascending, due date ascending, then ordinal task ID. Preserve no import-row tie-break.",
+      "effect": "Pure"
+    },
+    "M25": {
+      "id": "M25",
+      "subsystem": "S2",
+      "name": "freeze_context",
+      "inputs": "request, sources, rules, ordered_tasks, GraphIndex",
+      "outputs": "PreparedContext",
+      "contract": "Copy validated inputs and initial availability into E1 Context; attach only a derived graph index outside the retained E1 Context.",
+      "effect": "Pure"
+    },
+    "M26": {
+      "id": "M26",
+      "subsystem": "S2",
+      "name": "make_invalid_outcome",
+      "inputs": "request_id, nonempty List[Issue]",
+      "outputs": "CalculationOutcome",
+      "contract": "Return INVALID with null result and blocking issues. Do not manufacture an empty successful batch.",
+      "effect": "Pure"
+    },
+    "M30": {
+      "id": "M30",
+      "subsystem": "S3",
+      "name": "net_requirements",
+      "inputs": "PreparedContext",
+      "outputs": "Result[NetBundle]",
+      "contract": "Own the batch balance map. Complete each task before the next; visit materials in parent-before-child order, then dates ascending.",
+      "effect": "Coordinator; private memory only"
+    },
+    "M31": {
+      "id": "M31",
+      "subsystem": "S3",
+      "name": "initialize_balances",
+      "inputs": "request_id, List[Stock]",
+      "outputs": "BalanceMap",
+      "contract": "Create available quantities as on_hand minus reserved exactly once per run.",
+      "effect": "Pure"
+    },
+    "M32": {
+      "id": "M32",
+      "subsystem": "S3",
+      "name": "collect_material_demands",
+      "inputs": "task_id, material_id, DemandMap",
+      "outputs": "List[Demand]",
+      "contract": "For this task/material collect all contributions, group by date, preserve origins and return dates ascending. The caller must first finish all parents.",
+      "effect": "Pure"
+    },
+    "M33": {
+      "id": "M33",
+      "subsystem": "S3",
+      "name": "allocate_stock",
+      "inputs": "Demand, Balance",
+      "outputs": "AllocationResult",
+      "contract": "Allocate min(balance,gross). Split origin attribution by ordinal BOM path then origin ID. Return residual, ledger and new balance; do not mutate caller inputs.",
+      "effect": "Pure"
+    },
+    "M34": {
+      "id": "M34",
+      "subsystem": "S3",
+      "name": "expand_make_demand",
+      "inputs": "NettedDemand, Material, child_edges",
+      "outputs": "Result[MakeExpansion]",
+      "contract": "For positive MAKE net quantity derive start date, one MAKE row and children from attributed net origins. Zero net yields no MAKE row or children. Calls M52.",
+      "effect": "Pure"
+    },
+    "M35": {
+      "id": "M35",
+      "subsystem": "S3",
+      "name": "record_buy_shortage",
+      "inputs": "NettedDemand, Material",
+      "outputs": "BuyShortage or null",
+      "contract": "Return a positive BUY residual with date/source links; otherwise return null.",
+      "effect": "Pure"
+    },
+    "M36": {
+      "id": "M36",
+      "subsystem": "S3",
+      "name": "assemble_net_bundle",
+      "inputs": "Context, netted_demands, allocations, make_lines, shortages, final_balances",
+      "outputs": "Result[NetBundle]",
+      "contract": "Check gross=allocated+net, origin totals, stock conservation and reference integrity before returning the completed bundle.",
+      "effect": "Pure"
+    },
+    "M40": {
+      "id": "M40",
+      "subsystem": "S4",
+      "name": "plan_purchases",
+      "inputs": "NetBundle",
+      "outputs": "Result[PurchasingEnvelope]",
+      "contract": "Use only BUY residuals after existing-stock allocation completes; iterate material IDs and needed dates with one separate surplus pool per material.",
+      "effect": "Coordinator; private memory only"
+    },
+    "M41": {
+      "id": "M41",
+      "subsystem": "S4",
+      "name": "group_buy_shortages",
+      "inputs": "List[BuyShortage]",
+      "outputs": "List[ShortageGroup]",
+      "contract": "Group by material and needed date across tasks; preserve shortage IDs. Sort material ID ordinal, then date.",
+      "effect": "Pure"
+    },
+    "M42": {
+      "id": "M42",
+      "subsystem": "S4",
+      "name": "consume_surplus",
+      "inputs": "ShortageGroup, List[SurplusLot]",
+      "outputs": "SurplusAllocation",
+      "contract": "Consume only lots available by the needed date, earliest arrival then supply bucket ID. Return remaining gap, updated lots and source-use links.",
+      "effect": "Pure"
+    },
+    "M43": {
+      "id": "M43",
+      "subsystem": "S4",
+      "name": "round_purchase_qty",
+      "inputs": "remaining_gap, minimum_qty, purchase_multiple",
+      "outputs": "Int >= 0",
+      "contract": "Zero gap returns zero even with a positive minimum. Otherwise use exact integer ceiling of max(gap,minimum) to the multiple.",
+      "effect": "Pure"
+    },
+    "M44": {
+      "id": "M44",
+      "subsystem": "S4",
+      "name": "finalize_purchase_bucket",
+      "inputs": "ShortageGroup, SurplusAllocation, purchase_qty, Material",
+      "outputs": "Result[PurchaseStep]",
+      "contract": "Build the dated bucket and update the returned pool with new rounding excess; no order date for zero purchase. Calls M52 only for positive purchases.",
+      "effect": "Pure"
+    },
+    "M45": {
+      "id": "M45",
+      "subsystem": "S4",
+      "name": "assemble_purchase_envelope",
+      "inputs": "NetBundle, purchase_buckets, surplus_uses, surplus_lots",
+      "outputs": "Result[PurchasingEnvelope]",
+      "contract": "Check quantity/date conservation and produce the complete purchasing result, retaining zero-purchase buckets for trace.",
+      "effect": "Pure"
+    },
+    "M50": {
+      "id": "M50",
+      "subsystem": "S5",
+      "name": "complete_plan",
+      "inputs": "PurchasingEnvelope",
+      "outputs": "Result[CalculationOutcome]",
+      "contract": "Collect required events, assess dates against baseline, assemble totals and return VALID with the calculated result.",
+      "effect": "Coordinator"
+    },
+    "M51": {
+      "id": "M51",
+      "subsystem": "S5",
+      "name": "collect_required_dates",
+      "inputs": "PurchasingEnvelope",
+      "outputs": "List[DatedEvent]",
+      "contract": "Include every selected task due date and positive manufacturing/purchase start; retain event/task/material links. Ignore nonexistent zero-quantity orders.",
+      "effect": "Pure"
+    },
+    "M52": {
+      "id": "M52",
+      "subsystem": "S5",
+      "name": "subtract_calendar_days",
+      "inputs": "Date needed_date, Int >= 0 lead_days",
+      "outputs": "Result[Date]",
+      "contract": "Subtract calendar days including weekends and leap days. Zero is valid; return DATE_RANGE if the result cannot be represented.",
+      "effect": "Pure"
+    },
+    "M53": {
+      "id": "M53",
+      "subsystem": "S5",
+      "name": "flag_early_dates",
+      "inputs": "List[DatedEvent], baseline_date",
+      "outputs": "List[Issue]",
+      "contract": "Only dates strictly before baseline are RISK; retain original date and positive difference in calendar days.",
+      "effect": "Pure"
+    },
+    "M54": {
+      "id": "M54",
+      "subsystem": "S5",
+      "name": "assemble_calculated_batch",
+      "inputs": "PurchasingEnvelope, List[Issue] risks",
+      "outputs": "CalculatedBatch",
+      "contract": "Attach net bundle, procurement, surplus uses, risks and count summary. Do not add quantities across unrelated units.",
+      "effect": "Pure"
+    },
+    "M60": {
+      "id": "M60",
+      "subsystem": "S6",
+      "name": "publish_results",
+      "inputs": "PublishCommand, repository, clock, id_factory",
+      "outputs": "PlanResponse",
+      "contract": "For VALID outcome save first, then expose saved data; INVALID becomes rejection. For queries load saved history, build views and optionally CSV.",
+      "effect": "Coordinator"
+    },
+    "M61": {
+      "id": "M61",
+      "subsystem": "S6",
+      "name": "classify_outcome",
+      "inputs": "CalculationOutcome",
+      "outputs": "Result[CalculatedBatch]",
+      "contract": "Pass a valid complete result or return its blocking issues; enforce the tagged union.",
+      "effect": "Pure"
+    },
+    "M62": {
+      "id": "M62",
+      "subsystem": "S6",
+      "name": "save_batch_atomic",
+      "inputs": "CalculatedBatch, repository, batch_id, created_at",
+      "outputs": "Result[BatchRecord]",
+      "contract": "Insert one canonical result document including all snapshots in a transaction. Return SAVED only after commit.",
+      "effect": "Writes D2 atomically"
+    },
+    "M63": {
+      "id": "M63",
+      "subsystem": "S6",
+      "name": "read_history",
+      "inputs": "QueryRequest, repository",
+      "outputs": "Result[List[BatchRecord]]",
+      "contract": "Read exact saved documents; return NOT_FOUND for missing detail/export batches; listing may return an empty list.",
+      "effect": "Reads D2"
+    },
+    "M64": {
+      "id": "M64",
+      "subsystem": "S6",
+      "name": "build_trace_view",
+      "inputs": "List[BatchRecord], filters",
+      "outputs": "Result[ReportView]",
+      "contract": "Filter display rows while retaining their linked source, demand, allocation and supply records. Never consult current source data.",
+      "effect": "Pure"
+    },
+    "M65": {
+      "id": "M65",
+      "subsystem": "S6",
+      "name": "encode_csv",
+      "inputs": "ReportView, table_kind",
+      "outputs": "CsvDocument",
+      "contract": "UTF-8 CSV with a header, proper quoting and ISO dates. Export MAKE, PURCHASE, ALLOCATION, TRACE or RISK; preserve batch identifiers.",
+      "effect": "Pure"
+    },
+    "M66": {
+      "id": "M66",
+      "subsystem": "S6",
+      "name": "make_plan_response",
+      "inputs": "request_id, outcome_status, saved_records, view, csv, issues",
+      "outputs": "PlanResponse",
+      "contract": "Map failures and successes consistently. A failed save returns SAVE_FAILED with no successful saved records.",
+      "effect": "Pure"
+    }
+  },
+  "subsystems": [
+    [
+      "S1",
+      "Source maintenance",
+      "M10",
+      "FR01",
+      "P1",
+      [
+        "M11",
+        "M12",
+        "M13",
+        "M14",
+        "M15"
+      ]
+    ],
+    [
+      "S2",
+      "Snapshot and BOM validation",
+      "M20",
+      "FR02, FR03",
+      "P2.1",
+      [
+        "M21",
+        "M22",
+        "M23",
+        "M24",
+        "M25",
+        "M26"
+      ]
+    ],
+    [
+      "S3",
+      "Demand and shared inventory",
+      "M30",
+      "FR04, FR05",
+      "P2.2",
+      [
+        "M31",
+        "M32",
+        "M33",
+        "M34",
+        "M35",
+        "M36"
+      ]
+    ],
+    [
+      "S4",
+      "Purchasing and planned surplus",
+      "M40",
+      "FR06",
+      "Purchasing part of P2.3",
+      [
+        "M41",
+        "M42",
+        "M43",
+        "M44",
+        "M45"
+      ]
+    ],
+    [
+      "S5",
+      "Calendar and timing risk",
+      "M50",
+      "FR07",
+      "Risk part of P2.3; shared calendar helper",
+      [
+        "M51",
+        "M52",
+        "M53",
+        "M54"
+      ]
+    ],
+    [
+      "S6",
+      "History trace and export",
+      "M60",
+      "FR08",
+      "P3",
+      [
+        "M61",
+        "M62",
+        "M63",
+        "M64",
+        "M65",
+        "M66"
+      ]
+    ]
+  ],
+  "calls": [
+    [
+      "M00",
+      "M10",
+      "selection"
+    ],
+    [
+      "M00",
+      "M20",
+      "calculation"
+    ],
+    [
+      "M00",
+      "M30",
+      "calculation"
+    ],
+    [
+      "M00",
+      "M40",
+      "calculation"
+    ],
+    [
+      "M00",
+      "M50",
+      "calculation"
+    ],
+    [
+      "M00",
+      "M60",
+      "selection"
+    ],
+    [
+      "M10",
+      "M11",
+      "call"
+    ],
+    [
+      "M10",
+      "M12",
+      "call"
+    ],
+    [
+      "M10",
+      "M13",
+      "call"
+    ],
+    [
+      "M10",
+      "M14",
+      "conditional"
+    ],
+    [
+      "M10",
+      "M15",
+      "call"
+    ],
+    [
+      "M20",
+      "M21",
+      "call"
+    ],
+    [
+      "M20",
+      "M22",
+      "call"
+    ],
+    [
+      "M20",
+      "M23",
+      "call"
+    ],
+    [
+      "M20",
+      "M24",
+      "call"
+    ],
+    [
+      "M20",
+      "M25",
+      "call"
+    ],
+    [
+      "M20",
+      "M26",
+      "conditional"
+    ],
+    [
+      "M30",
+      "M31",
+      "call"
+    ],
+    [
+      "M30",
+      "M32",
+      "repeat"
+    ],
+    [
+      "M30",
+      "M33",
+      "repeat"
+    ],
+    [
+      "M30",
+      "M34",
+      "repeat"
+    ],
+    [
+      "M30",
+      "M35",
+      "repeat"
+    ],
+    [
+      "M30",
+      "M36",
+      "call"
+    ],
+    [
+      "M40",
+      "M41",
+      "call"
+    ],
+    [
+      "M40",
+      "M42",
+      "repeat"
+    ],
+    [
+      "M40",
+      "M43",
+      "repeat"
+    ],
+    [
+      "M40",
+      "M44",
+      "repeat"
+    ],
+    [
+      "M40",
+      "M45",
+      "call"
+    ],
+    [
+      "M50",
+      "M51",
+      "call"
+    ],
+    [
+      "M50",
+      "M53",
+      "call"
+    ],
+    [
+      "M50",
+      "M54",
+      "call"
+    ],
+    [
+      "M60",
+      "M61",
+      "call"
+    ],
+    [
+      "M60",
+      "M62",
+      "conditional"
+    ],
+    [
+      "M60",
+      "M63",
+      "conditional"
+    ],
+    [
+      "M60",
+      "M64",
+      "call"
+    ],
+    [
+      "M60",
+      "M65",
+      "conditional"
+    ],
+    [
+      "M60",
+      "M66",
+      "call"
+    ],
+    [
+      "M00",
+      "M26",
+      "shared"
+    ],
+    [
+      "M10",
+      "M21",
+      "shared"
+    ],
+    [
+      "M34",
+      "M52",
+      "shared"
+    ],
+    [
+      "M44",
+      "M52",
+      "shared"
+    ]
+  ],
+  "flows": {
+    "F01": {
+      "name": "Maintenance submission",
+      "type": "MaintenanceSubmission"
+    },
+    "F02": {
+      "name": "Maintenance outcome",
+      "type": "MaintenanceOutcome"
+    },
+    "F03": {
+      "name": "Planning request",
+      "type": "PlanningRequest"
+    },
+    "F04": {
+      "name": "Query and export request",
+      "type": "QueryRequest"
+    },
+    "F05": {
+      "name": "Plan response",
+      "type": "PlanResponse"
+    },
+    "F06": {
+      "name": "Accepted source records",
+      "type": "SourceSet"
+    },
+    "F07": {
+      "name": "Existing source records",
+      "type": "SourceSet"
+    },
+    "F08": {
+      "name": "Planning source records",
+      "type": "SourceSet"
+    },
+    "F09": {
+      "name": "Calculation outcome",
+      "type": "CalculationOutcome"
+    },
+    "F10": {
+      "name": "Immutable batch record",
+      "type": "BatchRecord"
+    },
+    "F11": {
+      "name": "Historical batch records",
+      "type": "List[BatchRecord]"
+    },
+    "F12": {
+      "name": "Validated planning context",
+      "type": "Context"
+    },
+    "F13": {
+      "name": "Net requirements bundle",
+      "type": "NetBundle"
+    },
+    "F14": {
+      "name": "Allocation candidates",
+      "type": "CandidateEnvelope"
+    },
+    "F15": {
+      "name": "Working stock updates",
+      "type": "List[Balance]"
+    },
+    "F16": {
+      "name": "Working stock balances",
+      "type": "List[Balance]"
+    },
+    "F17": {
+      "name": "Initial working balances",
+      "type": "List[Balance]"
+    },
+    "F18": {
+      "name": "Netted demand records",
+      "type": "NettedEnvelope"
+    },
+    "F19": {
+      "name": "Child demand records",
+      "type": "List[Demand]"
+    },
+    "G01": {
+      "name": "Typed submission",
+      "type": "TypedImport"
+    },
+    "G02": {
+      "name": "Validated source candidate",
+      "type": "SourceSet"
+    },
+    "G03": {
+      "name": "Located maintenance errors",
+      "type": "List[Issue]"
+    },
+    "G04": {
+      "name": "Maintenance commit result",
+      "type": "CommitResult"
+    },
+    "G21": {
+      "name": "Selected snapshot envelope",
+      "type": "ValidationEnvelope"
+    },
+    "G22": {
+      "name": "Ordered task envelope",
+      "type": "ValidationEnvelope"
+    },
+    "G23": {
+      "name": "Validated graph envelope",
+      "type": "ValidationEnvelope"
+    },
+    "G24": {
+      "name": "Planning validation errors",
+      "type": "List[Issue]"
+    },
+    "G31": {
+      "name": "Initialized netting state",
+      "type": "NettingState"
+    },
+    "G34": {
+      "name": "Manufacturing expansion",
+      "type": "ExpansionResult"
+    },
+    "G35": {
+      "name": "Completed netting state",
+      "type": "NettingState"
+    },
+    "G41": {
+      "name": "Date grouped shortage envelope",
+      "type": "PurchaseWork"
+    },
+    "G42": {
+      "name": "Surplus adjusted shortage",
+      "type": "PurchaseWork"
+    },
+    "G43": {
+      "name": "Rounded purchasing quantity",
+      "type": "PurchaseWork"
+    },
+    "G44": {
+      "name": "Empty planned surplus pool",
+      "type": "List[SurplusLot]"
+    },
+    "G45": {
+      "name": "Available planned surplus lots",
+      "type": "List[SurplusLot]"
+    },
+    "G46": {
+      "name": "Updated planned surplus lots",
+      "type": "List[SurplusLot]"
+    },
+    "G47": {
+      "name": "Accumulated procurement records",
+      "type": "PurchaseWork"
+    },
+    "G20": {
+      "name": "Purchasing envelope",
+      "type": "PurchasingEnvelope"
+    },
+    "G51": {
+      "name": "Required dates and retained calculation",
+      "type": "RiskWork"
+    },
+    "G52": {
+      "name": "Assessed dates and retained calculation",
+      "type": "RiskWork"
+    },
+    "G61": {
+      "name": "Accepted calculated result",
+      "type": "CalculatedBatch"
+    },
+    "G62": {
+      "name": "Rejected outcome issues",
+      "type": "List[Issue]"
+    },
+    "G63": {
+      "name": "Loaded batch records",
+      "type": "List[BatchRecord]"
+    },
+    "G64": {
+      "name": "Committed batch record",
+      "type": "BatchRecord"
+    },
+    "G65": {
+      "name": "View and CSV data",
+      "type": "PresentationWork"
+    },
+    "G05": {
+      "name": "Merged source candidate",
+      "type": "EditWork"
+    },
+    "G25": {
+      "name": "Consistent request snapshot",
+      "type": "ValidationEnvelope"
+    },
+    "G66": {
+      "name": "Prepared report view",
+      "type": "PresentationWork"
+    }
+  },
+  "dfds": [
+    {
+      "id": "S1",
+      "title": "S1   Refined source maintenance",
+      "internal": [
+        "A1",
+        "A3",
+        "A4",
+        "A2a",
+        "A2b"
+      ],
+      "nodes": [
+        [
+          "EC",
+          "Material data clerk",
+          "external",
+          null
+        ],
+        [
+          "D1",
+          "D1\nSource data",
+          "store",
+          null
+        ],
+        [
+          "A1",
+          "A1\nParse submission",
+          "process",
+          "M11"
+        ],
+        [
+          "A2a",
+          "A2a\nMerge source patch",
+          "process",
+          "M12"
+        ],
+        [
+          "A2b",
+          "A2b\nValidate source edit",
+          "process",
+          "M13"
+        ],
+        [
+          "A3",
+          "A3\nCommit revision",
+          "process",
+          "M14"
+        ],
+        [
+          "A4",
+          "A4\nBuild maintenance response",
+          "process",
+          "M15"
+        ]
+      ],
+      "edges": [
+        [
+          "EC",
+          "A1",
+          "F01"
+        ],
+        [
+          "D1",
+          "A2a",
+          "F07"
+        ],
+        [
+          "A1",
+          "A2a",
+          "G01"
+        ],
+        [
+          "A1",
+          "A4",
+          "G03"
+        ],
+        [
+          "A2b",
+          "A3",
+          "G02"
+        ],
+        [
+          "A2b",
+          "A4",
+          "G03"
+        ],
+        [
+          "A3",
+          "D1",
+          "F06"
+        ],
+        [
+          "A3",
+          "A4",
+          "G04"
+        ],
+        [
+          "A4",
+          "EC",
+          "F02"
+        ],
+        [
+          "A2a",
+          "A2b",
+          "G05"
+        ]
+      ],
+      "expected": [
+        [
+          "in",
+          "EC",
+          "F01"
+        ],
+        [
+          "in",
+          "D1",
+          "F07"
+        ],
+        [
+          "out",
+          "EC",
+          "F02"
+        ],
+        [
+          "out",
+          "D1",
+          "F06"
+        ]
+      ],
+      "dot": "digraph G {\ngraph [rankdir=TB, bgcolor=\"white\", pad=\"0.35\", nodesep=\"0.45\", ranksep=\"0.85\", splines=polyline, label=\"S1   Refined source maintenance\", labelloc=t, fontsize=24, fontname=\"Arial\"];\nnode [shape=box, fontname=\"Arial\", fontsize=16, margin=\"0.16,0.12\", color=\"#334155\", penwidth=1.4];\nedge [fontname=\"Arial\", fontsize=12, color=\"#475569\", arrowsize=0.75];\n\"EC\" [label=\"Material data clerk\", shape=box, style=\"filled\", fillcolor=\"#f1f5f9\"];\n\"D1\" [label=\"D1\\nSource data\", shape=record, style=\"filled\", fillcolor=\"#fff8e8\"];\n\"A1\" [label=\"A1\\nParse submission\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"A2a\" [label=\"A2a\\nMerge source patch\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"A2b\" [label=\"A2b\\nValidate source edit\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"A3\" [label=\"A3\\nCommit revision\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"A4\" [label=\"A4\\nBuild maintenance response\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"EC\" -> \"A1\" [label=\"F01\"];\n\"D1\" -> \"A2a\" [label=\"F07\"];\n\"A1\" -> \"A2a\" [label=\"G01\"];\n\"A1\" -> \"A4\" [label=\"G03\"];\n\"A2b\" -> \"A3\" [label=\"G02\"];\n\"A2b\" -> \"A4\" [label=\"G03\"];\n\"A3\" -> \"D1\" [label=\"F06\"];\n\"A3\" -> \"A4\" [label=\"G04\"];\n\"A4\" -> \"EC\" [label=\"F02\"];\n\"A2a\" -> \"A2b\" [label=\"G05\"];\n}"
+    },
+    {
+      "id": "S2",
+      "title": "S2   Refined snapshot and BOM validation",
+      "internal": [
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B1a",
+        "B1b"
+      ],
+      "nodes": [
+        [
+          "EP",
+          "Production planner",
+          "external",
+          null
+        ],
+        [
+          "D1",
+          "D1\nSource data",
+          "store",
+          null
+        ],
+        [
+          "P2.2",
+          "P2.2 Net and expand",
+          "external",
+          null
+        ],
+        [
+          "P3",
+          "P3 Publish results",
+          "external",
+          null
+        ],
+        [
+          "B1a",
+          "B1a\nRead consistent source",
+          "process",
+          "M21"
+        ],
+        [
+          "B1b",
+          "B1b\nValidate selected fields",
+          "process",
+          "M22"
+        ],
+        [
+          "B2",
+          "B2\nValidate graph",
+          "process",
+          "M23"
+        ],
+        [
+          "B3",
+          "B3\nOrder tasks",
+          "process",
+          "M24"
+        ],
+        [
+          "B4",
+          "B4\nFreeze context",
+          "process",
+          "M25"
+        ],
+        [
+          "B5",
+          "B5\nBuild invalid outcome",
+          "process",
+          "M26"
+        ]
+      ],
+      "edges": [
+        [
+          "EP",
+          "B1a",
+          "F03"
+        ],
+        [
+          "D1",
+          "B1a",
+          "F08"
+        ],
+        [
+          "B1b",
+          "B2",
+          "G21"
+        ],
+        [
+          "B1b",
+          "B5",
+          "G24"
+        ],
+        [
+          "B2",
+          "B3",
+          "G23"
+        ],
+        [
+          "B2",
+          "B5",
+          "G24"
+        ],
+        [
+          "B3",
+          "B4",
+          "G22"
+        ],
+        [
+          "B4",
+          "P2.2",
+          "F12"
+        ],
+        [
+          "B5",
+          "P3",
+          "F09.invalid"
+        ],
+        [
+          "B1a",
+          "B1b",
+          "G25"
+        ]
+      ],
+      "expected": [
+        [
+          "in",
+          "EP",
+          "F03"
+        ],
+        [
+          "in",
+          "D1",
+          "F08"
+        ],
+        [
+          "out",
+          "P2.2",
+          "F12"
+        ],
+        [
+          "out",
+          "P3",
+          "F09"
+        ]
+      ],
+      "dot": "digraph G {\ngraph [rankdir=TB, bgcolor=\"white\", pad=\"0.35\", nodesep=\"0.45\", ranksep=\"0.85\", splines=polyline, label=\"S2   Refined snapshot and BOM validation\", labelloc=t, fontsize=24, fontname=\"Arial\"];\nnode [shape=box, fontname=\"Arial\", fontsize=16, margin=\"0.16,0.12\", color=\"#334155\", penwidth=1.4];\nedge [fontname=\"Arial\", fontsize=12, color=\"#475569\", arrowsize=0.75];\n\"EP\" [label=\"Production planner\", shape=box, style=\"filled\", fillcolor=\"#f1f5f9\"];\n\"D1\" [label=\"D1\\nSource data\", shape=record, style=\"filled\", fillcolor=\"#fff8e8\"];\n\"P2.2\" [label=\"P2.2 Net and expand\", shape=box, style=\"filled\", fillcolor=\"#f1f5f9\"];\n\"P3\" [label=\"P3 Publish results\", shape=box, style=\"filled\", fillcolor=\"#f1f5f9\"];\n\"B1a\" [label=\"B1a\\nRead consistent source\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"B1b\" [label=\"B1b\\nValidate selected fields\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"B2\" [label=\"B2\\nValidate graph\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"B3\" [label=\"B3\\nOrder tasks\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"B4\" [label=\"B4\\nFreeze context\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"B5\" [label=\"B5\\nBuild invalid outcome\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"EP\" -> \"B1a\" [label=\"F03\"];\n\"D1\" -> \"B1a\" [label=\"F08\"];\n\"B1b\" -> \"B2\" [label=\"G21\"];\n\"B1b\" -> \"B5\" [label=\"G24\"];\n\"B2\" -> \"B3\" [label=\"G23\"];\n\"B2\" -> \"B5\" [label=\"G24\"];\n\"B3\" -> \"B4\" [label=\"G22\"];\n\"B4\" -> \"P2.2\" [label=\"F12\"];\n\"B5\" -> \"P3\" [label=\"F09.invalid\"];\n\"B1a\" -> \"B1b\" [label=\"G25\"];\n}"
+    },
+    {
+      "id": "S3",
+      "title": "S3   Refined multilevel demand and stock",
+      "internal": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "D3"
+      ],
+      "nodes": [
+        [
+          "P2.1",
+          "P2.1 Validate",
+          "external",
+          null
+        ],
+        [
+          "P2.3",
+          "P2.3 Procurement and risk",
+          "external",
+          null
+        ],
+        [
+          "D3",
+          "D3\nWorking stock",
+          "store",
+          null
+        ],
+        [
+          "C1",
+          "C1\nInitialize batch balances",
+          "process",
+          "M31"
+        ],
+        [
+          "C2",
+          "C2\nCollect material dates",
+          "process",
+          "M32"
+        ],
+        [
+          "C3",
+          "C3\nAllocate stock",
+          "process",
+          "M33"
+        ],
+        [
+          "C4",
+          "C4\nExpand net MAKE",
+          "process",
+          "M34"
+        ],
+        [
+          "C5",
+          "C5\nRecord BUY residuals",
+          "process",
+          "M35"
+        ],
+        [
+          "C6",
+          "C6\nAssemble net bundle",
+          "process",
+          "M36"
+        ]
+      ],
+      "edges": [
+        [
+          "P2.1",
+          "C1",
+          "F12"
+        ],
+        [
+          "C1",
+          "D3",
+          "F17"
+        ],
+        [
+          "C1",
+          "C2",
+          "G31"
+        ],
+        [
+          "C2",
+          "C3",
+          "F14"
+        ],
+        [
+          "D3",
+          "C3",
+          "F16"
+        ],
+        [
+          "C3",
+          "D3",
+          "F15"
+        ],
+        [
+          "C3",
+          "C4",
+          "F18"
+        ],
+        [
+          "C4",
+          "C2",
+          "F19"
+        ],
+        [
+          "C4",
+          "C5",
+          "G34"
+        ],
+        [
+          "C5",
+          "C6",
+          "G35"
+        ],
+        [
+          "C6",
+          "P2.3",
+          "F13"
+        ]
+      ],
+      "expected": [
+        [
+          "in",
+          "P2.1",
+          "F12"
+        ],
+        [
+          "out",
+          "P2.3",
+          "F13"
+        ]
+      ],
+      "dot": "digraph G {\ngraph [rankdir=TB, bgcolor=\"white\", pad=\"0.35\", nodesep=\"0.45\", ranksep=\"0.85\", splines=polyline, label=\"S3   Refined multilevel demand and stock\", labelloc=t, fontsize=24, fontname=\"Arial\"];\nnode [shape=box, fontname=\"Arial\", fontsize=16, margin=\"0.16,0.12\", color=\"#334155\", penwidth=1.4];\nedge [fontname=\"Arial\", fontsize=12, color=\"#475569\", arrowsize=0.75];\n\"P2.1\" [label=\"P2.1 Validate\", shape=box, style=\"filled\", fillcolor=\"#f1f5f9\"];\n\"P2.3\" [label=\"P2.3 Procurement and risk\", shape=box, style=\"filled\", fillcolor=\"#f1f5f9\"];\n\"D3\" [label=\"D3\\nWorking stock\", shape=record, style=\"filled\", fillcolor=\"#fff8e8\"];\n\"C1\" [label=\"C1\\nInitialize batch balances\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"C2\" [label=\"C2\\nCollect material dates\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"C3\" [label=\"C3\\nAllocate stock\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"C4\" [label=\"C4\\nExpand net MAKE\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"C5\" [label=\"C5\\nRecord BUY residuals\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"C6\" [label=\"C6\\nAssemble net bundle\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"P2.1\" -> \"C1\" [label=\"F12\"];\n\"C1\" -> \"D3\" [label=\"F17\"];\n\"C1\" -> \"C2\" [label=\"G31\"];\n\"C2\" -> \"C3\" [label=\"F14\"];\n\"D3\" -> \"C3\" [label=\"F16\"];\n\"C3\" -> \"D3\" [label=\"F15\"];\n\"C3\" -> \"C4\" [label=\"F18\"];\n\"C4\" -> \"C2\" [label=\"F19\"];\n\"C4\" -> \"C5\" [label=\"G34\"];\n\"C5\" -> \"C6\" [label=\"G35\"];\n\"C6\" -> \"P2.3\" [label=\"F13\"];\n}"
+    },
+    {
+      "id": "S4",
+      "title": "S4   Refined purchasing and surplus",
+      "internal": [
+        "D01",
+        "D02",
+        "D03",
+        "D04",
+        "D05",
+        "D4"
+      ],
+      "nodes": [
+        [
+          "P2.2",
+          "P2.2 Net requirements",
+          "external",
+          null
+        ],
+        [
+          "S5",
+          "S5 Calendar and risk",
+          "external",
+          null
+        ],
+        [
+          "D4",
+          "D4\nPlanned surplus pool",
+          "store",
+          null
+        ],
+        [
+          "D01",
+          "D01\nGroup dated shortages",
+          "process",
+          "M41"
+        ],
+        [
+          "D02",
+          "D02\nConsume eligible surplus",
+          "process",
+          "M42"
+        ],
+        [
+          "D03",
+          "D03\nRound purchase quantity",
+          "process",
+          "M43"
+        ],
+        [
+          "D04",
+          "D04\nDate bucket and update pool",
+          "process",
+          "M44"
+        ],
+        [
+          "D05",
+          "D05\nAssemble purchasing envelope",
+          "process",
+          "M45"
+        ]
+      ],
+      "edges": [
+        [
+          "P2.2",
+          "D01",
+          "F13"
+        ],
+        [
+          "D01",
+          "D4",
+          "G44"
+        ],
+        [
+          "D01",
+          "D02",
+          "G41"
+        ],
+        [
+          "D4",
+          "D02",
+          "G45"
+        ],
+        [
+          "D02",
+          "D03",
+          "G42"
+        ],
+        [
+          "D03",
+          "D04",
+          "G43"
+        ],
+        [
+          "D04",
+          "D4",
+          "G46"
+        ],
+        [
+          "D04",
+          "D05",
+          "G47"
+        ],
+        [
+          "D05",
+          "S5",
+          "G20"
+        ]
+      ],
+      "expected": [
+        [
+          "in",
+          "P2.2",
+          "F13"
+        ],
+        [
+          "out",
+          "S5",
+          "G20"
+        ]
+      ],
+      "dot": "digraph G {\ngraph [rankdir=TB, bgcolor=\"white\", pad=\"0.35\", nodesep=\"0.45\", ranksep=\"0.85\", splines=polyline, label=\"S4   Refined purchasing and surplus\", labelloc=t, fontsize=24, fontname=\"Arial\"];\nnode [shape=box, fontname=\"Arial\", fontsize=16, margin=\"0.16,0.12\", color=\"#334155\", penwidth=1.4];\nedge [fontname=\"Arial\", fontsize=12, color=\"#475569\", arrowsize=0.75];\n\"P2.2\" [label=\"P2.2 Net requirements\", shape=box, style=\"filled\", fillcolor=\"#f1f5f9\"];\n\"S5\" [label=\"S5 Calendar and risk\", shape=box, style=\"filled\", fillcolor=\"#f1f5f9\"];\n\"D4\" [label=\"D4\\nPlanned surplus pool\", shape=record, style=\"filled\", fillcolor=\"#fff8e8\"];\n\"D01\" [label=\"D01\\nGroup dated shortages\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"D02\" [label=\"D02\\nConsume eligible surplus\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"D03\" [label=\"D03\\nRound purchase quantity\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"D04\" [label=\"D04\\nDate bucket and update pool\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"D05\" [label=\"D05\\nAssemble purchasing envelope\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"P2.2\" -> \"D01\" [label=\"F13\"];\n\"D01\" -> \"D4\" [label=\"G44\"];\n\"D01\" -> \"D02\" [label=\"G41\"];\n\"D4\" -> \"D02\" [label=\"G45\"];\n\"D02\" -> \"D03\" [label=\"G42\"];\n\"D03\" -> \"D04\" [label=\"G43\"];\n\"D04\" -> \"D4\" [label=\"G46\"];\n\"D04\" -> \"D05\" [label=\"G47\"];\n\"D05\" -> \"S5\" [label=\"G20\"];\n}"
+    },
+    {
+      "id": "S5",
+      "title": "S5   Refined timing risk and completed result",
+      "internal": [
+        "E01",
+        "E02",
+        "E03"
+      ],
+      "nodes": [
+        [
+          "S4",
+          "S4 Purchasing",
+          "external",
+          null
+        ],
+        [
+          "P3",
+          "P3 Publish results",
+          "external",
+          null
+        ],
+        [
+          "E01",
+          "E01\nCollect required dates",
+          "process",
+          "M51"
+        ],
+        [
+          "E02",
+          "E02\nFlag early dates",
+          "process",
+          "M53"
+        ],
+        [
+          "E03",
+          "E03\nAssemble complete result",
+          "process",
+          "M54"
+        ]
+      ],
+      "edges": [
+        [
+          "S4",
+          "E01",
+          "G20"
+        ],
+        [
+          "E01",
+          "E02",
+          "G51"
+        ],
+        [
+          "E02",
+          "E03",
+          "G52"
+        ],
+        [
+          "E03",
+          "P3",
+          "F09.valid"
+        ]
+      ],
+      "expected": [
+        [
+          "in",
+          "S4",
+          "G20"
+        ],
+        [
+          "out",
+          "P3",
+          "F09"
+        ]
+      ],
+      "dot": "digraph G {\ngraph [rankdir=TB, bgcolor=\"white\", pad=\"0.35\", nodesep=\"0.45\", ranksep=\"0.85\", splines=polyline, label=\"S5   Refined timing risk and completed result\", labelloc=t, fontsize=24, fontname=\"Arial\"];\nnode [shape=box, fontname=\"Arial\", fontsize=16, margin=\"0.16,0.12\", color=\"#334155\", penwidth=1.4];\nedge [fontname=\"Arial\", fontsize=12, color=\"#475569\", arrowsize=0.75];\n\"S4\" [label=\"S4 Purchasing\", shape=box, style=\"filled\", fillcolor=\"#f1f5f9\"];\n\"P3\" [label=\"P3 Publish results\", shape=box, style=\"filled\", fillcolor=\"#f1f5f9\"];\n\"E01\" [label=\"E01\\nCollect required dates\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"E02\" [label=\"E02\\nFlag early dates\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"E03\" [label=\"E03\\nAssemble complete result\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"S4\" -> \"E01\" [label=\"G20\"];\n\"E01\" -> \"E02\" [label=\"G51\"];\n\"E02\" -> \"E03\" [label=\"G52\"];\n\"E03\" -> \"P3\" [label=\"F09.valid\"];\n}"
+    },
+    {
+      "id": "S6",
+      "title": "S6   Refined history trace and export",
+      "internal": [
+        "F1",
+        "F2",
+        "F3",
+        "F5",
+        "F4a",
+        "F4b"
+      ],
+      "nodes": [
+        [
+          "P2",
+          "P2 Calculation outcome",
+          "external",
+          null
+        ],
+        [
+          "EP",
+          "Production planner",
+          "external",
+          null
+        ],
+        [
+          "D2",
+          "D2\nSaved plan batches",
+          "store",
+          null
+        ],
+        [
+          "F1",
+          "F1\nClassify outcome",
+          "process",
+          "M61"
+        ],
+        [
+          "F2",
+          "F2\nSave complete batch",
+          "process",
+          "M62"
+        ],
+        [
+          "F3",
+          "F3\nRead selected history",
+          "process",
+          "M63"
+        ],
+        [
+          "F4a",
+          "F4a\nBuild saved trace view",
+          "process",
+          "M64"
+        ],
+        [
+          "F4b",
+          "F4b\nEncode requested CSV",
+          "process",
+          "M65"
+        ],
+        [
+          "F5",
+          "F5\nBuild plan response",
+          "process",
+          "M66"
+        ]
+      ],
+      "edges": [
+        [
+          "P2",
+          "F1",
+          "F09"
+        ],
+        [
+          "EP",
+          "F3",
+          "F04"
+        ],
+        [
+          "F1",
+          "F2",
+          "G61"
+        ],
+        [
+          "F1",
+          "F5",
+          "G62"
+        ],
+        [
+          "F2",
+          "D2",
+          "F10"
+        ],
+        [
+          "D2",
+          "F3",
+          "F11"
+        ],
+        [
+          "F2",
+          "F4a",
+          "G64"
+        ],
+        [
+          "F3",
+          "F4a",
+          "G63"
+        ],
+        [
+          "F4b",
+          "F5",
+          "G65.csv"
+        ],
+        [
+          "F5",
+          "EP",
+          "F05"
+        ],
+        [
+          "F4a",
+          "F4b",
+          "G66"
+        ],
+        [
+          "F4a",
+          "F5",
+          "G65.view"
+        ]
+      ],
+      "expected": [
+        [
+          "in",
+          "P2",
+          "F09"
+        ],
+        [
+          "in",
+          "EP",
+          "F04"
+        ],
+        [
+          "in",
+          "D2",
+          "F11"
+        ],
+        [
+          "out",
+          "D2",
+          "F10"
+        ],
+        [
+          "out",
+          "EP",
+          "F05"
+        ]
+      ],
+      "dot": "digraph G {\ngraph [rankdir=TB, bgcolor=\"white\", pad=\"0.35\", nodesep=\"0.45\", ranksep=\"0.85\", splines=polyline, label=\"S6   Refined history trace and export\", labelloc=t, fontsize=24, fontname=\"Arial\"];\nnode [shape=box, fontname=\"Arial\", fontsize=16, margin=\"0.16,0.12\", color=\"#334155\", penwidth=1.4];\nedge [fontname=\"Arial\", fontsize=12, color=\"#475569\", arrowsize=0.75];\n\"P2\" [label=\"P2 Calculation outcome\", shape=box, style=\"filled\", fillcolor=\"#f1f5f9\"];\n\"EP\" [label=\"Production planner\", shape=box, style=\"filled\", fillcolor=\"#f1f5f9\"];\n\"D2\" [label=\"D2\\nSaved plan batches\", shape=record, style=\"filled\", fillcolor=\"#fff8e8\"];\n\"F1\" [label=\"F1\\nClassify outcome\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"F2\" [label=\"F2\\nSave complete batch\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"F3\" [label=\"F3\\nRead selected history\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"F4a\" [label=\"F4a\\nBuild saved trace view\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"F4b\" [label=\"F4b\\nEncode requested CSV\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"F5\" [label=\"F5\\nBuild plan response\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"P2\" -> \"F1\" [label=\"F09\"];\n\"EP\" -> \"F3\" [label=\"F04\"];\n\"F1\" -> \"F2\" [label=\"G61\"];\n\"F1\" -> \"F5\" [label=\"G62\"];\n\"F2\" -> \"D2\" [label=\"F10\"];\n\"D2\" -> \"F3\" [label=\"F11\"];\n\"F2\" -> \"F4a\" [label=\"G64\"];\n\"F3\" -> \"F4a\" [label=\"G63\"];\n\"F4b\" -> \"F5\" [label=\"G65.csv\"];\n\"F5\" -> \"EP\" [label=\"F05\"];\n\"F4a\" -> \"F4b\" [label=\"G66\"];\n\"F4a\" -> \"F5\" [label=\"G65.view\"];\n}"
+    },
+    {
+      "id": "bridge",
+      "title": "P2.3   Purchasing and risk decomposition",
+      "internal": [
+        "S4",
+        "S5"
+      ],
+      "nodes": [
+        [
+          "P2.2",
+          "P2.2 Net requirements",
+          "external",
+          null
+        ],
+        [
+          "P3",
+          "P3 Publish results",
+          "external",
+          null
+        ],
+        [
+          "S4",
+          "S4\nPlan purchases",
+          "process",
+          "M40"
+        ],
+        [
+          "S5",
+          "S5\nAssess risk and complete",
+          "process",
+          "M50"
+        ]
+      ],
+      "edges": [
+        [
+          "P2.2",
+          "S4",
+          "F13"
+        ],
+        [
+          "S4",
+          "S5",
+          "G20"
+        ],
+        [
+          "S5",
+          "P3",
+          "F09.valid"
+        ]
+      ],
+      "expected": [
+        [
+          "in",
+          "P2.2",
+          "F13"
+        ],
+        [
+          "out",
+          "P3",
+          "F09"
+        ]
+      ],
+      "dot": "digraph G {\ngraph [rankdir=TB, bgcolor=\"white\", pad=\"0.35\", nodesep=\"0.45\", ranksep=\"0.85\", splines=polyline, label=\"P2.3   Purchasing and risk decomposition\", labelloc=t, fontsize=24, fontname=\"Arial\"];\nnode [shape=box, fontname=\"Arial\", fontsize=16, margin=\"0.16,0.12\", color=\"#334155\", penwidth=1.4];\nedge [fontname=\"Arial\", fontsize=12, color=\"#475569\", arrowsize=0.75];\n\"P2.2\" [label=\"P2.2 Net requirements\", shape=box, style=\"filled\", fillcolor=\"#f1f5f9\"];\n\"P3\" [label=\"P3 Publish results\", shape=box, style=\"filled\", fillcolor=\"#f1f5f9\"];\n\"S4\" [label=\"S4\\nPlan purchases\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"S5\" [label=\"S5\\nAssess risk and complete\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"P2.2\" -> \"S4\" [label=\"F13\"];\n\"S4\" -> \"S5\" [label=\"G20\"];\n\"S5\" -> \"P3\" [label=\"F09.valid\"];\n}"
+    }
+  ],
+  "figures": {
+    "structure-overview": {
+      "title": "System module structure",
+      "dot": "digraph G {\ngraph [rankdir=TB, bgcolor=\"white\", pad=\"0.35\", nodesep=\"0.45\", ranksep=\"0.85\", splines=polyline, label=\"System module structure\", labelloc=t, fontsize=24, fontname=\"Arial\"];\nnode [shape=box, fontname=\"Arial\", fontsize=16, margin=\"0.16,0.12\", color=\"#334155\", penwidth=1.4];\nedge [fontname=\"Arial\", fontsize=12, color=\"#475569\", arrowsize=0.75];\n\"M00\" [label=\"M00\\nhandle action\", style=\"filled\", fillcolor=\"#edf5ff\"];\n\"M10\" [label=\"M10\\nmaintain sources\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M20\" [label=\"M20\\nprepare context\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M30\" [label=\"M30\\nnet requirements\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M40\" [label=\"M40\\nplan purchases\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M50\" [label=\"M50\\ncomplete plan\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M60\" [label=\"M60\\npublish results\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M26\" [label=\"M26\\nmake invalid outcome\", style=\"filled\", fillcolor=\"#f1f5f9\"];\n\"M00\" -> \"M10\" [label=\"I/M10   O/M10\\nSELECTION\"];\n\"M00\" -> \"M20\" [label=\"I/M20   O/M20\"];\n\"M00\" -> \"M30\" [label=\"I/M30   O/M30\"];\n\"M00\" -> \"M40\" [label=\"I/M40   O/M40\"];\n\"M00\" -> \"M50\" [label=\"I/M50   O/M50\"];\n\"M00\" -> \"M60\" [label=\"I/M60   O/M60\\nSELECTION\"];\n\"M00\" -> \"M26\" [style=dashed,label=\"shared   I/M26 O/M26\"];\n}",
+      "kind": "structure",
+      "modules": [
+        "M00",
+        "M10",
+        "M20",
+        "M30",
+        "M40",
+        "M50",
+        "M60",
+        "M26"
+      ]
+    },
+    "structure-s1": {
+      "title": "S1   Source maintenance",
+      "dot": "digraph G {\ngraph [rankdir=TB, bgcolor=\"white\", pad=\"0.35\", nodesep=\"0.45\", ranksep=\"0.85\", splines=polyline, label=\"S1   Source maintenance\", labelloc=t, fontsize=24, fontname=\"Arial\"];\nnode [shape=box, fontname=\"Arial\", fontsize=16, margin=\"0.16,0.12\", color=\"#334155\", penwidth=1.4];\nedge [fontname=\"Arial\", fontsize=12, color=\"#475569\", arrowsize=0.75];\n\"M10\" [label=\"M10\\nmaintain sources\", style=\"filled\", fillcolor=\"#edf5ff\"];\n\"M11\" [label=\"M11\\nparse submission\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M12\" [label=\"M12\\nmerge source patch\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M13\" [label=\"M13\\nvalidate source edit\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M14\" [label=\"M14\\ncommit source revision\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M15\" [label=\"M15\\nmake maintenance\\nresponse\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M21\" [label=\"M21\\nread source snapshot\", style=\"filled\", fillcolor=\"#f1f5f9\"];\n\"M10\" -> \"M11\" [label=\"I/M11   O/M11\"];\n\"M10\" -> \"M12\" [label=\"I/M12   O/M12\"];\n\"M10\" -> \"M13\" [label=\"I/M13   O/M13\"];\n\"M10\" -> \"M14\" [label=\"I/M14   O/M14\\nCONDITIONAL\"];\n\"M10\" -> \"M15\" [label=\"I/M15   O/M15\"];\n\"M10\" -> \"M21\" [style=dashed,label=\"shared   I/M21 O/M21\"];\n}",
+      "kind": "structure",
+      "modules": [
+        "M10",
+        "M11",
+        "M12",
+        "M13",
+        "M14",
+        "M15",
+        "M21"
+      ]
+    },
+    "structure-s2": {
+      "title": "S2   Snapshot and BOM validation",
+      "dot": "digraph G {\ngraph [rankdir=TB, bgcolor=\"white\", pad=\"0.35\", nodesep=\"0.45\", ranksep=\"0.85\", splines=polyline, label=\"S2   Snapshot and BOM validation\", labelloc=t, fontsize=24, fontname=\"Arial\"];\nnode [shape=box, fontname=\"Arial\", fontsize=16, margin=\"0.16,0.12\", color=\"#334155\", penwidth=1.4];\nedge [fontname=\"Arial\", fontsize=12, color=\"#475569\", arrowsize=0.75];\n\"M20\" [label=\"M20\\nprepare context\", style=\"filled\", fillcolor=\"#edf5ff\"];\n\"M21\" [label=\"M21\\nread source snapshot\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M22\" [label=\"M22\\nvalidate selected data\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M23\" [label=\"M23\\nvalidate and index bom\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M24\" [label=\"M24\\norder tasks\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M25\" [label=\"M25\\nfreeze context\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M26\" [label=\"M26\\nmake invalid outcome\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M20\" -> \"M21\" [label=\"I/M21   O/M21\"];\n\"M20\" -> \"M22\" [label=\"I/M22   O/M22\"];\n\"M20\" -> \"M23\" [label=\"I/M23   O/M23\"];\n\"M20\" -> \"M24\" [label=\"I/M24   O/M24\"];\n\"M20\" -> \"M25\" [label=\"I/M25   O/M25\"];\n\"M20\" -> \"M26\" [label=\"I/M26   O/M26\\nCONDITIONAL\"];\n}",
+      "kind": "structure",
+      "modules": [
+        "M20",
+        "M21",
+        "M22",
+        "M23",
+        "M24",
+        "M25",
+        "M26"
+      ]
+    },
+    "structure-s3": {
+      "title": "S3   Demand and shared inventory",
+      "dot": "digraph G {\ngraph [rankdir=TB, bgcolor=\"white\", pad=\"0.35\", nodesep=\"0.45\", ranksep=\"0.85\", splines=polyline, label=\"S3   Demand and shared inventory\", labelloc=t, fontsize=24, fontname=\"Arial\"];\nnode [shape=box, fontname=\"Arial\", fontsize=16, margin=\"0.16,0.12\", color=\"#334155\", penwidth=1.4];\nedge [fontname=\"Arial\", fontsize=12, color=\"#475569\", arrowsize=0.75];\n\"M30\" [label=\"M30\\nnet requirements\", style=\"filled\", fillcolor=\"#edf5ff\"];\n\"M31\" [label=\"M31\\ninitialize balances\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M32\" [label=\"M32\\ncollect material demands\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M33\" [label=\"M33\\nallocate stock\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M34\" [label=\"M34\\nexpand make demand\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M35\" [label=\"M35\\nrecord buy shortage\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M36\" [label=\"M36\\nassemble net bundle\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M52\" [label=\"M52\\nsubtract calendar days\", style=\"filled\", fillcolor=\"#f1f5f9\"];\n\"M30\" -> \"M31\" [label=\"I/M31   O/M31\"];\n\"M30\" -> \"M32\" [label=\"I/M32   O/M32\\nREPEAT\"];\n\"M30\" -> \"M33\" [label=\"I/M33   O/M33\\nREPEAT\"];\n\"M30\" -> \"M34\" [label=\"I/M34   O/M34\\nREPEAT\"];\n\"M30\" -> \"M35\" [label=\"I/M35   O/M35\\nREPEAT\"];\n\"M30\" -> \"M36\" [label=\"I/M36   O/M36\"];\n\"M34\" -> \"M52\" [style=dashed,label=\"shared   I/M52 O/M52\"];\n}",
+      "kind": "structure",
+      "modules": [
+        "M30",
+        "M31",
+        "M32",
+        "M33",
+        "M34",
+        "M35",
+        "M36",
+        "M52"
+      ]
+    },
+    "structure-s4": {
+      "title": "S4   Purchasing and planned surplus",
+      "dot": "digraph G {\ngraph [rankdir=TB, bgcolor=\"white\", pad=\"0.35\", nodesep=\"0.45\", ranksep=\"0.85\", splines=polyline, label=\"S4   Purchasing and planned surplus\", labelloc=t, fontsize=24, fontname=\"Arial\"];\nnode [shape=box, fontname=\"Arial\", fontsize=16, margin=\"0.16,0.12\", color=\"#334155\", penwidth=1.4];\nedge [fontname=\"Arial\", fontsize=12, color=\"#475569\", arrowsize=0.75];\n\"M40\" [label=\"M40\\nplan purchases\", style=\"filled\", fillcolor=\"#edf5ff\"];\n\"M41\" [label=\"M41\\ngroup buy shortages\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M42\" [label=\"M42\\nconsume surplus\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M43\" [label=\"M43\\nround purchase qty\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M44\" [label=\"M44\\nfinalize purchase bucket\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M45\" [label=\"M45\\nassemble purchase\\nenvelope\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M52\" [label=\"M52\\nsubtract calendar days\", style=\"filled\", fillcolor=\"#f1f5f9\"];\n\"M40\" -> \"M41\" [label=\"I/M41   O/M41\"];\n\"M40\" -> \"M42\" [label=\"I/M42   O/M42\\nREPEAT\"];\n\"M40\" -> \"M43\" [label=\"I/M43   O/M43\\nREPEAT\"];\n\"M40\" -> \"M44\" [label=\"I/M44   O/M44\\nREPEAT\"];\n\"M40\" -> \"M45\" [label=\"I/M45   O/M45\"];\n\"M44\" -> \"M52\" [style=dashed,label=\"shared   I/M52 O/M52\"];\n}",
+      "kind": "structure",
+      "modules": [
+        "M40",
+        "M41",
+        "M42",
+        "M43",
+        "M44",
+        "M45",
+        "M52"
+      ]
+    },
+    "structure-s5": {
+      "title": "S5   Calendar and timing risk",
+      "dot": "digraph G {\ngraph [rankdir=TB, bgcolor=\"white\", pad=\"0.35\", nodesep=\"0.45\", ranksep=\"0.85\", splines=polyline, label=\"S5   Calendar and timing risk\", labelloc=t, fontsize=24, fontname=\"Arial\"];\nnode [shape=box, fontname=\"Arial\", fontsize=16, margin=\"0.16,0.12\", color=\"#334155\", penwidth=1.4];\nedge [fontname=\"Arial\", fontsize=12, color=\"#475569\", arrowsize=0.75];\n\"M50\" [label=\"M50\\ncomplete plan\", style=\"filled\", fillcolor=\"#edf5ff\"];\n\"M51\" [label=\"M51\\ncollect required dates\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M53\" [label=\"M53\\nflag early dates\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M54\" [label=\"M54\\nassemble calculated\\nbatch\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M50\" -> \"M51\" [label=\"I/M51   O/M51\"];\n\"M50\" -> \"M53\" [label=\"I/M53   O/M53\"];\n\"M50\" -> \"M54\" [label=\"I/M54   O/M54\"];\n\"M52\" [label=\"M52\\nsubtract calendar days\\nExported calendar helper\",style=\"filled\",fillcolor=\"#f1f5f9\"];\n\"M50\" -> \"M52\" [style=dotted,arrowhead=none,label=\"ownership only; called by M34 and M44\"];\n}",
+      "kind": "structure",
+      "modules": [
+        "M50",
+        "M51",
+        "M53",
+        "M54"
+      ]
+    },
+    "structure-s6": {
+      "title": "S6   History trace and export",
+      "dot": "digraph G {\ngraph [rankdir=TB, bgcolor=\"white\", pad=\"0.35\", nodesep=\"0.45\", ranksep=\"0.85\", splines=polyline, label=\"S6   History trace and export\", labelloc=t, fontsize=24, fontname=\"Arial\"];\nnode [shape=box, fontname=\"Arial\", fontsize=16, margin=\"0.16,0.12\", color=\"#334155\", penwidth=1.4];\nedge [fontname=\"Arial\", fontsize=12, color=\"#475569\", arrowsize=0.75];\n\"M60\" [label=\"M60\\npublish results\", style=\"filled\", fillcolor=\"#edf5ff\"];\n\"M61\" [label=\"M61\\nclassify outcome\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M62\" [label=\"M62\\nsave batch atomic\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M63\" [label=\"M63\\nread history\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M64\" [label=\"M64\\nbuild trace view\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M65\" [label=\"M65\\nencode csv\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M66\" [label=\"M66\\nmake plan response\", style=\"filled\", fillcolor=\"#ffffff\"];\n\"M60\" -> \"M61\" [label=\"I/M61   O/M61\"];\n\"M60\" -> \"M62\" [label=\"I/M62   O/M62\\nCONDITIONAL\"];\n\"M60\" -> \"M63\" [label=\"I/M63   O/M63\\nCONDITIONAL\"];\n\"M60\" -> \"M64\" [label=\"I/M64   O/M64\"];\n\"M60\" -> \"M65\" [label=\"I/M65   O/M65\\nCONDITIONAL\"];\n\"M60\" -> \"M66\" [label=\"I/M66   O/M66\"];\n}",
+      "kind": "structure",
+      "modules": [
+        "M60",
+        "M61",
+        "M62",
+        "M63",
+        "M64",
+        "M65",
+        "M66"
+      ]
+    },
+    "dfd-s1": {
+      "title": "S1   Refined source maintenance",
+      "dot": "digraph G {\ngraph [rankdir=TB, bgcolor=\"white\", pad=\"0.35\", nodesep=\"0.45\", ranksep=\"0.85\", splines=polyline, label=\"S1   Refined source maintenance\", labelloc=t, fontsize=24, fontname=\"Arial\"];\nnode [shape=box, fontname=\"Arial\", fontsize=16, margin=\"0.16,0.12\", color=\"#334155\", penwidth=1.4];\nedge [fontname=\"Arial\", fontsize=12, color=\"#475569\", arrowsize=0.75];\n\"EC\" [label=\"Material data clerk\", shape=box, style=\"filled\", fillcolor=\"#f1f5f9\"];\n\"D1\" [label=\"D1\\nSource data\", shape=record, style=\"filled\", fillcolor=\"#fff8e8\"];\n\"A1\" [label=\"A1\\nParse submission\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"A2a\" [label=\"A2a\\nMerge source patch\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"A2b\" [label=\"A2b\\nValidate source edit\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"A3\" [label=\"A3\\nCommit revision\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"A4\" [label=\"A4\\nBuild maintenance response\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"EC\" -> \"A1\" [label=\"F01\"];\n\"D1\" -> \"A2a\" [label=\"F07\"];\n\"A1\" -> \"A2a\" [label=\"G01\"];\n\"A1\" -> \"A4\" [label=\"G03\"];\n\"A2b\" -> \"A3\" [label=\"G02\"];\n\"A2b\" -> \"A4\" [label=\"G03\"];\n\"A3\" -> \"D1\" [label=\"F06\"];\n\"A3\" -> \"A4\" [label=\"G04\"];\n\"A4\" -> \"EC\" [label=\"F02\"];\n\"A2a\" -> \"A2b\" [label=\"G05\"];\n}",
+      "kind": "dfd"
+    },
+    "dfd-s2": {
+      "title": "S2   Refined snapshot and BOM validation",
+      "dot": "digraph G {\ngraph [rankdir=TB, bgcolor=\"white\", pad=\"0.35\", nodesep=\"0.45\", ranksep=\"0.85\", splines=polyline, label=\"S2   Refined snapshot and BOM validation\", labelloc=t, fontsize=24, fontname=\"Arial\"];\nnode [shape=box, fontname=\"Arial\", fontsize=16, margin=\"0.16,0.12\", color=\"#334155\", penwidth=1.4];\nedge [fontname=\"Arial\", fontsize=12, color=\"#475569\", arrowsize=0.75];\n\"EP\" [label=\"Production planner\", shape=box, style=\"filled\", fillcolor=\"#f1f5f9\"];\n\"D1\" [label=\"D1\\nSource data\", shape=record, style=\"filled\", fillcolor=\"#fff8e8\"];\n\"P2.2\" [label=\"P2.2 Net and expand\", shape=box, style=\"filled\", fillcolor=\"#f1f5f9\"];\n\"P3\" [label=\"P3 Publish results\", shape=box, style=\"filled\", fillcolor=\"#f1f5f9\"];\n\"B1a\" [label=\"B1a\\nRead consistent source\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"B1b\" [label=\"B1b\\nValidate selected fields\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"B2\" [label=\"B2\\nValidate graph\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"B3\" [label=\"B3\\nOrder tasks\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"B4\" [label=\"B4\\nFreeze context\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"B5\" [label=\"B5\\nBuild invalid outcome\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"EP\" -> \"B1a\" [label=\"F03\"];\n\"D1\" -> \"B1a\" [label=\"F08\"];\n\"B1b\" -> \"B2\" [label=\"G21\"];\n\"B1b\" -> \"B5\" [label=\"G24\"];\n\"B2\" -> \"B3\" [label=\"G23\"];\n\"B2\" -> \"B5\" [label=\"G24\"];\n\"B3\" -> \"B4\" [label=\"G22\"];\n\"B4\" -> \"P2.2\" [label=\"F12\"];\n\"B5\" -> \"P3\" [label=\"F09.invalid\"];\n\"B1a\" -> \"B1b\" [label=\"G25\"];\n}",
+      "kind": "dfd"
+    },
+    "dfd-s3": {
+      "title": "S3   Refined multilevel demand and stock",
+      "dot": "digraph G {\ngraph [rankdir=TB, bgcolor=\"white\", pad=\"0.35\", nodesep=\"0.45\", ranksep=\"0.85\", splines=polyline, label=\"S3   Refined multilevel demand and stock\", labelloc=t, fontsize=24, fontname=\"Arial\"];\nnode [shape=box, fontname=\"Arial\", fontsize=16, margin=\"0.16,0.12\", color=\"#334155\", penwidth=1.4];\nedge [fontname=\"Arial\", fontsize=12, color=\"#475569\", arrowsize=0.75];\n\"P2.1\" [label=\"P2.1 Validate\", shape=box, style=\"filled\", fillcolor=\"#f1f5f9\"];\n\"P2.3\" [label=\"P2.3 Procurement and risk\", shape=box, style=\"filled\", fillcolor=\"#f1f5f9\"];\n\"D3\" [label=\"D3\\nWorking stock\", shape=record, style=\"filled\", fillcolor=\"#fff8e8\"];\n\"C1\" [label=\"C1\\nInitialize batch balances\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"C2\" [label=\"C2\\nCollect material dates\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"C3\" [label=\"C3\\nAllocate stock\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"C4\" [label=\"C4\\nExpand net MAKE\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"C5\" [label=\"C5\\nRecord BUY residuals\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"C6\" [label=\"C6\\nAssemble net bundle\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"P2.1\" -> \"C1\" [label=\"F12\"];\n\"C1\" -> \"D3\" [label=\"F17\"];\n\"C1\" -> \"C2\" [label=\"G31\"];\n\"C2\" -> \"C3\" [label=\"F14\"];\n\"D3\" -> \"C3\" [label=\"F16\"];\n\"C3\" -> \"D3\" [label=\"F15\"];\n\"C3\" -> \"C4\" [label=\"F18\"];\n\"C4\" -> \"C2\" [label=\"F19\"];\n\"C4\" -> \"C5\" [label=\"G34\"];\n\"C5\" -> \"C6\" [label=\"G35\"];\n\"C6\" -> \"P2.3\" [label=\"F13\"];\n}",
+      "kind": "dfd"
+    },
+    "dfd-s4": {
+      "title": "S4   Refined purchasing and surplus",
+      "dot": "digraph G {\ngraph [rankdir=TB, bgcolor=\"white\", pad=\"0.35\", nodesep=\"0.45\", ranksep=\"0.85\", splines=polyline, label=\"S4   Refined purchasing and surplus\", labelloc=t, fontsize=24, fontname=\"Arial\"];\nnode [shape=box, fontname=\"Arial\", fontsize=16, margin=\"0.16,0.12\", color=\"#334155\", penwidth=1.4];\nedge [fontname=\"Arial\", fontsize=12, color=\"#475569\", arrowsize=0.75];\n\"P2.2\" [label=\"P2.2 Net requirements\", shape=box, style=\"filled\", fillcolor=\"#f1f5f9\"];\n\"S5\" [label=\"S5 Calendar and risk\", shape=box, style=\"filled\", fillcolor=\"#f1f5f9\"];\n\"D4\" [label=\"D4\\nPlanned surplus pool\", shape=record, style=\"filled\", fillcolor=\"#fff8e8\"];\n\"D01\" [label=\"D01\\nGroup dated shortages\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"D02\" [label=\"D02\\nConsume eligible surplus\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"D03\" [label=\"D03\\nRound purchase quantity\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"D04\" [label=\"D04\\nDate bucket and update pool\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"D05\" [label=\"D05\\nAssemble purchasing envelope\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"P2.2\" -> \"D01\" [label=\"F13\"];\n\"D01\" -> \"D4\" [label=\"G44\"];\n\"D01\" -> \"D02\" [label=\"G41\"];\n\"D4\" -> \"D02\" [label=\"G45\"];\n\"D02\" -> \"D03\" [label=\"G42\"];\n\"D03\" -> \"D04\" [label=\"G43\"];\n\"D04\" -> \"D4\" [label=\"G46\"];\n\"D04\" -> \"D05\" [label=\"G47\"];\n\"D05\" -> \"S5\" [label=\"G20\"];\n}",
+      "kind": "dfd"
+    },
+    "dfd-s5": {
+      "title": "S5   Refined timing risk and completed result",
+      "dot": "digraph G {\ngraph [rankdir=TB, bgcolor=\"white\", pad=\"0.35\", nodesep=\"0.45\", ranksep=\"0.85\", splines=polyline, label=\"S5   Refined timing risk and completed result\", labelloc=t, fontsize=24, fontname=\"Arial\"];\nnode [shape=box, fontname=\"Arial\", fontsize=16, margin=\"0.16,0.12\", color=\"#334155\", penwidth=1.4];\nedge [fontname=\"Arial\", fontsize=12, color=\"#475569\", arrowsize=0.75];\n\"S4\" [label=\"S4 Purchasing\", shape=box, style=\"filled\", fillcolor=\"#f1f5f9\"];\n\"P3\" [label=\"P3 Publish results\", shape=box, style=\"filled\", fillcolor=\"#f1f5f9\"];\n\"E01\" [label=\"E01\\nCollect required dates\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"E02\" [label=\"E02\\nFlag early dates\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"E03\" [label=\"E03\\nAssemble complete result\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"S4\" -> \"E01\" [label=\"G20\"];\n\"E01\" -> \"E02\" [label=\"G51\"];\n\"E02\" -> \"E03\" [label=\"G52\"];\n\"E03\" -> \"P3\" [label=\"F09.valid\"];\n}",
+      "kind": "dfd"
+    },
+    "dfd-s6": {
+      "title": "S6   Refined history trace and export",
+      "dot": "digraph G {\ngraph [rankdir=TB, bgcolor=\"white\", pad=\"0.35\", nodesep=\"0.45\", ranksep=\"0.85\", splines=polyline, label=\"S6   Refined history trace and export\", labelloc=t, fontsize=24, fontname=\"Arial\"];\nnode [shape=box, fontname=\"Arial\", fontsize=16, margin=\"0.16,0.12\", color=\"#334155\", penwidth=1.4];\nedge [fontname=\"Arial\", fontsize=12, color=\"#475569\", arrowsize=0.75];\n\"P2\" [label=\"P2 Calculation outcome\", shape=box, style=\"filled\", fillcolor=\"#f1f5f9\"];\n\"EP\" [label=\"Production planner\", shape=box, style=\"filled\", fillcolor=\"#f1f5f9\"];\n\"D2\" [label=\"D2\\nSaved plan batches\", shape=record, style=\"filled\", fillcolor=\"#fff8e8\"];\n\"F1\" [label=\"F1\\nClassify outcome\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"F2\" [label=\"F2\\nSave complete batch\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"F3\" [label=\"F3\\nRead selected history\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"F4a\" [label=\"F4a\\nBuild saved trace view\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"F4b\" [label=\"F4b\\nEncode requested CSV\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"F5\" [label=\"F5\\nBuild plan response\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"P2\" -> \"F1\" [label=\"F09\"];\n\"EP\" -> \"F3\" [label=\"F04\"];\n\"F1\" -> \"F2\" [label=\"G61\"];\n\"F1\" -> \"F5\" [label=\"G62\"];\n\"F2\" -> \"D2\" [label=\"F10\"];\n\"D2\" -> \"F3\" [label=\"F11\"];\n\"F2\" -> \"F4a\" [label=\"G64\"];\n\"F3\" -> \"F4a\" [label=\"G63\"];\n\"F4b\" -> \"F5\" [label=\"G65.csv\"];\n\"F5\" -> \"EP\" [label=\"F05\"];\n\"F4a\" -> \"F4b\" [label=\"G66\"];\n\"F4a\" -> \"F5\" [label=\"G65.view\"];\n}",
+      "kind": "dfd"
+    },
+    "dfd-bridge": {
+      "title": "P2.3   Purchasing and risk decomposition",
+      "dot": "digraph G {\ngraph [rankdir=TB, bgcolor=\"white\", pad=\"0.35\", nodesep=\"0.45\", ranksep=\"0.85\", splines=polyline, label=\"P2.3   Purchasing and risk decomposition\", labelloc=t, fontsize=24, fontname=\"Arial\"];\nnode [shape=box, fontname=\"Arial\", fontsize=16, margin=\"0.16,0.12\", color=\"#334155\", penwidth=1.4];\nedge [fontname=\"Arial\", fontsize=12, color=\"#475569\", arrowsize=0.75];\n\"P2.2\" [label=\"P2.2 Net requirements\", shape=box, style=\"filled\", fillcolor=\"#f1f5f9\"];\n\"P3\" [label=\"P3 Publish results\", shape=box, style=\"filled\", fillcolor=\"#f1f5f9\"];\n\"S4\" [label=\"S4\\nPlan purchases\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"S5\" [label=\"S5\\nAssess risk and complete\", shape=box, style=\"rounded,filled\", fillcolor=\"#edf5ff\"];\n\"P2.2\" -> \"S4\" [label=\"F13\"];\n\"S4\" -> \"S5\" [label=\"G20\"];\n\"S5\" -> \"P3\" [label=\"F09.valid\"];\n}",
+      "kind": "dfd"
+    }
+  }
+}
