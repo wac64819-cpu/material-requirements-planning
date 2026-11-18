@@ -1,0 +1,16 @@
+{
+  "executed_at": "2026-11-18T06:17:05.587Z",
+  "completed": false,
+  "failure": "Landing opens overview: \"view-data\"",
+  "passed": 0,
+  "total": 1,
+  "checks": [
+    {
+      "name": "Landing opens overview",
+      "actual": "view-data",
+      "expected": "view-overview",
+      "passed": false
+    }
+  ],
+  "errors": []
+}

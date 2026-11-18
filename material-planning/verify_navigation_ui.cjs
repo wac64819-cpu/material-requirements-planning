@@ -16,7 +16,7 @@ function check(name,actual,expected){checks.push({name,actual,expected,passed:JS
     browser=await chromium.launch({channel:'msedge',headless:true});
     const page=await browser.newPage({viewport:{width:1440,height:1000}});
     page.on('pageerror',e=>errors.push(e.message));page.on('dialog',d=>d.accept());
-    await page.goto(url);await page.getByText('示例已载入',{exact:true}).waitFor();
+    await page.goto(url);await page.locator('[data-view="data"]').click();await page.locator('#quick-edit').click();await page.getByText('示例已载入',{exact:true}).waitFor();
     const go=async view=>page.locator(`[data-view="${view}"]`).click();
     for(const view of ['planning','history','data']){
       await go(view);

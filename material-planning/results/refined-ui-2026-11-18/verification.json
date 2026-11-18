@@ -1,0 +1,306 @@
+{
+  "executed_at": "2026-11-18T14:20:57.515Z",
+  "completed": true,
+  "failure": null,
+  "passed": 48,
+  "total": 48,
+  "checks": [
+    {
+      "name": "Landing opens overview",
+      "actual": "view-overview",
+      "expected": "view-overview",
+      "passed": true
+    },
+    {
+      "name": "Uncalculated risk is not reported as zero",
+      "actual": "待计算",
+      "expected": "待计算",
+      "passed": true
+    },
+    {
+      "name": "Overview reports two current tasks",
+      "actual": "2",
+      "expected": "2",
+      "passed": true
+    },
+    {
+      "name": "Default table shows values instead of input fields",
+      "actual": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "Search finds only matching material",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "name": "Filtered drawer edits original row",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Supply filter selects self-made parts",
+      "actual": 2,
+      "expected": 2,
+      "passed": true
+    },
+    {
+      "name": "Pagination limits visible rows",
+      "actual": 2,
+      "expected": 2,
+      "passed": true
+    },
+    {
+      "name": "Next page retains original row identity",
+      "actual": "2",
+      "expected": "2",
+      "passed": true
+    },
+    {
+      "name": "Escape cancels drawer changes",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "BOM tree includes all four nodes",
+      "actual": 4,
+      "expected": 4,
+      "passed": true
+    },
+    {
+      "name": "BOM tree shows relationship usage",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "BOM node detail uses current stock",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Existing priority ordering preserved",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Demand explanation uses actual netting",
+      "actual": [
+        "100",
+        "20",
+        "80"
+      ],
+      "expected": [
+        "100",
+        "20",
+        "80"
+      ],
+      "passed": true
+    },
+    {
+      "name": "Explanation opens trace with BOM path",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Timeline contains production, purchasing and delivery",
+      "actual": 10,
+      "expected": 10,
+      "passed": true
+    },
+    {
+      "name": "Five-day purchase occupies 5/11 of eleven-day axis",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Timeline shows actual earliest purchase date",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Overview risk derived after successful calculation",
+      "actual": "0",
+      "expected": "0",
+      "passed": true
+    },
+    {
+      "name": "Overview unique short materials",
+      "actual": "2",
+      "expected": "2",
+      "passed": true
+    },
+    {
+      "name": "Editing invalidates overview result metrics",
+      "actual": "待计算",
+      "expected": "待计算",
+      "passed": true
+    },
+    {
+      "name": "History timeline remains tied to snapshot",
+      "actual": 10,
+      "expected": 10,
+      "passed": true
+    },
+    {
+      "name": "History preserves current editing data",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Drawer rejects duplicate material IDs",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Cancelled new record is not inserted",
+      "actual": 4,
+      "expected": 4,
+      "passed": true
+    },
+    {
+      "name": "Collapse hides descendant nodes",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "name": "Expand restores descendant nodes",
+      "actual": 4,
+      "expected": 4,
+      "passed": true
+    },
+    {
+      "name": "Selected BOM root excludes unrelated parts",
+      "actual": 2,
+      "expected": 2,
+      "passed": true
+    },
+    {
+      "name": "History search reports no matching record",
+      "actual": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "History search matches task in saved snapshot",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "name": "Cycle is visibly reported instead of infinite expansion",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Purchase explanation includes lot multiple",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Purchase explanation rounds demand 23 to lot size 30",
+      "actual": "30",
+      "expected": "30",
+      "passed": true
+    },
+    {
+      "name": "Later demand displays earlier surplus use",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Real surplus case uses positive earlier surplus",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Earlier events are highlighted on timeline",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Timeline filter retains only purchase events",
+      "actual": 4,
+      "expected": 4,
+      "passed": true
+    },
+    {
+      "name": "Timeline bar opens exact dates",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Dashboard risk agrees with saved plan",
+      "actual": "8",
+      "expected": "8",
+      "passed": true
+    },
+    {
+      "name": "Explanation preserves quantities beyond JS safe integer",
+      "actual": "18014398509481982",
+      "expected": "18014398509481982",
+      "passed": true
+    },
+    {
+      "name": "BOM net demand keeps exact large integer",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "390px overview has no page overflow",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "390px data has no page overflow",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "390px bom has no page overflow",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "390px planning has no page overflow",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "390px history has no page overflow",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Browser has no unhandled errors",
+      "actual": [],
+      "expected": [],
+      "passed": true
+    }
+  ],
+  "errors": []
+}

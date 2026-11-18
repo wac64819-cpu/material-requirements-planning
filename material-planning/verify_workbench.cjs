@@ -15,7 +15,7 @@ function check(name, actual, expected) {
   page.on('pageerror',e=>errors.push(e.message));
   page.on('dialog',d=>d.accept());
   try {
-    await page.goto(process.env.MRP_TEST_URL || 'http://127.0.0.1:8765');
+    await page.goto(process.env.MRP_TEST_URL || 'http://127.0.0.1:8765');await page.locator('[data-view="data"]').click();await page.locator('#quick-edit').click();
     await page.getByText('示例已载入',{exact:true}).waitFor();
     if(process.argv.includes('--before')) {
       await page.screenshot({path:path.join(out,'workbench-before.png'),fullPage:true});

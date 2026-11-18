@@ -28,12 +28,12 @@ async function stop(){if(server && server.exitCode===null)await new Promise(reso
     browser=await chromium.launch({channel:'msedge',headless:true});
     const page=await browser.newPage({viewport:{width:1440,height:1050}});
     const pageErrors=[];page.on('pageerror',e=>pageErrors.push(e.message));page.on('dialog',d=>d.accept());
-    await page.goto(url);await page.getByText('示例已载入',{exact:true}).waitFor();
+    await page.goto(url);await page.locator('[data-view="data"]').click();await page.locator('#quick-edit').click();await page.getByText('示例已载入',{exact:true}).waitFor();
     await page.getByLabel('物料第1行 名称',{exact:true}).fill('成品甲');
     await page.locator('#save-data').click();await page.locator('#save-status').filter({hasText:'已保存 ·'}).waitFor();
     const workspace=await page.request.get(url+'/api/workspace').then(r=>r.json());
     check('First save creates source version',Boolean(workspace.revision_id),true);
-    await page.reload();await page.getByText('已保存',{exact:true}).waitFor();
+    await page.reload();await page.locator('[data-view="data"]').click();await page.locator('#quick-edit').click();await page.getByText('已保存',{exact:true}).waitFor();
     check('Reload restores saved edit',await page.getByLabel('物料第1行 名称',{exact:true}).inputValue(),'成品甲');
     async function calculate(){
       await page.locator('[data-view="planning"]').click();
@@ -43,7 +43,7 @@ async function stop(){if(server && server.exitCode===null)await new Promise(reso
     }
     const first=await calculate();
     check('Plan saved badge shown',await page.locator('#history-meta').innerText().then(t=>t.includes(first.saved_batch.batch_id.slice(0,8))),true);
-    const other=await browser.newPage();other.on('dialog',d=>d.accept());await other.goto(url);await other.getByText('已保存',{exact:true}).waitFor();
+    const other=await browser.newPage();other.on('dialog',d=>d.accept());await other.goto(url);await other.locator('[data-view="data"]').click();await other.locator('#quick-edit').click();await other.getByText('已保存',{exact:true}).waitFor();
     await page.locator('[data-view="data"]').click();
     await page.getByRole('tab',{name:'生产任务',exact:true}).click();
     await page.getByLabel('生产任务第2行 需求数量',{exact:true}).fill('10');
@@ -69,7 +69,7 @@ async function stop(){if(server && server.exitCode===null)await new Promise(reso
     await page.locator('[data-view="data"]').click();
     await page.locator('#reload-saved').click();await page.getByText('已保存',{exact:true}).waitFor();
     check('Explicit reload restores valid data',await page.getByLabel('生产任务第2行 需求数量',{exact:true}).inputValue(),'10');
-    await stop();await start();await page.reload();await page.getByText('已保存',{exact:true}).waitFor();
+    await stop();await start();await page.reload();await page.locator('[data-view="data"]').click();await page.locator('#quick-edit').click();await page.getByText('已保存',{exact:true}).waitFor();
     check('Server restart restores source',await page.getByLabel('物料第1行 名称',{exact:true}).inputValue(),'成品甲');
     check('Server restart preserves history',(await page.request.get(url+'/api/history/'+first.saved_batch.batch_id).then(r=>r.json())).saved_batch.batch_id,first.saved_batch.batch_id);
     await page.setViewportSize({width:390,height:844});

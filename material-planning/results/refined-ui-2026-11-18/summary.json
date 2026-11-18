@@ -1,0 +1,79 @@
+{
+  "verified_at": "2026-11-18T14:23:21.600548+00:00",
+  "suites": [
+    {
+      "file": "verification.json",
+      "passed": 48,
+      "total": 48
+    },
+    {
+      "file": "regression/workbench-verification.json",
+      "passed": 30,
+      "total": 30
+    },
+    {
+      "file": "regression/persistence-ui-verification.json",
+      "passed": 14,
+      "total": 14
+    },
+    {
+      "file": "regression/csv-ui-verification.json",
+      "passed": 37,
+      "total": 37
+    },
+    {
+      "file": "regression/navigation-ui-verification.json",
+      "passed": 24,
+      "total": 24
+    }
+  ],
+  "source_sha256": {
+    "web/app.js": "eed5435649c71ad8f1ee33bafbb95e5c9e68836d14074b82bce1662c729a7370",
+    "web/index.html": "7f57d893e64078fd54ec7c59ea45ece06435d5287f3d7364e1bf468ecec0b465",
+    "web/style.css": "d483aa39855d0b2284f2c4c743d5e7f1a3a8efa9cbc10b833c719420b43d9a3d",
+    "verify_refined_ui.cjs": "a4ca2b0c1a44d5c4aad7a1e083514a33cacac5279e8e4ab229aced33adb7840c",
+    "verify_workbench.cjs": "1e819bf95b7dbd4aa09488b5715ef01a96e65c64b25c748704696e8784c2cdf8",
+    "verify_persistence_ui.cjs": "03e4bdebd852ebb071d8d3b7a909936623717d9b0be1a9439356c1e939007e39",
+    "verify_csv_ui.cjs": "bf87917a2918d61ed3878f823a10f9a5a8554b61c58e7bed0941ea5213ade3a1",
+    "verify_navigation_ui.cjs": "a8bdffd89da7aa4bbb7bb43705d21725776d44902c78658388178ec590841d66"
+  },
+  "evidence_sha256": {
+    "01-overview.png": "3afc3637d97afbebb2a87cfe42eca09c05df5fac595f1268224e01f285dabe92",
+    "02-data.png": "cbb020e948232bf42f72b6424c38e257310d2f65f203725dd663ae90e13e184b",
+    "03-bom.png": "a4f0216f53548675264d6b9925250ac2e29eb3f9ec73b0b040d1363914f957da",
+    "04-planning.png": "aafbe17a78fd2b2721ec45669a1bca519e39ddd2ee0876ab527c62934b4dcd46",
+    "05-history.png": "53e50a0dc19e3e505bf8a8ce1678c3a0e803a5680b5ed5bef4818bc13f54d3ab",
+    "06-mobile.png": "3ede4f02ff1aca7a01f57aee474895ab1b578d3c6433938a69b9274be54dbeee",
+    "README.md": "338aa68c5d6590696c2c4e0c7a0d4d4ebde8cf43a45ad98ad389a0831a690fc2",
+    "verification.json": "8d8f29a768df7c72cacf97eb99c8ff402e0b055a704ef6bb3e69fab581208f28",
+    "before/verification.json": "611ef3fce65aa7ae7b6da8a9b8db823df0984002561a9dab7d9bedde5e79ad11",
+    "regression/csv-mobile.png": "efcccf85d76f4dfbd09d035287a715ffec49247241551206f81438c99d0a7735",
+    "regression/csv-ui-verification.json": "418809aa6065e76e507cf1be60b9224ea7efcccedb719bc3ea299a31f478ca0e",
+    "regression/csv-workbench.png": "4508924ce3be69c7d1f1482fddea97942d0b2af22f01b22f9467747a105dd8e2",
+    "regression/download-ALLOCATION.csv": "c91c942512ee4be22289f060885e1aab2097ea5d7f0df6ec26ca8f0a4a096667",
+    "regression/download-MAKE.csv": "4ad5ddb5382dc131940af83994c28a76ebdde424b4c4057765275d6558727459",
+    "regression/download-PURCHASE.csv": "bc3b48c44a21a4ee2e681fc32f839ab91ab82437cb4f8b4e99afd882f27fc9c9",
+    "regression/download-RISK-with-rows.csv": "26c51ebb7ee44d020a0a4a14e082310a23f230fefef40064e4105b6336566de4",
+    "regression/download-RISK.csv": "f99ab4c3ca7174b8fd39fcde8fcf336cacd8e4c6984ef1b8a777de91b36d4920",
+    "regression/download-TRACE.csv": "5d2dbfdcbe2572ff845c76878038f85fef7f1083f32b621108cd9313677f1c94",
+    "regression/navigation-mobile-data.png": "bb51e3b33ed19ee1b0cf60ab78eee6a6c757fc375023062518fffc1a16801c9d",
+    "regression/navigation-mobile-history.png": "6db87c8f822230d17ab482465e2a353908001b0c94632e7a1d9b12f5bcf85a52",
+    "regression/navigation-mobile-planning.png": "5f6e1639635c6511534fe675c362cc4fd41211792ed6cabaf8796fb09e716177",
+    "regression/navigation-mobile-result.png": "522979e8b21cf73707bbca94f004f70f034b318887960f73da7ac0afe532a49d",
+    "regression/navigation-ui-verification.json": "2f9a606774e146cc5b2520696a7d523c27464acd1c6c6994093283bcf5ed30e7",
+    "regression/persistence-history.png": "14825f9576a293c6b853f22af5cca83a42d722af291bdc38e324641fb532da99",
+    "regression/persistence-mobile.png": "fc34f110d1fb393850093c0d23d06e5a604f06f850261551c51ea1871db2c578",
+    "regression/persistence-ui-verification.json": "e5989543ed00ea20ae22ee5224fc2cc54fefb7349a3c3e820a9289de4e5209b2",
+    "regression/workbench-desktop.png": "d7d60f6612b5624cc1b499c9deb6c6c427166ea51d60d77e082023a2521f52f6",
+    "regression/workbench-error.png": "79ac94cf00be970ef026004d0c1bc98a1e2cf3eda8742e908d85dd7194a75dbd",
+    "regression/workbench-mobile.png": "8f8d9a7c8f8cce26f2e2d95e5bce3dd12abba9560c53621a2fffe6bb7d86cda1",
+    "regression/workbench-results.png": "eca10b72b22461789f3aaf81333354486b8b53b353eee7e7791091806be94767",
+    "regression/workbench-verification.json": "9f8a045f637581a51fd25c3cef04ed77481adea0edf52ceb400e34d946b12338",
+    "timeline-before-fix/01-overview.png": "864bd9031d8f8920922d979d18a5623eb41f52aee6a8ae581edb61b5dba299b0",
+    "timeline-before-fix/02-data.png": "cbb020e948232bf42f72b6424c38e257310d2f65f203725dd663ae90e13e184b",
+    "timeline-before-fix/03-bom.png": "a4f0216f53548675264d6b9925250ac2e29eb3f9ec73b0b040d1363914f957da",
+    "timeline-before-fix/verification.json": "5c93b25c541f810b58452c3b4f02b5090933ffa0d5eae307e32b8da43d1641e8"
+  },
+  "passed": 153,
+  "total": 153
+}

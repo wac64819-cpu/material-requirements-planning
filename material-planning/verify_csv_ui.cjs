@@ -19,7 +19,7 @@ function csvRows(bytes){
     browser=await chromium.launch({channel:'msedge',headless:true});
     const page=await browser.newPage({viewport:{width:1440,height:1050},acceptDownloads:true});
     page.on('pageerror',e=>errors.push(e.message));page.on('dialog',d=>d.accept());
-    await page.goto(url);await page.getByText('示例已载入',{exact:true}).waitFor();
+    await page.goto(url);await page.locator('[data-view="data"]').click();await page.locator('#quick-edit').click();await page.getByText('示例已载入',{exact:true}).waitFor();
     await page.locator('.csv-panel summary').click();
     let wait=page.waitForEvent('download');await page.getByText('下载四表示例模板',{exact:true}).click();let file=await wait;
     check('Template ZIP downloads',file.suggestedFilename(),'mrp-csv-templates.zip');

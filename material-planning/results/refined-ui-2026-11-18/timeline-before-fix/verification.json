@@ -1,0 +1,137 @@
+{
+  "executed_at": "2026-11-18T06:35:23.226Z",
+  "completed": false,
+  "failure": "Five-day purchase occupies 5/11 of eleven-day axis: false",
+  "passed": 17,
+  "total": 18,
+  "checks": [
+    {
+      "name": "Landing opens overview",
+      "actual": "view-overview",
+      "expected": "view-overview",
+      "passed": true
+    },
+    {
+      "name": "Uncalculated risk is not reported as zero",
+      "actual": "待计算",
+      "expected": "待计算",
+      "passed": true
+    },
+    {
+      "name": "Overview reports two current tasks",
+      "actual": "2",
+      "expected": "2",
+      "passed": true
+    },
+    {
+      "name": "Default table shows values instead of input fields",
+      "actual": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "Search finds only matching material",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "name": "Filtered drawer edits original row",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Supply filter selects self-made parts",
+      "actual": 2,
+      "expected": 2,
+      "passed": true
+    },
+    {
+      "name": "Pagination limits visible rows",
+      "actual": 2,
+      "expected": 2,
+      "passed": true
+    },
+    {
+      "name": "Next page retains original row identity",
+      "actual": "2",
+      "expected": "2",
+      "passed": true
+    },
+    {
+      "name": "Escape cancels drawer changes",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "BOM tree includes all four nodes",
+      "actual": 4,
+      "expected": 4,
+      "passed": true
+    },
+    {
+      "name": "BOM tree shows relationship usage",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "BOM node detail uses current stock",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Existing priority ordering preserved",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Demand explanation uses actual netting",
+      "actual": [
+        "100",
+        "20",
+        "80"
+      ],
+      "expected": [
+        "100",
+        "20",
+        "80"
+      ],
+      "passed": true
+    },
+    {
+      "name": "Explanation opens trace with BOM path",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "Timeline contains production, purchasing and delivery",
+      "actual": 10,
+      "expected": 10,
+      "passed": true
+    },
+    {
+      "name": "Five-day purchase occupies 5/11 of eleven-day axis",
+      "actual": false,
+      "expected": true,
+      "passed": false
+    }
+  ],
+  "errors": [
+    "Applying inline style violates the following Content Security Policy directive 'style-src 'self''. Either the 'unsafe-inline' keyword, a hash ('sha256-WTox/VM+h+irG3DLKFdw0o8ebRZJFzaWaeMAw4eZG0E='), or a nonce ('nonce-...') is required to enable inline execution. Note that hashes do not apply to event handlers, style attributes and javascript: navigations unless the 'unsafe-hashes' keyword is present. The action has been blocked.",
+    "Applying inline style violates the following Content Security Policy directive 'style-src 'self''. Either the 'unsafe-inline' keyword, a hash ('sha256-9ULGyHuHqN6XRpjL+2Pkka5c9GS67PChJw+Fcx3nxDM='), or a nonce ('nonce-...') is required to enable inline execution. Note that hashes do not apply to event handlers, style attributes and javascript: navigations unless the 'unsafe-hashes' keyword is present. The action has been blocked.",
+    "Applying inline style violates the following Content Security Policy directive 'style-src 'self''. Either the 'unsafe-inline' keyword, a hash ('sha256-3hPIeWfktTTrR8XDlTxkgz0jfx+TC0eP9fO4M5aLuzU='), or a nonce ('nonce-...') is required to enable inline execution. Note that hashes do not apply to event handlers, style attributes and javascript: navigations unless the 'unsafe-hashes' keyword is present. The action has been blocked.",
+    "Applying inline style violates the following Content Security Policy directive 'style-src 'self''. Either the 'unsafe-inline' keyword, a hash ('sha256-lUDEYVROsloV4A31/WtSdYxYs+kSftVLy1MW0IfxrEc='), or a nonce ('nonce-...') is required to enable inline execution. Note that hashes do not apply to event handlers, style attributes and javascript: navigations unless the 'unsafe-hashes' keyword is present. The action has been blocked.",
+    "Applying inline style violates the following Content Security Policy directive 'style-src 'self''. Either the 'unsafe-inline' keyword, a hash ('sha256-D2rAPYyeFiapnpuc2tc9XQwSBGblnV01j2WLiuA0KsM='), or a nonce ('nonce-...') is required to enable inline execution. Note that hashes do not apply to event handlers, style attributes and javascript: navigations unless the 'unsafe-hashes' keyword is present. The action has been blocked.",
+    "Applying inline style violates the following Content Security Policy directive 'style-src 'self''. Either the 'unsafe-inline' keyword, a hash ('sha256-D7Mr7xSudfj3ovIK93JhsY7wz0wffSBmEN+zvjnAp1s='), or a nonce ('nonce-...') is required to enable inline execution. Note that hashes do not apply to event handlers, style attributes and javascript: navigations unless the 'unsafe-hashes' keyword is present. The action has been blocked.",
+    "Applying inline style violates the following Content Security Policy directive 'style-src 'self''. Either the 'unsafe-inline' keyword, a hash ('sha256-ngyrsbc/O+do9xSTHuYjQBUSuoXGTF1gmCSOWub0P5k='), or a nonce ('nonce-...') is required to enable inline execution. Note that hashes do not apply to event handlers, style attributes and javascript: navigations unless the 'unsafe-hashes' keyword is present. The action has been blocked.",
+    "Applying inline style violates the following Content Security Policy directive 'style-src 'self''. Either the 'unsafe-inline' keyword, a hash ('sha256-1mdxqmlWBMDjqE3JxDOOgKgTxGyFPvGWZ1MZPNRRRa8='), or a nonce ('nonce-...') is required to enable inline execution. Note that hashes do not apply to event handlers, style attributes and javascript: navigations unless the 'unsafe-hashes' keyword is present. The action has been blocked.",
+    "Applying inline style violates the following Content Security Policy directive 'style-src 'self''. Either the 'unsafe-inline' keyword, a hash ('sha256-gdw8Sxew/fbP6goCP8VifR+MtlI89gzBTkbZVG5lweE='), or a nonce ('nonce-...') is required to enable inline execution. Note that hashes do not apply to event handlers, style attributes and javascript: navigations unless the 'unsafe-hashes' keyword is present. The action has been blocked.",
+    "Applying inline style violates the following Content Security Policy directive 'style-src 'self''. Either the 'unsafe-inline' keyword, a hash ('sha256-IJS/ZEq9XRwOVfeNUdnjfnYn1B8d/+G1rH6xLssGuJI='), or a nonce ('nonce-...') is required to enable inline execution. Note that hashes do not apply to event handlers, style attributes and javascript: navigations unless the 'unsafe-hashes' keyword is present. The action has been blocked."
+  ]
+}
