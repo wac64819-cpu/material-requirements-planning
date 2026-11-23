@@ -1,0 +1,8 @@
+material_id,name,supply_type,unit,lead_time_days,min_purchase_qty,purchase_multiple
+成品1,桌子成品,MAKE,个,1,,
+中间产品1,桌腿,MAKE,条,1,,
+中间产品2,抽屉,MAKE,个,1,,
+中间产品3,桌面,MAKE,个,1,,
+原料1,合成木,BUY,块,2,10,1
+原料2,实木,BUY,块,3,10,1
+原料3,涂料,BUY,份,1,100,100
